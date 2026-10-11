@@ -16,7 +16,7 @@ export async function getProfile() {
 
 export async function familyCode() { const { data } = await sb.rpc('my_family_code'); return data; }
 export async function createFamily(name, displayName) { const { data, error } = await sb.rpc('create_family', { p_name: name, p_display_name: displayName }); if (error) throw error; return data; }
-export async function joinFamily(code, displayName) { const { data, error } = await sb.rpc('join_family', { p_code: code, p_display_name: displayName }); if (error) throw error; return data; }
+export async function joinFamily(code, displayName, role = 'student') { const { data, error } = await sb.rpc('join_family', { p_code: code, p_display_name: displayName, p_role: role }); if (error) throw error; return data; }
 
 export async function listModules() {
   const { data } = await sb.from('modules_list').select('*').eq('published', true).order('exam_date', { ascending: true });

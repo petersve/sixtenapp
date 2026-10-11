@@ -90,7 +90,7 @@ function onboard() {
     <form id="of" class="card stack" style="gap:12px">
       <div><label for="nm">Ditt namn</label><input type="text" id="nm" required placeholder="${mode === 'join' ? 'Sixten' : 'Peter'}"></div>
       ${mode === 'join' ? `<div><label for="cd">Familjekod (får du av din förälder)</label><input type="text" id="cd" required autocapitalize="characters" placeholder="A1B2C3" style="letter-spacing:.2em;text-transform:uppercase"></div>`
-                        : `<div><label for="fn">Familjens namn</label><input type="text" id="fn" required placeholder="Familjen Svensson"></div>`}
+                        : `<div><label for="cd">Har din partner redan skapat familjen? Skriv familjekoden</label><input type="text" id="cd" autocapitalize="characters" placeholder="A1B2C3" style="letter-spacing:.2em;text-transform:uppercase"></div><div class="muted" style="text-align:center">eller</div><div><label for="fn">Skapa ny familj – namn</label><input type="text" id="fn" placeholder="Familjen Svensson"></div>`}
       <div id="oerr"></div>
       <button class="btn primary" type="submit">${mode === 'join' ? 'Gå med' : 'Skapa familj'}</button>
     </form>
@@ -103,7 +103,12 @@ function onboard() {
       e.preventDefault(); const nm = document.getElementById('nm').value.trim(); const err = document.getElementById('oerr');
       try {
         if (mode === 'join') { const ok = await db.joinFamily(document.getElementById('cd').value, nm); if (!ok) { err.innerHTML = '<div class="fb no">Fel kod. Kolla med din förälder.</div>'; return; } }
-        else { const code = await db.createFamily(document.getElementById('fn').value.trim(), nm); toast('Familjekod: ' + code); }
+        else {
+          const cd = document.getElementById('cd').value.trim(), fn = document.getElementById('fn').value.trim();
+          if (cd) { const ok = await db.joinFamily(cd, nm, 'parent'); if (!ok) { err.innerHTML = '<div class="fb no">Fel kod.</div>'; return; } }
+          else if (fn) { const code = await db.createFamily(fn, nm); toast('Familjekod: ' + code); }
+          else { err.innerHTML = '<div class="fb no">Fyll i en familjekod eller ett namn på ny familj.</div>'; return; }
+        }
         await boot();
       } catch (ex) { err.innerHTML = `<div class="fb no">${esc(ex.message)}</div>`; }
     };
