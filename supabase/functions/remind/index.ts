@@ -15,9 +15,10 @@ Deno.serve(async (req) => {
   const secret = Deno.env.get("CRON_SECRET");
   if (secret && req.headers.get("x-cron-secret") !== secret) return new Response("forbidden", { status: 403 });
   const today = todayStr();
-  const { data: students } = await admin.from("profiles").select("id,display_name,telegram_chat_id,family_id").eq("role", "student").not("telegram_chat_id", "is", null);
+  const { data: students } = await admin.from("profiles").select("id,display_name,telegram_chat_id,family_id,last_reminded").eq("role", "student").not("telegram_chat_id", "is", null);
   let sent = 0;
   for (const s of students ?? []) {
+    if (s.last_reminded === today) continue; // max en påminnelse per dag, även om endpointen anropas flera gånger
     // Närmaste kommande prov för familjen (eller delat)
     const { data: mods } = await admin.from("modules").select("id,title,subject,exam_date").eq("published", true).or(`family_id.is.null,family_id.eq.${s.family_id}`).gte("exam_date", today).order("exam_date").limit(1);
     const mod = mods?.[0];
@@ -29,6 +30,7 @@ Deno.serve(async (req) => {
     const daysLeft = Math.round((Date.parse(mod.exam_date) - Date.parse(today)) / 86400e3);
     const line = total ? `${green} gröna, ${weak} röda.` : `Inget påbörjat ännu.`;
     await send(s.telegram_chat_id, `🧪 <b>${mod.subject}: ${mod.title}</b> om ${daysLeft} dag${daysLeft === 1 ? "" : "ar"}.\nInget pass idag ännu. ${line}\n15 minuter räcker: ${APP_URL}`);
+    await admin.from("profiles").update({ last_reminded: today }).eq("id", s.id);
     sent++;
   }
   return new Response(JSON.stringify({ sent }), { headers: { "Content-Type": "application/json" } });
