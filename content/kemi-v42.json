@@ -1,0 +1,1342 @@
+{
+ "slug": "kemi-v42",
+ "title": "Bindningar & isotoper",
+ "subject": "Kemi",
+ "exam_date": "2026-10-14",
+ "plan": [
+  {
+   "date": "2026-10-11",
+   "label": "Söndag",
+   "items": [
+    "Pass 1 (grund)"
+   ]
+  },
+  {
+   "date": "2026-10-12",
+   "label": "Måndag",
+   "items": [
+    "Pass 2 (grund)",
+    "Pass 3 (högre)"
+   ]
+  },
+  {
+   "date": "2026-10-13",
+   "label": "Tisdag",
+   "items": [
+    "Pass 4 (blandat)",
+    "Övningsprov"
+   ]
+  },
+  {
+   "date": "2026-10-14",
+   "label": "Onsdag",
+   "items": [
+    "Snabbvärmning: 15 svaga kort"
+   ]
+  }
+ ],
+ "cards": [
+  {
+   "id": "skal",
+   "lvl": "G",
+   "t": "Atomen",
+   "q": "Vad är ett elektronskal?",
+   "a": "Ett område runt atomkärnan där elektronerna finns. Elektronerna är ordnade i skal.",
+   "why": "Elektronerna ligger inte huller om buller, de fyller skal inifrån och ut.",
+   "ex": "Skal 1 rymmer 2 elektroner, skal 2 rymmer 8."
+  },
+  {
+   "id": "skalantal",
+   "lvl": "G",
+   "t": "Atomen",
+   "q": "Hur många elektroner ryms i skal 1, 2 och 3?",
+   "a": "Skal 1: 2 st. Skal 2: 8 st. Skal 3: 18 st (men för de första 20 grundämnena ritar man 8).",
+   "why": "Ett fullt skal är stabilt. Det är därför 2 och 8 är magiska tal i kemi.",
+   "ex": "Natrium (11 elektroner) = 2, 8, 1."
+  },
+  {
+   "id": "valensskal",
+   "lvl": "G",
+   "t": "Atomen",
+   "q": "Vad är ett valensskal?",
+   "a": "Det yttersta elektronskalet i en atom.",
+   "why": "Det är det skalet som möter andra atomer, så det är där bindningar sker.",
+   "ex": "Hos syre (2, 6) är valensskalet det andra skalet."
+  },
+  {
+   "id": "valensel",
+   "lvl": "G",
+   "t": "Atomen",
+   "q": "Vad är valenselektroner?",
+   "a": "Elektronerna i det yttersta skalet. De avgör hur atomen reagerar med andra atomer.",
+   "why": "Atomen vill ha fullt yttersta skal. Antalet valenselektroner avgör om den lämnar, tar eller delar elektroner.",
+   "ex": "Syre har 6 valenselektroner och vill ha 2 till."
+  },
+  {
+   "id": "atomnr",
+   "lvl": "G",
+   "t": "Atomen",
+   "q": "Vad är atomnummer?",
+   "a": "Antalet protoner i atomkärnan.",
+   "why": "Antalet protoner bestämmer vilket grundämne det är. Byter du antal protoner får du ett annat ämne.",
+   "ex": "Väte = 1, kol = 6, syre = 8."
+  },
+  {
+   "id": "neutral",
+   "lvl": "G",
+   "t": "Atomen",
+   "q": "Hur många elektroner har en neutral atom?",
+   "a": "Lika många elektroner som protoner.",
+   "why": "Plus och minus tar ut varandra, så atomen blir oladdad.",
+   "ex": "Kol: 6 protoner och 6 elektroner."
+  },
+  {
+   "id": "laddel",
+   "lvl": "G",
+   "t": "Atomen",
+   "q": "Vilken laddning har en elektron?",
+   "a": "Negativ (−).",
+   "why": "Elektroner finns i skalen runt kärnan och är minusladdade.",
+   "ex": "När en atom tar upp en elektron blir den en negativ jon."
+  },
+  {
+   "id": "laddpn",
+   "lvl": "G",
+   "t": "Atomen",
+   "q": "Vilken laddning har protonen och neutronen?",
+   "a": "Protonen är positiv (+). Neutronen är neutral (ingen laddning).",
+   "why": "Båda sitter i kärnan. Kärnan blir alltså positiv.",
+   "ex": "Minnesregel: Proton = Plus, Neutron = Neutral, Elektron = minus."
+  },
+  {
+   "id": "elskal7",
+   "lvl": "G",
+   "t": "Atomen",
+   "q": "Elektroner i skalen för H, He, Li, C, N, O, Na?",
+   "a": "H: 1 · He: 2 · Li: 2,1 · C: 2,4 · N: 2,5 · O: 2,6 · Na: 2,8,1",
+   "why": "Fyll skal 1 med 2 först, sedan skal 2 med upp till 8, sedan skal 3.",
+   "ex": "Kol har atomnummer 6 → 6 elektroner → 2 i första, 4 i andra."
+  },
+  {
+   "id": "ritaatom",
+   "lvl": "G",
+   "t": "Atomen",
+   "q": "Hur ritar du en atommodell?",
+   "a": "1) Liten cirkel i mitten med symbolen (kärnan). 2) Cirklar runt om = skal. 3) Prickar = elektroner, fyll inifrån och ut.",
+   "why": "Kärnan har protoner och neutroner, elektronerna ligger i skalen.",
+   "ex": "Syre: O i mitten, 2 prickar på första ringen, 6 på andra."
+  },
+  {
+   "id": "jon",
+   "lvl": "G",
+   "t": "Joner",
+   "q": "Vad är en jon?",
+   "a": "En atom (eller grupp av atomer) som fått elektrisk laddning genom att ta upp eller lämna ifrån sig elektroner.",
+   "why": "Om antalet elektroner inte längre är lika med antalet protoner blir atomen laddad.",
+   "ex": "Na⁺ och Cl⁻ är joner."
+  },
+  {
+   "id": "posneg",
+   "lvl": "G",
+   "t": "Joner",
+   "q": "Vad är skillnaden på en positiv och en negativ jon?",
+   "a": "Positiv jon: har LÄMNAT elektroner. Negativ jon: har TAGIT UPP elektroner.",
+   "why": "Elektroner är minus. Lämnar du bort minus blir du plus. Tar du emot minus blir du minus.",
+   "ex": "Na → Na⁺ (lämnade 1). Cl → Cl⁻ (tog upp 1)."
+  },
+  {
+   "id": "jonbind",
+   "lvl": "G",
+   "t": "Joner",
+   "q": "Vad är en jonbindning?",
+   "a": "Den elektriska dragningskraften mellan positiva och negativa joner.",
+   "why": "Plus och minus dras till varandra, precis som magneter.",
+   "ex": "Koksalt NaCl: Na⁺ och Cl⁻ hålls ihop av jonbindning."
+  },
+  {
+   "id": "nacl",
+   "lvl": "G",
+   "t": "Joner",
+   "q": "Hur bildas koksalt (NaCl)?",
+   "a": "Natrium lämnar sin enda valenselektron till klor. Då bildas Na⁺ och Cl⁻ som dras till varandra.",
+   "why": "Na har 1 valenselektron (vill bli av med den), Cl har 7 (vill ha 1 till). Båda får fullt yttersta skal.",
+   "ex": "Na → Na⁺ + e⁻   ·   Cl + e⁻ → Cl⁻   ·   Na⁺ + Cl⁻ → NaCl"
+  },
+  {
+   "id": "gitter",
+   "lvl": "G",
+   "t": "Joner",
+   "q": "Vad händer när många joner sätter ihop sig?",
+   "a": "De bildar ett kristallgitter, alltså strukturen i en saltkristall.",
+   "why": "Varje plusjon omges av minusjoner och tvärtom, i ett regelbundet mönster.",
+   "ex": "Ett saltkorn är ett litet kristallgitter av Na⁺ och Cl⁻."
+  },
+  {
+   "id": "molbind",
+   "lvl": "G",
+   "t": "Molekyler",
+   "q": "Vad är en elektronparbindning (molekylbindning)?",
+   "a": "När två atomer DELAR på ett eller flera elektronpar. Kallas också kovalent bindning.",
+   "why": "Genom att dela får båda atomerna räkna elektronerna som sina, och får fullt yttersta skal.",
+   "ex": "Två väteatomer delar ett elektronpar → H₂."
+  },
+  {
+   "id": "h2",
+   "lvl": "G",
+   "t": "Molekyler",
+   "q": "Hur ritar du att två väteatomer binder till varandra?",
+   "a": "H· + ·H → H:H → H—H. En linje = ett delat elektronpar.",
+   "why": "Varje väte har 1 elektron. Tillsammans får de 2, vilket fyller första skalet.",
+   "ex": "Före: H· ·H   Efter: H—H"
+  },
+  {
+   "id": "epar",
+   "lvl": "H",
+   "t": "Molekyler",
+   "q": "Vad är ett elektronpar?",
+   "a": "Två elektroner. I en elektronparbindning delas paret mellan två atomer. Fria elektronpar tillhör en atom utan att delas.",
+   "why": "Elektroner trivs i par. Paret kan vara delat (bindning) eller fritt.",
+   "ex": "Syreatomen i vatten har två fria elektronpar."
+  },
+  {
+   "id": "edt",
+   "lvl": "H",
+   "t": "Molekyler",
+   "q": "Hur bildas enkel-, dubbel- och trippelbindning?",
+   "a": "Enkel = 1 delat elektronpar (H—H). Dubbel = 2 par (O=O). Trippel = 3 par (N≡N).",
+   "why": "Ju fler elektroner atomerna saknar, desto fler par måste de dela för att få fullt skal.",
+   "ex": "Syre saknar 2 → delar 2 par → O=O. Kväve saknar 3 → N≡N."
+  },
+  {
+   "id": "metbind",
+   "lvl": "G",
+   "t": "Metaller",
+   "q": "Vad är en metallbindning?",
+   "a": "Metallatomerna lämnar elektroner som rör sig fritt mellan de positiva metalljonerna. Attraktionen mellan jonerna och elektronerna håller ihop metallen.",
+   "why": "Elektronerna är som ett 'hav' som alla plusjoner delar på.",
+   "ex": "Koppar, järn, aluminium hålls ihop av metallbindning."
+  },
+  {
+   "id": "metegen",
+   "lvl": "H",
+   "t": "Metaller",
+   "q": "Varför leder metaller ström och värme, kan böjas och glänser?",
+   "a": "Leder ström: elektronerna kan röra sig. Leder värme: elektronerna transporterar energi. Kan böjas: jonlagren kan glida utan att bindningen bryts. Glans: elektronerna reflekterar ljus.",
+   "why": "Alla fyra egenskaper beror på de fria elektronerna.",
+   "ex": "Koppar i elkablar (leder ström), aluminium i flygplan (lätt och formbart)."
+  },
+  {
+   "id": "adelgas",
+   "lvl": "H",
+   "t": "Ädelgaser",
+   "q": "Vad är ädelgaser?",
+   "a": "Grundämnena i grupp 18 i periodiska systemet, t.ex. helium, neon, argon. De reagerar nästan inte alls.",
+   "why": "Deras yttersta skal är redan fullt, så de behöver inte byta eller dela elektroner.",
+   "ex": "Helium i ballonger, neon i skyltar."
+  },
+  {
+   "id": "adelstr",
+   "lvl": "H",
+   "t": "Ädelgaser",
+   "q": "Vad är ädelgasstruktur?",
+   "a": "Att en atom har fullt yttersta skal, som en ädelgas. Atomer når det genom att lämna, ta upp eller dela elektroner.",
+   "why": "Det är HELA anledningen till att kemiska bindningar bildas.",
+   "ex": "Na lämnar 1 → blir som neon. Cl tar 1 → blir som argon."
+  },
+  {
+   "id": "neutron",
+   "lvl": "H",
+   "t": "Isotoper",
+   "q": "Vad är neutroner och vad styr de?",
+   "a": "Partiklar i kärnan utan laddning. Protonerna bestämmer vilket grundämne, neutronerna bestämmer vilken isotop.",
+   "why": "Olika antal neutroner ändrar massan men inte vilket ämne det är.",
+   "ex": "Kol-12 och kol-14 är båda kol (6 protoner) men har olika antal neutroner."
+  },
+  {
+   "id": "isotop",
+   "lvl": "H",
+   "t": "Isotoper",
+   "q": "Vad är isotoper?",
+   "a": "Varianter av samma grundämne med lika många protoner men olika många neutroner.",
+   "why": "Samma atomnummer = samma ämne. Olika masstal = olika isotop.",
+   "ex": "Kol-12: 6 p + 6 n. Kol-14: 6 p + 8 n."
+  },
+  {
+   "id": "radio",
+   "lvl": "H",
+   "t": "Isotoper",
+   "q": "Vad betyder radioaktiv?",
+   "a": "Att ämnet har instabila atomkärnor som spontant sönderfaller och avger strålning.",
+   "why": "Vissa isotoper har 'fel' balans mellan protoner och neutroner och faller sönder av sig själva.",
+   "ex": "Kol-14 är radioaktivt och omvandlas till kväve-14."
+  },
+  {
+   "id": "isoanv",
+   "lvl": "H",
+   "t": "Isotoper",
+   "q": "Hur är kunskap om isotoper användbar?",
+   "a": "Arkeologi: kol-14-datering. Sjukvård: diagnos och behandling. Energi: uran-235 i kärnreaktorer. Forskning: spårämnen.",
+   "why": "Radioaktiva isotoper kan mätas och följas, och de avger energi.",
+   "ex": "Kol-14 används för att åldersbestämma gamla ben och trä."
+  },
+  {
+   "id": "c14",
+   "lvl": "H",
+   "t": "Isotoper",
+   "q": "Hur fungerar kol-14-metoden?",
+   "a": "1) Levande organismer tar upp kol-14. 2) När de dör slutar upptaget. 3) Kol-14 minskar genom sönderfall. 4) Mät hur mycket som finns kvar → räkna ut hur länge sedan den dog.",
+   "why": "Sönderfallet går i en känd takt, så det blir som en klocka.",
+   "ex": "En träbit med lite kol-14 kvar är gammal."
+  },
+  {
+   "id": "mgo",
+   "lvl": "H",
+   "t": "Joner",
+   "q": "Hur bildas magnesiumoxid (MgO)?",
+   "a": "Mg har 2 valenselektroner och lämnar båda till syre, som behöver 2. Mg²⁺ och O²⁻ dras till varandra.",
+   "why": "Båda får fullt yttersta skal. Laddningarna +2 och −2 balanserar.",
+   "ex": "Mg → Mg²⁺ + 2e⁻   ·   O + 2e⁻ → O²⁻   ·   Mg²⁺ + O²⁻ → MgO"
+  },
+  {
+   "id": "mgcl2",
+   "lvl": "H",
+   "t": "Joner",
+   "q": "Hur bildas magnesiumklorid (MgCl₂)? Varför 2 klor?",
+   "a": "Mg lämnar 2 elektroner. Två kloratomer tar varsin. Det behövs två Cl⁻ för att balansera Mg²⁺ så föreningen blir neutral.",
+   "why": "Varje klor kan bara ta 1 elektron, så Mg:s 2 elektroner måste fördelas på 2 klor.",
+   "ex": "Mg → Mg²⁺ + 2e⁻   ·   2Cl + 2e⁻ → 2Cl⁻   ·   Mg²⁺ + 2Cl⁻ → MgCl₂"
+  }
+ ],
+ "quiz": [
+  {
+   "id": "q1",
+   "c": "skal",
+   "lvl": "G",
+   "type": "mc",
+   "q": "Var finns elektronerna i en atom?",
+   "opts": [
+    "I kärnan",
+    "I skal runt kärnan",
+    "Utspridda överallt",
+    "Bara i det yttersta skalet"
+   ],
+   "ans": 1,
+   "exp": "Elektronerna ligger i skal runt kärnan. Kärnan har protoner och neutroner."
+  },
+  {
+   "id": "q2",
+   "c": "skalantal",
+   "lvl": "G",
+   "type": "txt",
+   "q": "Hur många elektroner ryms i det första skalet?",
+   "acc": [
+    "2",
+    "två"
+   ],
+   "exp": "Skal 1 rymmer 2 elektroner."
+  },
+  {
+   "id": "q3",
+   "c": "skalantal",
+   "lvl": "G",
+   "type": "txt",
+   "q": "Hur många elektroner ryms i det andra skalet?",
+   "acc": [
+    "8",
+    "åtta"
+   ],
+   "exp": "Skal 2 rymmer 8 elektroner."
+  },
+  {
+   "id": "q4",
+   "c": "valensskal",
+   "lvl": "G",
+   "type": "mc",
+   "q": "Vilket skal kallas valensskal?",
+   "opts": [
+    "Det innersta",
+    "Det näst yttersta",
+    "Det yttersta",
+    "Alla skal"
+   ],
+   "ans": 2,
+   "exp": "Valensskalet är det yttersta skalet."
+  },
+  {
+   "id": "q5",
+   "c": "valensel",
+   "lvl": "G",
+   "type": "txt",
+   "q": "Hur många valenselektroner har syre (2, 6)?",
+   "acc": [
+    "6",
+    "sex"
+   ],
+   "exp": "Syre har 6 i yttersta skalet = 6 valenselektroner."
+  },
+  {
+   "id": "q6",
+   "c": "valensel",
+   "lvl": "G",
+   "type": "mc",
+   "q": "Vad avgör valenselektronerna?",
+   "opts": [
+    "Atomens massa",
+    "Hur atomen reagerar med andra atomer",
+    "Vilket grundämne det är",
+    "Om atomen är radioaktiv"
+   ],
+   "ans": 1,
+   "exp": "Valenselektronerna avgör hur atomen binder till andra."
+  },
+  {
+   "id": "q7",
+   "c": "atomnr",
+   "lvl": "G",
+   "type": "mc",
+   "q": "Atomnumret anger antalet ...",
+   "opts": [
+    "neutroner",
+    "elektronskal",
+    "protoner",
+    "isotoper"
+   ],
+   "ans": 2,
+   "exp": "Atomnummer = antal protoner i kärnan."
+  },
+  {
+   "id": "q8",
+   "c": "atomnr",
+   "lvl": "G",
+   "type": "txt",
+   "q": "Kol har atomnummer 6. Hur många protoner har kol?",
+   "acc": [
+    "6",
+    "sex"
+   ],
+   "exp": "Atomnummer 6 = 6 protoner."
+  },
+  {
+   "id": "q9",
+   "c": "neutral",
+   "lvl": "G",
+   "type": "txt",
+   "q": "Syre har 8 protoner. Hur många elektroner har en neutral syreatom?",
+   "acc": [
+    "8",
+    "åtta"
+   ],
+   "exp": "Neutral atom: lika många elektroner som protoner."
+  },
+  {
+   "id": "q10",
+   "c": "laddel",
+   "lvl": "G",
+   "type": "mc",
+   "q": "Vilken laddning har en elektron?",
+   "opts": [
+    "Positiv",
+    "Negativ",
+    "Ingen",
+    "Både och"
+   ],
+   "ans": 1,
+   "exp": "Elektronen är negativ (−)."
+  },
+  {
+   "id": "q11",
+   "c": "laddpn",
+   "lvl": "G",
+   "type": "mc",
+   "q": "Vilken laddning har en proton?",
+   "opts": [
+    "Positiv",
+    "Negativ",
+    "Ingen",
+    "Beror på ämnet"
+   ],
+   "ans": 0,
+   "exp": "Protonen är positiv (+)."
+  },
+  {
+   "id": "q12",
+   "c": "laddpn",
+   "lvl": "G",
+   "type": "mc",
+   "q": "Vilken laddning har en neutron?",
+   "opts": [
+    "Positiv",
+    "Negativ",
+    "Ingen",
+    "Dubbelt positiv"
+   ],
+   "ans": 2,
+   "exp": "Neutronen är neutral, ingen laddning."
+  },
+  {
+   "id": "q13",
+   "c": "elskal7",
+   "lvl": "G",
+   "type": "txt",
+   "q": "Skriv elektronerna i skalen för kol (atomnummer 6). Svara som t.ex. 2,8,1",
+   "acc": [
+    "2,4",
+    "2, 4"
+   ],
+   "exp": "Kol: 2 i första skalet, 4 i andra → 2,4."
+  },
+  {
+   "id": "q14",
+   "c": "elskal7",
+   "lvl": "G",
+   "type": "txt",
+   "q": "Skriv elektronerna i skalen för natrium (atomnummer 11).",
+   "acc": [
+    "2,8,1",
+    "2, 8, 1"
+   ],
+   "exp": "Natrium: 2,8,1."
+  },
+  {
+   "id": "q15",
+   "c": "elskal7",
+   "lvl": "G",
+   "type": "txt",
+   "q": "Skriv elektronerna i skalen för syre (atomnummer 8).",
+   "acc": [
+    "2,6",
+    "2, 6"
+   ],
+   "exp": "Syre: 2,6."
+  },
+  {
+   "id": "q16",
+   "c": "elskal7",
+   "lvl": "G",
+   "type": "txt",
+   "q": "Skriv elektronerna i skalen för litium (atomnummer 3).",
+   "acc": [
+    "2,1",
+    "2, 1"
+   ],
+   "exp": "Litium: 2,1."
+  },
+  {
+   "id": "q17",
+   "c": "elskal7",
+   "lvl": "G",
+   "type": "txt",
+   "q": "Skriv elektronerna i skalen för kväve (atomnummer 7).",
+   "acc": [
+    "2,5",
+    "2, 5"
+   ],
+   "exp": "Kväve: 2,5."
+  },
+  {
+   "id": "q18",
+   "c": "ritaatom",
+   "lvl": "G",
+   "type": "mc",
+   "q": "Vad skriver du i mitten när du ritar en atommodell?",
+   "opts": [
+    "Antal elektroner",
+    "Grundämnets symbol (kärnan)",
+    "Antal skal",
+    "Laddningen"
+   ],
+   "ans": 1,
+   "exp": "Kärnan i mitten med symbolen, t.ex. O."
+  },
+  {
+   "id": "q19",
+   "c": "jon",
+   "lvl": "G",
+   "type": "mc",
+   "q": "Vad är en jon?",
+   "opts": [
+    "En atom med fullt yttersta skal",
+    "En atom som fått laddning genom att ta upp eller lämna elektroner",
+    "En atom med extra neutroner",
+    "Två atomer som delar elektroner"
+   ],
+   "ans": 1,
+   "exp": "En jon = laddad atom. Den har tagit upp eller lämnat elektroner."
+  },
+  {
+   "id": "q20",
+   "c": "posneg",
+   "lvl": "G",
+   "type": "mc",
+   "q": "En atom LÄMNAR ifrån sig en elektron. Vad blir den?",
+   "opts": [
+    "Negativ jon",
+    "Positiv jon",
+    "Neutral",
+    "Isotop"
+   ],
+   "ans": 1,
+   "exp": "Lämnar du bort minus blir du plus → positiv jon, t.ex. Na⁺."
+  },
+  {
+   "id": "q21",
+   "c": "posneg",
+   "lvl": "G",
+   "type": "mc",
+   "q": "Cl⁻ har ...",
+   "opts": [
+    "lämnat en elektron",
+    "tagit upp en elektron",
+    "förlorat en proton",
+    "fått en extra neutron"
+   ],
+   "ans": 1,
+   "exp": "Minusladdning = har tagit upp en elektron."
+  },
+  {
+   "id": "q22",
+   "c": "jonbind",
+   "lvl": "G",
+   "type": "mc",
+   "q": "Vad är en jonbindning?",
+   "opts": [
+    "Atomer som delar elektronpar",
+    "Dragningskraft mellan positiva och negativa joner",
+    "Fria elektroner mellan metalljoner",
+    "Två kärnor som smälter ihop"
+   ],
+   "ans": 1,
+   "exp": "Jonbindning = plus- och minusjoner dras till varandra."
+  },
+  {
+   "id": "q23",
+   "c": "nacl",
+   "lvl": "G",
+   "type": "mc",
+   "q": "I NaCl, vem lämnar en elektron till vem?",
+   "opts": [
+    "Klor lämnar till natrium",
+    "Natrium lämnar till klor",
+    "De delar lika",
+    "Ingen elektron flyttas"
+   ],
+   "ans": 1,
+   "exp": "Natrium (1 valenselektron) lämnar den till klor (7 valenselektroner)."
+  },
+  {
+   "id": "q24",
+   "c": "nacl",
+   "lvl": "G",
+   "type": "txt",
+   "q": "Vilken laddning får natriumjonen i koksalt? (skriv + eller −)",
+   "acc": [
+    "+",
+    "plus",
+    "positiv",
+    "na+",
+    "na⁺"
+   ],
+   "exp": "Na lämnar en elektron → Na⁺."
+  },
+  {
+   "id": "q25",
+   "c": "gitter",
+   "lvl": "G",
+   "type": "txt",
+   "q": "Vad kallas strukturen som många joner bildar tillsammans i ett salt? Kristall...",
+   "acc": [
+    "gitter"
+   ],
+   "exp": "Kristallgitter."
+  },
+  {
+   "id": "q26",
+   "c": "molbind",
+   "lvl": "G",
+   "type": "mc",
+   "q": "Elektronparbindning betyder att atomerna ...",
+   "opts": [
+    "byter elektroner",
+    "delar elektronpar",
+    "lämnar elektroner till ett hav",
+    "inte binder alls"
+   ],
+   "ans": 1,
+   "exp": "De delar ett eller flera elektronpar. Kallas även kovalent bindning."
+  },
+  {
+   "id": "q27",
+   "c": "molbind",
+   "lvl": "G",
+   "type": "txt",
+   "q": "Elektronparbindning har ett annat namn som börjar på K. Vilket?",
+   "acc": [
+    "kovalent"
+   ],
+   "exp": "Kovalent bindning."
+  },
+  {
+   "id": "q28",
+   "c": "h2",
+   "lvl": "G",
+   "type": "mc",
+   "q": "Vad betyder linjen i H—H?",
+   "opts": [
+    "En jonbindning",
+    "Ett delat elektronpar",
+    "Två neutroner",
+    "En dubbelbindning"
+   ],
+   "ans": 1,
+   "exp": "En linje = ett gemensamt elektronpar."
+  },
+  {
+   "id": "q29",
+   "c": "h2",
+   "lvl": "G",
+   "type": "txt",
+   "q": "Hur många elektroner har varje väteatom tillgång till efter bindningen H—H?",
+   "acc": [
+    "2",
+    "två"
+   ],
+   "exp": "Båda delar på 2 elektroner → fullt första skal."
+  },
+  {
+   "id": "q30",
+   "c": "metbind",
+   "lvl": "G",
+   "type": "mc",
+   "q": "I en metallbindning rör sig ...",
+   "opts": [
+    "protonerna fritt",
+    "neutronerna fritt",
+    "elektronerna fritt mellan positiva joner",
+    "jonerna bort från varandra"
+   ],
+   "ans": 2,
+   "exp": "Fria elektroner mellan positiva metalljoner."
+  },
+  {
+   "id": "q31",
+   "c": "metegen",
+   "lvl": "H",
+   "type": "mc",
+   "q": "Varför leder metaller elektrisk ström?",
+   "opts": [
+    "Kärnorna är stora",
+    "Elektronerna kan röra sig fritt",
+    "Jonerna är negativa",
+    "Metaller är hårda"
+   ],
+   "ans": 1,
+   "exp": "De fria elektronerna kan transportera laddning."
+  },
+  {
+   "id": "q32",
+   "c": "metegen",
+   "lvl": "H",
+   "type": "mc",
+   "q": "Varför kan metaller böjas utan att gå sönder?",
+   "opts": [
+    "Jonlagren kan glida utan att bindningen bryts",
+    "Elektronerna försvinner",
+    "Kärnorna byter plats",
+    "Metaller har inga bindningar"
+   ],
+   "ans": 0,
+   "exp": "Jonlagren kan förskjutas medan elektronhavet håller ihop allt."
+  },
+  {
+   "id": "q33",
+   "c": "metegen",
+   "lvl": "H",
+   "type": "mc",
+   "q": "Vilken metall används i elkablar och varför?",
+   "opts": [
+    "Aluminium, för den är lätt",
+    "Koppar, för den leder ström bra",
+    "Järn, för den rostar",
+    "Guld, för den glänser"
+   ],
+   "ans": 1,
+   "exp": "Koppar leder elektricitet mycket bra."
+  },
+  {
+   "id": "q34",
+   "c": "adelgas",
+   "lvl": "H",
+   "type": "mc",
+   "q": "I vilken grupp i periodiska systemet finns ädelgaserna?",
+   "opts": [
+    "1",
+    "8",
+    "17",
+    "18"
+   ],
+   "ans": 3,
+   "exp": "Grupp 18."
+  },
+  {
+   "id": "q35",
+   "c": "adelgas",
+   "lvl": "H",
+   "type": "mc",
+   "q": "Varför reagerar ädelgaser nästan inte alls?",
+   "opts": [
+    "De är för tunga",
+    "Deras yttersta skal är redan fullt",
+    "De har inga elektroner",
+    "De är radioaktiva"
+   ],
+   "ans": 1,
+   "exp": "Fullt yttersta skal = nöjd atom."
+  },
+  {
+   "id": "q36",
+   "c": "adelgas",
+   "lvl": "H",
+   "type": "txt",
+   "q": "Nämn en ädelgas.",
+   "acc": [
+    "helium",
+    "neon",
+    "argon",
+    "krypton",
+    "xenon",
+    "radon"
+   ],
+   "exp": "T.ex. helium, neon eller argon."
+  },
+  {
+   "id": "q37",
+   "c": "adelstr",
+   "lvl": "H",
+   "type": "mc",
+   "q": "Vad betyder ädelgasstruktur?",
+   "opts": [
+    "Att atomen är en gas",
+    "Att atomen har fullt yttersta skal",
+    "Att atomen har 18 protoner",
+    "Att atomen är neutral"
+   ],
+   "ans": 1,
+   "exp": "Fullt yttersta skal, som en ädelgas."
+  },
+  {
+   "id": "q38",
+   "c": "adelstr",
+   "lvl": "H",
+   "type": "mc",
+   "q": "På vilka tre sätt kan en atom få ädelgasstruktur?",
+   "opts": [
+    "Lämna, ta upp eller dela elektroner",
+    "Lämna, ta upp eller dela protoner",
+    "Bli varm, kall eller radioaktiv",
+    "Smälta, koka eller frysa"
+   ],
+   "ans": 0,
+   "exp": "Lämna, ta upp eller dela elektroner. Det förklarar varför bindningar bildas."
+  },
+  {
+   "id": "q39",
+   "c": "epar",
+   "lvl": "H",
+   "type": "txt",
+   "q": "Hur många elektroner är ett elektronpar?",
+   "acc": [
+    "2",
+    "två"
+   ],
+   "exp": "Två elektroner."
+  },
+  {
+   "id": "q40",
+   "c": "epar",
+   "lvl": "H",
+   "type": "txt",
+   "q": "Hur många fria elektronpar har syreatomen i vatten?",
+   "acc": [
+    "2",
+    "två"
+   ],
+   "exp": "Två fria elektronpar."
+  },
+  {
+   "id": "q41",
+   "c": "edt",
+   "lvl": "H",
+   "type": "mc",
+   "q": "O=O är en ...",
+   "opts": [
+    "enkelbindning",
+    "dubbelbindning",
+    "trippelbindning",
+    "jonbindning"
+   ],
+   "ans": 1,
+   "exp": "Två linjer = två delade par = dubbelbindning."
+  },
+  {
+   "id": "q42",
+   "c": "edt",
+   "lvl": "H",
+   "type": "txt",
+   "q": "Hur många elektronpar delas i N≡N?",
+   "acc": [
+    "3",
+    "tre"
+   ],
+   "exp": "Trippelbindning = 3 elektronpar."
+  },
+  {
+   "id": "q43",
+   "c": "edt",
+   "lvl": "H",
+   "type": "mc",
+   "q": "Vilken molekyl har en trippelbindning?",
+   "opts": [
+    "H₂",
+    "O₂",
+    "N₂",
+    "NaCl"
+   ],
+   "ans": 2,
+   "exp": "Kvävgas N₂ har N≡N."
+  },
+  {
+   "id": "q44",
+   "c": "neutron",
+   "lvl": "H",
+   "type": "mc",
+   "q": "Vad bestämmer vilket grundämne en atom är?",
+   "opts": [
+    "Antal neutroner",
+    "Antal protoner",
+    "Antal skal",
+    "Antal elektronpar"
+   ],
+   "ans": 1,
+   "exp": "Antal protoner = grundämnet. Antal neutroner = isotopen."
+  },
+  {
+   "id": "q45",
+   "c": "neutron",
+   "lvl": "H",
+   "type": "mc",
+   "q": "Vad påverkar antalet neutroner?",
+   "opts": [
+    "Vilket grundämne det är",
+    "Vilken isotop det är",
+    "Atomens laddning",
+    "Antal valenselektroner"
+   ],
+   "ans": 1,
+   "exp": "Neutronerna avgör vilken isotop det är."
+  },
+  {
+   "id": "q46",
+   "c": "isotop",
+   "lvl": "H",
+   "type": "mc",
+   "q": "Isotoper av samma grundämne har ...",
+   "opts": [
+    "olika antal protoner",
+    "olika antal neutroner",
+    "olika antal elektroner",
+    "olika atomnummer"
+   ],
+   "ans": 1,
+   "exp": "Lika många protoner, olika många neutroner."
+  },
+  {
+   "id": "q47",
+   "c": "isotop",
+   "lvl": "H",
+   "type": "txt",
+   "q": "Kol-14 har 6 protoner. Hur många neutroner har kol-14?",
+   "acc": [
+    "8",
+    "åtta"
+   ],
+   "exp": "14 − 6 = 8 neutroner."
+  },
+  {
+   "id": "q48",
+   "c": "isotop",
+   "lvl": "H",
+   "type": "txt",
+   "q": "Kol-12 har 6 protoner. Hur många neutroner?",
+   "acc": [
+    "6",
+    "sex"
+   ],
+   "exp": "12 − 6 = 6 neutroner."
+  },
+  {
+   "id": "q49",
+   "c": "radio",
+   "lvl": "H",
+   "type": "mc",
+   "q": "Vad betyder att ett ämne är radioaktivt?",
+   "opts": [
+    "Det är varmt",
+    "Dess kärnor är instabila och sönderfaller och avger strålning",
+    "Det leder ström",
+    "Det har fullt yttersta skal"
+   ],
+   "ans": 1,
+   "exp": "Instabila kärnor som spontant sönderfaller och avger strålning."
+  },
+  {
+   "id": "q50",
+   "c": "radio",
+   "lvl": "H",
+   "type": "txt",
+   "q": "Kol-14 sönderfaller och blir till ett annat grundämne. Vilket?",
+   "acc": [
+    "kväve",
+    "n-14",
+    "kväve-14"
+   ],
+   "exp": "Kol-14 → kväve-14."
+  },
+  {
+   "id": "q51",
+   "c": "isoanv",
+   "lvl": "H",
+   "type": "mc",
+   "q": "Vilken isotop används för att åldersbestämma gamla ben och trä?",
+   "opts": [
+    "Uran-235",
+    "Kol-12",
+    "Kol-14",
+    "Helium-4"
+   ],
+   "ans": 2,
+   "exp": "Kol-14-metoden."
+  },
+  {
+   "id": "q52",
+   "c": "isoanv",
+   "lvl": "H",
+   "type": "mc",
+   "q": "Vad används uran-235 till?",
+   "opts": [
+    "Åldersbestämning",
+    "Bränsle i kärnreaktorer",
+    "Elkablar",
+    "Ballonger"
+   ],
+   "ans": 1,
+   "exp": "Uran-235 är bränsle i kärnkraftverk."
+  },
+  {
+   "id": "q53",
+   "c": "c14",
+   "lvl": "H",
+   "type": "mc",
+   "q": "När slutar en organism ta upp kol-14?",
+   "opts": [
+    "När den föds",
+    "När den dör",
+    "När den blir vuxen",
+    "Aldrig"
+   ],
+   "ans": 1,
+   "exp": "Vid döden slutar upptaget, sedan minskar kol-14 genom sönderfall."
+  },
+  {
+   "id": "q54",
+   "c": "c14",
+   "lvl": "H",
+   "type": "mc",
+   "q": "En träbit har väldigt lite kol-14 kvar. Vad betyder det?",
+   "opts": [
+    "Den är ung",
+    "Den är gammal",
+    "Den är radioaktiv",
+    "Den är från en levande växt"
+   ],
+   "ans": 1,
+   "exp": "Ju mindre kol-14 kvar, desto längre sedan den dog."
+  },
+  {
+   "id": "q55",
+   "c": "mgo",
+   "lvl": "H",
+   "type": "txt",
+   "q": "Hur många elektroner lämnar magnesium till syre i MgO?",
+   "acc": [
+    "2",
+    "två"
+   ],
+   "exp": "Mg har 2 valenselektroner och lämnar båda."
+  },
+  {
+   "id": "q56",
+   "c": "mgo",
+   "lvl": "H",
+   "type": "mc",
+   "q": "Vilken laddning får syrejonen i MgO?",
+   "opts": [
+    "+1",
+    "−1",
+    "+2",
+    "−2"
+   ],
+   "ans": 3,
+   "exp": "Syre tar upp 2 elektroner → O²⁻."
+  },
+  {
+   "id": "q57",
+   "c": "mgcl2",
+   "lvl": "H",
+   "type": "mc",
+   "q": "Varför behövs TVÅ kloridjoner i MgCl₂?",
+   "opts": [
+    "Klor är dubbelt så stort",
+    "Varje Cl tar bara 1 elektron och Mg lämnar 2",
+    "Mg har 2 protoner",
+    "Det blir starkare så"
+   ],
+   "ans": 1,
+   "exp": "Mg²⁺ behöver två Cl⁻ för att laddningen ska bli noll."
+  },
+  {
+   "id": "q58",
+   "c": "mgcl2",
+   "lvl": "H",
+   "type": "txt",
+   "q": "Vilken laddning har magnesiumjonen i MgCl₂? (t.ex. 2+)",
+   "acc": [
+    "2+",
+    "+2",
+    "2 +",
+    "plus 2",
+    "två plus",
+    "mg2+",
+    "mg²⁺"
+   ],
+   "exp": "Mg²⁺."
+  },
+  {
+   "id": "q59",
+   "c": "jonbind",
+   "lvl": "G",
+   "type": "mc",
+   "q": "Vilken bindning finns i koksalt?",
+   "opts": [
+    "Metallbindning",
+    "Jonbindning",
+    "Elektronparbindning",
+    "Ingen"
+   ],
+   "ans": 1,
+   "exp": "NaCl hålls ihop av jonbindning."
+  },
+  {
+   "id": "q60",
+   "c": "molbind",
+   "lvl": "G",
+   "type": "mc",
+   "q": "Vilken bindning finns i vätgas H₂?",
+   "opts": [
+    "Jonbindning",
+    "Metallbindning",
+    "Elektronparbindning",
+    "Kärnbindning"
+   ],
+   "ans": 2,
+   "exp": "Två väteatomer delar ett elektronpar."
+  },
+  {
+   "id": "q61",
+   "c": "metbind",
+   "lvl": "G",
+   "type": "mc",
+   "q": "Vilken bindning finns i en kopparkabel?",
+   "opts": [
+    "Jonbindning",
+    "Metallbindning",
+    "Elektronparbindning",
+    "Dubbelbindning"
+   ],
+   "ans": 1,
+   "exp": "Koppar är en metall → metallbindning."
+  }
+ ],
+ "boss": [
+  {
+   "id": "b1",
+   "lvl": "G",
+   "c": "ritaatom",
+   "q": "Rita en atommodell för syre (atomnummer 8).",
+   "facit": "O i mitten (kärnan). Två ringar. 2 prickar på den inre ringen, 6 prickar på den yttre.",
+   "check": [
+    "Symbolen O i kärnan",
+    "2 elektroner i första skalet",
+    "6 elektroner i andra skalet"
+   ]
+  },
+  {
+   "id": "b2",
+   "lvl": "G",
+   "c": "ritaatom",
+   "q": "Rita en atommodell för natrium (atomnummer 11).",
+   "facit": "Na i mitten. Tre ringar med 2, 8 och 1 elektroner.",
+   "check": [
+    "Symbolen Na i kärnan",
+    "2 och 8 i de två inre skalen",
+    "1 ensam elektron i yttersta skalet"
+   ]
+  },
+  {
+   "id": "b3",
+   "lvl": "G",
+   "c": "h2",
+   "q": "Rita hur två väteatomer binder till varandra med en enkel elektronparbindning.",
+   "facit": "Före: H· ·H (varje väte har en prick). Efter: H—H eller H:H. Linjen = det delade elektronparet.",
+   "check": [
+    "Två väteatomer med varsin elektron före",
+    "Ett delat elektronpar (linje eller två prickar mellan)",
+    "Förklaring: båda får 2 elektroner = fullt skal"
+   ]
+  },
+  {
+   "id": "b4",
+   "lvl": "G",
+   "c": "nacl",
+   "q": "Rita och förklara hur koksalt (NaCl) bildas.",
+   "facit": "Na (2,8,1) lämnar sin yttersta elektron till Cl (2,8,7). Pil från Na:s elektron till Cl. Na → Na⁺, Cl → Cl⁻. Plus och minus dras till varandra = jonbindning.",
+   "check": [
+    "Pil som visar att elektronen går från Na till Cl",
+    "Na⁺ och Cl⁻ med rätt laddningar",
+    "Förklaring: jonerna dras till varandra (jonbindning)"
+   ]
+  },
+  {
+   "id": "b5",
+   "lvl": "H",
+   "c": "mgo",
+   "q": "Rita och förklara hur magnesiumoxid (MgO) bildas.",
+   "facit": "Mg (2,8,2) lämnar 2 elektroner till O (2,6). Mg → Mg²⁺ + 2e⁻. O + 2e⁻ → O²⁻. Mg²⁺ + O²⁻ → MgO.",
+   "check": [
+    "Två elektroner flyttas från Mg till O",
+    "Mg²⁺ och O²⁻ med rätt laddningar",
+    "Förklaring: båda får fullt yttersta skal"
+   ]
+  },
+  {
+   "id": "b6",
+   "lvl": "H",
+   "c": "mgcl2",
+   "q": "Rita och förklara hur magnesiumklorid (MgCl₂) bildas. Varför två klor?",
+   "facit": "Mg lämnar 2 elektroner, en till varje kloratom. Mg²⁺ + 2Cl⁻ → MgCl₂. Två Cl⁻ behövs för att balansera +2 så att föreningen blir neutral.",
+   "check": [
+    "En elektron till varje klor (två pilar)",
+    "Mg²⁺ och två Cl⁻",
+    "Förklaring: laddningarna +2 och 2×(−1) blir noll"
+   ]
+  },
+  {
+   "id": "b7",
+   "lvl": "H",
+   "c": "edt",
+   "q": "Rita en enkel-, en dubbel- och en trippelbindning och ge exempel på varje.",
+   "facit": "H—H (1 par, vätgas). O=O (2 par, syrgas). N≡N (3 par, kvävgas). Fler linjer = fler delade elektronpar.",
+   "check": [
+    "H—H, O=O, N≡N ritade med 1, 2, 3 streck",
+    "Rätt exempel på varje",
+    "Förklaring: varje streck = ett delat elektronpar"
+   ]
+  },
+  {
+   "id": "b8",
+   "lvl": "H",
+   "c": "metegen",
+   "q": "Förklara med hjälp av metallbindning varför koppar leder ström och kan böjas.",
+   "facit": "I koppar finns positiva kopparjoner i ett 'hav' av fria elektroner. Ström: elektronerna kan röra sig och transportera laddning. Böjas: jonlagren kan glida utan att elektronhavet släpper.",
+   "check": [
+    "Nämner positiva metalljoner och fria elektroner",
+    "Ström = elektronerna rör sig",
+    "Böjbar = jonlagren glider utan att bindningen bryts"
+   ]
+  },
+  {
+   "id": "b9",
+   "lvl": "H",
+   "c": "c14",
+   "q": "Förklara kol-14-metoden i fyra steg.",
+   "facit": "1) Levande organismer tar upp kol-14. 2) När de dör slutar upptaget. 3) Kol-14 minskar genom radioaktivt sönderfall. 4) Mät hur mycket som finns kvar och räkna ut åldern.",
+   "check": [
+    "Upptag medan organismen lever",
+    "Upptaget slutar vid döden, kol-14 sönderfaller",
+    "Mängden kvar visar åldern"
+   ]
+  }
+ ],
+ "test": {
+  "part1": [
+   "q1",
+   "q4",
+   "q7",
+   "q10",
+   "q11",
+   "q12",
+   "q13",
+   "q15",
+   "q19",
+   "q20",
+   "q22",
+   "q23",
+   "q26",
+   "q28",
+   "q30"
+  ],
+  "part2": [
+   "q35",
+   "q37",
+   "q42",
+   "q44",
+   "q46",
+   "q47",
+   "q49",
+   "q51",
+   "q53",
+   "q57"
+  ],
+  "open": [
+   {
+    "id": "o1",
+    "lvl": "G",
+    "q": "Rita och förklara hur koksalt (NaCl) bildas.",
+    "rub": [
+     "Elektron flyttas från Na till Cl",
+     "Na⁺ och Cl⁻ rätt",
+     "Jonerna dras till varandra = jonbindning"
+    ]
+   },
+   {
+    "id": "o2",
+    "lvl": "H",
+    "q": "Rita hur en enkel-, dubbel- och trippelbindning bildas. Ge exempel.",
+    "rub": [
+     "1, 2, 3 streck ritade",
+     "Exempel H₂, O₂, N₂",
+     "Streck = delat elektronpar"
+    ]
+   },
+   {
+    "id": "o3",
+    "lvl": "H",
+    "q": "Förklara hur kunskap om isotoper kan vara användbar. Ge minst två exempel.",
+    "rub": [
+     "Minst två användningsområden",
+     "Förklarar kol-14-metoden",
+     "Kopplar till sönderfall/strålning"
+    ]
+   }
+  ]
+ }
+}
