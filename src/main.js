@@ -52,6 +52,7 @@ function render() {
   const r = { auth, onboard, home, session, flash, quiz, test, map, coach, settings }[view.name] || home;
   app.innerHTML = r();
   app.querySelectorAll('[data-go]').forEach(b => b.onclick = () => go(b.dataset.go));
+  app.querySelectorAll('[data-mod]').forEach(b => b.onclick = () => switchModule(b.dataset.mod));
   if (window._after) { const f = window._after; window._after = null; f(); }
 }
 function topbar(title, right = '') { return `<div class="topbar"><button class="back" data-go="home">Hem</button><div class="eyebrow">${esc(title)}</div><div>${right}</div></div>`; }
@@ -112,24 +113,42 @@ async function logout() { await sb.auth.signOut(); me = null; go('auth'); }
 
 // ---------- HEM ----------
 function testScore(t) { const det = t.detail || {}; const answers = det.answers || {}; const auto = Object.values(answers).filter(Boolean).length, autoMax = Object.keys(answers).length; let open = 0, pending = false; (TEST.open || []).forEach(o => { const r = (det.open || {})[o.id]; if (r && typeof r.pts === 'number') open += r.pts; else pending = true; }); const max = autoMax + TEST.open.length * 3; const pts = auto + open; return { pts, max, pct: Math.round(pts / max * 100), auto, autoMax, open, pending }; }
+const KIND = { prov: 'Prov', inlämning: 'Inlämning', redovisning: 'Redovisning', muntligt: 'Muntligt', np: 'Nationellt prov' };
+const daysTo = d => Math.round((Date.parse(d) - Date.parse(today())) / 86400e3);
+const daysLabel = n => n < 0 ? 'klar' : n === 0 ? 'idag' : n === 1 ? 'imorgon' : `om ${n} dagar`;
+function scheduleList(forParent) {
+  const t = today();
+  const up = MODS.filter(m => m.exam_date && m.exam_date >= t);
+  const past = MODS.filter(m => !m.exam_date || m.exam_date < t).reverse();
+  const row = m => { const n = m.exam_date ? daysTo(m.exam_date) : null; const cur = MOD && m.id === MOD.id; const tag = m.has_content ? `<span class="pill G">Material</span>` : `<span class="pill">${forParent ? 'Saknar material' : 'Inget material än'}</span>`;
+    return `<button class="mod ${cur ? 'cur' : ''}" data-mod="${m.id}" ${m.has_content ? '' : 'disabled'}><span style="min-width:0"><b>${esc(m.subject)}: ${esc(m.title)}</b><br><span class="muted">${KIND[m.kind] || esc(m.kind)}${m.exam_date ? ' · ' + fmtDate(m.exam_date) + ' · ' + daysLabel(n) : ''}${m.note ? ' · ' + esc(m.note) : ''}</span></span>${tag}</button>`; };
+  return `<div class="modlist">${up.length ? up.map(row).join('') : '<p class="muted">Inga kommande prov inlagda.</p>'}</div>${past.length ? `<details style="margin-top:10px"><summary class="muted">Klara (${past.length})</summary><div class="modlist" style="margin-top:8px">${past.map(row).join('')}</div></details>` : ''}`;
+}
 function home() {
-  if (!MOD) return `<div class="stack" style="padding-top:30px"><h1>Inga prov ännu</h1><p class="muted">När ett prov publiceras dyker det upp här.</p><button class="btn" data-go="settings">Inställningar</button></div>`;
-  const g = greens(), n = CARDS.length, st = streak(), t = today();
+  const t = today();
+  const who = me.role === 'parent' && MOD ? `<div class="fb ok" style="margin-bottom:4px"><b style="font-size:1rem">Du tittar som förälder</b>Det här är ${esc(studentName())}s vy. Passen räknas inte för dig. Gå till Coach för rättning och översikt.</div>` : '';
+  const header = `<div class="topbar" style="padding-bottom:4px"><div><div class="eyebrow">Pluggappen · ${esc(me.display_name || '')}</div><h1>${MOD ? 'Nästa prov' : 'Inga prov med material'}</h1></div><button class="btn small" data-go="settings" aria-label="Inställningar">⚙︎</button></div>`;
+  const schedule = `<div class="card"><h3 style="margin-bottom:10px">Kommande prov</h3>${scheduleList(me.role === 'parent')}</div>`;
+  const footer = `<div class="row" style="justify-content:space-between"><span class="muted" style="font-size:.85rem">${me.role === 'parent' ? 'förälder' : 'elev'}</span>${me.role === 'parent' ? '<button class="btn small" data-go="coach">Coach-vy</button>' : ''}</div>`;
+  if (!MOD) return `<div class="stack">${header}<p class="muted">När ett prov får material dyker det upp här som din to-do.</p>${schedule}${footer}</div>` + after(() => {});
+  const g = greens(), n = CARDS.length, st = streak();
   const sessToday = S.sessions.filter(s => s.d === t && s.type.startsWith('pass')).length;
   const tests = S.sessions.filter(s => s.type === 'test'); const lastTest = tests[tests.length - 1];
+  const dl = MOD.exam_date ? daysTo(MOD.exam_date) : null;
   const planHtml = PLAN.map(p => { const done = S.sessions.filter(s => s.d === p.date && s.type.startsWith('pass')).length, testDone = S.sessions.some(x => x.d === p.date && x.type === 'test'); let k = 0; return `<div class="day"><div class="dl">${esc(p.label)}</div><div>${p.items.map(it => { const isTest = /prov/i.test(it); const ok = isTest ? testDone : (k++ < done); return `<div class="it ${ok ? 'done' : ''} ${p.date === t ? 'today' : ''}">${esc(it)}</div>`; }).join('')}</div></div>`; }).join('');
-  const who = me.role === 'parent' ? `<div class="fb ok" style="margin-bottom:4px"><b style="font-size:1rem">Du tittar som förälder</b>Det här är ${esc(studentName())}s vy. Passen räknas inte för dig. Gå till Coach för rättning och översikt.</div>` : '';
+  const todo = [
+    { ok: sessToday > 0, txt: sessToday > 0 ? 'Dagens pass gjort' : 'Gör dagens pass (15 min)' },
+    { ok: g === n, txt: `${g}/${n} kort gröna` },
+    { ok: tests.length > 0, txt: tests.length ? `Övningsprov skrivet (${testScore(lastTest).pct}%)` : 'Skriv övningsprovet dagen före' },
+  ];
   return `<div class="stack">
-    <div class="topbar" style="padding-bottom:4px"><div><div class="eyebrow">${esc(MOD.subject)} · prov ${MOD.exam_date ? fmtDate(MOD.exam_date) : ''}</div><h1>${esc(MOD.title)}</h1></div><button class="btn small" data-go="settings" aria-label="Inställningar">⚙︎</button></div>
-    ${who}
-    <div class="card">
-      <div class="row" style="justify-content:space-between;align-items:flex-end">
-        <div><div class="big num">${g}<span class="muted" style="font-size:1.6rem">/${n}</span></div><div class="muted">kort du <b>kan</b> (rätt 3 olika dagar)</div></div>
-        <div style="text-align:right"><div class="eyebrow">Streak</div><div class="streak">${[0, 1, 2, 3, 4].map(i => `<i class="${i < st ? 'on' : ''}"></i>`).join('')}</div><div class="muted" style="font-size:.85rem">${st} dag${st === 1 ? '' : 'ar'} i rad</div></div>
-      </div>
-      <div class="bar good" style="margin-top:12px"><i style="width:${g / n * 100}%"></i></div>
-      <div class="dots" style="margin-top:12px">${CARDS.map(c => `<span class="dot m${mastery(c.id)}" title="${esc(c.q)}"></span>`).join('')}</div>
-      <div class="muted" style="font-size:.8rem;margin-top:8px">grå = inte börjat · röd = 1 dag · gul = 2 dagar · grön = kan</div>
+    ${header}${who}
+    <div class="card stack" style="gap:10px">
+      <div class="row" style="justify-content:space-between;align-items:flex-start"><div><div class="eyebrow">${esc(MOD.subject)} · ${MOD.exam_date ? fmtDate(MOD.exam_date) : ''}${dl !== null ? ' · ' + daysLabel(dl) : ''}</div><h2>${esc(MOD.title)}</h2></div><div class="streak" title="${st} dagar i rad">${[0, 1, 2, 3, 4].map(i => `<i class="${i < st ? 'on' : ''}"></i>`).join('')}</div></div>
+      <div class="stack" style="gap:6px">${todo.map(x => `<div class="check ${x.ok ? 'on' : ''}" style="padding:10px 12px"><span class="box">${x.ok ? '✓' : ''}</span><span>${esc(x.txt)}</span></div>`).join('')}</div>
+      <div class="bar good"><i style="width:${g / n * 100}%"></i></div>
+      <div class="dots">${CARDS.map(c => `<span class="dot sm m${mastery(c.id)}" title="${esc(c.q)}"></span>`).join('')}</div>
+      <div class="muted" style="font-size:.8rem">grå = inte börjat · röd = 1 dag · gul = 2 dagar · grön = kan (rätt 3 olika dagar)</div>
     </div>
     <button class="btn primary" id="start">${sessToday === 0 ? 'Starta dagens pass' : 'Kör ett pass till'} · 15 min</button>
     <div class="grid2">
@@ -139,16 +158,14 @@ function home() {
       <button class="btn" data-go="map">Kunskapskartan</button>
     </div>
     ${PLAN.length ? `<div class="card"><h3 style="margin-bottom:10px">Planen</h3><div class="plan">${planHtml}</div></div>` : ''}
-    ${lastTest ? `<div class="card"><h3>Senaste övningsprov</h3><div class="big num" style="font-size:2.4rem">${testScore(lastTest).pct}%</div><div class="muted">${testScore(lastTest).pts} av ${testScore(lastTest).max} poäng${testScore(lastTest).pending ? ' · rita-uppgifter väntar på rättning' : ''}</div></div>` : ''}
-    ${MODS.length > 1 ? `<div class="card"><h3 style="margin-bottom:8px">Andra prov</h3><div class="modlist">${MODS.filter(m => m.id !== MOD.id).map(m => `<button class="mod" data-mod="${m.id}"><span><b>${esc(m.title)}</b><br><span class="muted">${esc(m.subject)}${m.exam_date ? ' · ' + fmtDate(m.exam_date) : ''}</span></span><span class="muted">›</span></button>`).join('')}</div></div>` : ''}
-    <div class="row" style="justify-content:space-between"><span class="muted" style="font-size:.85rem">${esc(me.display_name)}${me.role === 'parent' ? ' · förälder' : ''}</span>${me.role === 'parent' ? '<button class="btn small" data-go="coach">Coach-vy</button>' : ''}</div>
+    ${schedule}
+    ${footer}
   </div>` + after(() => {
     document.getElementById('start').onclick = startSession;
-    document.querySelectorAll('[data-mod]').forEach(b => b.onclick = () => switchModule(b.dataset.mod));
   });
 }
 function studentName() { const s = MEMBERS.find(m => m.id === student); return s ? s.display_name : 'eleven'; }
-async function switchModule(id) { const m = await db.loadModule(id); setModule(m); S = await db.loadProgress(student, MOD.id); go('home'); }
+async function switchModule(id) { if (MOD && MOD.id === id) return; const m = await db.loadModule(id); setModule(m); S = await db.loadProgress(student, MOD.id); go(view.name === 'coach' ? 'coach' : 'home'); }
 
 // ---------- PASSET ----------
 function startSession() {
@@ -365,6 +382,7 @@ function coach() {
   return `<div class="stack">${topbar('Coach')}
     ${students.length > 1 ? `<div class="row">${students.map(s => `<button class="btn small ${s.id === student ? 'primary' : ''}" data-st="${s.id}">${esc(s.display_name)}</button>`).join('')}</div>` : ''}
     ${!students.length ? `<div class="fb no"><b>Ingen elev ännu</b>Be eleven skapa konto och gå med i familjen med koden under Inställningar.</div>` : ''}
+    ${MOD ? '' : '<div class="fb no"><b>Inget prov med material</b>Lägg in material så visas progress här.</div>'}
     <div class="card"><h3>${esc(studentName())} · ${esc(MOD ? MOD.title : '')}</h3><div class="row" style="gap:20px;margin-top:8px"><div><div class="big num" style="font-size:2.4rem">${greens()}/${CARDS.length}</div><div class="muted">gröna kort</div></div><div><div class="big num" style="font-size:2.4rem">${S.sessions.filter(s => s.type.startsWith('pass')).length}</div><div class="muted">pass gjorda</div></div><div><div class="big num" style="font-size:2.4rem">${streak()}</div><div class="muted">dagar i rad</div></div></div>
       <div class="dots" style="margin-top:12px">${CARDS.map(c => `<span class="dot sm m${mastery(c.id)}" title="${esc(c.q)}"></span>`).join('')}</div></div>
     ${PLAN.length ? `<div class="card"><h3>Per dag</h3><div class="plan" style="margin-top:8px">${days.map(d => `<div class="day"><div class="dl">${esc(d.p.label)}</div><div class="num">${d.ss.length ? `${d.ss.length} aktiviteter · ${d.ok}/${d.mx} rätt (${Math.round(d.ok / Math.max(1, d.mx) * 100)}%) · ${d.ss.reduce((a, s) => a + (s.mins || 0), 0)} min` : `<span class="muted">inget ännu</span>`}</div></div>`).join('')}</div></div>` : ''}
@@ -377,6 +395,7 @@ function coach() {
           <div class="rub">${o.rub.map((rb, k) => `<button class="check ${graded && r.marks && r.marks[k] ? 'on' : ''}" data-t="${x.i}" data-o="${o.id}" data-k="${k}"><span class="box">${graded && r.marks && r.marks[k] ? '✓' : ''}</span><span>${esc(rb)}</span></button>`).join('')}</div>
           <div class="muted num" style="margin-top:4px">${graded ? `${r.pts}/3 p` : 'Bocka av för att rätta'}</div></div>`; }).join('')}`).join('')}
     </div>
+    <div class="card"><h3>Provschema</h3><p class="muted" style="margin:6px 0 10px">Prov utan material behöver fyllas på i tid. Skicka "inför provet"-dokumentet till Claude så läggs det in.</p>${scheduleList(true)}</div>
     <div class="card"><h3>Så funkar det</h3><p class="muted" style="margin-top:6px">Ett kort blir grönt när eleven svarat rätt på det <b>tre olika dagar</b>. Att läsa räknas inte. Rött = fel senast. Passet väljer själv de svagaste korten. Vyn uppdateras live när eleven pluggar.</p></div>
   </div>` + after(() => {
     document.querySelectorAll('[data-st]').forEach(b => b.onclick = async () => { student = b.dataset.st; S = await db.loadProgress(student, MOD.id); render(); });
@@ -416,7 +435,8 @@ async function boot() {
   MEMBERS = await db.familyMembers(); const members = MEMBERS;
   student = me.role === 'student' ? me.id : (members.find(m => m.role === 'student') || {}).id || me.id;
   let want = null; try { want = localStorage.getItem('mod'); } catch (e) {}
-  const first = MODS.find(m => m.id === want) || MODS[0];
+  const withC = MODS.filter(m => m.has_content); const t0 = today();
+  const first = withC.find(m => m.id === want) || withC.find(m => m.exam_date >= t0) || withC[withC.length - 1];
   if (first) { setModule(await db.loadModule(first.id)); S = await db.loadProgress(student, MOD.id); } else { MOD = null; S = { cards: {}, sessions: [] }; }
   if (me.role === 'parent') { let t = null; unsub = db.subscribeFamily(() => { clearTimeout(t); t = setTimeout(async () => { if (!MOD) return; S = await db.loadProgress(student, MOD.id); if (!sess) render(); }, 600); }); }
   go(me.role === "parent" ? "coach" : "home");

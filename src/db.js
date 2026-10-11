@@ -19,7 +19,7 @@ export async function createFamily(name, displayName) { const { data, error } = 
 export async function joinFamily(code, displayName) { const { data, error } = await sb.rpc('join_family', { p_code: code, p_display_name: displayName }); if (error) throw error; return data; }
 
 export async function listModules() {
-  const { data } = await sb.from('modules').select('id,slug,title,subject,exam_date,created_at').eq('published', true).order('exam_date', { ascending: false });
+  const { data } = await sb.from('modules_list').select('*').eq('published', true).order('exam_date', { ascending: true });
   return data || [];
 }
 export async function loadModule(id) { const { data } = await sb.from('modules').select('*').eq('id', id).single(); return data; }
