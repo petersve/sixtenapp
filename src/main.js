@@ -13,6 +13,10 @@ let sess = null;
 let unsub = null;
 let MEMBERS = [];
 let GOALS = [];                // betygsmål för eleven som visas
+let RESULTS = [];              // utfall per prov
+const GRADE_ORD = { A: 5, B: 4, C: 3, D: 2, E: 1, F: 0 };
+function resultFor(m) { return RESULTS.find(r => r.module_id === m.id) || null; }
+function resultPill(m) { const r = resultFor(m); if (!r) return ''; const g = goalFor(m); const cls = !g ? '' : GRADE_ORD[r.grade] >= GRADE_ORD[g.goal] ? 'G' : 'H'; return `<span class="pill ${cls}" style="${cls === 'H' ? 'color:var(--bad)' : ''}">Fick ${r.grade}</span>`; }
 const SUBJECTS = ['Engelska','Svenska','Matematik','Moderna språk','Biologi','Fysik','Kemi','Teknik','Historia','Samhällskunskap','Geografi','Religion','Bild','Musik','Slöjd','Hemkunskap','Idrott och hälsa'];
 const GPTS = { A: 20, B: 17.5, C: 15, D: 12.5, E: 10 };
 function goalFor(m) { if (!m || !m.goal_subject) return null; return GOALS.find(g => g.subject === m.goal_subject) || null; }
@@ -54,10 +58,11 @@ const app = document.getElementById('app');
 function go(name, extra = {}) { view = { name, ...extra }; window.scrollTo(0, 0); render(); }
 function after(f) { const prev = window._after; window._after = () => { if (prev) prev(); f(); }; return ''; }
 function render() {
-  const r = { auth, onboard, home, session, flash, quiz, test, map, coach, settings, goals }[view.name] || home;
+  const r = { auth, onboard, home, session, flash, quiz, test, map, coach, settings, goals, result }[view.name] || home;
   app.innerHTML = r();
   app.querySelectorAll('[data-go]').forEach(b => b.onclick = () => go(b.dataset.go));
   app.querySelectorAll('[data-mod]').forEach(b => b.onclick = () => switchModule(b.dataset.mod));
+  app.querySelectorAll('[data-res]').forEach(b => b.onclick = () => go('result', { mod: b.dataset.res, from: view.name }));
   if (window._after) { const f = window._after; window._after = null; f(); }
 }
 function topbar(title, right = '') { return `<div class="topbar"><button class="back" data-go="home">Hem</button><div class="eyebrow">${esc(title)}</div><div>${right}</div></div>`; }
@@ -130,9 +135,10 @@ function scheduleList(forParent) {
   const t = today();
   const up = MODS.filter(m => m.exam_date && m.exam_date >= t);
   const past = MODS.filter(m => !m.exam_date || m.exam_date < t).reverse();
-  const row = m => { const n = m.exam_date ? daysTo(m.exam_date) : null; const cur = MOD && m.id === MOD.id; const tag = m.has_content ? `<span class="pill G">Material</span>` : `<span class="pill">${forParent ? 'Saknar material' : 'Inget material än'}</span>`;
-    return `<button class="mod ${cur ? 'cur' : ''}" data-mod="${m.id}" ${m.has_content ? '' : 'disabled'}><span style="min-width:0"><b>${esc(m.subject)}: ${esc(m.title)}</b><br><span class="muted">${KIND[m.kind] || esc(m.kind)}${m.exam_date ? ' · ' + fmtDate(m.exam_date) + ' · ' + daysLabel(n) : ''}${m.note ? ' · ' + esc(m.note) : ''}</span></span><span class="row" style="gap:6px;flex:none">${goalPill(m)}${tag}</span></button>`; };
-  return `<div class="modlist">${up.length ? up.map(row).join('') : '<p class="muted">Inga kommande prov inlagda.</p>'}</div>${past.length ? `<details style="margin-top:10px"><summary class="muted">Klara (${past.length})</summary><div class="modlist" style="margin-top:8px">${past.map(row).join('')}</div></details>` : ''}`;
+  const row = m => { const n = m.exam_date ? daysTo(m.exam_date) : null; const cur = MOD && m.id === MOD.id; const isPast = m.exam_date && m.exam_date < t;
+    const tag = isPast ? (resultFor(m) ? resultPill(m) : `<span class="pill" style="color:var(--mid)">Ange betyg</span>`) : m.has_content ? `<span class="pill G">Material</span>` : `<span class="pill">${forParent ? 'Saknar material' : 'Inget material än'}</span>`;
+    return `<button class="mod ${cur ? 'cur' : ''}" ${isPast ? `data-res="${m.id}"` : `data-mod="${m.id}"`} ${isPast || m.has_content ? '' : 'disabled'}><span style="min-width:0"><b>${esc(m.subject)}: ${esc(m.title)}</b><br><span class="muted">${KIND[m.kind] || esc(m.kind)}${m.exam_date ? ' · ' + fmtDate(m.exam_date) + ' · ' + daysLabel(n) : ''}${m.note ? ' · ' + esc(m.note) : ''}</span></span><span class="row" style="gap:6px;flex:none">${goalPill(m)}${tag}</span></button>`; };
+  return `<div class="modlist">${up.length ? up.map(row).join('') : '<p class="muted">Inga kommande prov inlagda.</p>'}</div>${past.length ? `<details style="margin-top:10px" ${past.some(m => !resultFor(m)) ? 'open' : ''}><summary class="muted">Genomförda (${past.length}) · ${past.filter(resultFor).length} med betyg</summary><div class="modlist" style="margin-top:8px">${past.map(row).join('')}</div></details>` : ''}`;
 }
 function home() {
   const t = today();
@@ -405,11 +411,12 @@ function coach() {
           <div class="rub">${o.rub.map((rb, k) => `<button class="check ${graded && r.marks && r.marks[k] ? 'on' : ''}" data-t="${x.i}" data-o="${o.id}" data-k="${k}"><span class="box">${graded && r.marks && r.marks[k] ? '✓' : ''}</span><span>${esc(rb)}</span></button>`).join('')}</div>
           <div class="muted num" style="margin-top:4px">${graded ? `${r.pts}/3 p` : 'Bocka av för att rätta'}</div></div>`; }).join('')}`).join('')}
     </div>
+    ${(() => { const past = MODS.filter(m => m.exam_date && m.exam_date < today()); const withR = past.filter(resultFor); const hits = withR.filter(m => { const g = goalFor(m), r = resultFor(m); return g && GRADE_ORD[r.grade] >= GRADE_ORD[g.goal]; }).length; return `<div class="card"><h3>Utfall hittills</h3><div class="row" style="gap:20px;margin-top:8px"><div><div class="big num" style="font-size:2.4rem">${withR.length}/${past.length}</div><div class="muted">prov med betyg</div></div><div><div class="big num" style="font-size:2.4rem;color:var(--good)">${hits}</div><div class="muted">nådde målet</div></div><div><div class="big num" style="font-size:2.4rem;color:var(--bad)">${withR.length - hits}</div><div class="muted">under målet</div></div></div>${past.length - withR.length ? `<p class="muted" style="margin-top:8px">${past.length - withR.length} genomförda prov saknar betyg. Tryck på dem i schemat nedan.</p>` : ''}</div>`; })()}
     <div class="card"><div class="row" style="justify-content:space-between"><h3>Betygsmål</h3><button class="btn small" data-go="goals">Visa / ändra</button></div><div class="row" style="gap:6px;margin-top:8px">${GOALS.map(g => `<span class="pill">${esc(g.subject)} <b style="color:var(--accent)">${g.goal}</b></span>`).join('') || '<span class="muted">Inga mål satta</span>'}</div></div>
     <div class="card"><h3>Provschema</h3><p class="muted" style="margin:6px 0 10px">Prov utan material behöver fyllas på i tid. Skicka "inför provet"-dokumentet till Claude så läggs det in.</p>${scheduleList(true)}</div>
     <div class="card"><h3>Så funkar det</h3><p class="muted" style="margin-top:6px">Ett kort blir grönt när eleven svarat rätt på det <b>tre olika dagar</b>. Att läsa räknas inte. Rött = fel senast. Passet väljer själv de svagaste korten. Vyn uppdateras live när eleven pluggar.</p></div>
   </div>` + after(() => {
-    document.querySelectorAll('[data-st]').forEach(b => b.onclick = async () => { student = b.dataset.st; S = MOD ? await db.loadProgress(student, MOD.id) : S; GOALS = await db.loadGoals(student); render(); });
+    document.querySelectorAll('[data-st]').forEach(b => b.onclick = async () => { student = b.dataset.st; S = MOD ? await db.loadProgress(student, MOD.id) : S; GOALS = await db.loadGoals(student); RESULTS = await db.loadResults(student); render(); });
     document.querySelectorAll('.rub .check').forEach(b => b.onclick = async () => {
       const t = S.sessions.filter(s => s.type === 'test')[+b.dataset.t]; const det = t.detail || (t.detail = { answers: {}, open: {} }); det.open = det.open || {};
       const r = det.open[b.dataset.o] || (det.open[b.dataset.o] = { text: '' }); r.marks = r.marks || [false, false, false]; r.marks[+b.dataset.k] = !r.marks[+b.dataset.k]; r.pts = r.marks.filter(Boolean).length;
@@ -428,6 +435,27 @@ function goals() {
     <div class="card">${rows}<p class="muted" style="margin-top:10px;font-size:.9rem">${canEdit ? 'Ändringar sparas direkt. Målen är kopplade till kommande bonus, så bara föräldrar kan ändra dem.' : 'Målen sätts av dina föräldrar och styr nivån på varje prov.'}</p></div>
   </div>` + after(() => {
     document.querySelectorAll('select[data-sub]').forEach(sel => sel.onchange = async () => { if (!sel.value) return; try { await db.setGoal(student, sel.dataset.sub, sel.value); GOALS = await db.loadGoals(student); render(); toast('Sparat'); } catch (e) { toast('Kunde inte spara'); } });
+  });
+}
+
+// ---------- UTFALL ----------
+function result() {
+  const m = MODS.find(x => x.id === view.mod); if (!m) return home();
+  const r = resultFor(m), g = goalFor(m);
+  const canEdit = me.role === 'parent' || (!r && student === me.id);
+  const hit = r && g ? (GRADE_ORD[r.grade] >= GRADE_ORD[g.goal]) : null;
+  return `<div class="stack"><div class="topbar"><button class="back" id="bk">Tillbaka</button><div class="eyebrow">Utfall</div><div></div></div>
+    <div class="card stack" style="gap:10px"><div><div class="eyebrow">${esc(m.subject)} · ${KIND[m.kind] || esc(m.kind)} · ${m.exam_date ? fmtDate(m.exam_date) : ''}</div><h2>${esc(m.title)}</h2>${m.note ? `<div class="muted">${esc(m.note)}</div>` : ''}</div>
+      <div class="row" style="gap:20px"><div><div class="muted" style="font-size:.85rem">Mål ${g ? esc(m.goal_subject) : ''}</div><div class="big num" style="font-size:2.6rem;color:var(--accent)">${g ? g.goal : '–'}</div></div><div><div class="muted" style="font-size:.85rem">Fick</div><div class="big num" style="font-size:2.6rem;color:${hit === null ? 'var(--fg)' : hit ? 'var(--good)' : 'var(--bad)'}">${r ? r.grade : '–'}</div></div></div>
+      ${r ? `<div class="fb ${hit === false ? 'no' : 'ok'}"><b>${hit === null ? 'Betyg inlagt' : hit ? 'Målet nått' : 'Under målet'}</b>${r.comment ? esc(r.comment) : ''}<div class="muted" style="font-size:.85rem;margin-top:4px">Inlagt ${new Date(r.entered_at).toLocaleDateString('sv-SE')}${r.entered_by === student ? ' av eleven' : ' av förälder'}</div></div>` : ''}
+    </div>
+    ${canEdit ? `<div class="card stack" style="gap:10px"><h3>${r ? 'Ändra betyg' : 'Ange betyg'}</h3>
+      <div class="row">${['A','B','C','D','E','F'].map(l => `<button class="btn small ${r && r.grade === l ? 'primary' : ''}" data-g="${l}" style="min-width:52px;font-size:1.2rem">${l}</button>`).join('')}</div>
+      <div><label for="rc">Kommentar (valfritt)</label><input type="text" id="rc" value="${r ? esc(r.comment || '') : ''}" placeholder="t.ex. 38/45 p, missade del 2"></div>
+      <div id="rerr"></div></div>` : `<p class="muted">Betyget är inlagt. Vill du ändra, be en förälder.</p>`}
+  </div>` + after(() => {
+    document.getElementById('bk').onclick = () => go(view.from || 'home');
+    document.querySelectorAll('[data-g]').forEach(b => b.onclick = async () => { try { await db.setResult(student, m.id, b.dataset.g, document.getElementById('rc').value.trim()); RESULTS = await db.loadResults(student); toast('Sparat: ' + b.dataset.g); render(); } catch (e) { document.getElementById('rerr').innerHTML = `<div class="fb no">${esc(e.message)}</div>`; } });
   });
 }
 
@@ -459,7 +487,7 @@ async function boot() {
   MEMBERS = await db.familyMembers(); const members = MEMBERS;
   student = me.role === 'student' ? me.id : (members.find(m => m.role === 'student') || {}).id || me.id;
   let want = null; try { want = localStorage.getItem('mod'); } catch (e) {}
-  GOALS = student ? await db.loadGoals(student) : [];
+  GOALS = student ? await db.loadGoals(student) : []; RESULTS = student ? await db.loadResults(student) : [];
   const withC = MODS.filter(m => m.has_content); const t0 = today();
   const first = withC.find(m => m.id === want) || withC.find(m => m.exam_date >= t0) || withC[withC.length - 1];
   if (first) { setModule(await db.loadModule(first.id)); S = await db.loadProgress(student, MOD.id); } else { MOD = null; S = { cards: {}, sessions: [] }; }

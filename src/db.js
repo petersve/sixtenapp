@@ -58,3 +58,7 @@ export function subscribeFamily(onChange) {
 // Betygsmål per elev och årskurs. Bara föräldrar kan skriva (RLS).
 export async function loadGoals(userId, grade = 9) { const { data } = await sb.from('grade_goals').select('subject,goal,points,updated_at').eq('user_id', userId).eq('grade', grade).order('subject'); return data || []; }
 export async function setGoal(userId, subject, goal, grade = 9) { const { data: { user } } = await sb.auth.getUser(); const { error } = await sb.from('grade_goals').upsert({ user_id: userId, grade, subject, goal, updated_by: user?.id, updated_at: new Date().toISOString() }); if (error) throw error; }
+
+// Utfall per prov. Elev får lägga in första gången, förälder får ändra.
+export async function loadResults(userId) { const { data } = await sb.from('exam_results').select('module_id,grade,comment,entered_by,entered_at').eq('user_id', userId); return data || []; }
+export async function setResult(userId, moduleId, grade, comment) { const { data: { user } } = await sb.auth.getUser(); const { error } = await sb.from('exam_results').upsert({ user_id: userId, module_id: moduleId, grade, comment: comment || null, entered_by: user?.id, entered_at: new Date().toISOString() }); if (error) throw error; }
