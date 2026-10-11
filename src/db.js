@@ -54,3 +54,7 @@ export function subscribeFamily(onChange) {
     .subscribe();
   return () => sb.removeChannel(ch);
 }
+
+// Betygsmål per elev och årskurs. Bara föräldrar kan skriva (RLS).
+export async function loadGoals(userId, grade = 9) { const { data } = await sb.from('grade_goals').select('subject,goal,points,updated_at').eq('user_id', userId).eq('grade', grade).order('subject'); return data || []; }
+export async function setGoal(userId, subject, goal, grade = 9) { const { data: { user } } = await sb.auth.getUser(); const { error } = await sb.from('grade_goals').upsert({ user_id: userId, grade, subject, goal, updated_by: user?.id, updated_at: new Date().toISOString() }); if (error) throw error; }
