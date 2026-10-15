@@ -28,7 +28,8 @@ const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '
 const fmtDate = d => { const [y, m, dd] = d.split('-'); return `${+dd}/${+m}`; };
 function toast(msg) { const t = document.createElement('div'); t.className = 'toast'; t.textContent = msg; document.body.appendChild(t); setTimeout(() => t.remove(), 2500); }
 
-function setModule(m) { MOD = m; const c = m.content; CARDS = c.cards; QUIZ = c.quiz; BOSS = c.boss; TEST = c.test; PLAN = c.plan || []; try { localStorage.setItem('mod', m.id); } catch (e) {} }
+let PAPER = null;              // pappersdiagnos: {intro, parts:[{id,title,mins,calc,items:[{id,q}]}]}
+function setModule(m) { MOD = m; const c = m.content || {}; CARDS = c.cards || []; QUIZ = c.quiz || []; BOSS = c.boss || []; TEST = c.test || null; PLAN = c.plan || []; PAPER = c.paper || null; try { localStorage.setItem('mod', m.id); } catch (e) {} }
 
 // ============ MASTERY ============
 const isStudent = () => me && me.role === 'student';
@@ -58,7 +59,7 @@ const app = document.getElementById('app');
 function go(name, extra = {}) { view = { name, ...extra }; window.scrollTo(0, 0); render(); }
 function after(f) { const prev = window._after; window._after = () => { if (prev) prev(); f(); }; return ''; }
 function render() {
-  const r = { auth, onboard, home, session, flash, quiz, test, map, coach, settings, goals, result }[view.name] || home;
+  const r = { auth, onboard, home, session, flash, quiz, test, map, coach, settings, goals, result, paper }[view.name] || home;
   app.innerHTML = r();
   app.querySelectorAll('[data-go]').forEach(b => b.onclick = () => go(b.dataset.go));
   app.querySelectorAll('[data-mod]').forEach(b => b.onclick = () => switchModule(b.dataset.mod));
@@ -127,8 +128,8 @@ function onboard() {
 async function logout() { await sb.auth.signOut(); me = null; go('auth'); }
 
 // ---------- HEM ----------
-function testScore(t) { const det = t.detail || {}; const answers = det.answers || {}; const auto = Object.values(answers).filter(Boolean).length, autoMax = Object.keys(answers).length; let open = 0, pending = false; (TEST.open || []).forEach(o => { const r = (det.open || {})[o.id]; if (r && typeof r.pts === 'number') open += r.pts; else pending = true; }); const max = autoMax + TEST.open.length * 3; const pts = auto + open; return { pts, max, pct: Math.round(pts / max * 100), auto, autoMax, open, pending }; }
-const KIND = { prov: 'Prov', inlämning: 'Inlämning', redovisning: 'Redovisning', muntligt: 'Muntligt', np: 'Nationellt prov' };
+function testScore(t) { if (!TEST) return { pts: 0, max: 0, pct: 0, auto: 0, autoMax: 0, open: 0, pending: !(t.detail && t.detail.paper) }; const det = t.detail || {}; const answers = det.answers || {}; const auto = Object.values(answers).filter(Boolean).length, autoMax = Object.keys(answers).length; let open = 0, pending = false; (TEST.open || []).forEach(o => { const r = (det.open || {})[o.id]; if (r && typeof r.pts === 'number') open += r.pts; else pending = true; }); const max = autoMax + TEST.open.length * 3; const pts = auto + open; return { pts, max, pct: Math.round(pts / max * 100), auto, autoMax, open, pending }; }
+const KIND = { prov: 'Prov', inlämning: 'Inlämning', redovisning: 'Redovisning', muntligt: 'Muntligt', np: 'Nationellt prov', diagnos: 'Diagnos', träning: 'Träning' };
 const daysTo = d => Math.round((Date.parse(d) - Date.parse(today())) / 86400e3);
 const daysLabel = n => n < 0 ? 'klar' : n === 0 ? 'idag' : n === 1 ? 'imorgon' : `om ${n} dagar`;
 function scheduleList(forParent) {
@@ -147,6 +148,16 @@ function home() {
   const schedule = `<div class="card"><h3 style="margin-bottom:10px">Kommande prov</h3>${scheduleList(me.role === 'parent')}</div>`;
   const footer = `<div class="row" style="justify-content:space-between"><span class="muted" style="font-size:.85rem">${me.role === 'parent' ? 'förälder' : 'elev'}</span><span class="row"><button class="btn small" data-go="goals">Betygsmål</button>${me.role === 'parent' ? '<button class="btn small" data-go="coach">Coach-vy</button>' : ''}</span></div>`;
   if (!MOD) return `<div class="stack">${header}<p class="muted">När ett prov får material dyker det upp här som din to-do.</p>${schedule}${footer}</div>` + after(() => {});
+  if (PAPER && !CARDS.length) {
+    const done = S.sessions.filter(x => x.type === 'test').length; const dl = MOD.exam_date ? daysTo(MOD.exam_date) : null;
+    return `<div class="stack">${header}${who}
+      <div class="card stack" style="gap:10px"><div class="eyebrow">${esc(MOD.subject)} · ${KIND[MOD.kind] || esc(MOD.kind)}${MOD.exam_date ? ' · ' + fmtDate(MOD.exam_date) + (dl !== null ? ' · ' + daysLabel(dl) : '') : ''}</div><h2>${esc(MOD.title)}</h2>${goalFor(MOD) ? `<div class="muted">Betygsmål ${esc(MOD.goal_subject)}: <b style="color:var(--accent)">${goalFor(MOD).goal}</b></div>` : ''}
+      <p>${esc(PAPER.intro || '')}</p>
+      <div class="stack" style="gap:6px">${PAPER.parts.map(pt => `<div class="check"><span class="box"></span><span><b>Del ${esc(pt.id)} · ${pt.mins} min</b> · ${pt.calc ? 'räknare tillåten' : 'utan räknare'} · ${pt.items.length} uppgifter</span></div>`).join('')}</div>
+      ${done ? `<div class="fb ok"><b>Inlämnad</b>Du har gjort den ${done} gång${done === 1 ? '' : 'er'}. Analysen kommer från dina föräldrar.</div>` : ''}</div>
+      <button class="btn primary" data-go="paper">${done ? 'Visa uppgifterna igen' : 'Starta diagnosen'}</button>
+      ${schedule}${footer}</div>`;
+  }
   const g = greens(), n = CARDS.length, st = streak();
   const sessToday = S.sessions.filter(s => s.d === t && s.type.startsWith('pass')).length;
   const tests = S.sessions.filter(s => s.type === 'test'); const lastTest = tests[tests.length - 1];
@@ -405,7 +416,7 @@ function coach() {
     ${weak.length ? `<div class="card"><h3>Svagast just nu</h3><div class="stack" style="gap:6px;margin-top:8px">${weak.map(c => `<div><span class="dot sm m${mastery(c.id)}" style="display:inline-block;vertical-align:middle;margin-right:8px"></span>${esc(c.q)} <span class="muted num">(${S.cards[c.id].c}/${S.cards[c.id].c + S.cards[c.id].w})</span></div>`).join('')}</div><p class="muted" style="margin-top:10px">Fråga muntligt om de här vid middagen. Att förklara högt för någon annan är den bästa kontrollen.</p></div>` : ''}
     <div class="card"><h3>Övningsprov</h3>
       ${tests.length ? `<div class="hist">${tests.map(x => `<div class="col"><i style="height:${Math.max(3, x.sc.pct)}%"></i><span>${x.sc.pct}%</span></div>`).join('')}</div>` : `<p class="muted" style="margin-top:8px">Inget prov skrivet ännu.</p>`}
-      ${tests.map(x => `<hr><div class="row" style="justify-content:space-between"><b>Prov ${x.i + 1} · ${fmtDate(x.t.d)}</b><span class="num">${x.sc.pts}/${x.sc.max} p${x.sc.pending ? ' · <span style="color:var(--mid)">rätta</span>' : ''}</span></div>
+      ${tests.map(x => (x.t.detail && x.t.detail.paper) ? `<hr><div class="row" style="justify-content:space-between"><b>Diagnos ${x.i + 1} · ${fmtDate(x.t.d)}</b><span class="muted num">${x.t.mins || 0} min · på papper, skicka foton till Claude för analys</span></div>` : `<hr><div class="row" style="justify-content:space-between"><b>Prov ${x.i + 1} · ${fmtDate(x.t.d)}</b><span class="num">${x.sc.pts}/${x.sc.max} p${x.sc.pending ? ' · <span style="color:var(--mid)">rätta</span>' : ''}</span></div>
         <div class="muted num">Del 1+2: ${x.sc.auto}/${x.sc.autoMax} automatiskt rättat</div>
         ${TEST.open.map(o => { const r = ((x.t.detail || {}).open || {})[o.id] || {}; const graded = typeof r.pts === 'number'; return `<div style="margin-top:10px"><div style="font-weight:600">${esc(o.q)}</div><div class="muted" style="white-space:pre-wrap;margin:4px 0">${r.text ? esc(r.text) : '<i>(inget skrivet, titta på pappret)</i>'}</div>
           <div class="rub">${o.rub.map((rb, k) => `<button class="check ${graded && r.marks && r.marks[k] ? 'on' : ''}" data-t="${x.i}" data-o="${o.id}" data-k="${k}"><span class="box">${graded && r.marks && r.marks[k] ? '✓' : ''}</span><span>${esc(rb)}</span></button>`).join('')}</div>
@@ -436,6 +447,26 @@ function goals() {
   </div>` + after(() => {
     document.querySelectorAll('select[data-sub]').forEach(sel => sel.onchange = async () => { if (!sel.value) return; try { await db.setGoal(student, sel.dataset.sub, sel.value); GOALS = await db.loadGoals(student); render(); toast('Sparat'); } catch (e) { toast('Kunde inte spara'); } });
   });
+}
+
+// ---------- PAPPERSDIAGNOS ----------
+let pp = null;
+function paper() {
+  if (!PAPER) return home();
+  if (!pp) pp = { start: Date.now(), part: 0 };
+  const pt = PAPER.parts[pp.part];
+  if (!pt) {
+    const mins = Math.round((Date.now() - pp.start) / 60000);
+    return `<div class="stack">${topbar('Diagnos')}<div class="card" style="text-align:center"><div class="eyebrow">Klar</div><div class="big num">${mins} min</div><p>Fota alla papper och skicka till mamma eller pappa. Skriv uppgiftsnumret framför varje svar.</p></div><button class="btn primary" id="fin">Lämna in</button></div>` + after(() => { document.getElementById('fin').onclick = async () => { await logSession('test', { score: 0, max: 0, mins, detail: { paper: true } }); pp = null; toast('Inlämnad'); go('home'); }; });
+  }
+  const mins = Math.floor((Date.now() - pp.start) / 60000);
+  return `<div class="stack"><div class="topbar"><button class="back" id="quit">Avbryt</button><div class="eyebrow">Del ${esc(pt.id)} · ${pt.mins} min · ${pt.calc ? 'räknare ok' : 'utan räknare'}</div><div class="timer num">${mins} min</div></div>
+    <p class="muted">${esc(pt.hint || 'Svara på papper. Skriv numret framför varje svar.')}</p>
+    <div class="card" style="gap:0;padding:4px 16px">${pt.items.map(it => `<div style="display:grid;grid-template-columns:40px 1fr;gap:8px;padding:12px 0;border-bottom:1px solid var(--line);align-items:baseline"><span style="font-family:var(--display);font-weight:800;color:var(--accent);font-size:1.15rem">${esc(it.id)}</span><span style="font-size:1.1rem;font-weight:500">${esc(it.q)}</span></div>`).join('')}</div>
+    <button class="btn primary" id="next">${pp.part < PAPER.parts.length - 1 ? 'Klar med del ' + esc(pt.id) + ' · nästa del' : 'Klar med allt'}</button></div>` + after(() => {
+      document.getElementById('next').onclick = () => { pp.part++; window.scrollTo(0, 0); render(); };
+      document.getElementById('quit').onclick = () => { pp = null; go('home'); };
+    });
 }
 
 // ---------- UTFALL ----------
