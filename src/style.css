@@ -110,3 +110,12 @@ hr{border:0;border-top:1px solid var(--line);margin:4px 0}
 .mod[disabled]{opacity:.55;cursor:default}
 .mod>span:first-child{flex:1;min-width:0}
 details summary{cursor:pointer}
+/* Flikar i botten */
+#app{padding-bottom:calc(84px + env(safe-area-inset-bottom,0px))}
+.tabbar{position:fixed;left:0;right:0;bottom:0;display:flex;justify-content:space-around;background:var(--surface);border-top:1px solid var(--line);padding:6px 8px calc(8px + env(safe-area-inset-bottom,0px));z-index:5}
+.tabbar button{display:flex;flex-direction:column;align-items:center;gap:2px;font-family:var(--display);font-weight:600;text-transform:uppercase;letter-spacing:.06em;font-size:.72rem;color:var(--muted);padding:4px 8px;border-radius:10px;min-width:56px}
+.tabbar button .ico{font-size:1.25rem;line-height:1}
+.tabbar button.on{color:var(--accent)}
+.light{display:inline-block;width:16px;height:16px;border-radius:50%;background:var(--unseen);flex:none}
+.light.green{background:var(--good)} .light.yellow{background:var(--mid)} .light.red{background:var(--bad)} .light.open{background:var(--unseen);box-shadow:inset 0 0 0 3px var(--surface),0 0 0 2px var(--accent)}
+.check[disabled]{cursor:default}
