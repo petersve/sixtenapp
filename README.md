@@ -18,3 +18,8 @@ Nytt prov: ge Claude "inför provet"-dokumentet → Claude skriver `content/<slu
 
 ## Supabase secrets (edge functions)
 - `TELEGRAM_BOT_TOKEN`
+
+## Publicera nytt innehåll
+1. Lägg `content/<slug>.json` i repot (format: se befintliga filer) och pusha.
+2. Kör i Supabase SQL: `select net.http_post(url := 'https://gsqpkizwuzpnyyeoeohj.supabase.co/functions/v1/import-module', headers := '{"Content-Type":"application/json"}'::jsonb, body := '{"slug":"<slug>"}'::jsonb);`
+   Modulen måste finnas i `modules` (annars skicka `"create": {...}` i body).
