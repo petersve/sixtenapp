@@ -15,7 +15,7 @@ let unsub = null;
 let MEMBERS = [];
 let ALLSESS = [];              // alla sessions för eleven, alla moduler
 let LECTURES = [], REVIEWS = [];
-const TAB_OF = { today: 'today', home: 'exams', exams: 'exams', flash: 'exams', quiz: 'exams', test: 'exams', map: 'exams', result: 'exams', goals: 'exams', lectures: 'lectures', bonus: 'bonus', coach: 'coach', settings: 'coach' };
+const TAB_OF = { lecquiz: 'lectures', today: 'today', home: 'exams', exams: 'exams', flash: 'exams', quiz: 'exams', test: 'exams', map: 'exams', result: 'exams', goals: 'exams', lectures: 'lectures', bonus: 'bonus', coach: 'coach', settings: 'coach' };
 const IMMERSIVE = ['auth', 'onboard', 'session', 'paper'];
 let GOALS = [];                // betygsmål för eleven som visas
 let RESULTS = [];              // utfall per prov
@@ -64,7 +64,7 @@ const app = document.getElementById('app');
 function go(name, extra = {}) { view = { name, ...extra }; window.scrollTo(0, 0); render(); }
 function after(f) { const prev = window._after; window._after = () => { if (prev) prev(); f(); }; return ''; }
 function render() {
-  const r = { auth, onboard, home, session, flash, quiz, test, map, coach, settings, goals, result, paper, today: todayView, exams, lectures, bonus }[view.name] || todayView;
+  const r = { auth, onboard, home, session, flash, quiz, test, map, coach, settings, goals, result, paper, today: todayView, exams, lectures, bonus, lecquiz }[view.name] || todayView;
   app.innerHTML = r() + (IMMERSIVE.includes(view.name) || !me ? '' : tabbar());
   app.querySelectorAll('[data-go]').forEach(b => b.onclick = () => go(b.dataset.go));
   app.querySelectorAll('[data-mod]').forEach(b => b.onclick = () => switchModule(b.dataset.mod));
@@ -435,10 +435,12 @@ function todayView() {
     ${me.role === 'parent' ? `<div class="muted" style="font-size:.9rem">Du ser ${esc(studentName())}s Idag-sida.</div>` : ''}
     <div class="row" style="justify-content:space-between"><div class="row" style="gap:8px"><span class="light ${light}"></span><span class="muted">Vecka ${isoW(t).slice(-2)}: ${wk ? `${wk.done + wk.rescued.length}/${wk.total} gjort${wk.jokersUsed ? ' · ' + wk.jokersUsed + ' joker' : ''}` : 'inga uppgifter'}</span></div><div class="streak" title="${st} dagar i rad">${[0, 1, 2, 3, 4].map(i => `<i class="${i < st ? 'on' : ''}"></i>`).join('')}</div></div>
     ${late.length ? `<div class="card stack" style="gap:8px;border-color:var(--bad)"><h3 style="color:var(--bad)">Missat · rädda med joker</h3>${late.map(i => itemRow(i)).join('')}<p class="muted" style="font-size:.85rem">Du har ${JOKERS_PER_MONTH} joker per månad. Gör den inom ${RESCUE_DAYS} dagar så räknas veckan fortfarande.</p></div>` : ''}
+    ${(() => { const due = LECTURES.filter(l => (l.questions || []).length && !REVIEWS.some(r => r.lecture_id === l.id) && Date.parse(l.recorded_at) > Date.now() - 3 * 86400e3); return due.length ? `<div class="card stack" style="gap:8px"><h3>Dagens lektioner · 3 min var</h3>${due.map(l => `<button class="check" data-lq="${l.id}" style="padding:12px 14px"><span class="box"></span><span style="min-width:0"><b>Fem frågor: ${esc(l.title)}</b><br><span class="muted" style="font-size:.9rem">${esc(l.subject || '')} · ${new Date(l.recorded_at).toLocaleDateString('sv-SE', { weekday: 'short', day: 'numeric', month: 'short' })} · fastnar bäst samma dag</span></span></button>`).join('')}</div>` : ''; })()}
     <div class="card stack" style="gap:8px"><h3>Idag</h3>${todays.length ? todays.map(i => itemRow(i)).join('') : `<p class="muted">Inget inplanerat. Ta något från listan nedan om du har en lucka.</p>`}</div>
     ${upcoming.length ? `<div class="card stack" style="gap:8px"><h3>Kan göras redan nu</h3>${upcoming.map(i => itemRow(i)).join('')}<p class="muted" style="font-size:.85rem">Gör du något i förväg räknas det som klart den dagen. Bra sätt att få en ledig kväll senare.</p></div>` : ''}
     ${!todays.length && !upcoming.length && !late.length ? `<div class="card"><p class="muted">Inga planer inlagda. Kolla fliken Prov.</p></div>` : ''}
   </div>` + after(() => {
+    document.querySelectorAll('[data-lq]').forEach(b => b.onclick = () => { lq = null; go('lecquiz', { lec: b.dataset.lq }); });
     document.querySelectorAll('[data-act]').forEach(b => b.onclick = async () => {
       const m = MODS.find(x => x.id === b.dataset.m); if (!m) return;
       if (b.dataset.act === 'grade') return go('result', { mod: m.id, from: 'today' });
@@ -473,12 +475,26 @@ function lectures() {
     ${LECTURES.length ? '' : '<div class="card"><p class="muted">Inga lektioner än. Spela in genomgången med Pocket, så dyker den upp här kvällen efter.</p></div>'}
     ${LECTURES.map(l => { const rv = REVIEWS.find(r => r.lecture_id === l.id); const qs = l.questions || []; return `<div class="card stack" style="gap:8px">
       <div class="row" style="justify-content:space-between;align-items:flex-start"><div><div class="eyebrow">${esc(l.subject || 'Ämne?')} · ${new Date(l.recorded_at).toLocaleDateString('sv-SE', { weekday: 'short', day: 'numeric', month: 'short' })} · ${Math.round(l.duration / 60)} min</div><h2 style="font-size:1.3rem">${esc(l.title)}</h2></div>${me.role === 'parent' ? `<select data-lec="${l.id}" style="font:inherit;background:var(--surface2);color:var(--fg);border:1px solid var(--line);border-radius:8px;padding:4px 8px"><option value="">Ämne</option>${subjects.map(sj => `<option ${l.subject === sj ? 'selected' : ''}>${sj}</option>`).join('')}</select>` : ''}</div>
-      ${qs.length ? `<div class="row"><span class="pill ${rv ? 'G' : ''}">${rv ? `Repeterad ${rv.score}/${rv.max}` : qs.length + ' frågor'}</span></div>` : '<span class="pill">Frågor kommer</span>'}
+      ${qs.length ? `<button class="btn ${rv ? '' : 'primary'}" data-lq="${l.id}" style="font-size:1.1rem;padding:12px">${rv ? `Repeterad ${rv.score}/${rv.max} · kör igen` : 'Fem frågor · 3 min'}</button>` : '<span class="pill">Frågor kommer</span>'}
       <details><summary class="muted" style="cursor:pointer">Sammanfattning</summary><div style="margin-top:8px;font-size:.98rem;line-height:1.5">${md(l.summary)}</div></details>
     </div>`; }).join('')}
   </div>` + after(() => {
+    document.querySelectorAll('[data-lq]').forEach(b => b.onclick = () => { lq = null; go('lecquiz', { lec: b.dataset.lq }); });
     document.querySelectorAll('select[data-lec]').forEach(sel => sel.onchange = async () => { try { await db.setLectureSubject(sel.dataset.lec, sel.value || null); const l = LECTURES.find(x => x.id === sel.dataset.lec); if (l) l.subject = sel.value; toast('Sparat'); } catch (e) { toast('Kunde inte spara'); } });
   });
+}
+
+// ---------- LEKTIONSREPETITION (fem frågor) ----------
+let lq = null;
+function lecquiz() {
+  const l = LECTURES.find(x => x.id === view.lec); if (!l || !(l.questions || []).length) return lectures();
+  if (!lq || lq.id !== l.id) lq = { id: l.id, i: 0, ok: 0, qs: l.questions.map((q, i) => ({ ...q, id: 'lq' + i, type: 'mc', lvl: 'G', c: null })) };
+  const q = lq.qs[lq.i];
+  if (!q) {
+    if (!lq.saved) { lq.saved = true; const r = REVIEWS.find(x => x.lecture_id === l.id); if (r) { r.score = lq.ok; r.max = lq.qs.length; } else REVIEWS.push({ lecture_id: l.id, day: today(), score: lq.ok, max: lq.qs.length }); if (isStudent()) db.saveLectureReview(me.id, l.id, lq.ok, lq.qs.length).catch(() => toast('Kunde inte spara')); }
+    return `<div class="stack">${topbar('Lektion')}<div class="card" style="text-align:center"><div class="eyebrow">${esc(l.title)}</div><div class="big num">${lq.ok}/${lq.qs.length}</div><div class="muted">${lq.ok === lq.qs.length ? 'Allt satt. Det här fastnar nu.' : 'Läs sammanfattningen på det du missade, det tar två minuter.'}</div></div><button class="btn primary" id="done2">Klar</button></div>` + after(() => { document.getElementById('done2').onclick = () => { lq = null; go('today'); }; });
+  }
+  return `<div class="stack"><div class="topbar"><button class="back" id="q2">Avbryt</button><div class="eyebrow">${esc(l.subject || 'Lektion')} · fråga ${lq.i + 1}/${lq.qs.length}</div><div></div></div><div class="bar"><i style="width:${lq.i / lq.qs.length * 100}%"></i></div>` + quizView(q, ok => { if (ok) lq.ok++; lq.i++; render(); }) + `</div>` + after(() => { document.getElementById('q2').onclick = () => { lq = null; go('lectures'); }; });
 }
 
 // ---------- BONUS ----------
