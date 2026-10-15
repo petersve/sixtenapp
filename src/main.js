@@ -433,6 +433,7 @@ function todayView() {
   return `<div class="stack">
     <div class="topbar" style="padding-bottom:4px"><div><div class="eyebrow">${esc(me.display_name || '')} · ${new Date().toLocaleDateString('sv-SE', { weekday: 'long', day: 'numeric', month: 'long' })}</div><h1>${allDone ? 'Klar för idag' : late.length ? 'Rädda det här först' : todays.length ? 'Dagens plan' : 'Inget planerat idag'}</h1></div><button class="btn small" data-go="settings" aria-label="Inställningar">⚙︎</button></div>
     ${me.role === 'parent' ? `<div class="muted" style="font-size:.9rem">Du ser ${esc(studentName())}s Idag-sida.</div>` : ''}
+    ${isStudent() && pushState === 'off' ? `<button class="check" id="pushon" style="padding:12px 14px"><span class="box">🔔</span><span><b>Slå på notiser</b><br><span class="muted" style="font-size:.9rem">En knuff kl 17 om du glömt passet. Tar bort allt tjat från föräldrarna.</span></span></button>` : ''}
     <div class="row" style="justify-content:space-between"><div class="row" style="gap:8px"><span class="light ${light}"></span><span class="muted">Vecka ${isoW(t).slice(-2)}: ${wk ? `${wk.done + wk.rescued.length}/${wk.total} gjort${wk.jokersUsed ? ' · ' + wk.jokersUsed + ' joker' : ''}` : 'inga uppgifter'}</span></div><div class="streak" title="${st} dagar i rad">${[0, 1, 2, 3, 4].map(i => `<i class="${i < st ? 'on' : ''}"></i>`).join('')}</div></div>
     ${late.length ? `<div class="card stack" style="gap:8px;border-color:var(--bad)"><h3 style="color:var(--bad)">Missat · rädda med joker</h3>${late.map(i => itemRow(i)).join('')}<p class="muted" style="font-size:.85rem">Du har ${JOKERS_PER_MONTH} joker per månad. Gör den inom ${RESCUE_DAYS} dagar så räknas veckan fortfarande.</p></div>` : ''}
     ${(() => { const due = LECTURES.filter(l => (l.questions || []).length && !REVIEWS.some(r => r.lecture_id === l.id) && Date.parse(l.recorded_at) > Date.now() - 3 * 86400e3); return due.length ? `<div class="card stack" style="gap:8px"><h3>Dagens lektioner · 3 min var</h3>${due.map(l => `<button class="check" data-lq="${l.id}" style="padding:12px 14px"><span class="box"></span><span style="min-width:0"><b>Fem frågor: ${esc(l.title)}</b><br><span class="muted" style="font-size:.9rem">${esc(l.subject || '')} · ${new Date(l.recorded_at).toLocaleDateString('sv-SE', { weekday: 'short', day: 'numeric', month: 'short' })} · fastnar bäst samma dag</span></span></button>`).join('')}</div>` : ''; })()}
@@ -440,6 +441,7 @@ function todayView() {
     ${upcoming.length ? `<div class="card stack" style="gap:8px"><h3>Kan göras redan nu</h3>${upcoming.map(i => itemRow(i)).join('')}<p class="muted" style="font-size:.85rem">Gör du något i förväg räknas det som klart den dagen. Bra sätt att få en ledig kväll senare.</p></div>` : ''}
     ${!todays.length && !upcoming.length && !late.length ? `<div class="card"><p class="muted">Inga planer inlagda. Kolla fliken Prov.</p></div>` : ''}
   </div>` + after(() => {
+    const po = document.getElementById('pushon'); if (po) po.onclick = enablePush;
     document.querySelectorAll('[data-lq]').forEach(b => b.onclick = () => { lq = null; go('lecquiz', { lec: b.dataset.lq }); });
     document.querySelectorAll('[data-act]').forEach(b => b.onclick = async () => {
       const m = MODS.find(x => x.id === b.dataset.m); if (!m) return;
@@ -614,19 +616,45 @@ function result() {
   });
 }
 
+// ---------- PUSH ----------
+const isStandalone = () => window.matchMedia('(display-mode: standalone)').matches || navigator.standalone === true;
+const pushSupported = () => 'serviceWorker' in navigator && 'PushManager' in window && 'Notification' in window;
+let pushState = 'unknown'; // unknown | on | off | denied | unsupported | needs-home
+async function checkPush() {
+  if (!pushSupported()) { pushState = isStandalone() || !/iPhone|iPad/.test(navigator.userAgent) ? 'unsupported' : 'needs-home'; return; }
+  if (Notification.permission === 'denied') { pushState = 'denied'; return; }
+  try { const reg = await navigator.serviceWorker.ready; const sub = await reg.pushManager.getSubscription(); pushState = sub && await db.hasPushSubscription(sub.endpoint) ? 'on' : 'off'; } catch (e) { pushState = 'off'; }
+}
+function b64url(s) { const p = '='.repeat((4 - s.length % 4) % 4); const b = atob((s + p).replace(/-/g, '+').replace(/_/g, '/')); return Uint8Array.from(b, c => c.charCodeAt(0)); }
+async function enablePush() {
+  try {
+    const perm = await Notification.requestPermission(); if (perm !== 'granted') { pushState = perm === 'denied' ? 'denied' : 'off'; render(); return; }
+    const reg = await navigator.serviceWorker.ready;
+    const sub = await reg.pushManager.getSubscription() || await reg.pushManager.subscribe({ userVisibleOnly: true, applicationServerKey: b64url(db.VAPID_PUBLIC) });
+    await db.savePushSubscription(me.id, sub); pushState = 'on'; toast('Notiser på'); render();
+  } catch (e) { toast('Gick inte: ' + (e.message || e)); }
+}
+function pushCard() {
+  if (pushState === 'on') return `<div class="fb ok"><b>Notiser på</b>En knuff kl 17 om dagens pass inte är gjort, och på kvällen när det finns frågor på en lektion.</div>`;
+  if (pushState === 'needs-home') return `<div class="fb no"><b>Lägg appen på hemskärmen först</b>iPhone skickar bara notiser till appar på hemskärmen: Dela-knappen i Safari → "Lägg till på hemskärmen". Öppna sedan appen därifrån och slå på notiser här.</div>`;
+  if (pushState === 'denied') return `<div class="fb no"><b>Notiser blockerade</b>Slå på dem i Inställningar → Notiser → Pluggappen, sedan ladda om.</div>`;
+  if (pushState === 'unsupported') return `<p class="muted">Den här webbläsaren stödjer inte notiser.</p>`;
+  return `<p class="muted">En knuff kl 17 om passet inte är gjort, och på kvällen när dagens lektion har frågor. Aldrig mer än två om dagen.</p><button class="btn primary" id="pushon" style="font-size:1.2rem">Slå på notiser</button>`;
+}
+
 // ---------- INSTÄLLNINGAR ----------
 function settings() {
+  if (pushState === 'unknown') checkPush().then(render);
   const bot = import.meta.env.VITE_TELEGRAM_BOT;
   return `<div class="stack">${topbar('Inställningar')}
     <div class="card stack" style="gap:8px"><h3>Konto</h3><div><b>${esc(me.display_name || '')}</b> · ${me.role === 'parent' ? 'förälder' : 'elev'}</div><div class="muted">${esc(me.email)}</div></div>
     ${me.role === 'parent' ? `<div class="card stack" style="gap:8px"><h3>Familjekod</h3><div class="code" id="fcode">…</div><p class="muted">Eleven skapar konto i appen, väljer Elev och skriver in koden.</p></div>` : ''}
-    <div class="card stack" style="gap:8px"><h3>Påminnelser via Telegram</h3>
-      ${me.telegram_chat_id ? `<div class="fb ok"><b>Kopplat</b>Du får en påminnelse kl 17 de dagar du inte gjort något pass.</div>` : bot ? `<p class="muted">Installera Telegram, tryck på knappen och sedan Start i chatten. Klart.</p><a class="btn" href="https://t.me/${esc(bot)}?start=${esc(me.id)}" target="_blank" rel="noopener">Koppla Telegram</a>` : `<p class="muted">Inte konfigurerat ännu.</p>`}
-    </div>
+    <div class="card stack" style="gap:8px"><h3>Notiser</h3>${pushCard()}</div>
     <div class="card stack" style="gap:8px"><h3>Lägg till på hemskärmen</h3><p class="muted">iPhone: Dela-knappen i Safari → "Lägg till på hemskärmen". Då funkar appen i fullskärm.</p></div>
     <button class="btn" id="lo">Logga ut</button>
   </div>` + after(async () => {
     document.getElementById('lo').onclick = logout;
+    const po = document.getElementById('pushon'); if (po) po.onclick = enablePush;
     const fc = document.getElementById('fcode'); if (fc) fc.textContent = (await db.familyCode()) || '–';
   });
 }
@@ -648,6 +676,7 @@ async function boot() {
   const first = withC.find(m => m.id === want) || withC.find(m => m.exam_date >= t0) || withC[withC.length - 1];
   if (first) { setModule(await db.loadModule(first.id)); S = await db.loadProgress(student, MOD.id); } else { MOD = null; S = { cards: {}, sessions: [] }; }
   if (me.role === 'parent') { let t = null; unsub = db.subscribeFamily(() => { clearTimeout(t); t = setTimeout(async () => { if (!MOD) return; S = await db.loadProgress(student, MOD.id); await refreshAll(); if (!sess) render(); }, 600); }); }
+  checkPush().then(() => { if (view.name === "today") render(); });
   go("today");
 }
 sb.auth.onAuthStateChange((ev) => { if (ev === 'SIGNED_OUT') { me = null; go('auth'); } });

@@ -71,3 +71,8 @@ export async function loadLectures(userId) { const { data } = await sb.from('lec
 export async function setLectureSubject(id, subject) { const { error } = await sb.from('lectures').update({ subject }).eq('id', id); if (error) throw error; }
 export async function loadLectureReviews(userId) { const { data } = await sb.from('lecture_reviews').select('lecture_id,day,score,max').eq('user_id', userId); return data || []; }
 export async function saveLectureReview(userId, lectureId, score, max) { await sb.from('lecture_reviews').upsert({ user_id: userId, lecture_id: lectureId, day: today(), score, max }); }
+
+// Web push
+export const VAPID_PUBLIC = 'BCcy2rpFL64cU7VuZhZkhtDd13pCpG9z4vWf1bKgJOVLb63TPl21zVzWYy53NBPFmwtPwj1qbao_fhyXe2kAa1w';
+export async function savePushSubscription(userId, sub) { const j = sub.toJSON(); const { error } = await sb.from('push_subscriptions').upsert({ user_id: userId, endpoint: j.endpoint, keys: j.keys, ua: navigator.userAgent.slice(0, 200) }, { onConflict: 'endpoint' }); if (error) throw error; }
+export async function hasPushSubscription(endpoint) { const { data } = await sb.from('push_subscriptions').select('id').eq('endpoint', endpoint).maybeSingle(); return !!data; }
