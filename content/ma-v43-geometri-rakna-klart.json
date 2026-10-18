@@ -1,130 +1,1364 @@
 {
   "slug": "ma-v43-geometri-rakna-klart",
   "plan": [
-    { "date": "2026-10-20", "label": "Tis 20/10", "items": ["Pass 1: läs frågan två gånger, omkrets och area"] },
-    { "date": "2026-10-22", "label": "Tor 22/10", "items": ["Pass 2: triangel, cirkel"] },
-    { "date": "2026-10-25", "label": "Sön 25/10", "items": ["Pass 3: Pythagoras, skala, volym"] },
-    { "date": "2026-10-27", "label": "Tis 27/10", "items": ["Pass 4: räkna klart – per en, förändringsfaktor"] },
-    { "date": "2026-10-29", "label": "Tor 29/10", "items": ["Pass 5: procent i två steg"] },
-    { "date": "2026-10-31", "label": "Lör 31/10", "items": ["Pass 6: sannolikhet, medelvärde baklänges, funktioner"] },
-    { "date": "2026-11-03", "label": "Tis 3/11", "items": ["Pass 7: bråk i tre former, grundpotensform"] },
-    { "date": "2026-11-05", "label": "Tor 5/11", "items": ["Pass 8: blandat, röda kort"] },
-    { "date": "2026-11-07", "label": "Lör 7/11", "items": ["Pass 9: geometri igen, alla formler ur minnet"] },
-    { "date": "2026-11-10", "label": "Tis 10/11", "items": ["Pass 10: tvåstegsuppgifter, röda kort"] },
-    { "date": "2026-11-14", "label": "Lör 14/11", "items": ["Pass 11: snabbrepetition", "Övningsprov"] }
+    {
+      "date": "2026-10-20",
+      "label": "Tis 20/10",
+      "items": [
+        "Pass 1: läs frågan två gånger, omkrets och area"
+      ]
+    },
+    {
+      "date": "2026-10-22",
+      "label": "Tor 22/10",
+      "items": [
+        "Pass 2: triangel, cirkel"
+      ]
+    },
+    {
+      "date": "2026-10-25",
+      "label": "Sön 25/10",
+      "items": [
+        "Pass 3: Pythagoras, skala, volym"
+      ]
+    },
+    {
+      "date": "2026-10-27",
+      "label": "Tis 27/10",
+      "items": [
+        "Pass 4: räkna klart – per en, förändringsfaktor"
+      ]
+    },
+    {
+      "date": "2026-10-29",
+      "label": "Tor 29/10",
+      "items": [
+        "Pass 5: procent i två steg"
+      ]
+    },
+    {
+      "date": "2026-10-31",
+      "label": "Lör 31/10",
+      "items": [
+        "Pass 6: sannolikhet, medelvärde baklänges, funktioner"
+      ]
+    },
+    {
+      "date": "2026-11-03",
+      "label": "Tis 3/11",
+      "items": [
+        "Pass 7: bråk i tre former, grundpotensform"
+      ]
+    },
+    {
+      "date": "2026-11-05",
+      "label": "Tor 5/11",
+      "items": [
+        "Pass 8: blandat, röda kort"
+      ]
+    },
+    {
+      "date": "2026-11-07",
+      "label": "Lör 7/11",
+      "items": [
+        "Pass 9: alla formler ur minnet",
+        "Övningsprov"
+      ]
+    }
   ],
   "cards": [
-    { "id": "las2", "lvl": "G", "t": "Metod", "q": "Vad gör du allra först när du läser en uppgift?", "a": "Läs den två gånger och räkna hur många svar den vill ha. Stryk under varje fråga.", "why": "På diagnosen tappade du poäng på uppgifter du kunde, bara för att du svarade på halva frågan (bråk OCH procent, omkrets OCH area).", "ex": "'Räkna ut omkretsen och arean' = två svar. Skriv O = … och A = … på pappret innan du börjar räkna." },
-    { "id": "klart", "lvl": "G", "t": "Metod", "q": "Du har räknat ut ett mellanresultat, t.ex. priset per kg. Vad är nästa steg?", "a": "Fråga dig: var det DETTA de frågade efter? Om inte, använd mellanresultatet i ett steg till.", "why": "Nästan alla C-uppgifter har två steg. Första steget ger E-poäng, andra steget ger C-poäng. Du stannade efter steg 1 på tre uppgifter i diagnosen.", "ex": "5 kg kostar 60 kr → 12 kr/kg (steg 1). Frågan var 8 kg → 8 · 12 = 96 kr (steg 2)." },
-    { "id": "omk-rekt", "lvl": "G", "t": "Geometri", "q": "Hur räknar du omkretsen av en rektangel?", "a": "Lägg ihop alla fyra sidor: O = 2 · längd + 2 · bredd. Enhet: cm.", "why": "Omkrets = sträckan runt figuren. Du har gått en sträcka, därför cm och inte cm².", "ex": "7 cm × 4 cm: O = 2·7 + 2·4 = 14 + 8 = 22 cm." },
-    { "id": "area-rekt", "lvl": "G", "t": "Geometri", "q": "Hur räknar du arean av en rektangel?", "a": "A = längd · bredd. Enheten blir cm² (kvadratcentimeter).", "why": "Area = hur många rutor på 1 cm × 1 cm som får plats. 7 rader med 4 rutor = 28 rutor.", "ex": "7 cm × 4 cm: A = 7 · 4 = 28 cm²." },
-    { "id": "area-tri", "lvl": "G", "t": "Geometri", "q": "Hur räknar du arean av en triangel?", "a": "A = basen · höjden / 2.", "why": "En triangel är exakt halva rektangeln med samma bas och höjd. Därför delar man med 2.", "ex": "Bas 10 cm, höjd 6 cm: A = 10 · 6 / 2 = 30 cm²." },
-    { "id": "area-cirk", "lvl": "G", "t": "Geometri", "q": "Hur räknar du arean av en cirkel?", "a": "A = π · r² (pi gånger radien gånger radien). π ≈ 3,14.", "why": "r² betyder r · r, inte r · 2. Det är det vanligaste felet på hela högstadiet.", "ex": "r = 5 cm: A = 3,14 · 5 · 5 = 3,14 · 25 = 78,5 cm²." },
-    { "id": "omk-cirk", "lvl": "G", "t": "Geometri", "q": "Hur räknar du omkretsen av en cirkel?", "a": "O = π · d (diametern), eller 2 · π · r.", "why": "Diametern är dubbla radien. Omkretsen är lite mer än tre diametrar, det är precis det π betyder.", "ex": "r = 5 cm → d = 10 cm. O = 3,14 · 10 = 31,4 cm." },
-    { "id": "pyth", "lvl": "G", "t": "Geometri", "q": "Hur hittar du hypotenusan i en rätvinklig triangel?", "a": "Pythagoras: a² + b² = c². Kvadrera kateterna, lägg ihop, ta roten ur.", "why": "Hypotenusan är alltid den längsta sidan, mitt emot den räta vinkeln. Kolla att svaret är längre än båda kateterna.", "ex": "Kateter 6 och 8: 6² + 8² = 36 + 64 = 100. √100 = 10 cm." },
-    { "id": "skala", "lvl": "G", "t": "Geometri", "q": "Skalan är 1:50 000 och det är 4 cm på kartan. Hur långt är det i verkligheten?", "a": "Multiplicera med skaltalet: 4 · 50 000 = 200 000 cm. Gör om: 200 000 cm = 2 000 m = 2 km.", "why": "1:50 000 betyder att 1 cm på kartan är 50 000 cm i verkligheten. Svaret ska nästan alltid göras om till m eller km.", "ex": "100 cm = 1 m och 1 000 m = 1 km. Stryk två nollor för meter, fem nollor för kilometer." },
-    { "id": "volym", "lvl": "G", "t": "Geometri", "q": "Hur räknar du volymen av ett rätblock, och hur blir det liter?", "a": "V = längd · bredd · höjd. 1 000 cm³ = 1 liter (= 1 dm³).", "why": "Volym är tre längder gånger varandra, därför cm³.", "ex": "20 · 10 · 5 = 1 000 cm³ = 1 liter. Det klarade du på diagnosen." },
-    { "id": "prop", "lvl": "G", "t": "Proportionalitet", "q": "5 kg äpplen kostar 60 kr. Vad kostar 8 kg?", "a": "Steg 1: pris per kg = 60 / 5 = 12 kr. Steg 2: 8 · 12 = 96 kr.", "why": "Gå alltid via 'per en'. Det fungerar på allt: per kg, per timme, per person.", "ex": "3 bullar kostar 45 kr, vad kostar 7? 45 / 3 = 15 kr/st. 7 · 15 = 105 kr." },
-    { "id": "ff", "lvl": "G", "t": "Procent", "q": "Vad är förändringsfaktorn vid 30 % rabatt? Vid 12 % höjning?", "a": "Rabatt 30 %: 1 − 0,30 = 0,70. Höjning 12 %: 1 + 0,12 = 1,12.", "why": "Förändringsfaktorn gör procenträkning till en enda multiplikation. Din lärare kräver den för full poäng.", "ex": "1 200 · 0,70 = 840 kr. 450 · 1,12 = 504 kr." },
-    { "id": "ff2", "lvl": "H", "t": "Procent", "q": "Priset 450 kr höjs med 12 % två år i rad. Vad kostar det sen?", "a": "Multiplicera med förändringsfaktorn två gånger: 450 · 1,12 · 1,12 = 564,48 ≈ 564 kr.", "why": "Andra höjningen räknas på det nya priset, inte på 450. Därför blir det inte 24 %.", "ex": "Kontroll: 450 · 1,24 = 558 kr, alltså lite för lite. Ränta på ränta ger alltid lite mer." },
-    { "id": "procok", "lvl": "G", "t": "Procent", "q": "Priset gick från 80 kr till 100 kr. Hur många procent är höjningen?", "a": "Skillnaden delat med det gamla: (100 − 80) / 80 = 20 / 80 = 0,25 = 25 %.", "why": "Dela alltid med det ursprungliga värdet, det är det som var 100 %.", "ex": "Från 100 till 80 är däremot 20 / 100 = 20 % sänkning. Samma kronor, olika procent." },
-    { "id": "rabatt-tot", "lvl": "G", "t": "Procent", "q": "2 vuxna à 120 kr och 3 barn à 80 kr, 10 % rabatt på allt. Vad betalar de?", "a": "Steg 1: 2·120 + 3·80 = 240 + 240 = 480 kr. Steg 2: 480 · 0,90 = 432 kr.", "why": "Räkna ut hela summan först, procenten sist. Två steg, två poäng.", "ex": "Rimlighet: 10 % av 480 är 48, så 480 − 48 = 432. Stämmer." },
-    { "id": "sann", "lvl": "G", "t": "Sannolikhet", "q": "Du kastar en tärning. P(jämnt tal)? P(mer än 4)?", "a": "Gynnsamma / möjliga. Jämnt: 3/6 = 1/2. Mer än 4: utfallen 5 och 6 → 2/6 = 1/3.", "why": "'Mer än 4' betyder inte 4. Räkna upp utfallen med fingrarna: 5, 6. Två stycken.", "ex": "'Minst 4' hade varit 4, 5, 6 = 3/6 = 1/2. Ett ord ändrar svaret." },
-    { "id": "medel-bak", "lvl": "H", "t": "Statistik", "q": "Tre prov: 12, 15, 18 poäng. Vad krävs på fjärde provet för medelvärde 16?", "a": "Steg 1: totalt som behövs = 4 · 16 = 64. Steg 2: har 12 + 15 + 18 = 45. Steg 3: 64 − 45 = 19 poäng.", "why": "Medelvärde = summa / antal. Gå baklänges: summa = medelvärde · antal.", "ex": "Kontroll: (12 + 15 + 18 + 19) / 4 = 64 / 4 = 16. Stämmer." },
-    { "id": "funk", "lvl": "G", "t": "Funktioner", "q": "y = 2x + 3. Vad är y när x = 4? Var skär linjen y-axeln?", "a": "Sätt in: y = 2 · 4 + 3 = 11. Skär y-axeln där x = 0: y = 3, alltså i punkten (0, 3).", "why": "I y = kx + m är m alltid skärningen med y-axeln och k lutningen.", "ex": "y = 5x − 2 skär y-axeln i −2 och ökar med 5 för varje steg i x." },
-    { "id": "brakdiv", "lvl": "G", "t": "Bråk", "q": "Hur många fjärdedelar går det på en halv?", "a": "1/2 = 2/4, alltså 2 fjärdedelar. Det är samma som 1/2 ÷ 1/4 = 2.", "why": "Division med bråk = 'hur många gånger får det plats'. Rita en pizza om du är osäker.", "ex": "Hur många tredjedelar på 2 hela? 2 = 6/3 → 6 stycken." },
-    { "id": "brak-tab", "lvl": "G", "t": "Bråk", "q": "Skriv 0,25 som bråk och procent. Skriv 3/5 som decimaltal och procent.", "a": "0,25 = 1/4 = 25 %. 3/5 = 0,6 = 60 %.", "why": "Tre former av samma tal. Frågan vill ofta ha två av dem, svara på båda.", "ex": "Lär dig utantill: 1/2 = 0,5 = 50 %. 1/4 = 0,25 = 25 %. 3/4 = 0,75 = 75 %. 1/5 = 0,2 = 20 %. 1/3 ≈ 0,33 ≈ 33 %." },
-    { "id": "gpf", "lvl": "G", "t": "Tal", "q": "Skriv 4 500 och 0,003 i grundpotensform.", "a": "4 500 = 4,5 · 10³. 0,003 = 3 · 10⁻³.", "why": "Grundpotensform = ett tal mellan 1 och 10, gånger en tiopotens. Glöm inte talet framför (du skrev bara 10⁻³).", "ex": "Flytta kommat tills ett ental står först. Antal steg = exponenten. Flyttade du åt höger blir det minus." },
-    { "id": "brak-add", "lvl": "H", "t": "Bråk", "q": "Anna säger att 1/3 + 1/3 = 2/6. Har hon rätt?", "a": "Nej. 1/3 + 1/3 = 2/3. Vid addition ändras inte nämnaren, bara täljaren.", "why": "2/6 = 1/3, så Anna påstår egentligen att 1/3 + 1/3 = 1/3. Det kan inte stämma.", "ex": "Två tredjedels-pizzabitar är två tredjedelar av pizzan, inte två sjättedelar." },
-    { "id": "enheter", "lvl": "G", "t": "Enheter", "q": "1,5 m i cm? 2,5 km i m? 0,8 kg i g?", "a": "150 cm, 2 500 m, 800 g.", "why": "Varje steg km→m och kg→g är ×1 000. m→cm är ×100.", "ex": "Alla rätt på diagnosen. Nästa nivå: 1 m² = 10 000 cm² (100 · 100), det tar vi i nästa modul." },
-    { "id": "rimlig", "lvl": "H", "t": "Metod", "q": "Hur kollar du på fem sekunder om svaret är rimligt?", "a": "Jämför med något du vet: hypotenusan ska vara längst, en rea ska ge lägre pris, en höjning ska ge högre, arean av en cirkel med r = 5 måste vara större än 5 · 5 = 25.", "why": "En rimlighetskoll räddar poäng på NP. Bedömarna ger dessutom poäng för resonemanget om du skriver ner det.", "ex": "Cirkel r = 5: area 78,5. Fick du 31,4 har du räknat 2r i stället för r²." }
+    {
+      "id": "las2",
+      "lvl": "G",
+      "t": "Metod",
+      "q": "Vad gör du allra först när du läser en uppgift?",
+      "a": "Läs den två gånger och räkna hur många svar den vill ha. Stryk under varje fråga.",
+      "why": "På diagnosen tappade du poäng på uppgifter du kunde, bara för att du svarade på halva frågan (bråk OCH procent, omkrets OCH area).",
+      "ex": "'Räkna ut omkretsen och arean' = två svar. Skriv O = … och A = … på pappret innan du börjar räkna."
+    },
+    {
+      "id": "klart",
+      "lvl": "G",
+      "t": "Metod",
+      "q": "Du har räknat ut ett mellanresultat, t.ex. priset per kg. Vad är nästa steg?",
+      "a": "Fråga dig: var det DETTA de frågade efter? Om inte, använd mellanresultatet i ett steg till.",
+      "why": "Nästan alla C-uppgifter har två steg. Första steget ger E-poäng, andra steget ger C-poäng. Du stannade efter steg 1 på tre uppgifter i diagnosen.",
+      "ex": "5 kg kostar 60 kr → 12 kr/kg (steg 1). Frågan var 8 kg → 8 · 12 = 96 kr (steg 2)."
+    },
+    {
+      "id": "omk-rekt",
+      "lvl": "G",
+      "t": "Geometri",
+      "q": "Hur räknar du omkretsen av en rektangel?",
+      "a": "Lägg ihop alla fyra sidor: O = 2 · längd + 2 · bredd. Enhet: cm.",
+      "why": "Omkrets = sträckan runt figuren. Du har gått en sträcka, därför cm och inte cm².",
+      "ex": "7 cm × 4 cm: O = 2·7 + 2·4 = 14 + 8 = 22 cm."
+    },
+    {
+      "id": "area-rekt",
+      "lvl": "G",
+      "t": "Geometri",
+      "q": "Hur räknar du arean av en rektangel?",
+      "a": "A = längd · bredd. Enheten blir cm² (kvadratcentimeter).",
+      "why": "Area = hur många rutor på 1 cm × 1 cm som får plats. 7 rader med 4 rutor = 28 rutor.",
+      "ex": "7 cm × 4 cm: A = 7 · 4 = 28 cm²."
+    },
+    {
+      "id": "area-tri",
+      "lvl": "G",
+      "t": "Geometri",
+      "q": "Hur räknar du arean av en triangel?",
+      "a": "A = basen · höjden / 2.",
+      "why": "En triangel är exakt halva rektangeln med samma bas och höjd. Därför delar man med 2.",
+      "ex": "Bas 10 cm, höjd 6 cm: A = 10 · 6 / 2 = 30 cm²."
+    },
+    {
+      "id": "area-cirk",
+      "lvl": "G",
+      "t": "Geometri",
+      "q": "Hur räknar du arean av en cirkel?",
+      "a": "A = π · r² (pi gånger radien gånger radien). π ≈ 3,14.",
+      "why": "r² betyder r · r, inte r · 2. Det är det vanligaste felet på hela högstadiet.",
+      "ex": "r = 5 cm: A = 3,14 · 5 · 5 = 3,14 · 25 = 78,5 cm²."
+    },
+    {
+      "id": "omk-cirk",
+      "lvl": "G",
+      "t": "Geometri",
+      "q": "Hur räknar du omkretsen av en cirkel?",
+      "a": "O = π · d (diametern), eller 2 · π · r.",
+      "why": "Diametern är dubbla radien. Omkretsen är lite mer än tre diametrar, det är precis det π betyder.",
+      "ex": "r = 5 cm → d = 10 cm. O = 3,14 · 10 = 31,4 cm."
+    },
+    {
+      "id": "pyth",
+      "lvl": "G",
+      "t": "Geometri",
+      "q": "Hur hittar du hypotenusan i en rätvinklig triangel?",
+      "a": "Pythagoras: a² + b² = c². Kvadrera kateterna, lägg ihop, ta roten ur.",
+      "why": "Hypotenusan är alltid den längsta sidan, mitt emot den räta vinkeln. Kolla att svaret är längre än båda kateterna.",
+      "ex": "Kateter 6 och 8: 6² + 8² = 36 + 64 = 100. √100 = 10 cm."
+    },
+    {
+      "id": "skala",
+      "lvl": "G",
+      "t": "Geometri",
+      "q": "Skalan är 1:50 000 och det är 4 cm på kartan. Hur långt är det i verkligheten?",
+      "a": "Multiplicera med skaltalet: 4 · 50 000 = 200 000 cm. Gör om: 200 000 cm = 2 000 m = 2 km.",
+      "why": "1:50 000 betyder att 1 cm på kartan är 50 000 cm i verkligheten. Svaret ska nästan alltid göras om till m eller km.",
+      "ex": "100 cm = 1 m och 1 000 m = 1 km. Stryk två nollor för meter, fem nollor för kilometer."
+    },
+    {
+      "id": "volym",
+      "lvl": "G",
+      "t": "Geometri",
+      "q": "Hur räknar du volymen av ett rätblock, och hur blir det liter?",
+      "a": "V = längd · bredd · höjd. 1 000 cm³ = 1 liter (= 1 dm³).",
+      "why": "Volym är tre längder gånger varandra, därför cm³.",
+      "ex": "20 · 10 · 5 = 1 000 cm³ = 1 liter. Det klarade du på diagnosen."
+    },
+    {
+      "id": "prop",
+      "lvl": "G",
+      "t": "Proportionalitet",
+      "q": "5 kg äpplen kostar 60 kr. Vad kostar 8 kg?",
+      "a": "Steg 1: pris per kg = 60 / 5 = 12 kr. Steg 2: 8 · 12 = 96 kr.",
+      "why": "Gå alltid via 'per en'. Det fungerar på allt: per kg, per timme, per person.",
+      "ex": "3 bullar kostar 45 kr, vad kostar 7? 45 / 3 = 15 kr/st. 7 · 15 = 105 kr."
+    },
+    {
+      "id": "ff",
+      "lvl": "G",
+      "t": "Procent",
+      "q": "Vad är förändringsfaktorn vid 30 % rabatt? Vid 12 % höjning?",
+      "a": "Rabatt 30 %: 1 − 0,30 = 0,70. Höjning 12 %: 1 + 0,12 = 1,12.",
+      "why": "Förändringsfaktorn gör procenträkning till en enda multiplikation. Din lärare kräver den för full poäng.",
+      "ex": "1 200 · 0,70 = 840 kr. 450 · 1,12 = 504 kr."
+    },
+    {
+      "id": "ff2",
+      "lvl": "H",
+      "t": "Procent",
+      "q": "Priset 450 kr höjs med 12 % två år i rad. Vad kostar det sen?",
+      "a": "Multiplicera med förändringsfaktorn två gånger: 450 · 1,12 · 1,12 = 564,48 ≈ 564 kr.",
+      "why": "Andra höjningen räknas på det nya priset, inte på 450. Därför blir det inte 24 %.",
+      "ex": "Kontroll: 450 · 1,24 = 558 kr, alltså lite för lite. Ränta på ränta ger alltid lite mer."
+    },
+    {
+      "id": "procok",
+      "lvl": "G",
+      "t": "Procent",
+      "q": "Priset gick från 80 kr till 100 kr. Hur många procent är höjningen?",
+      "a": "Skillnaden delat med det gamla: (100 − 80) / 80 = 20 / 80 = 0,25 = 25 %.",
+      "why": "Dela alltid med det ursprungliga värdet, det är det som var 100 %.",
+      "ex": "Från 100 till 80 är däremot 20 / 100 = 20 % sänkning. Samma kronor, olika procent."
+    },
+    {
+      "id": "rabatt-tot",
+      "lvl": "G",
+      "t": "Procent",
+      "q": "2 vuxna à 120 kr och 3 barn à 80 kr, 10 % rabatt på allt. Vad betalar de?",
+      "a": "Steg 1: 2·120 + 3·80 = 240 + 240 = 480 kr. Steg 2: 480 · 0,90 = 432 kr.",
+      "why": "Räkna ut hela summan först, procenten sist. Två steg, två poäng.",
+      "ex": "Rimlighet: 10 % av 480 är 48, så 480 − 48 = 432. Stämmer."
+    },
+    {
+      "id": "sann",
+      "lvl": "G",
+      "t": "Sannolikhet",
+      "q": "Du kastar en tärning. P(jämnt tal)? P(mer än 4)?",
+      "a": "Gynnsamma / möjliga. Jämnt: 3/6 = 1/2. Mer än 4: utfallen 5 och 6 → 2/6 = 1/3.",
+      "why": "'Mer än 4' betyder inte 4. Räkna upp utfallen med fingrarna: 5, 6. Två stycken.",
+      "ex": "'Minst 4' hade varit 4, 5, 6 = 3/6 = 1/2. Ett ord ändrar svaret."
+    },
+    {
+      "id": "medel-bak",
+      "lvl": "H",
+      "t": "Statistik",
+      "q": "Tre prov: 12, 15, 18 poäng. Vad krävs på fjärde provet för medelvärde 16?",
+      "a": "Steg 1: totalt som behövs = 4 · 16 = 64. Steg 2: har 12 + 15 + 18 = 45. Steg 3: 64 − 45 = 19 poäng.",
+      "why": "Medelvärde = summa / antal. Gå baklänges: summa = medelvärde · antal.",
+      "ex": "Kontroll: (12 + 15 + 18 + 19) / 4 = 64 / 4 = 16. Stämmer."
+    },
+    {
+      "id": "funk",
+      "lvl": "G",
+      "t": "Funktioner",
+      "q": "y = 2x + 3. Vad är y när x = 4? Var skär linjen y-axeln?",
+      "a": "Sätt in: y = 2 · 4 + 3 = 11. Skär y-axeln där x = 0: y = 3, alltså i punkten (0, 3).",
+      "why": "I y = kx + m är m alltid skärningen med y-axeln och k lutningen.",
+      "ex": "y = 5x − 2 skär y-axeln i −2 och ökar med 5 för varje steg i x."
+    },
+    {
+      "id": "brakdiv",
+      "lvl": "G",
+      "t": "Bråk",
+      "q": "Hur många fjärdedelar går det på en halv?",
+      "a": "1/2 = 2/4, alltså 2 fjärdedelar. Det är samma som 1/2 ÷ 1/4 = 2.",
+      "why": "Division med bråk = 'hur många gånger får det plats'. Rita en pizza om du är osäker.",
+      "ex": "Hur många tredjedelar på 2 hela? 2 = 6/3 → 6 stycken."
+    },
+    {
+      "id": "brak-tab",
+      "lvl": "G",
+      "t": "Bråk",
+      "q": "Skriv 0,25 som bråk och procent. Skriv 3/5 som decimaltal och procent.",
+      "a": "0,25 = 1/4 = 25 %. 3/5 = 0,6 = 60 %.",
+      "why": "Tre former av samma tal. Frågan vill ofta ha två av dem, svara på båda.",
+      "ex": "Lär dig utantill: 1/2 = 0,5 = 50 %. 1/4 = 0,25 = 25 %. 3/4 = 0,75 = 75 %. 1/5 = 0,2 = 20 %. 1/3 ≈ 0,33 ≈ 33 %."
+    },
+    {
+      "id": "gpf",
+      "lvl": "G",
+      "t": "Tal",
+      "q": "Skriv 4 500 och 0,003 i grundpotensform.",
+      "a": "4 500 = 4,5 · 10³. 0,003 = 3 · 10⁻³.",
+      "why": "Grundpotensform = ett tal mellan 1 och 10, gånger en tiopotens. Glöm inte talet framför (du skrev bara 10⁻³).",
+      "ex": "Flytta kommat tills ett ental står först. Antal steg = exponenten. Flyttade du åt höger blir det minus."
+    },
+    {
+      "id": "brak-add",
+      "lvl": "H",
+      "t": "Bråk",
+      "q": "Anna säger att 1/3 + 1/3 = 2/6. Har hon rätt?",
+      "a": "Nej. 1/3 + 1/3 = 2/3. Vid addition ändras inte nämnaren, bara täljaren.",
+      "why": "2/6 = 1/3, så Anna påstår egentligen att 1/3 + 1/3 = 1/3. Det kan inte stämma.",
+      "ex": "Två tredjedels-pizzabitar är två tredjedelar av pizzan, inte två sjättedelar."
+    },
+    {
+      "id": "enheter",
+      "lvl": "G",
+      "t": "Enheter",
+      "q": "1,5 m i cm? 2,5 km i m? 0,8 kg i g?",
+      "a": "150 cm, 2 500 m, 800 g.",
+      "why": "Varje steg km→m och kg→g är ×1 000. m→cm är ×100.",
+      "ex": "Alla rätt på diagnosen. Nästa nivå: 1 m² = 10 000 cm² (100 · 100), det tar vi i nästa modul."
+    },
+    {
+      "id": "rimlig",
+      "lvl": "H",
+      "t": "Metod",
+      "q": "Hur kollar du på fem sekunder om svaret är rimligt?",
+      "a": "Jämför med något du vet: hypotenusan ska vara längst, en rea ska ge lägre pris, en höjning ska ge högre, arean av en cirkel med r = 5 måste vara större än 5 · 5 = 25.",
+      "why": "En rimlighetskoll räddar poäng på NP. Bedömarna ger dessutom poäng för resonemanget om du skriver ner det.",
+      "ex": "Cirkel r = 5: area 78,5. Fick du 31,4 har du räknat 2r i stället för r²."
+    }
   ],
   "quiz": [
-    { "id": "q1", "c": "las2", "lvl": "G", "type": "mc", "q": "'Räkna ut omkretsen och arean av rektangeln.' Hur många svar vill uppgiften ha?", "opts": ["Ett", "Två", "Tre", "Beror på rektangeln"], "ans": 1, "exp": "Omkrets OCH area = två svar. Skriv O = och A = innan du räknar." },
-    { "id": "q2", "c": "las2", "lvl": "G", "type": "mc", "q": "'Skriv 0,25 som bråk och som procent.' Vilket svar ger full poäng?", "opts": ["25 %", "1/4", "1/4 och 25 %", "0,25"], "ans": 2, "exp": "Två former efterfrågades. Bara procenten gav halv poäng på diagnosen." },
-    { "id": "q3", "c": "klart", "lvl": "G", "type": "mc", "q": "5 kg kostar 60 kr. Du har räknat ut 12 kr/kg. Frågan var vad 8 kg kostar. Vad gör du?", "opts": ["Svarar 12 kr", "Räknar 8 · 12 = 96 kr", "Räknar 60 · 8", "Svarar 60 kr"], "ans": 1, "exp": "12 kr/kg var mellanresultatet. Frågan var 8 kg: 8 · 12 = 96 kr." },
-    { "id": "q4", "c": "klart", "lvl": "G", "type": "txt", "q": "3 biljetter kostar 240 kr. Vad kostar 5 biljetter? (bara talet)", "acc": ["400", "400kr"], "exp": "240 / 3 = 80 kr/st. 5 · 80 = 400 kr." },
-    { "id": "q5", "c": "omk-rekt", "lvl": "G", "type": "txt", "q": "Omkretsen av en rektangel 7 cm × 4 cm? (bara talet)", "acc": ["22", "22cm"], "exp": "2·7 + 2·4 = 22 cm." },
-    { "id": "q6", "c": "omk-rekt", "lvl": "G", "type": "mc", "q": "Vilken enhet har omkretsen av en rektangel mätt i cm?", "opts": ["cm", "cm²", "cm³", "ingen enhet"], "ans": 0, "exp": "Omkrets är en sträcka → cm." },
-    { "id": "q7", "c": "area-rekt", "lvl": "G", "type": "txt", "q": "Arean av en rektangel 7 cm × 4 cm? (bara talet)", "acc": ["28", "28cm2", "28cm²"], "exp": "7 · 4 = 28 cm²." },
-    { "id": "q8", "c": "area-rekt", "lvl": "G", "type": "txt", "q": "En rektangel är 12 cm lång och 5 cm bred. Area? (bara talet)", "acc": ["60", "60cm2", "60cm²"], "exp": "12 · 5 = 60 cm²." },
-    { "id": "q9", "c": "area-rekt", "lvl": "G", "type": "mc", "q": "Rektangel 9 cm × 3 cm. Vilket är omkrets och vilket är area?", "opts": ["O = 27 cm, A = 24 cm²", "O = 24 cm, A = 27 cm²", "O = 12 cm, A = 27 cm²", "O = 24 cm, A = 12 cm²"], "ans": 1, "exp": "O = 2·9 + 2·3 = 24 cm. A = 9 · 3 = 27 cm²." },
-    { "id": "q10", "c": "area-tri", "lvl": "G", "type": "txt", "q": "Triangel med bas 10 cm och höjd 6 cm. Area? (bara talet)", "acc": ["30", "30cm2", "30cm²"], "exp": "10 · 6 / 2 = 30 cm²." },
-    { "id": "q11", "c": "area-tri", "lvl": "G", "type": "mc", "q": "Varför delar man med 2 när man räknar arean av en triangel?", "opts": ["Triangeln har hälften så många sidor", "En triangel är halva rektangeln med samma bas och höjd", "Höjden är alltid hälften av basen", "Man gör det inte"], "ans": 1, "exp": "Rita en rektangel och dra en diagonal: två lika triangler." },
-    { "id": "q12", "c": "area-tri", "lvl": "G", "type": "txt", "q": "Triangel med bas 8 cm och höjd 5 cm. Area? (bara talet)", "acc": ["20", "20cm2", "20cm²"], "exp": "8 · 5 / 2 = 20 cm²." },
-    { "id": "q13", "c": "area-cirk", "lvl": "G", "type": "mc", "q": "Formeln för en cirkels area?", "opts": ["π · d", "π · r · 2", "π · r²", "2 · π · r"], "ans": 2, "exp": "A = π · r². De två sista alternativen är omkretsen." },
-    { "id": "q14", "c": "area-cirk", "lvl": "G", "type": "txt", "q": "Cirkel med radien 5 cm. Area med π ≈ 3,14, en decimal? (bara talet)", "acc": ["78,5", "78.5"], "exp": "3,14 · 5 · 5 = 3,14 · 25 = 78,5 cm²." },
-    { "id": "q15", "c": "area-cirk", "lvl": "G", "type": "txt", "q": "Cirkel med radien 10 cm. Area med π ≈ 3,14? (bara talet)", "acc": ["314", "314cm2", "314cm²"], "exp": "3,14 · 10 · 10 = 314 cm²." },
-    { "id": "q16", "c": "area-cirk", "lvl": "H", "type": "mc", "q": "Cirkel med diametern 8 cm. Vad är arean (π ≈ 3,14)?", "opts": ["25,1 cm²", "50,2 cm²", "200,96 cm²", "12,56 cm²"], "ans": 1, "exp": "Diametern 8 → radien 4. 3,14 · 4 · 4 = 50,24 ≈ 50,2 cm². Fällan är att använda 8 som radie." },
-    { "id": "q17", "c": "omk-cirk", "lvl": "G", "type": "txt", "q": "Cirkel med radien 5 cm. Omkrets med π ≈ 3,14? (bara talet)", "acc": ["31,4", "31.4"], "exp": "d = 10. 3,14 · 10 = 31,4 cm." },
-    { "id": "q18", "c": "omk-cirk", "lvl": "G", "type": "mc", "q": "En cirkel har diametern 20 cm. Omkrets ungefär?", "opts": ["31 cm", "63 cm", "126 cm", "314 cm"], "ans": 1, "exp": "O = π · d ≈ 3,14 · 20 = 62,8 cm. Omkretsen är lite mer än tre diametrar." },
-    { "id": "q19", "c": "pyth", "lvl": "G", "type": "txt", "q": "Rätvinklig triangel med kateterna 6 cm och 8 cm. Hypotenusa? (bara talet)", "acc": ["10", "10cm"], "exp": "36 + 64 = 100. √100 = 10." },
-    { "id": "q20", "c": "pyth", "lvl": "G", "type": "mc", "q": "Vad säger Pythagoras sats?", "opts": ["a + b = c", "a² + b² = c²", "a · b = c", "a² − b² = c²"], "ans": 1, "exp": "Kateterna i kvadrat ihop = hypotenusan i kvadrat." },
-    { "id": "q21", "c": "pyth", "lvl": "G", "type": "txt", "q": "Kateterna är 3 cm och 4 cm. Hypotenusa? (bara talet)", "acc": ["5", "5cm"], "exp": "9 + 16 = 25. √25 = 5." },
-    { "id": "q22", "c": "pyth", "lvl": "H", "type": "mc", "q": "Kateterna är 5 cm och 12 cm. Vilket svar är rimligt?", "opts": ["7 cm", "13 cm", "17 cm", "169 cm"], "ans": 1, "exp": "25 + 144 = 169, √169 = 13. 169 är c², inte c. 7 är kortare än en katet, omöjligt." },
-    { "id": "q23", "c": "skala", "lvl": "G", "type": "mc", "q": "Vad betyder skalan 1:50 000?", "opts": ["Kartan är 50 000 gånger större än verkligheten", "1 cm på kartan är 50 000 cm i verkligheten", "1 km i verkligheten är 50 000 cm på kartan", "Kartan är 50 000 cm bred"], "ans": 1, "exp": "Första talet är kartan, andra är verkligheten." },
-    { "id": "q24", "c": "skala", "lvl": "G", "type": "txt", "q": "Skala 1:50 000, 4 cm på kartan. Hur många km i verkligheten? (bara talet)", "acc": ["2", "2km"], "exp": "4 · 50 000 = 200 000 cm = 2 000 m = 2 km." },
-    { "id": "q25", "c": "skala", "lvl": "H", "type": "txt", "q": "Skala 1:25 000, 6 cm på kartan. Hur många km? (bara talet, decimal med komma)", "acc": ["1,5", "1.5", "1,5km"], "exp": "6 · 25 000 = 150 000 cm = 1 500 m = 1,5 km." },
-    { "id": "q26", "c": "volym", "lvl": "G", "type": "txt", "q": "Rätblock 20 × 10 × 5 cm. Volym i cm³? (bara talet)", "acc": ["1000", "1000cm3", "1000cm³"], "exp": "20 · 10 · 5 = 1 000 cm³." },
-    { "id": "q27", "c": "volym", "lvl": "G", "type": "mc", "q": "Hur många liter är 1 000 cm³?", "opts": ["0,1 liter", "1 liter", "10 liter", "100 liter"], "ans": 1, "exp": "1 000 cm³ = 1 dm³ = 1 liter." },
-    { "id": "q28", "c": "volym", "lvl": "H", "type": "txt", "q": "Ett akvarium är 50 × 20 × 30 cm. Hur många liter rymmer det? (bara talet)", "acc": ["30", "30liter", "30l"], "exp": "50 · 20 · 30 = 30 000 cm³ = 30 liter." },
-    { "id": "q29", "c": "prop", "lvl": "G", "type": "txt", "q": "5 kg äpplen kostar 60 kr. Vad kostar 8 kg? (bara talet)", "acc": ["96", "96kr"], "exp": "60 / 5 = 12 kr/kg. 8 · 12 = 96 kr." },
-    { "id": "q30", "c": "prop", "lvl": "G", "type": "mc", "q": "Första steget i en proportionalitetsuppgift är nästan alltid att …", "opts": ["multiplicera de två talen", "räkna ut vad EN kostar", "gissa", "dela det stora med det lilla"], "ans": 1, "exp": "Gå via 'per en'. Sen multiplicera med det antal frågan vill ha." },
-    { "id": "q31", "c": "prop", "lvl": "G", "type": "txt", "q": "4 timmar jobb ger 480 kr. Vad ger 7 timmar? (bara talet)", "acc": ["840", "840kr"], "exp": "480 / 4 = 120 kr/h. 7 · 120 = 840 kr." },
-    { "id": "q32", "c": "ff", "lvl": "G", "type": "txt", "q": "Förändringsfaktorn vid 30 % rabatt? (decimal med komma)", "acc": ["0,70", "0,7", "0.7", "0.70"], "exp": "1 − 0,30 = 0,70." },
-    { "id": "q33", "c": "ff", "lvl": "G", "type": "txt", "q": "Förändringsfaktorn vid 12 % höjning? (decimal med komma)", "acc": ["1,12", "1.12"], "exp": "1 + 0,12 = 1,12." },
-    { "id": "q34", "c": "ff", "lvl": "G", "type": "txt", "q": "En jacka för 1 200 kr sänks med 30 %. Reapris? (bara talet)", "acc": ["840", "840kr"], "exp": "1 200 · 0,70 = 840 kr." },
-    { "id": "q35", "c": "ff", "lvl": "G", "type": "mc", "q": "Vilken förändringsfaktor hör till en sänkning med 15 %?", "opts": ["0,15", "1,15", "0,85", "85"], "ans": 2, "exp": "1 − 0,15 = 0,85. 0,15 är hur mycket som försvinner, inte vad som är kvar." },
-    { "id": "q36", "c": "ff2", "lvl": "H", "type": "mc", "q": "450 kr höjs 12 % två år i rad. Hur räknar du?", "opts": ["450 · 1,24", "450 · 1,12 · 1,12", "450 + 12 + 12", "450 · 0,12 · 2"], "ans": 1, "exp": "Faktorn två gånger. Andra höjningen räknas på det nya priset." },
-    { "id": "q37", "c": "ff2", "lvl": "H", "type": "txt", "q": "450 · 1,12 · 1,12 ≈ ? Avrunda till hela kronor. (bara talet)", "acc": ["564", "564kr"], "exp": "450 · 1,12 = 504. 504 · 1,12 = 564,48 ≈ 564 kr." },
-    { "id": "q38", "c": "ff2", "lvl": "H", "type": "mc", "q": "Ett pris sänks med 20 % och höjs sen med 20 %. Är det tillbaka på ursprungspriset?", "opts": ["Ja, exakt", "Nej, det är lägre", "Nej, det är högre", "Beror på priset"], "ans": 1, "exp": "0,80 · 1,20 = 0,96. Höjningen räknas på det lägre priset, så det blir 4 % lägre." },
-    { "id": "q39", "c": "procok", "lvl": "G", "type": "txt", "q": "Från 80 kr till 100 kr. Hur många procent höjning? (bara talet)", "acc": ["25", "25%"], "exp": "20 / 80 = 0,25 = 25 %." },
-    { "id": "q40", "c": "procok", "lvl": "G", "type": "mc", "q": "När du räknar procentuell förändring, vad delar du med?", "opts": ["Det nya värdet", "Det gamla värdet", "Skillnaden", "100"], "ans": 1, "exp": "Det gamla värdet var 100 %." },
-    { "id": "q41", "c": "procok", "lvl": "H", "type": "txt", "q": "Från 250 kr till 200 kr. Hur många procent sänkning? (bara talet)", "acc": ["20", "20%"], "exp": "50 / 250 = 0,20 = 20 %." },
-    { "id": "q42", "c": "rabatt-tot", "lvl": "G", "type": "txt", "q": "2 vuxna à 120 kr och 3 barn à 80 kr, 10 % rabatt på hela summan. Vad betalar de? (bara talet)", "acc": ["432", "432kr"], "exp": "240 + 240 = 480. 480 · 0,90 = 432 kr." },
-    { "id": "q43", "c": "rabatt-tot", "lvl": "G", "type": "mc", "q": "Rabatt 'på hela summan'. I vilken ordning räknar du?", "opts": ["Rabatt på varje biljett, sen addera", "Addera allt först, sen rabatten", "Spelar ingen roll, det blir fel ändå", "Rabatt bara på vuxenbiljetterna"], "ans": 1, "exp": "Hela summan först, procenten sist. (Matematiskt blir det samma, men ett steg mindre att slarva på.)" },
-    { "id": "q44", "c": "rabatt-tot", "lvl": "H", "type": "txt", "q": "4 pizzor à 95 kr och 2 läsk à 25 kr, 20 % rabatt på allt. Pris? (bara talet)", "acc": ["344", "344kr"], "exp": "380 + 50 = 430. 430 · 0,80 = 344 kr." },
-    { "id": "q45", "c": "sann", "lvl": "G", "type": "mc", "q": "Sannolikheten att få mer än 4 på en tärning?", "opts": ["1/6", "2/6 = 1/3", "3/6 = 1/2", "4/6"], "ans": 1, "exp": "Utfallen 5 och 6. Två av sex." },
-    { "id": "q46", "c": "sann", "lvl": "G", "type": "mc", "q": "Sannolikheten att få ett jämnt tal på en tärning?", "opts": ["1/6", "1/3", "1/2", "2/3"], "ans": 2, "exp": "2, 4, 6 = tre av sex = 1/2." },
-    { "id": "q47", "c": "sann", "lvl": "H", "type": "mc", "q": "Sannolikheten att få MINST 4 på en tärning?", "opts": ["1/3", "1/2", "2/3", "1/6"], "ans": 1, "exp": "Minst 4 = 4, 5, 6. Tre av sex = 1/2. Jämför 'mer än 4' = bara 5, 6." },
-    { "id": "q48", "c": "medel-bak", "lvl": "H", "type": "txt", "q": "Prov: 12, 15, 18. Vad krävs på fjärde provet för medelvärdet 16? (bara talet)", "acc": ["19", "19p", "19poäng"], "exp": "4 · 16 = 64. 64 − 45 = 19." },
-    { "id": "q49", "c": "medel-bak", "lvl": "H", "type": "mc", "q": "Medelvärdet av 4 tal är 16. Vad är summan av talen?", "opts": ["16", "20", "64", "4"], "ans": 2, "exp": "Summa = medelvärde · antal = 16 · 4 = 64." },
-    { "id": "q50", "c": "medel-bak", "lvl": "H", "type": "txt", "q": "Tre tal har medelvärdet 10. Två av dem är 8 och 9. Vad är det tredje? (bara talet)", "acc": ["13"], "exp": "Summa 3 · 10 = 30. 30 − 17 = 13." },
-    { "id": "q51", "c": "funk", "lvl": "G", "type": "txt", "q": "y = 2x + 3. Vad är y när x = 4? (bara talet)", "acc": ["11"], "exp": "2 · 4 + 3 = 11." },
-    { "id": "q52", "c": "funk", "lvl": "G", "type": "mc", "q": "Var skär linjen y = 2x + 3 y-axeln?", "opts": ["I 2", "I 3", "I 5", "I 0"], "ans": 1, "exp": "På y-axeln är x = 0 → y = 3. m-värdet är alltid skärningen." },
-    { "id": "q53", "c": "funk", "lvl": "H", "type": "mc", "q": "Vilken linje skär y-axeln i −4 och lutar uppåt?", "opts": ["y = −4x + 3", "y = 3x − 4", "y = 4x", "y = −3x − 4"], "ans": 1, "exp": "m = −4 ger skärningen, k = 3 positivt ger lutning uppåt." },
-    { "id": "q54", "c": "brakdiv", "lvl": "G", "type": "txt", "q": "Hur många fjärdedelar går det på en halv? (bara talet)", "acc": ["2"], "exp": "1/2 = 2/4." },
-    { "id": "q55", "c": "brakdiv", "lvl": "G", "type": "txt", "q": "Hur många tredjedelar går det på 2 hela? (bara talet)", "acc": ["6"], "exp": "2 = 6/3." },
-    { "id": "q56", "c": "brakdiv", "lvl": "H", "type": "mc", "q": "Hur många 1/8 går det på 3/4?", "opts": ["3", "4", "6", "8"], "ans": 2, "exp": "3/4 = 6/8. Sex åttondelar." },
-    { "id": "q57", "c": "brak-tab", "lvl": "G", "type": "mc", "q": "0,25 som bråk och procent?", "opts": ["1/4 och 25 %", "1/4 och 2,5 %", "1/25 och 25 %", "2/5 och 25 %"], "ans": 0, "exp": "0,25 = 25/100 = 1/4 = 25 %." },
-    { "id": "q58", "c": "brak-tab", "lvl": "G", "type": "mc", "q": "3/5 som decimaltal och procent?", "opts": ["0,35 och 35 %", "0,6 och 60 %", "0,3 och 30 %", "0,53 och 53 %"], "ans": 1, "exp": "3/5 = 6/10 = 0,6 = 60 %." },
-    { "id": "q59", "c": "brak-tab", "lvl": "G", "type": "txt", "q": "3/4 som procent? (bara talet)", "acc": ["75", "75%"], "exp": "3/4 = 0,75 = 75 %." },
-    { "id": "q60", "c": "gpf", "lvl": "G", "type": "mc", "q": "0,003 i grundpotensform?", "opts": ["10⁻³", "3 · 10⁻³", "3 · 10³", "0,3 · 10⁻²"], "ans": 1, "exp": "Ett tal mellan 1 och 10 (3) gånger tiopotensen. Bara 10⁻³ saknar trean." },
-    { "id": "q61", "c": "gpf", "lvl": "G", "type": "mc", "q": "4 500 i grundpotensform?", "opts": ["45 · 10²", "4,5 · 10³", "4,5 · 10²", "0,45 · 10⁴"], "ans": 1, "exp": "Talet framför måste vara mellan 1 och 10: 4,5. Tre steg → 10³." },
-    { "id": "q62", "c": "gpf", "lvl": "H", "type": "txt", "q": "Vad är 2,5 · 10⁴ som vanligt tal? (bara talet)", "acc": ["25000"], "exp": "Flytta kommat fyra steg åt höger: 25 000." },
-    { "id": "q63", "c": "brak-add", "lvl": "H", "type": "mc", "q": "1/3 + 1/3 = ?", "opts": ["2/6", "2/3", "1/6", "1/3"], "ans": 1, "exp": "Samma nämnare: lägg ihop täljarna. 2/3." },
-    { "id": "q64", "c": "brak-add", "lvl": "H", "type": "mc", "q": "Varför kan 1/3 + 1/3 = 2/6 inte stämma?", "opts": ["För att 2/6 = 1/3, och då skulle 1/3 + 1/3 = 1/3", "För att man aldrig får 6 i nämnaren", "För att 2 är större än 1", "Det stämmer faktiskt"], "ans": 0, "exp": "Förkorta 2/6 så ser du att det är samma som 1/3. Att lägga ihop två saker kan inte ge en av dem." },
-    { "id": "q65", "c": "enheter", "lvl": "G", "type": "txt", "q": "2,5 km = ? m (bara talet)", "acc": ["2500", "2500m"], "exp": "×1 000." },
-    { "id": "q66", "c": "enheter", "lvl": "G", "type": "txt", "q": "0,8 kg = ? g (bara talet)", "acc": ["800", "800g"], "exp": "×1 000." },
-    { "id": "q67", "c": "rimlig", "lvl": "H", "type": "mc", "q": "Du räknar ut hypotenusan till 7 cm när kateterna är 6 och 8 cm. Vad säger rimlighetskollen?", "opts": ["Rimligt", "Fel, hypotenusan måste vara längst", "Fel, den måste vara 14", "Går inte att veta"], "ans": 1, "exp": "Hypotenusan är alltid längre än båda kateterna. 7 < 8, alltså fel." },
-    { "id": "q68", "c": "rimlig", "lvl": "H", "type": "mc", "q": "En vara på 500 kr sänks med 20 %. Du får 600 kr. Vad har hänt?", "opts": ["Rätt", "Du använde 1,20 i stället för 0,80", "Du glömde procenten", "Du räknade 500 − 20"], "ans": 1, "exp": "En rea ska ge lägre pris. 500 · 0,80 = 400 kr." }
+    {
+      "id": "q1",
+      "c": "las2",
+      "lvl": "G",
+      "type": "mc",
+      "q": "'Räkna ut omkretsen och arean av rektangeln.' Hur många svar vill uppgiften ha?",
+      "opts": [
+        "Ett",
+        "Två",
+        "Tre",
+        "Beror på rektangeln"
+      ],
+      "ans": 1,
+      "exp": "Omkrets OCH area = två svar. Skriv O = och A = innan du räknar."
+    },
+    {
+      "id": "q2",
+      "c": "las2",
+      "lvl": "G",
+      "type": "mc",
+      "q": "'Skriv 0,25 som bråk och som procent.' Vilket svar ger full poäng?",
+      "opts": [
+        "25 %",
+        "1/4",
+        "1/4 och 25 %",
+        "0,25"
+      ],
+      "ans": 2,
+      "exp": "Två former efterfrågades. Bara procenten gav halv poäng på diagnosen."
+    },
+    {
+      "id": "q3",
+      "c": "klart",
+      "lvl": "G",
+      "type": "mc",
+      "q": "5 kg kostar 60 kr. Du har räknat ut 12 kr/kg. Frågan var vad 8 kg kostar. Vad gör du?",
+      "opts": [
+        "Svarar 12 kr",
+        "Räknar 8 · 12 = 96 kr",
+        "Räknar 60 · 8",
+        "Svarar 60 kr"
+      ],
+      "ans": 1,
+      "exp": "12 kr/kg var mellanresultatet. Frågan var 8 kg: 8 · 12 = 96 kr."
+    },
+    {
+      "id": "q4",
+      "c": "klart",
+      "lvl": "G",
+      "type": "txt",
+      "q": "3 biljetter kostar 240 kr. Vad kostar 5 biljetter? (bara talet)",
+      "acc": [
+        "400",
+        "400kr"
+      ],
+      "exp": "240 / 3 = 80 kr/st. 5 · 80 = 400 kr."
+    },
+    {
+      "id": "q5",
+      "c": "omk-rekt",
+      "lvl": "G",
+      "type": "txt",
+      "q": "Omkretsen av en rektangel 7 cm × 4 cm? (bara talet)",
+      "acc": [
+        "22",
+        "22cm"
+      ],
+      "exp": "2·7 + 2·4 = 22 cm."
+    },
+    {
+      "id": "q6",
+      "c": "omk-rekt",
+      "lvl": "G",
+      "type": "mc",
+      "q": "Vilken enhet har omkretsen av en rektangel mätt i cm?",
+      "opts": [
+        "cm",
+        "cm²",
+        "cm³",
+        "ingen enhet"
+      ],
+      "ans": 0,
+      "exp": "Omkrets är en sträcka → cm."
+    },
+    {
+      "id": "q7",
+      "c": "area-rekt",
+      "lvl": "G",
+      "type": "txt",
+      "q": "Arean av en rektangel 7 cm × 4 cm? (bara talet)",
+      "acc": [
+        "28",
+        "28cm2",
+        "28cm²"
+      ],
+      "exp": "7 · 4 = 28 cm²."
+    },
+    {
+      "id": "q8",
+      "c": "area-rekt",
+      "lvl": "G",
+      "type": "txt",
+      "q": "En rektangel är 12 cm lång och 5 cm bred. Area? (bara talet)",
+      "acc": [
+        "60",
+        "60cm2",
+        "60cm²"
+      ],
+      "exp": "12 · 5 = 60 cm²."
+    },
+    {
+      "id": "q9",
+      "c": "area-rekt",
+      "lvl": "G",
+      "type": "mc",
+      "q": "Rektangel 9 cm × 3 cm. Vilket är omkrets och vilket är area?",
+      "opts": [
+        "O = 27 cm, A = 24 cm²",
+        "O = 24 cm, A = 27 cm²",
+        "O = 12 cm, A = 27 cm²",
+        "O = 24 cm, A = 12 cm²"
+      ],
+      "ans": 1,
+      "exp": "O = 2·9 + 2·3 = 24 cm. A = 9 · 3 = 27 cm²."
+    },
+    {
+      "id": "q10",
+      "c": "area-tri",
+      "lvl": "G",
+      "type": "txt",
+      "q": "Triangel med bas 10 cm och höjd 6 cm. Area? (bara talet)",
+      "acc": [
+        "30",
+        "30cm2",
+        "30cm²"
+      ],
+      "exp": "10 · 6 / 2 = 30 cm²."
+    },
+    {
+      "id": "q11",
+      "c": "area-tri",
+      "lvl": "G",
+      "type": "mc",
+      "q": "Varför delar man med 2 när man räknar arean av en triangel?",
+      "opts": [
+        "Triangeln har hälften så många sidor",
+        "En triangel är halva rektangeln med samma bas och höjd",
+        "Höjden är alltid hälften av basen",
+        "Man gör det inte"
+      ],
+      "ans": 1,
+      "exp": "Rita en rektangel och dra en diagonal: två lika triangler."
+    },
+    {
+      "id": "q12",
+      "c": "area-tri",
+      "lvl": "G",
+      "type": "txt",
+      "q": "Triangel med bas 8 cm och höjd 5 cm. Area? (bara talet)",
+      "acc": [
+        "20",
+        "20cm2",
+        "20cm²"
+      ],
+      "exp": "8 · 5 / 2 = 20 cm²."
+    },
+    {
+      "id": "q13",
+      "c": "area-cirk",
+      "lvl": "G",
+      "type": "mc",
+      "q": "Formeln för en cirkels area?",
+      "opts": [
+        "π · d",
+        "π · r · 2",
+        "π · r²",
+        "2 · π · r"
+      ],
+      "ans": 2,
+      "exp": "A = π · r². De två sista alternativen är omkretsen."
+    },
+    {
+      "id": "q14",
+      "c": "area-cirk",
+      "lvl": "G",
+      "type": "txt",
+      "q": "Cirkel med radien 5 cm. Area med π ≈ 3,14, en decimal? (bara talet)",
+      "acc": [
+        "78,5",
+        "78.5"
+      ],
+      "exp": "3,14 · 5 · 5 = 3,14 · 25 = 78,5 cm²."
+    },
+    {
+      "id": "q15",
+      "c": "area-cirk",
+      "lvl": "G",
+      "type": "txt",
+      "q": "Cirkel med radien 10 cm. Area med π ≈ 3,14? (bara talet)",
+      "acc": [
+        "314",
+        "314cm2",
+        "314cm²"
+      ],
+      "exp": "3,14 · 10 · 10 = 314 cm²."
+    },
+    {
+      "id": "q16",
+      "c": "area-cirk",
+      "lvl": "H",
+      "type": "mc",
+      "q": "Cirkel med diametern 8 cm. Vad är arean (π ≈ 3,14)?",
+      "opts": [
+        "25,1 cm²",
+        "50,2 cm²",
+        "200,96 cm²",
+        "12,56 cm²"
+      ],
+      "ans": 1,
+      "exp": "Diametern 8 → radien 4. 3,14 · 4 · 4 = 50,24 ≈ 50,2 cm². Fällan är att använda 8 som radie."
+    },
+    {
+      "id": "q17",
+      "c": "omk-cirk",
+      "lvl": "G",
+      "type": "txt",
+      "q": "Cirkel med radien 5 cm. Omkrets med π ≈ 3,14? (bara talet)",
+      "acc": [
+        "31,4",
+        "31.4"
+      ],
+      "exp": "d = 10. 3,14 · 10 = 31,4 cm."
+    },
+    {
+      "id": "q18",
+      "c": "omk-cirk",
+      "lvl": "G",
+      "type": "mc",
+      "q": "En cirkel har diametern 20 cm. Omkrets ungefär?",
+      "opts": [
+        "31 cm",
+        "63 cm",
+        "126 cm",
+        "314 cm"
+      ],
+      "ans": 1,
+      "exp": "O = π · d ≈ 3,14 · 20 = 62,8 cm. Omkretsen är lite mer än tre diametrar."
+    },
+    {
+      "id": "q19",
+      "c": "pyth",
+      "lvl": "G",
+      "type": "txt",
+      "q": "Rätvinklig triangel med kateterna 6 cm och 8 cm. Hypotenusa? (bara talet)",
+      "acc": [
+        "10",
+        "10cm"
+      ],
+      "exp": "36 + 64 = 100. √100 = 10."
+    },
+    {
+      "id": "q20",
+      "c": "pyth",
+      "lvl": "G",
+      "type": "mc",
+      "q": "Vad säger Pythagoras sats?",
+      "opts": [
+        "a + b = c",
+        "a² + b² = c²",
+        "a · b = c",
+        "a² − b² = c²"
+      ],
+      "ans": 1,
+      "exp": "Kateterna i kvadrat ihop = hypotenusan i kvadrat."
+    },
+    {
+      "id": "q21",
+      "c": "pyth",
+      "lvl": "G",
+      "type": "txt",
+      "q": "Kateterna är 3 cm och 4 cm. Hypotenusa? (bara talet)",
+      "acc": [
+        "5",
+        "5cm"
+      ],
+      "exp": "9 + 16 = 25. √25 = 5."
+    },
+    {
+      "id": "q22",
+      "c": "pyth",
+      "lvl": "H",
+      "type": "mc",
+      "q": "Kateterna är 5 cm och 12 cm. Vilket svar är rimligt?",
+      "opts": [
+        "7 cm",
+        "13 cm",
+        "17 cm",
+        "169 cm"
+      ],
+      "ans": 1,
+      "exp": "25 + 144 = 169, √169 = 13. 169 är c², inte c. 7 är kortare än en katet, omöjligt."
+    },
+    {
+      "id": "q23",
+      "c": "skala",
+      "lvl": "G",
+      "type": "mc",
+      "q": "Vad betyder skalan 1:50 000?",
+      "opts": [
+        "Kartan är 50 000 gånger större än verkligheten",
+        "1 cm på kartan är 50 000 cm i verkligheten",
+        "1 km i verkligheten är 50 000 cm på kartan",
+        "Kartan är 50 000 cm bred"
+      ],
+      "ans": 1,
+      "exp": "Första talet är kartan, andra är verkligheten."
+    },
+    {
+      "id": "q24",
+      "c": "skala",
+      "lvl": "G",
+      "type": "txt",
+      "q": "Skala 1:50 000, 4 cm på kartan. Hur många km i verkligheten? (bara talet)",
+      "acc": [
+        "2",
+        "2km"
+      ],
+      "exp": "4 · 50 000 = 200 000 cm = 2 000 m = 2 km."
+    },
+    {
+      "id": "q25",
+      "c": "skala",
+      "lvl": "H",
+      "type": "txt",
+      "q": "Skala 1:25 000, 6 cm på kartan. Hur många km? (bara talet, decimal med komma)",
+      "acc": [
+        "1,5",
+        "1.5",
+        "1,5km"
+      ],
+      "exp": "6 · 25 000 = 150 000 cm = 1 500 m = 1,5 km."
+    },
+    {
+      "id": "q26",
+      "c": "volym",
+      "lvl": "G",
+      "type": "txt",
+      "q": "Rätblock 20 × 10 × 5 cm. Volym i cm³? (bara talet)",
+      "acc": [
+        "1000",
+        "1000cm3",
+        "1000cm³"
+      ],
+      "exp": "20 · 10 · 5 = 1 000 cm³."
+    },
+    {
+      "id": "q27",
+      "c": "volym",
+      "lvl": "G",
+      "type": "mc",
+      "q": "Hur många liter är 1 000 cm³?",
+      "opts": [
+        "0,1 liter",
+        "1 liter",
+        "10 liter",
+        "100 liter"
+      ],
+      "ans": 1,
+      "exp": "1 000 cm³ = 1 dm³ = 1 liter."
+    },
+    {
+      "id": "q28",
+      "c": "volym",
+      "lvl": "H",
+      "type": "txt",
+      "q": "Ett akvarium är 50 × 20 × 30 cm. Hur många liter rymmer det? (bara talet)",
+      "acc": [
+        "30",
+        "30liter",
+        "30l"
+      ],
+      "exp": "50 · 20 · 30 = 30 000 cm³ = 30 liter."
+    },
+    {
+      "id": "q29",
+      "c": "prop",
+      "lvl": "G",
+      "type": "txt",
+      "q": "5 kg äpplen kostar 60 kr. Vad kostar 8 kg? (bara talet)",
+      "acc": [
+        "96",
+        "96kr"
+      ],
+      "exp": "60 / 5 = 12 kr/kg. 8 · 12 = 96 kr."
+    },
+    {
+      "id": "q30",
+      "c": "prop",
+      "lvl": "G",
+      "type": "mc",
+      "q": "Första steget i en proportionalitetsuppgift är nästan alltid att …",
+      "opts": [
+        "multiplicera de två talen",
+        "räkna ut vad EN kostar",
+        "gissa",
+        "dela det stora med det lilla"
+      ],
+      "ans": 1,
+      "exp": "Gå via 'per en'. Sen multiplicera med det antal frågan vill ha."
+    },
+    {
+      "id": "q31",
+      "c": "prop",
+      "lvl": "G",
+      "type": "txt",
+      "q": "4 timmar jobb ger 480 kr. Vad ger 7 timmar? (bara talet)",
+      "acc": [
+        "840",
+        "840kr"
+      ],
+      "exp": "480 / 4 = 120 kr/h. 7 · 120 = 840 kr."
+    },
+    {
+      "id": "q32",
+      "c": "ff",
+      "lvl": "G",
+      "type": "txt",
+      "q": "Förändringsfaktorn vid 30 % rabatt? (decimal med komma)",
+      "acc": [
+        "0,70",
+        "0,7",
+        "0.7",
+        "0.70"
+      ],
+      "exp": "1 − 0,30 = 0,70."
+    },
+    {
+      "id": "q33",
+      "c": "ff",
+      "lvl": "G",
+      "type": "txt",
+      "q": "Förändringsfaktorn vid 12 % höjning? (decimal med komma)",
+      "acc": [
+        "1,12",
+        "1.12"
+      ],
+      "exp": "1 + 0,12 = 1,12."
+    },
+    {
+      "id": "q34",
+      "c": "ff",
+      "lvl": "G",
+      "type": "txt",
+      "q": "En jacka för 1 200 kr sänks med 30 %. Reapris? (bara talet)",
+      "acc": [
+        "840",
+        "840kr"
+      ],
+      "exp": "1 200 · 0,70 = 840 kr."
+    },
+    {
+      "id": "q35",
+      "c": "ff",
+      "lvl": "G",
+      "type": "mc",
+      "q": "Vilken förändringsfaktor hör till en sänkning med 15 %?",
+      "opts": [
+        "0,15",
+        "1,15",
+        "0,85",
+        "85"
+      ],
+      "ans": 2,
+      "exp": "1 − 0,15 = 0,85. 0,15 är hur mycket som försvinner, inte vad som är kvar."
+    },
+    {
+      "id": "q36",
+      "c": "ff2",
+      "lvl": "H",
+      "type": "mc",
+      "q": "450 kr höjs 12 % två år i rad. Hur räknar du?",
+      "opts": [
+        "450 · 1,24",
+        "450 · 1,12 · 1,12",
+        "450 + 12 + 12",
+        "450 · 0,12 · 2"
+      ],
+      "ans": 1,
+      "exp": "Faktorn två gånger. Andra höjningen räknas på det nya priset."
+    },
+    {
+      "id": "q37",
+      "c": "ff2",
+      "lvl": "H",
+      "type": "txt",
+      "q": "450 · 1,12 · 1,12 ≈ ? Avrunda till hela kronor. (bara talet)",
+      "acc": [
+        "564",
+        "564kr"
+      ],
+      "exp": "450 · 1,12 = 504. 504 · 1,12 = 564,48 ≈ 564 kr."
+    },
+    {
+      "id": "q38",
+      "c": "ff2",
+      "lvl": "H",
+      "type": "mc",
+      "q": "Ett pris sänks med 20 % och höjs sen med 20 %. Är det tillbaka på ursprungspriset?",
+      "opts": [
+        "Ja, exakt",
+        "Nej, det är lägre",
+        "Nej, det är högre",
+        "Beror på priset"
+      ],
+      "ans": 1,
+      "exp": "0,80 · 1,20 = 0,96. Höjningen räknas på det lägre priset, så det blir 4 % lägre."
+    },
+    {
+      "id": "q39",
+      "c": "procok",
+      "lvl": "G",
+      "type": "txt",
+      "q": "Från 80 kr till 100 kr. Hur många procent höjning? (bara talet)",
+      "acc": [
+        "25",
+        "25%"
+      ],
+      "exp": "20 / 80 = 0,25 = 25 %."
+    },
+    {
+      "id": "q40",
+      "c": "procok",
+      "lvl": "G",
+      "type": "mc",
+      "q": "När du räknar procentuell förändring, vad delar du med?",
+      "opts": [
+        "Det nya värdet",
+        "Det gamla värdet",
+        "Skillnaden",
+        "100"
+      ],
+      "ans": 1,
+      "exp": "Det gamla värdet var 100 %."
+    },
+    {
+      "id": "q41",
+      "c": "procok",
+      "lvl": "H",
+      "type": "txt",
+      "q": "Från 250 kr till 200 kr. Hur många procent sänkning? (bara talet)",
+      "acc": [
+        "20",
+        "20%"
+      ],
+      "exp": "50 / 250 = 0,20 = 20 %."
+    },
+    {
+      "id": "q42",
+      "c": "rabatt-tot",
+      "lvl": "G",
+      "type": "txt",
+      "q": "2 vuxna à 120 kr och 3 barn à 80 kr, 10 % rabatt på hela summan. Vad betalar de? (bara talet)",
+      "acc": [
+        "432",
+        "432kr"
+      ],
+      "exp": "240 + 240 = 480. 480 · 0,90 = 432 kr."
+    },
+    {
+      "id": "q43",
+      "c": "rabatt-tot",
+      "lvl": "G",
+      "type": "mc",
+      "q": "Rabatt 'på hela summan'. I vilken ordning räknar du?",
+      "opts": [
+        "Rabatt på varje biljett, sen addera",
+        "Addera allt först, sen rabatten",
+        "Spelar ingen roll, det blir fel ändå",
+        "Rabatt bara på vuxenbiljetterna"
+      ],
+      "ans": 1,
+      "exp": "Hela summan först, procenten sist. (Matematiskt blir det samma, men ett steg mindre att slarva på.)"
+    },
+    {
+      "id": "q44",
+      "c": "rabatt-tot",
+      "lvl": "H",
+      "type": "txt",
+      "q": "4 pizzor à 95 kr och 2 läsk à 25 kr, 20 % rabatt på allt. Pris? (bara talet)",
+      "acc": [
+        "344",
+        "344kr"
+      ],
+      "exp": "380 + 50 = 430. 430 · 0,80 = 344 kr."
+    },
+    {
+      "id": "q45",
+      "c": "sann",
+      "lvl": "G",
+      "type": "mc",
+      "q": "Sannolikheten att få mer än 4 på en tärning?",
+      "opts": [
+        "1/6",
+        "2/6 = 1/3",
+        "3/6 = 1/2",
+        "4/6"
+      ],
+      "ans": 1,
+      "exp": "Utfallen 5 och 6. Två av sex."
+    },
+    {
+      "id": "q46",
+      "c": "sann",
+      "lvl": "G",
+      "type": "mc",
+      "q": "Sannolikheten att få ett jämnt tal på en tärning?",
+      "opts": [
+        "1/6",
+        "1/3",
+        "1/2",
+        "2/3"
+      ],
+      "ans": 2,
+      "exp": "2, 4, 6 = tre av sex = 1/2."
+    },
+    {
+      "id": "q47",
+      "c": "sann",
+      "lvl": "H",
+      "type": "mc",
+      "q": "Sannolikheten att få MINST 4 på en tärning?",
+      "opts": [
+        "1/3",
+        "1/2",
+        "2/3",
+        "1/6"
+      ],
+      "ans": 1,
+      "exp": "Minst 4 = 4, 5, 6. Tre av sex = 1/2. Jämför 'mer än 4' = bara 5, 6."
+    },
+    {
+      "id": "q48",
+      "c": "medel-bak",
+      "lvl": "H",
+      "type": "txt",
+      "q": "Prov: 12, 15, 18. Vad krävs på fjärde provet för medelvärdet 16? (bara talet)",
+      "acc": [
+        "19",
+        "19p",
+        "19poäng"
+      ],
+      "exp": "4 · 16 = 64. 64 − 45 = 19."
+    },
+    {
+      "id": "q49",
+      "c": "medel-bak",
+      "lvl": "H",
+      "type": "mc",
+      "q": "Medelvärdet av 4 tal är 16. Vad är summan av talen?",
+      "opts": [
+        "16",
+        "20",
+        "64",
+        "4"
+      ],
+      "ans": 2,
+      "exp": "Summa = medelvärde · antal = 16 · 4 = 64."
+    },
+    {
+      "id": "q50",
+      "c": "medel-bak",
+      "lvl": "H",
+      "type": "txt",
+      "q": "Tre tal har medelvärdet 10. Två av dem är 8 och 9. Vad är det tredje? (bara talet)",
+      "acc": [
+        "13"
+      ],
+      "exp": "Summa 3 · 10 = 30. 30 − 17 = 13."
+    },
+    {
+      "id": "q51",
+      "c": "funk",
+      "lvl": "G",
+      "type": "txt",
+      "q": "y = 2x + 3. Vad är y när x = 4? (bara talet)",
+      "acc": [
+        "11"
+      ],
+      "exp": "2 · 4 + 3 = 11."
+    },
+    {
+      "id": "q52",
+      "c": "funk",
+      "lvl": "G",
+      "type": "mc",
+      "q": "Var skär linjen y = 2x + 3 y-axeln?",
+      "opts": [
+        "I 2",
+        "I 3",
+        "I 5",
+        "I 0"
+      ],
+      "ans": 1,
+      "exp": "På y-axeln är x = 0 → y = 3. m-värdet är alltid skärningen."
+    },
+    {
+      "id": "q53",
+      "c": "funk",
+      "lvl": "H",
+      "type": "mc",
+      "q": "Vilken linje skär y-axeln i −4 och lutar uppåt?",
+      "opts": [
+        "y = −4x + 3",
+        "y = 3x − 4",
+        "y = 4x",
+        "y = −3x − 4"
+      ],
+      "ans": 1,
+      "exp": "m = −4 ger skärningen, k = 3 positivt ger lutning uppåt."
+    },
+    {
+      "id": "q54",
+      "c": "brakdiv",
+      "lvl": "G",
+      "type": "txt",
+      "q": "Hur många fjärdedelar går det på en halv? (bara talet)",
+      "acc": [
+        "2"
+      ],
+      "exp": "1/2 = 2/4."
+    },
+    {
+      "id": "q55",
+      "c": "brakdiv",
+      "lvl": "G",
+      "type": "txt",
+      "q": "Hur många tredjedelar går det på 2 hela? (bara talet)",
+      "acc": [
+        "6"
+      ],
+      "exp": "2 = 6/3."
+    },
+    {
+      "id": "q56",
+      "c": "brakdiv",
+      "lvl": "H",
+      "type": "mc",
+      "q": "Hur många 1/8 går det på 3/4?",
+      "opts": [
+        "3",
+        "4",
+        "6",
+        "8"
+      ],
+      "ans": 2,
+      "exp": "3/4 = 6/8. Sex åttondelar."
+    },
+    {
+      "id": "q57",
+      "c": "brak-tab",
+      "lvl": "G",
+      "type": "mc",
+      "q": "0,25 som bråk och procent?",
+      "opts": [
+        "1/4 och 25 %",
+        "1/4 och 2,5 %",
+        "1/25 och 25 %",
+        "2/5 och 25 %"
+      ],
+      "ans": 0,
+      "exp": "0,25 = 25/100 = 1/4 = 25 %."
+    },
+    {
+      "id": "q58",
+      "c": "brak-tab",
+      "lvl": "G",
+      "type": "mc",
+      "q": "3/5 som decimaltal och procent?",
+      "opts": [
+        "0,35 och 35 %",
+        "0,6 och 60 %",
+        "0,3 och 30 %",
+        "0,53 och 53 %"
+      ],
+      "ans": 1,
+      "exp": "3/5 = 6/10 = 0,6 = 60 %."
+    },
+    {
+      "id": "q59",
+      "c": "brak-tab",
+      "lvl": "G",
+      "type": "txt",
+      "q": "3/4 som procent? (bara talet)",
+      "acc": [
+        "75",
+        "75%"
+      ],
+      "exp": "3/4 = 0,75 = 75 %."
+    },
+    {
+      "id": "q60",
+      "c": "gpf",
+      "lvl": "G",
+      "type": "mc",
+      "q": "0,003 i grundpotensform?",
+      "opts": [
+        "10⁻³",
+        "3 · 10⁻³",
+        "3 · 10³",
+        "0,3 · 10⁻²"
+      ],
+      "ans": 1,
+      "exp": "Ett tal mellan 1 och 10 (3) gånger tiopotensen. Bara 10⁻³ saknar trean."
+    },
+    {
+      "id": "q61",
+      "c": "gpf",
+      "lvl": "G",
+      "type": "mc",
+      "q": "4 500 i grundpotensform?",
+      "opts": [
+        "45 · 10²",
+        "4,5 · 10³",
+        "4,5 · 10²",
+        "0,45 · 10⁴"
+      ],
+      "ans": 1,
+      "exp": "Talet framför måste vara mellan 1 och 10: 4,5. Tre steg → 10³."
+    },
+    {
+      "id": "q62",
+      "c": "gpf",
+      "lvl": "H",
+      "type": "txt",
+      "q": "Vad är 2,5 · 10⁴ som vanligt tal? (bara talet)",
+      "acc": [
+        "25000"
+      ],
+      "exp": "Flytta kommat fyra steg åt höger: 25 000."
+    },
+    {
+      "id": "q63",
+      "c": "brak-add",
+      "lvl": "H",
+      "type": "mc",
+      "q": "1/3 + 1/3 = ?",
+      "opts": [
+        "2/6",
+        "2/3",
+        "1/6",
+        "1/3"
+      ],
+      "ans": 1,
+      "exp": "Samma nämnare: lägg ihop täljarna. 2/3."
+    },
+    {
+      "id": "q64",
+      "c": "brak-add",
+      "lvl": "H",
+      "type": "mc",
+      "q": "Varför kan 1/3 + 1/3 = 2/6 inte stämma?",
+      "opts": [
+        "För att 2/6 = 1/3, och då skulle 1/3 + 1/3 = 1/3",
+        "För att man aldrig får 6 i nämnaren",
+        "För att 2 är större än 1",
+        "Det stämmer faktiskt"
+      ],
+      "ans": 0,
+      "exp": "Förkorta 2/6 så ser du att det är samma som 1/3. Att lägga ihop två saker kan inte ge en av dem."
+    },
+    {
+      "id": "q65",
+      "c": "enheter",
+      "lvl": "G",
+      "type": "txt",
+      "q": "2,5 km = ? m (bara talet)",
+      "acc": [
+        "2500",
+        "2500m"
+      ],
+      "exp": "×1 000."
+    },
+    {
+      "id": "q66",
+      "c": "enheter",
+      "lvl": "G",
+      "type": "txt",
+      "q": "0,8 kg = ? g (bara talet)",
+      "acc": [
+        "800",
+        "800g"
+      ],
+      "exp": "×1 000."
+    },
+    {
+      "id": "q67",
+      "c": "rimlig",
+      "lvl": "H",
+      "type": "mc",
+      "q": "Du räknar ut hypotenusan till 7 cm när kateterna är 6 och 8 cm. Vad säger rimlighetskollen?",
+      "opts": [
+        "Rimligt",
+        "Fel, hypotenusan måste vara längst",
+        "Fel, den måste vara 14",
+        "Går inte att veta"
+      ],
+      "ans": 1,
+      "exp": "Hypotenusan är alltid längre än båda kateterna. 7 < 8, alltså fel."
+    },
+    {
+      "id": "q68",
+      "c": "rimlig",
+      "lvl": "H",
+      "type": "mc",
+      "q": "En vara på 500 kr sänks med 20 %. Du får 600 kr. Vad har hänt?",
+      "opts": [
+        "Rätt",
+        "Du använde 1,20 i stället för 0,80",
+        "Du glömde procenten",
+        "Du räknade 500 − 20"
+      ],
+      "ans": 1,
+      "exp": "En rea ska ge lägre pris. 500 · 0,80 = 400 kr."
+    }
   ],
   "boss": [
-    { "id": "b1", "lvl": "G", "c": "area-rekt", "q": "En rektangel är 9 cm lång och 4 cm bred. Räkna ut omkretsen och arean. Skriv båda svaren med enhet.", "facit": "O = 2·9 + 2·4 = 26 cm. A = 9 · 4 = 36 cm².", "check": ["Både omkrets och area besvarade", "Rätt tal: 26 och 36", "Rätt enheter: cm och cm²"] },
-    { "id": "b2", "lvl": "G", "c": "area-cirk", "q": "En triangel har basen 12 cm och höjden 5 cm. En cirkel har radien 4 cm. Räkna ut båda areorna (π ≈ 3,14, en decimal).", "facit": "Triangel: 12 · 5 / 2 = 30 cm². Cirkel: 3,14 · 4 · 4 = 50,24 ≈ 50,2 cm².", "check": ["Triangel: delat med 2 → 30 cm²", "Cirkel: r² = 16, inte 8", "Cirkel ≈ 50,2 cm²"] },
-    { "id": "b3", "lvl": "G", "c": "pyth", "q": "En stege står 3 m från en vägg och når 4 m upp. Hur lång är stegen? Rita, skriv Pythagoras och räkna.", "facit": "3² + 4² = 9 + 16 = 25. √25 = 5 m. Stegen är 5 m.", "check": ["Satsen uppställd: 3² + 4² = c²", "c² = 25 → c = 5 m", "Svaret är längre än 4 m (rimligt)"] },
-    { "id": "b4", "lvl": "H", "c": "ff2", "q": "Ett busskort kostar 600 kr. Priset höjs med 10 % ett år och 10 % året därpå. Vad kostar det sen? Visa med förändringsfaktor och förklara varför det inte blir 20 %.", "facit": "600 · 1,10 · 1,10 = 726 kr. Andra höjningen räknas på 660, inte på 600, så det blir 21 % totalt.", "check": ["Faktorn 1,10 använd två gånger", "726 kr", "Förklaring: andra höjningen på det nya priset"] },
-    { "id": "b5", "lvl": "H", "c": "medel-bak", "q": "Sixten har 14, 11 och 17 poäng på tre prov. Hur många poäng behöver han på det fjärde för att medelvärdet ska bli 15? Visa alla steg.", "facit": "Behöver totalt 4 · 15 = 60. Har 14 + 11 + 17 = 42. 60 − 42 = 18 poäng.", "check": ["Summa som behövs: 60", "Summa hittills: 42", "Svar 18 och kontroll att (42+18)/4 = 15"] },
-    { "id": "b6", "lvl": "G", "c": "rabatt-tot", "q": "Bio: 3 vuxna à 130 kr och 2 barn à 70 kr. Familjen får 15 % rabatt på hela summan. Vad betalar de? Visa båda stegen.", "facit": "3·130 + 2·70 = 390 + 140 = 530 kr. 530 · 0,85 = 450,50 kr ≈ 450 kr.", "check": ["Hela summan först: 530 kr", "Förändringsfaktor 0,85", "≈ 450 kr"] },
-    { "id": "b7", "lvl": "G", "c": "skala", "q": "På en karta i skala 1:20 000 är det 7 cm mellan skolan och ishallen. Hur långt är det i verkligheten? Svara i km och visa omvandlingen.", "facit": "7 · 20 000 = 140 000 cm = 1 400 m = 1,4 km.", "check": ["Multiplicerat med 20 000", "Omvandlat cm → m → km", "1,4 km"] }
+    {
+      "id": "b1",
+      "lvl": "G",
+      "c": "area-rekt",
+      "q": "En rektangel är 9 cm lång och 4 cm bred. Räkna ut omkretsen och arean. Skriv båda svaren med enhet.",
+      "facit": "O = 2·9 + 2·4 = 26 cm. A = 9 · 4 = 36 cm².",
+      "check": [
+        "Både omkrets och area besvarade",
+        "Rätt tal: 26 och 36",
+        "Rätt enheter: cm och cm²"
+      ]
+    },
+    {
+      "id": "b2",
+      "lvl": "G",
+      "c": "area-cirk",
+      "q": "En triangel har basen 12 cm och höjden 5 cm. En cirkel har radien 4 cm. Räkna ut båda areorna (π ≈ 3,14, en decimal).",
+      "facit": "Triangel: 12 · 5 / 2 = 30 cm². Cirkel: 3,14 · 4 · 4 = 50,24 ≈ 50,2 cm².",
+      "check": [
+        "Triangel: delat med 2 → 30 cm²",
+        "Cirkel: r² = 16, inte 8",
+        "Cirkel ≈ 50,2 cm²"
+      ]
+    },
+    {
+      "id": "b3",
+      "lvl": "G",
+      "c": "pyth",
+      "q": "En stege står 3 m från en vägg och når 4 m upp. Hur lång är stegen? Rita, skriv Pythagoras och räkna.",
+      "facit": "3² + 4² = 9 + 16 = 25. √25 = 5 m. Stegen är 5 m.",
+      "check": [
+        "Satsen uppställd: 3² + 4² = c²",
+        "c² = 25 → c = 5 m",
+        "Svaret är längre än 4 m (rimligt)"
+      ]
+    },
+    {
+      "id": "b4",
+      "lvl": "H",
+      "c": "ff2",
+      "q": "Ett busskort kostar 600 kr. Priset höjs med 10 % ett år och 10 % året därpå. Vad kostar det sen? Visa med förändringsfaktor och förklara varför det inte blir 20 %.",
+      "facit": "600 · 1,10 · 1,10 = 726 kr. Andra höjningen räknas på 660, inte på 600, så det blir 21 % totalt.",
+      "check": [
+        "Faktorn 1,10 använd två gånger",
+        "726 kr",
+        "Förklaring: andra höjningen på det nya priset"
+      ]
+    },
+    {
+      "id": "b5",
+      "lvl": "H",
+      "c": "medel-bak",
+      "q": "Sixten har 14, 11 och 17 poäng på tre prov. Hur många poäng behöver han på det fjärde för att medelvärdet ska bli 15? Visa alla steg.",
+      "facit": "Behöver totalt 4 · 15 = 60. Har 14 + 11 + 17 = 42. 60 − 42 = 18 poäng.",
+      "check": [
+        "Summa som behövs: 60",
+        "Summa hittills: 42",
+        "Svar 18 och kontroll att (42+18)/4 = 15"
+      ]
+    },
+    {
+      "id": "b6",
+      "lvl": "G",
+      "c": "rabatt-tot",
+      "q": "Bio: 3 vuxna à 130 kr och 2 barn à 70 kr. Familjen får 15 % rabatt på hela summan. Vad betalar de? Visa båda stegen.",
+      "facit": "3·130 + 2·70 = 390 + 140 = 530 kr. 530 · 0,85 = 450,50 kr ≈ 450 kr.",
+      "check": [
+        "Hela summan först: 530 kr",
+        "Förändringsfaktor 0,85",
+        "≈ 450 kr"
+      ]
+    },
+    {
+      "id": "b7",
+      "lvl": "G",
+      "c": "skala",
+      "q": "På en karta i skala 1:20 000 är det 7 cm mellan skolan och ishallen. Hur långt är det i verkligheten? Svara i km och visa omvandlingen.",
+      "facit": "7 · 20 000 = 140 000 cm = 1 400 m = 1,4 km.",
+      "check": [
+        "Multiplicerat med 20 000",
+        "Omvandlat cm → m → km",
+        "1,4 km"
+      ]
+    }
   ],
   "test": {
-    "part1": ["q1", "q5", "q7", "q10", "q14", "q19", "q24", "q27", "q29", "q34", "q39", "q45", "q51", "q54", "q57", "q60"],
-    "part2": ["q16", "q22", "q25", "q36", "q38", "q41", "q47", "q48", "q53", "q56", "q67"],
+    "part1": [
+      "q1",
+      "q5",
+      "q7",
+      "q10",
+      "q14",
+      "q19",
+      "q24",
+      "q27",
+      "q29",
+      "q34",
+      "q39",
+      "q45",
+      "q51",
+      "q54",
+      "q57",
+      "q60"
+    ],
+    "part2": [
+      "q16",
+      "q22",
+      "q25",
+      "q36",
+      "q38",
+      "q41",
+      "q47",
+      "q48",
+      "q53",
+      "q56",
+      "q67"
+    ],
     "open": [
-      { "id": "o1", "lvl": "G", "q": "En rektangulär gräsmatta är 15 m lång och 8 m bred. Räkna ut omkretsen (för staketet) och arean (för gräsfröet).", "rub": ["Båda svaren", "O = 46 m, A = 120 m²", "Rätt enheter"] },
-      { "id": "o2", "lvl": "G", "q": "En rätvinklig triangel har kateterna 9 cm och 12 cm. Hur lång är hypotenusan? Visa uträkningen.", "rub": ["Pythagoras uppställd", "81 + 144 = 225, √225 = 15 cm", "Rimlighet: längre än 12"] },
-      { "id": "o3", "lvl": "H", "q": "En tröja kostar 400 kr. Först höjs priset med 25 %, sedan sänks det nya priset med 25 %. Vad kostar tröjan sen? Förklara varför den inte kostar 400 kr.", "rub": ["400 · 1,25 · 0,75 = 375 kr", "Två förändringsfaktorer", "Förklaring: sänkningen räknas på 500, inte 400"] }
+      {
+        "id": "o1",
+        "lvl": "G",
+        "q": "En rektangulär gräsmatta är 15 m lång och 8 m bred. Räkna ut omkretsen (för staketet) och arean (för gräsfröet).",
+        "rub": [
+          "Båda svaren",
+          "O = 46 m, A = 120 m²",
+          "Rätt enheter"
+        ]
+      },
+      {
+        "id": "o2",
+        "lvl": "G",
+        "q": "En rätvinklig triangel har kateterna 9 cm och 12 cm. Hur lång är hypotenusan? Visa uträkningen.",
+        "rub": [
+          "Pythagoras uppställd",
+          "81 + 144 = 225, √225 = 15 cm",
+          "Rimlighet: längre än 12"
+        ]
+      },
+      {
+        "id": "o3",
+        "lvl": "H",
+        "q": "En tröja kostar 400 kr. Först höjs priset med 25 %, sedan sänks det nya priset med 25 %. Vad kostar tröjan sen? Förklara varför den inte kostar 400 kr.",
+        "rub": [
+          "400 · 1,25 · 0,75 = 375 kr",
+          "Två förändringsfaktorer",
+          "Förklaring: sänkningen räknas på 500, inte 400"
+        ]
+      }
     ]
   }
 }
