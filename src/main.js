@@ -1,5 +1,5 @@
 import * as db from './db.js';
-import { buildItems, evaluate, weekReport, counts, PASS_MIN, PREP_MIN, JOKERS_PER_MONTH, RESCUE_DAYS } from './plan.js';
+import { buildItems, evaluate, weekReport, counts, monthBonus, BONUS, PASS_MIN, PREP_MIN, JOKERS_PER_MONTH, RESCUE_DAYS } from './plan.js';
 const { sb, today } = db;
 
 // ============ STATE ============
@@ -506,26 +506,35 @@ function lecquiz() {
 function bonus() {
   const { t, weeks } = planState();
   const past = weeks.filter(w => w.start <= t);
-  const months = [...new Set(past.map(w => w.start.slice(0, 7)))].sort().reverse();
+  const months = [...new Set([...past.map(w => w.start.slice(0, 7)), t.slice(0, 7)])].sort().reverse();
   const green = past.filter(w => w.light === 'green' || w.light === 'yellow').length;
-  let run = 0; for (const w of past.filter(w => w.end < t).reverse()) { if (w.light === 'green' || w.light === 'yellow') run++; else break; }
   const hits = MODS.filter(m => resultFor(m) && goalFor(m) && GRADE_ORD[resultFor(m).grade] >= GRADE_ORD[goalFor(m).goal]).length;
   const graded = MODS.filter(m => resultFor(m) && goalFor(m)).length;
   const monthName = ym => new Date(ym + '-01T00:00:00').toLocaleDateString('sv-SE', { month: 'long', year: 'numeric' });
+  const kr = n => Math.round(n).toLocaleString('sv-SE') + ' kr';
+  const examsIn = ym => MODS.filter(m => m.exam_date && m.exam_date.slice(0, 7) === ym && m.exam_date <= t && goalFor(m) && !['diagnos', 'träning'].includes(m.kind));
+  const calc = ym => { const ws = past.filter(w => w.start.slice(0, 7) === ym); const ex = examsIn(ym); ex.forEach(loadPrep); return { ws, mb: monthBonus(ws, ex.map(m => ({ title: m.title, grade: resultFor(m) ? resultFor(m).grade : null, goal: goalFor(m).goal, prep: PREP[m.id] || null })), t) }; };
+  const cur = calc(t.slice(0, 7));
   return `<div class="stack">
-    <div class="topbar" style="padding-bottom:4px"><div><div class="eyebrow">Gjort i tid = grönt</div><h1>Bonus</h1></div></div>
-    <div class="card"><div class="row" style="gap:20px"><div><div class="big num" style="font-size:2.4rem;color:var(--good)">${green}</div><div class="muted">gröna veckor</div></div><div><div class="big num" style="font-size:2.4rem">${run}</div><div class="muted">i rad just nu</div></div><div><div class="big num" style="font-size:2.4rem;color:var(--accent)">${hits}/${graded}</div><div class="muted">prov som nått målet</div></div></div>
-      <p class="muted" style="margin-top:10px;font-size:.9rem">${run >= 4 ? 'Dubbel veckobonus aktiv.' : run === 3 ? 'Nästa gröna vecka ger +50 %.' : run >= 1 ? `${3 - run} till för +50 %.` : 'Tre gröna i rad ger +50 %, fyra ger dubbelt.'}</p></div>
+    <div class="topbar" style="padding-bottom:4px"><div><div class="eyebrow">${monthName(t.slice(0, 7))}</div><h1>Bonus</h1></div></div>
+    <div class="card stack" style="gap:8px"><div class="row" style="justify-content:space-between;align-items:flex-end"><div><div class="big num" style="color:var(--accent)">${kr(cur.mb.total)}</div><div class="muted">hittills den här månaden · max ${kr(cur.mb.max)}</div></div><div class="num muted" style="text-align:right">${green} gröna veckor<br>${hits}/${graded} prov på mål</div></div>
+      <div class="bar"><i style="width:${Math.round(cur.mb.total / cur.mb.max * 100)}%"></i></div>
+      <div class="grid2" style="margin-top:4px">
+        <div><div class="muted" style="font-size:.85rem">Golv</div><b class="num">${kr(cur.mb.floor)}</b></div>
+        <div><div class="muted" style="font-size:.85rem">Pass i tid</div><b class="num">${kr(cur.mb.process)} <span class="muted" style="font-weight:400">/ ${kr(BONUS.PROCESS)}</span></b></div>
+        <div><div class="muted" style="font-size:.85rem">Prov mot mål</div><b class="num">${kr(cur.mb.result)} <span class="muted" style="font-weight:400">/ ${kr(BONUS.RESULT)}</span></b></div>
+        <div><div class="muted" style="font-size:.85rem">Över målet</div><b class="num">${kr(cur.mb.over)} <span class="muted" style="font-weight:400">/ ${kr(BONUS.OVER)}</span></b></div>
+      </div></div>
     <div class="card stack" style="gap:6px"><h3>Så funkar det</h3>
-      <div class="row" style="gap:10px"><span class="light green"></span><span>Allt i planen gjort senast söndag. <b>Veckobonus.</b></span></div>
-      <div class="row" style="gap:10px"><span class="light yellow"></span><span>En dag missad men räddad inom ${RESCUE_DAYS} dagar med din joker. <b>Räknas som grön.</b></span></div>
-      <div class="row" style="gap:10px"><span class="light red"></span><span>Något missat utan joker. <b>Ingen bonus den veckan, aldrig minus.</b></span></div>
-      <div class="row" style="gap:10px"><span class="light open"></span><span>Pågår. Du har ${JOKERS_PER_MONTH} joker per månad.</span></div>
-      <div class="row" style="gap:10px;align-items:flex-start"><span class="light" style="background:var(--accent);margin-top:4px"></span><span>Ett pass räknas när du har minst <b>${Math.round(PASS_MIN * 100)} % rätt</b> på frågorna appen rättar. Under det: kör ett till, det tar fem minuter. Övningsprov räknas från 50 %.</span></div>
-      <p class="muted" style="font-size:.9rem;margin-top:4px">Provbonus när betyget når målet, extra om preppen var grön. Belopp bestäms av föräldrarna och visas här när de är satta.</p></div>
-    ${months.map(ym => { const ws = past.filter(w => w.start.slice(0, 7) === ym); const g = ws.filter(w => w.light === 'green' || w.light === 'yellow').length; const jok = ws.reduce((a, w) => a + w.jokersUsed, 0); return `<div class="card stack" style="gap:8px"><div class="row" style="justify-content:space-between"><h3>${monthName(ym)}</h3><span class="num muted">${g}/${ws.length} gröna · ${jok} joker</span></div>
-      ${ws.map(w => `<div class="row" style="justify-content:space-between;padding:8px 0;border-top:1px solid var(--line)"><div class="row" style="gap:10px"><span class="light ${w.light}"></span><span>Vecka ${w.week.slice(-2)} <span class="muted">${fmtDate(w.start)}–${fmtDate(w.end)}</span></span></div><div class="row" style="gap:10px"><div class="bar" style="width:80px"><i style="width:${w.pct}%;background:${w.light === 'red' ? 'var(--bad)' : 'var(--good)'}"></i></div><span class="num" style="min-width:44px;text-align:right">${w.done + w.rescued.length}/${w.total}</span></div></div>`).join('')}
-      <div class="row" style="justify-content:space-between;margin-top:4px"><span class="muted">Månadsbonus</span><b class="num">${ws.every(w => w.end < t) ? (g === ws.length ? 'Alla veckor gröna' : `${g} av ${ws.length}`) : 'pågår'} · belopp ej satt</b></div></div>`; }).join('') || '<div class="card"><p class="muted">Första veckan börjar när en plan finns.</p></div>'}
+      <div class="row" style="gap:10px"><span class="light green"></span><span>Allt i planen gjort senast söndag. <b>${kr(cur.mb.weekAmount)} den veckan.</b></span></div>
+      <div class="row" style="gap:10px"><span class="light yellow"></span><span>En dag missad men räddad inom ${RESCUE_DAYS} dagar med din joker (${JOKERS_PER_MONTH} per månad). <b>${kr(cur.mb.weekAmount - BONUS.YELLOW_PENALTY)}.</b></span></div>
+      <div class="row" style="gap:10px"><span class="light red"></span><span>Något missat utan joker. <b>0 kr den veckan, aldrig minus.</b></span></div>
+      <div class="row" style="gap:10px;align-items:flex-start"><span class="light" style="background:var(--accent);margin-top:4px"></span><span>Ett pass räknas när du har minst <b>${Math.round(PASS_MIN * 100)} % rätt</b> på frågorna appen rättar. Under det: kör ett till. Övningsprov räknas från 50 %.</span></div>
+      <p class="muted" style="font-size:.9rem;margin-top:4px"><b>Prov:</b> ${kr(BONUS.RESULT)} delas på månadens prov. Nått målet = hela andelen. Under målet men minst ${Math.round(PREP_MIN * 100)} % gröna kort dagen före = halva. Ett prov över målet ger ${kr(BONUS.OVER)} extra. Månad utan prov: provdelen följer veckorna. Golvet ${kr(BONUS.FLOOR)} får du alltid.</p></div>
+    ${months.map(ym => { const { ws, mb } = calc(ym); if (!ws.length && !mb.rows.length) return ''; return `<div class="card stack" style="gap:8px"><div class="row" style="justify-content:space-between"><h3>${monthName(ym)}</h3><b class="num" style="color:var(--accent)">${kr(mb.total)}${mb.pending ? ' <span class="muted" style="font-weight:400">pågår</span>' : ''}</b></div>
+      ${ws.map(w => `<div class="row" style="justify-content:space-between;padding:8px 0;border-top:1px solid var(--line)"><div class="row" style="gap:10px"><span class="light ${w.light}"></span><span>Vecka ${w.week.slice(-2)} <span class="muted">${fmtDate(w.start)}–${fmtDate(w.end)}</span></span></div><div class="row" style="gap:10px"><span class="num muted">${w.done + w.rescued.length}/${w.total}</span><b class="num" style="min-width:60px;text-align:right">${w.light === 'open' ? '…' : kr(w.light === 'green' ? mb.weekAmount : w.light === 'yellow' ? mb.weekAmount - BONUS.YELLOW_PENALTY : 0)}</b></div></div>`).join('')}
+      ${mb.rows.filter(r => r.kind !== 'week').map(r => r.kind === 'noexam' ? `<div class="row" style="justify-content:space-between;padding:8px 0;border-top:1px solid var(--line)"><span>Inga prov · provdelen följer veckorna (${r.green}/${r.total} gröna)</span><b class="num">${kr(r.amount)}</b></div>` : `<div class="row" style="justify-content:space-between;padding:8px 0;border-top:1px solid var(--line)"><div class="row" style="gap:10px"><span class="light ${r.pending ? 'open' : r.hit ? 'green' : r.prepOk ? 'yellow' : 'red'}"></span><span>${esc(r.title)} ${r.pending ? '<span class="muted">väntar på betyg</span>' : `<span class="muted">${r.grade} mot mål ${r.goal}${r.prepOk && !r.hit ? ' · grön prepp' : ''}</span>`}</span></div><b class="num">${r.pending ? '…' : kr(r.amount)}</b></div>`).join('')}
+      <div class="row" style="justify-content:space-between;margin-top:4px;border-top:1px solid var(--line);padding-top:8px"><span class="muted">Golv ${kr(mb.floor)} + pass ${kr(mb.process)} + prov ${kr(mb.result)}${mb.over ? ' + över mål ' + kr(mb.over) : ''}</span><b class="num">${kr(mb.total)}</b></div></div>`; }).join('') || '<div class="card"><p class="muted">Första veckan börjar när en plan finns.</p></div>'}
   </div>`;
 }
 

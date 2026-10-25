@@ -9,6 +9,42 @@ export const PASS_MIN = 0.6;       // andel rätt på automatiskt rättade fråg
 export const TEST_MIN = 0.5;       // andel rätt för att ett övningsprov ska räknas
 export const PREP_MIN = 0.8;       // andel gröna kort dagen före provet = "preppen var grön"
 
+// Bonusmodell (kr/månad). Max = FLOOR + PROCESS + RESULT + OVER = 3 000.
+export const BONUS = { FLOOR: 500, PROCESS: 1500, YELLOW_PENALTY: 100, RESULT: 700, OVER: 300 };
+export const GRADE_ORD = { F: 0, E: 1, D: 2, C: 3, B: 4, A: 5 };
+
+// Månadsutfall. weeks: veckor vars start ligger i månaden (från weekReport). exams: [{title, grade|null, goal|null, prep: {green,total}|null}].
+// Returnerar {floor, process, result, over, total, max, pending, weekAmount, rows}
+export function monthBonus(weeks, exams, todayStr) {
+  const n = weeks.length || 1; const weekAmount = Math.round(BONUS.PROCESS / n);
+  let process = 0; const rows = [];
+  for (const w of weeks) {
+    const amt = w.light === 'green' ? weekAmount : w.light === 'yellow' ? weekAmount - BONUS.YELLOW_PENALTY : 0;
+    const finished = w.end < todayStr || w.light === 'green' || w.light === 'yellow' || w.light === 'red';
+    process += amt; rows.push({ kind: 'week', week: w.week, light: w.light, amount: amt, pending: !finished });
+  }
+  const finishedWeeks = weeks.filter(w => w.light !== 'open' && w.light !== 'grey');
+  const greenWeeks = finishedWeeks.filter(w => w.light === 'green' || w.light === 'yellow').length;
+  let result = 0, over = 0, pending = false;
+  const graded = exams.filter(e => e.goal);
+  if (graded.length) {
+    const share = BONUS.RESULT / graded.length;
+    for (const e of graded) {
+      if (!e.grade) { pending = true; rows.push({ kind: 'exam', title: e.title, amount: 0, pending: true }); continue; }
+      const hit = GRADE_ORD[e.grade] >= GRADE_ORD[e.goal]; const prepOk = e.prep && e.prep.total && e.prep.green / e.prep.total >= PREP_MIN;
+      const amt = hit ? share : prepOk ? share / 2 : 0; result += amt;
+      if (GRADE_ORD[e.grade] > GRADE_ORD[e.goal]) over = BONUS.OVER;
+      rows.push({ kind: 'exam', title: e.title, amount: Math.round(amt), hit, prepOk, grade: e.grade, goal: e.goal });
+    }
+  } else if (weeks.length) {
+    result = finishedWeeks.length ? BONUS.RESULT * greenWeeks / finishedWeeks.length : 0;
+    if (finishedWeeks.length < weeks.length) pending = true;
+    rows.push({ kind: 'noexam', amount: Math.round(result), green: greenWeeks, total: finishedWeeks.length });
+  }
+  const total = Math.round(BONUS.FLOOR + process + result + over);
+  return { floor: BONUS.FLOOR, process, result: Math.round(result), over, total, max: BONUS.FLOOR + BONUS.PROCESS + BONUS.RESULT + BONUS.OVER, pending: pending || weeks.some(w => w.light === 'open'), weekAmount, rows };
+}
+
 // Räknas passet/provet mot planen? Gamla sessioner utan detaljer räknas (de loggades innan regeln fanns).
 export function counts(s) {
   if (s.type === 'pass') {
