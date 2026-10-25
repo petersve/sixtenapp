@@ -1,5 +1,5 @@
 import * as db from './db.js';
-import { buildItems, evaluate, weekReport, JOKERS_PER_MONTH, RESCUE_DAYS } from './plan.js';
+import { buildItems, evaluate, weekReport, counts, PASS_MIN, PREP_MIN, JOKERS_PER_MONTH, RESCUE_DAYS } from './plan.js';
 const { sb, today } = db;
 
 // ============ STATE ============
@@ -54,6 +54,7 @@ function greens() { return CARDS.filter(c => mastery(c.id) === 3).length; }
 function streak() { const days = new Set(S.sessions.map(s => s.d)); let n = 0; const d = new Date(); for (let i = 0; i < 10; i++) { const k = d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); if (days.has(k)) n++; else if (i > 0) break; d.setDate(d.getDate() - 1); } return n; }
 async function logSession(type, extra = {}) {
   const s = { d: today(), ts: Date.now(), type, score: sess ? sess.score : extra.score, max: sess ? sess.total : extra.max, mins: sess ? Math.round((Date.now() - sess.start) / 60000) : extra.mins, detail: extra.detail };
+  if (sess && type.startsWith('pass')) { s.detail = { ...(s.detail || {}), auto: { ...sess.auto } }; s.detail.counted = counts({ ...s, type: 'pass' }); }
   S.sessions.push(s); ALLSESS.push({ module_id: MOD.id, type: s.type, d: s.d, score: s.score, max: s.max, mins: s.mins, detail: s.detail });
   if (isStudent()) s.id = await db.insertSession(me.id, MOD.id, s).catch(() => null);
   return s;
@@ -217,7 +218,7 @@ function startSession() {
   const mixQ = []; const used = new Set();
   for (let i = 0; mixQ.length < 10 && i < 40 && ids.length; i++) { const id = ids[i % ids.length]; const q = pickQuestion(id, [...used]); if (q && !used.has(q.id)) { used.add(q.id); mixQ.push(q); } }
   const bossPool = BOSS.filter(b => pool.has(b.c)); const boss = bossPool.length ? bossPool.sort((a, b) => ((S.cards[a.c] || {}).bossAt || 0) - ((S.cards[b.c] || {}).bossAt || 0))[0] : BOSS[0];
-  sess = { start: Date.now(), step: warm.length >= 2 ? 0 : 1, warm, wi: 0, fresh, fi: 0, fphase: 'learn', mixQ: shuffle(mixQ), mi: 0, boss, score: 0, total: 0, learnMode, logged: false };
+  sess = { start: Date.now(), step: warm.length >= 2 ? 0 : 1, warm, wi: 0, fresh, fi: 0, fphase: 'learn', mixQ: shuffle(mixQ), mi: 0, boss, score: 0, total: 0, auto: { score: 0, total: 0 }, learnMode, logged: false };
   go('session');
 }
 function sessHeader() {
@@ -253,28 +254,30 @@ function stepLearn() {
   const q = sess.cq;
   if (!q) { rec(c.id, true); sess.fi++; sess.fphase = 'learn'; return stepLearn(); }
   return `<div class="muted">Kontrollfråga på kortet du just läste.</div>` + quizView(q, ok => {
-    sess.total++; if (ok) { sess.score++; rec(c.id, true); sess.fi++; sess.fphase = 'learn'; if (sess.fi >= sess.fresh.length) sess.step = 2; }
+    sess.total++; sess.auto.total++; if (ok) { sess.score++; sess.auto.score++; rec(c.id, true); sess.fi++; sess.fphase = 'learn'; if (sess.fi >= sess.fresh.length) sess.step = 2; }
     else { rec(c.id, false); sess.tries++; sess.cq = sess.tries < 2 ? (pickQuestion(c.id, [q.id]) || q) : q; if (sess.tries >= 2) sess.fphase = 'learn'; }
     render();
   }, ok => ok ? 'Nästa' : (sess.tries < 2 ? 'Försök igen' : 'Läs kortet igen'));
 }
 function stepMix() {
   const q = sess.mixQ[sess.mi]; if (!q) { sess.step = 3; return stepBoss(); }
-  return `<div class="muted">Blandat · ${sess.mi + 1} av ${sess.mixQ.length}</div>` + quizView(q, ok => { sess.total++; if (ok) sess.score++; rec(q.c, ok); sess.mi++; if (sess.mi >= sess.mixQ.length) sess.step = 3; render(); });
+  return `<div class="muted">Blandat · ${sess.mi + 1} av ${sess.mixQ.length}</div>` + quizView(q, ok => { sess.total++; sess.auto.total++; if (ok) { sess.score++; sess.auto.score++; } rec(q.c, ok); sess.mi++; if (sess.mi >= sess.mixQ.length) sess.step = 3; render(); });
 }
 function stepBoss() {
   const b = sess.boss; if (!b) { sess.step = 4; logSession('pass'); sess.logged = true; return stepDone(); }
-  return bossView(b, pts => { cs(b.c).bossAt = Date.now(); rec(b.c, pts >= 2); sess.total++; if (pts >= 2) sess.score++; sess.step = 4; sess.logged = true; logSession('pass'); render(); });
+  return bossView(b, pts => { cs(b.c).bossAt = Date.now(); rec(b.c, pts >= 2); sess.total++; sess.auto.total++; if (pts >= 2) { sess.score++; sess.auto.score++; } sess.step = 4; sess.logged = true; logSession('pass'); render(); });
 }
 function stepDone() {
   const g = greens(); const pct = sess.total ? Math.round(sess.score / sess.total * 100) : 0;
   const newGreen = CARDS.filter(c => mastery(c.id) === 3 && S.cards[c.id].d[2] === today()).length;
+  const apct = sess.auto.total ? Math.round(sess.auto.score / sess.auto.total * 100) : 100; const counted = sess.auto.total === 0 || sess.auto.score / sess.auto.total >= PASS_MIN;
   return `<div class="card stack" style="text-align:center;gap:10px">
-    <div class="eyebrow">Pass klart</div><div class="big num">${pct}%</div>
+    <div class="eyebrow">${counted ? 'Pass klart · räknas' : 'Pass klart · räknas inte än'}</div><div class="big num" style="${counted ? '' : 'color:var(--bad)'}">${apct}%</div>
+    ${counted ? '' : `<div class="fb no" style="text-align:left"><b>Under ${Math.round(PASS_MIN * 100)} % rätt</b>Passet sparas men räknas inte mot veckan. Korten du såg sitter bättre nu, så kör ett till direkt så räknas det.</div>`}
     <div>${sess.score} av ${sess.total} rätt på ${Math.max(1, Math.round((Date.now() - sess.start) / 60000))} min</div><hr>
     <div><b>${g}/${CARDS.length}</b> kort gröna${newGreen ? ` · <span style="color:var(--good)">+${newGreen} idag</span>` : ''}</div>
     <div class="muted">${pct >= 80 ? 'Stabilt. Kom tillbaka imorgon, då räknas det igen.' : pct >= 60 ? 'Bra jobbat. De röda korten kommer tillbaka i nästa pass.' : 'Tufft pass, men varje fel du fick se facit på sitter bättre nu. Kör igen imorgon.'}</div>
-  </div><button class="btn primary" id="done">Klar</button>` + after(() => { document.getElementById('done').onclick = () => { sess = null; go('today'); }; });
+  </div>${counted ? '' : '<button class="btn primary" id="again">Kör ett till nu</button>'}<button class="btn ${counted ? 'primary' : ''}" id="done">Klar</button>` + after(() => { document.getElementById('done').onclick = () => { sess = null; go('today'); }; const ag = document.getElementById('again'); if (ag) ag.onclick = () => startSession(); });
 }
 
 // ---------- KOMPONENTER ----------
@@ -518,6 +521,7 @@ function bonus() {
       <div class="row" style="gap:10px"><span class="light yellow"></span><span>En dag missad men räddad inom ${RESCUE_DAYS} dagar med din joker. <b>Räknas som grön.</b></span></div>
       <div class="row" style="gap:10px"><span class="light red"></span><span>Något missat utan joker. <b>Ingen bonus den veckan, aldrig minus.</b></span></div>
       <div class="row" style="gap:10px"><span class="light open"></span><span>Pågår. Du har ${JOKERS_PER_MONTH} joker per månad.</span></div>
+      <div class="row" style="gap:10px;align-items:flex-start"><span class="light" style="background:var(--accent);margin-top:4px"></span><span>Ett pass räknas när du har minst <b>${Math.round(PASS_MIN * 100)} % rätt</b> på frågorna appen rättar. Under det: kör ett till, det tar fem minuter. Övningsprov räknas från 50 %.</span></div>
       <p class="muted" style="font-size:.9rem;margin-top:4px">Provbonus när betyget når målet, extra om preppen var grön. Belopp bestäms av föräldrarna och visas här när de är satta.</p></div>
     ${months.map(ym => { const ws = past.filter(w => w.start.slice(0, 7) === ym); const g = ws.filter(w => w.light === 'green' || w.light === 'yellow').length; const jok = ws.reduce((a, w) => a + w.jokersUsed, 0); return `<div class="card stack" style="gap:8px"><div class="row" style="justify-content:space-between"><h3>${monthName(ym)}</h3><span class="num muted">${g}/${ws.length} gröna · ${jok} joker</span></div>
       ${ws.map(w => `<div class="row" style="justify-content:space-between;padding:8px 0;border-top:1px solid var(--line)"><div class="row" style="gap:10px"><span class="light ${w.light}"></span><span>Vecka ${w.week.slice(-2)} <span class="muted">${fmtDate(w.start)}–${fmtDate(w.end)}</span></span></div><div class="row" style="gap:10px"><div class="bar" style="width:80px"><i style="width:${w.pct}%;background:${w.light === 'red' ? 'var(--bad)' : 'var(--good)'}"></i></div><span class="num" style="min-width:44px;text-align:right">${w.done + w.rescued.length}/${w.total}</span></div></div>`).join('')}
@@ -596,14 +600,32 @@ function paper() {
 }
 
 // ---------- UTFALL ----------
+// Preppnivå: andel kort som var gröna (rätt tre olika dagar) senast dagen före provet. Går inte att fejka genom att trycka.
+const PREP = {};
+function loadPrep(m) {
+  if (PREP[m.id] !== undefined || !m.has_content || !m.exam_date) return;
+  PREP[m.id] = null;
+  Promise.all([db.loadProgress(student, m.id), db.loadModule(m.id)]).then(([p, mod]) => {
+    const total = ((mod && mod.content && mod.content.cards) || []).length;
+    const green = Object.values(p.cards).filter(c => (c.d || []).filter(d => d < m.exam_date).length >= 3).length;
+    PREP[m.id] = { green, total }; render();
+  }).catch(() => { PREP[m.id] = { green: 0, total: 0 }; });
+}
+function prepLine(m) {
+  const p = PREP[m.id]; if (!p || !p.total) return '';
+  const ok = p.green / p.total >= PREP_MIN;
+  return `<div class="row" style="gap:10px;margin-top:4px"><span class="light ${ok ? 'green' : 'red'}"></span><span><b>Preppen: ${p.green} av ${p.total} kort gröna</b> dagen före provet${ok ? '. Jobbet var gjort.' : ` (krävs ${Math.round(PREP_MIN * 100)} %).`}</span></div>`;
+}
 function result() {
   const m = MODS.find(x => x.id === view.mod); if (!m) return home();
+  loadPrep(m);
   const r = resultFor(m), g = goalFor(m);
   const canEdit = me.role === 'parent' || (!r && student === me.id);
   const hit = r && g ? (GRADE_ORD[r.grade] >= GRADE_ORD[g.goal]) : null;
   return `<div class="stack"><div class="topbar"><button class="back" id="bk">Tillbaka</button><div class="eyebrow">Utfall</div><div></div></div>
     <div class="card stack" style="gap:10px"><div><div class="eyebrow">${esc(m.subject)} · ${KIND[m.kind] || esc(m.kind)} · ${m.exam_date ? fmtDate(m.exam_date) : ''}</div><h2>${esc(m.title)}</h2>${m.note ? `<div class="muted">${esc(m.note)}</div>` : ''}</div>
       <div class="row" style="gap:20px"><div><div class="muted" style="font-size:.85rem">Mål ${g ? esc(m.goal_subject) : ''}</div><div class="big num" style="font-size:2.6rem;color:var(--accent)">${g ? g.goal : '–'}</div></div><div><div class="muted" style="font-size:.85rem">Fick</div><div class="big num" style="font-size:2.6rem;color:${hit === null ? 'var(--fg)' : hit ? 'var(--good)' : 'var(--bad)'}">${r ? r.grade : '–'}</div></div></div>
+      ${prepLine(m)}
       ${r ? `<div class="fb ${hit === false ? 'no' : 'ok'}"><b>${hit === null ? 'Betyg inlagt' : hit ? 'Målet nått' : 'Under målet'}</b>${r.comment ? esc(r.comment) : ''}<div class="muted" style="font-size:.85rem;margin-top:4px">Inlagt ${new Date(r.entered_at).toLocaleDateString('sv-SE')}${r.entered_by === student ? ' av eleven' : ' av förälder'}</div></div>` : ''}
     </div>
     ${canEdit ? `<div class="card stack" style="gap:10px"><h3>${r ? 'Ändra betyg' : 'Ange betyg'}</h3>

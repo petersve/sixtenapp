@@ -5,6 +5,23 @@
 
 export const RESCUE_DAYS = 2;      // en missad dag får räddas inom så många dagar
 export const JOKERS_PER_MONTH = 1; // antal räddningar per kalendermånad utan att veckan faller
+export const PASS_MIN = 0.6;       // andel rätt på automatiskt rättade frågor för att ett pass ska räknas
+export const TEST_MIN = 0.5;       // andel rätt för att ett övningsprov ska räknas
+export const PREP_MIN = 0.8;       // andel gröna kort dagen före provet = "preppen var grön"
+
+// Räknas passet/provet mot planen? Gamla sessioner utan detaljer räknas (de loggades innan regeln fanns).
+export function counts(s) {
+  if (s.type === 'pass') {
+    const a = s.detail && s.detail.auto;
+    if (a && a.total > 0) return a.score / a.total >= PASS_MIN;
+    return !s.max || s.score / s.max >= PASS_MIN;
+  }
+  if (s.type === 'test') {
+    if (s.detail && s.detail.paper) return true;
+    return !s.max || s.score / s.max >= TEST_MIN;
+  }
+  return false;
+}
 
 const addDays = (d, n) => { const x = new Date(d + 'T00:00:00'); x.setDate(x.getDate() + n); return x.toISOString().slice(0, 10); };
 export const isoWeek = d => { const x = new Date(d + 'T00:00:00'); const day = (x.getDay() + 6) % 7; x.setDate(x.getDate() - day + 3); const first = new Date(x.getFullYear(), 0, 4); const w = 1 + Math.round(((x - first) / 86400e3 - 3 + ((first.getDay() + 6) % 7)) / 7); return `${x.getFullYear()}-W${String(w).padStart(2, '0')}`; };
@@ -39,7 +56,7 @@ export function buildItems(mods, results, todayStr) {
 
 // Matcha planposter mot sessions. Returnerar items med status: done | rescued | missed | open | future, och doneDay.
 export function evaluate(items, sessions, results, todayStr) {
-  const pool = sessions.filter(s => s.type === 'pass' || s.type === 'test').map(s => ({ ...s, used: false })).sort((a, b) => a.d.localeCompare(b.d));
+  const pool = sessions.filter(s => (s.type === 'pass' || s.type === 'test') && counts(s)).map(s => ({ ...s, used: false })).sort((a, b) => a.d.localeCompare(b.d));
   const out = items.map(it => ({ ...it }));
   // först: poster i datumordning, varje tar den tidigaste passande oanvända sessionen inom [date-7, date+RESCUE]
   for (const it of out) {
