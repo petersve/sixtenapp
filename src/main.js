@@ -19,6 +19,7 @@ const TAB_OF = { lecquiz: 'lectures', today: 'today', home: 'exams', exams: 'exa
 const IMMERSIVE = ['auth', 'onboard', 'session', 'paper'];
 let GOALS = [];                // betygsmål för eleven som visas
 let RESULTS = [];              // utfall per prov
+let SNOOZES = [];              // uppskjutna betygsfrågor (provet inte tillbaka än)
 const GRADE_ORD = { A: 5, B: 4, C: 3, D: 2, E: 1, F: 0 };
 function resultFor(m) { return RESULTS.find(r => r.module_id === m.id) || null; }
 function resultPill(m) { const r = resultFor(m); if (!r) return ''; const g = goalFor(m); const cls = !g ? '' : GRADE_ORD[r.grade] >= GRADE_ORD[g.goal] ? 'G' : 'H'; return `<span class="pill ${cls}" style="${cls === 'H' ? 'color:var(--bad)' : ''}">Fick ${r.grade}</span>`; }
@@ -205,7 +206,7 @@ function home() {
 }
 function studentName() { const s = MEMBERS.find(m => m.id === student); return s ? s.display_name : 'eleven'; }
 async function switchModule(id) { if (MOD && MOD.id === id) return; const m = await db.loadModule(id); setModule(m); S = await db.loadProgress(student, MOD.id); go(view.name === 'coach' ? 'coach' : 'home'); }
-async function refreshAll() { ALLSESS = await db.loadAllSessions(student); RESULTS = await db.loadResults(student); }
+async function refreshAll() { ALLSESS = await db.loadAllSessions(student); RESULTS = await db.loadResults(student); SNOOZES = await db.loadSnoozes(student); }
 
 // ---------- PASSET ----------
 function startSession() {
@@ -415,7 +416,7 @@ function map() {
 }
 
 // ---------- IDAG ----------
-function planState() { const t = today(); const items = buildItems(MODS, RESULTS, t); const ev = evaluate(items, ALLSESS, RESULTS, t); return { t, ev, weeks: weekReport(ev, t) }; }
+function planState() { const t = today(); const items = buildItems(MODS, RESULTS, t, SNOOZES); const ev = evaluate(items, ALLSESS, RESULTS, t); return { t, ev, weeks: weekReport(ev, t) }; }
 function itemAction(it) { return `data-act="${it.kind}" data-m="${it.moduleId}"`; }
 function itemRow(it, cls = '') {
   const icon = it.status === 'done' ? '✓' : it.status === 'rescued' ? '✓' : it.status === 'missed' ? '✕' : '';
@@ -428,7 +429,7 @@ function todayView() {
   const { t, ev, weeks } = planState();
   const late = ev.filter(i => i.status === 'late');
   const todays = ev.filter(i => (i.date === t && (i.status === 'open' || i.status === 'done' || i.status === 'rescued')) || (i.kind === 'grade' && i.status === 'open'));
-  const upcoming = ev.filter(i => i.status === 'future').slice(0, 3);
+  const upcoming = ev.filter(i => i.status === 'future' && i.kind !== 'grade').slice(0, 3);
   const wk = weeks.find(w => w.week === isoW(t));
   const allDone = todays.length && todays.every(i => i.status !== 'open') && !late.length;
   const st = streakAll();
@@ -641,8 +642,10 @@ function result() {
       <div class="row">${['A','B','C','D','E','F'].map(l => `<button class="btn small ${r && r.grade === l ? 'primary' : ''}" data-g="${l}" style="min-width:52px;font-size:1.2rem">${l}</button>`).join('')}</div>
       <div><label for="rc">Kommentar (valfritt)</label><input type="text" id="rc" value="${r ? esc(r.comment || '') : ''}" placeholder="t.ex. 38/45 p, missade del 2"></div>
       <div id="rerr"></div></div>` : `<p class="muted">Betyget är inlagt. Vill du ändra, be en förälder.</p>`}
+    ${!r ? `<button class="check" id="snz" style="padding:12px 14px"><span class="box">⏳</span><span style="min-width:0"><b>Har inte fått tillbaka provet än</b><br><span class="muted" style="font-size:.9rem">${(() => { const sn = SNOOZES.find(x => x.module_id === m.id); return sn && sn.until > today() ? `Frågar igen ${fmtDate(sn.until)}. Tryck för att skjuta upp 7 dagar till.` : 'Fråga igen om 7 dagar. Veckan påverkas inte.'; })()}</span></span></button>` : ''}
   </div>` + after(() => {
     document.getElementById('bk').onclick = () => go(view.from || 'exams');
+    const sz = document.getElementById('snz'); if (sz) sz.onclick = async () => { try { const base = SNOOZES.find(x => x.module_id === m.id); const from = base && base.until > today() ? base.until : today(); await db.snoozeResult(student, m.id, addD(from, 7)); SNOOZES = await db.loadSnoozes(student); toast('Frågar igen om en vecka'); go(view.from || 'exams'); } catch (e) { toast('Kunde inte spara: ' + e.message); } };
     document.querySelectorAll('[data-g]').forEach(b => b.onclick = async () => { try { await db.setResult(student, m.id, b.dataset.g, document.getElementById('rc').value.trim()); RESULTS = await db.loadResults(student); toast('Sparat: ' + b.dataset.g); render(); } catch (e) { document.getElementById('rerr').innerHTML = `<div class="fb no">${esc(e.message)}</div>`; } });
   });
 }
@@ -701,7 +704,7 @@ async function boot() {
   MEMBERS = await db.familyMembers(); const members = MEMBERS;
   student = me.role === 'student' ? me.id : (members.find(m => m.role === 'student') || {}).id || me.id;
   let want = null; try { want = localStorage.getItem('mod'); } catch (e) {}
-  GOALS = student ? await db.loadGoals(student) : []; RESULTS = student ? await db.loadResults(student) : [];
+  GOALS = student ? await db.loadGoals(student) : []; RESULTS = student ? await db.loadResults(student) : []; SNOOZES = student ? await db.loadSnoozes(student) : [];
   [ALLSESS, LECTURES, REVIEWS] = student ? await Promise.all([db.loadAllSessions(student), db.loadLectures(student), db.loadLectureReviews(student)]) : [[], [], []];
   const withC = MODS.filter(m => m.has_content); const t0 = today();
   const first = withC.find(m => m.id === want) || withC.find(m => m.exam_date >= t0) || withC[withC.length - 1];

@@ -63,6 +63,10 @@ export async function setGoal(userId, subject, goal, grade = 9) { const { data: 
 export async function loadResults(userId) { const { data } = await sb.from('exam_results').select('module_id,grade,comment,entered_by,entered_at').eq('user_id', userId); return data || []; }
 export async function setResult(userId, moduleId, grade, comment) { const { data: { user } } = await sb.auth.getUser(); const { error } = await sb.from('exam_results').upsert({ user_id: userId, module_id: moduleId, grade, comment: comment || null, entered_by: user?.id, entered_at: new Date().toISOString() }); if (error) throw error; }
 
+// "Har inte fått tillbaka provet": fråga om betyg igen ett senare datum
+export async function loadSnoozes(userId) { const { data } = await sb.from('result_snooze').select('module_id,until').eq('user_id', userId); return data || []; }
+export async function snoozeResult(userId, moduleId, until) { const { data: { user } } = await sb.auth.getUser(); const { error } = await sb.from('result_snooze').upsert({ user_id: userId, module_id: moduleId, until, set_by: user?.id, set_at: new Date().toISOString() }); if (error) throw error; }
+
 // Alla pass/prov för en elev (alla moduler) – för Idag och Bonus
 export async function loadAllSessions(userId) { const { data } = await sb.from('sessions').select('module_id,kind,day,score,max,minutes,detail,created_at').eq('user_id', userId).order('created_at'); return (data || []).map(s => ({ module_id: s.module_id, type: s.kind, d: s.day, score: s.score, max: s.max, mins: s.minutes, detail: s.detail })); }
 

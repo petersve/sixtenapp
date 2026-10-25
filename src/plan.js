@@ -64,7 +64,7 @@ export const isoWeek = d => { const x = new Date(d + 'T00:00:00'); const day = (
 export const weekStart = d => { const x = new Date(d + 'T00:00:00'); const day = (x.getDay() + 6) % 7; x.setDate(x.getDate() - day); return x.toISOString().slice(0, 10); };
 
 // Bygg planposter från modulerna (modules_list med plan) och passerade prov utan betyg.
-export function buildItems(mods, results, todayStr) {
+export function buildItems(mods, results, todayStr, snoozes = []) {
   const items = [];
   for (const m of mods) {
     if (!m.has_content) continue;
@@ -84,8 +84,9 @@ export function buildItems(mods, results, todayStr) {
   for (const m of mods) {
     if (!m.exam_date || m.exam_date >= todayStr || m.kind === 'diagnos') continue;
     if (results.some(r => r.module_id === m.id)) continue;
-    const due = addDays(m.exam_date, 7);
-    items.push({ key: `${m.id}:grade`, date: due, moduleId: m.id, title: `${m.subject}: ${m.title}`, kind: 'grade', label: 'Lägg in betyget du fick' });
+    const sn = snoozes.find(s => s.module_id === m.id);
+    const due = sn && sn.until > addDays(m.exam_date, 7) ? sn.until : addDays(m.exam_date, 7);
+    items.push({ key: `${m.id}:grade`, date: due, moduleId: m.id, title: `${m.subject}: ${m.title}`, kind: 'grade', label: sn ? 'Fått tillbaka provet? Lägg in betyget' : 'Lägg in betyget du fick', snoozed: !!sn });
   }
   return items.sort((a, b) => a.date.localeCompare(b.date));
 }
@@ -96,7 +97,7 @@ export function evaluate(items, sessions, results, todayStr) {
   const out = items.map(it => ({ ...it }));
   // först: poster i datumordning, varje tar den tidigaste passande oanvända sessionen inom [date-7, date+RESCUE]
   for (const it of out) {
-    if (it.kind === 'grade') { const r = results.find(x => x.module_id === it.moduleId); it.status = r ? 'done' : it.date < todayStr ? 'missed' : 'open'; continue; }
+    if (it.kind === 'grade') { const r = results.find(x => x.module_id === it.moduleId); it.status = r ? 'done' : it.date > todayStr ? 'future' : it.date < addDays(todayStr, -RESCUE_DAYS) ? 'missed' : 'open'; continue; }
     const want = it.kind === 'pass' ? 'pass' : 'test';
     const cand = pool.find(s => !s.used && s.module_id === it.moduleId && s.type === want && s.d >= addDays(it.date, -7) && s.d <= addDays(it.date, RESCUE_DAYS));
     if (cand) { cand.used = true; it.doneDay = cand.d; it.status = cand.d <= it.date ? 'done' : 'rescued'; }
