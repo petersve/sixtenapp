@@ -1,124 +1,1311 @@
 {
   "slug": "fr-v49-skriv-yrken",
   "plan": [
-    { "date": "2026-10-28", "label": "Ons 28/10", "items": ["Pass 1: être och avoir"] },
-    { "date": "2026-11-01", "label": "Sön 1/11", "items": ["Pass 2: ER-verb, mönstret"] },
-    { "date": "2026-11-04", "label": "Ons 4/11", "items": ["Pass 3: faire och aller"] },
-    { "date": "2026-11-08", "label": "Sön 8/11", "items": ["Pass 4: yrken och 'il est médecin'"] },
-    { "date": "2026-11-11", "label": "Ons 11/11", "items": ["Pass 5: sambandsord et, ou, mais, avec"] },
-    { "date": "2026-11-15", "label": "Sön 15/11", "items": ["Pass 6: meningsmallarna", "Skriv 6 meningar om ett yrke (papper)"] },
-    { "date": "2026-11-18", "label": "Ons 18/11", "items": ["Pass 7: röda kort"] },
-    { "date": "2026-11-22", "label": "Sön 22/11", "items": ["Pass 8: blandat", "Skriv 8 meningar om din familj och deras jobb (papper)"] },
-    { "date": "2026-11-25", "label": "Ons 25/11", "items": ["Pass 9: alla verb ur minnet"] },
-    { "date": "2026-11-29", "label": "Sön 29/11", "items": ["Övningsprov", "Skriv en text på 60–80 ord om ett yrke, 30 min (papper)"] },
-    { "date": "2026-12-02", "label": "Ons 2/12", "items": ["Snabbvärmning: être, avoir, faire, aller"] }
+    {
+      "date": "2026-10-28",
+      "label": "Ons 28/10",
+      "items": [
+        "Pass 1: être och avoir"
+      ]
+    },
+    {
+      "date": "2026-11-01",
+      "label": "Sön 1/11",
+      "items": [
+        "Pass 2: ER-verb, mönstret"
+      ]
+    },
+    {
+      "date": "2026-11-04",
+      "label": "Ons 4/11",
+      "items": [
+        "Pass 3: faire och aller"
+      ]
+    },
+    {
+      "date": "2026-11-08",
+      "label": "Sön 8/11",
+      "items": [
+        "Pass 4: yrken och 'il est médecin'"
+      ]
+    },
+    {
+      "date": "2026-11-11",
+      "label": "Ons 11/11",
+      "items": [
+        "Pass 5: sambandsord et, ou, mais, avec"
+      ]
+    },
+    {
+      "date": "2026-11-15",
+      "label": "Sön 15/11",
+      "items": [
+        "Pass 6: meningsmallarna",
+        "Skriv 6 meningar om ett yrke (papper)"
+      ]
+    },
+    {
+      "date": "2026-11-18",
+      "label": "Ons 18/11",
+      "items": [
+        "Pass 7: röda kort"
+      ]
+    },
+    {
+      "date": "2026-11-22",
+      "label": "Sön 22/11",
+      "items": [
+        "Pass 8: blandat",
+        "Skriv 8 meningar om din familj och deras jobb (papper)"
+      ]
+    },
+    {
+      "date": "2026-11-25",
+      "label": "Ons 25/11",
+      "items": [
+        "Pass 9: alla verb ur minnet"
+      ]
+    },
+    {
+      "date": "2026-11-29",
+      "label": "Sön 29/11",
+      "items": [
+        "Övningsprov",
+        "Skriv en text på 60–80 ord om ett yrke, 30 min (papper)"
+      ]
+    },
+    {
+      "date": "2026-12-02",
+      "label": "Ons 2/12",
+      "items": [
+        "Snabbvärmning: être, avoir, faire, aller"
+      ]
+    }
   ],
   "cards": [
-    { "id": "etre", "lvl": "G", "t": "Verb", "q": "Böj être (vara) i presens.", "a": "je suis · tu es · il/elle est · nous sommes · vous êtes · ils/elles sont", "why": "Être är det verb du använder mest: Je suis élève. Il est médecin. Lär dig det som en ramsa: suis, es, est, sommes, êtes, sont.", "ex": "Je suis fatigué. Elle est professeur. Nous sommes à Paris." },
-    { "id": "avoir", "lvl": "G", "t": "Verb", "q": "Böj avoir (ha) i presens.", "a": "j'ai · tu as · il/elle a · nous avons · vous avez · ils/elles ont", "why": "Avoir används för att äga saker men också för ålder: J'ai 15 ans (inte 'je suis 15 ans').", "ex": "J'ai un frère. Il a une voiture. Ils ont un chien." },
-    { "id": "etre-vs-avoir", "lvl": "G", "t": "Verb", "q": "När är det être och när är det avoir?", "a": "Être = vara (vem/hur någon är). Avoir = ha (vad någon har, och ålder).", "why": "På provet blandas de ofta ihop. Testa med svenska: 'är' → être, 'har' → avoir. Undantag: ålder är avoir.", "ex": "Il est boulanger (han är bagare). Il a une boulangerie (han har ett bageri). Il a 40 ans." },
-    { "id": "er-monster", "lvl": "G", "t": "Verb", "q": "Hur böjer du ett regelbundet ER-verb, t.ex. travailler (arbeta)?", "a": "Ta bort -er, lägg till: -e, -es, -e, -ons, -ez, -ent. je travaille · tu travailles · il travaille · nous travaillons · vous travaillez · ils travaillent", "why": "Alla ER-verb följer samma mönster. Kan du ett kan du hundra. Ändelserna -e, -es, -e, -ent uttalas likadant, det är bara stavningen som skiljer.", "ex": "parler → je parle, nous parlons. aimer → j'aime, ils aiment. habiter → j'habite, vous habitez." },
-    { "id": "er-vanliga", "lvl": "G", "t": "Verb", "q": "Vilka ER-verb behöver du för att skriva om yrken?", "a": "travailler (arbeta), aimer (tycka om), parler (prata), habiter (bo), aider (hjälpa), gagner (tjäna), commencer (börja), préparer (förbereda/laga)", "why": "Med dessa åtta plus être, avoir, faire, aller kan du skriva allt provet kräver.", "ex": "Je travaille à l'hôpital. J'aime mon travail. Elle parle anglais. Il aide les malades." },
-    { "id": "faire", "lvl": "G", "t": "Verb", "q": "Böj faire (göra) i presens.", "a": "je fais · tu fais · il/elle fait · nous faisons · vous faites · ils/elles font", "why": "Faire är oregelbundet: fais, fais, fait, faisons, faites, font. Observera 'vous faites' (inte 'faisez') och 'ils font'.", "ex": "Qu'est-ce que tu fais? Je fais du sport. Il fait du pain." },
-    { "id": "aller", "lvl": "G", "t": "Verb", "q": "Böj aller (gå/åka) i presens.", "a": "je vais · tu vas · il/elle va · nous allons · vous allez · ils/elles vont", "why": "Aller ser ut som ett ER-verb men är helt oregelbundet. Vais, vas, va, allons, allez, vont.", "ex": "Je vais à l'école. Il va au travail. Ils vont à Paris." },
-    { "id": "aller-a", "lvl": "G", "t": "Grammatik", "q": "Hur säger du 'till' efter aller: à + le, à + la, à + les?", "a": "à + le = au · à + la = à la · à + l' = à l' · à + les = aux", "why": "'à le' finns inte, det blir alltid 'au'. Det är ett av de vanligaste felen i uppsatser.", "ex": "Je vais au travail. Elle va à la boulangerie. Nous allons à l'hôpital. Ils vont aux magasins." },
-    { "id": "yrken1", "lvl": "G", "t": "Ord", "q": "Yrken, del 1: läkare, sjuksköterska, lärare, bagare, polis.", "a": "médecin · infirmier / infirmière · professeur · boulanger / boulangère · policier / policière", "why": "Många yrken har en kvinnlig form med -ère eller -euse. Médecin och professeur är samma för båda.", "ex": "Ma mère est médecin. Mon père est boulanger. Ma sœur est infirmière." },
-    { "id": "yrken2", "lvl": "G", "t": "Ord", "q": "Yrken, del 2: ingenjör, säljare, kock, mekaniker, journalist.", "a": "ingénieur · vendeur / vendeuse · cuisinier / cuisinière · mécanicien / mécanicienne · journaliste", "why": "Välj två eller tre yrken du kan stava säkert och skriv om dem. Hellre rätt stavat 'cuisinier' än fel stavat 'kirurg'.", "ex": "Il est cuisinier dans un restaurant. Elle est journaliste à la télé." },
-    { "id": "ingen-artikel", "lvl": "G", "t": "Grammatik", "q": "Hur säger du 'Han är läkare' på franska?", "a": "Il est médecin. Ingen artikel (inte 'un médecin') efter être när man säger vad någon jobbar som.", "why": "På svenska säger vi också 'han är läkare', inte 'han är en läkare'. Franskan gör likadant. Artikel kommer bara om det finns ett adjektiv: 'Il est un bon médecin.'", "ex": "Je suis élève. Elle est professeur. Ils sont policiers." },
-    { "id": "mall-jag", "lvl": "G", "t": "Meningar", "q": "Fem meningsmallar för att skriva om dig själv.", "a": "Je m'appelle … · J'ai 15 ans · Je suis élève · J'habite à … · J'aime …", "why": "Börja alltid uppsatsen med två eller tre av dessa. Det är säkra poäng och du kommer igång.", "ex": "Je m'appelle Sixten. J'ai 15 ans. Je suis élève. J'habite à Stockholm. J'aime le hockey." },
-    { "id": "mall-yrke", "lvl": "G", "t": "Meningar", "q": "Fem meningsmallar för att skriva om ett yrke.", "a": "Il/Elle est … (yrke) · Il travaille à / dans … · Il fait … · Il aide … · Il aime son travail", "why": "Varje mall är en komplett mening med subjekt och böjt verb. Det är det provet bedömer: korta, hela meningar.", "ex": "Ma mère est médecin. Elle travaille à l'hôpital. Elle aide les malades. Elle aime son travail." },
-    { "id": "plats", "lvl": "G", "t": "Ord", "q": "Var jobbar man? Sjukhus, skola, restaurang, affär, kontor, bageri.", "a": "à l'hôpital · à l'école · dans un restaurant · dans un magasin · dans un bureau · dans une boulangerie", "why": "'à' för platser med bestämd artikel (l'hôpital, l'école), 'dans un/une' för 'i en/ett'.", "ex": "Il travaille dans un bureau. Elle travaille à l'école." },
-    { "id": "samband", "lvl": "G", "t": "Sambandsord", "q": "Fyra sambandsord: och, eller, men, med.", "a": "et (och) · ou (eller) · mais (men) · avec (med)", "why": "Ett sambandsord gör två korta meningar till en bättre. Läraren nämner just dessa fyra.", "ex": "Il est médecin et il travaille à l'hôpital. Elle aime son travail mais elle est fatiguée. Je travaille avec mon père." },
-    { "id": "samband2", "lvl": "H", "t": "Sambandsord", "q": "Två sambandsord till: därför att, också.", "a": "parce que (därför att) · aussi (också)", "why": "'parce que' ger en förklaring och höjer texten direkt. 'aussi' sätts efter verbet.", "ex": "Il aime son travail parce qu'il aide les gens. Elle parle anglais et elle parle aussi espagnol." },
-    { "id": "negation", "lvl": "H", "t": "Grammatik", "q": "Hur gör du en mening nekande?", "a": "ne … pas runt verbet: Je ne travaille pas. Il n'est pas médecin.", "why": "'ne' blir n' framför vokal. Ett 'ne … pas' i uppsatsen visar att du kan mer än det minsta.", "ex": "Je n'aime pas les maths. Elle ne parle pas français." },
-    { "id": "fraga", "lvl": "H", "t": "Meningar", "q": "Hur frågar du vad någon gör / jobbar med?", "a": "Qu'est-ce que tu fais? · Qu'est-ce qu'il fait dans la vie?", "why": "Bra om texten är en dialog eller presentation. 'dans la vie' = i livet = till vardags.", "ex": "Qu'est-ce que ta mère fait dans la vie? Elle est ingénieur." },
-    { "id": "possessiv", "lvl": "G", "t": "Grammatik", "q": "Min/mitt, din/ditt, hans/hennes framför ett substantiv.", "a": "mon / ma / mes · ton / ta / tes · son / sa / ses", "why": "Mon framför maskulina ord (mon père), ma framför feminina (ma mère), mes i plural (mes parents). Son/sa betyder både hans och hennes.", "ex": "Mon père est mécanicien. Ma mère travaille dans un bureau. Mes parents aiment leur travail." },
-    { "id": "stava", "lvl": "G", "t": "Metod", "q": "Vad gör du när du inte vet hur ett ord stavas på provet?", "a": "Byt till ett ord du kan. Skriv om meningen. Fem korta rätta meningar slår en lång fel.", "why": "Provet bedömer om du kan skriva fullständiga meningar i presens, inte hur avancerade orden är.", "ex": "Vet du inte 'kirurg'? Skriv 'médecin'. Vet du inte 'tjänar mycket'? Skriv 'aime son travail'." },
-    { "id": "checklista", "lvl": "G", "t": "Metod", "q": "Checklista innan du lämnar in texten.", "a": "1) Varje mening har subjekt + böjt verb. 2) Rätt form av être/avoir/faire/aller. 3) ER-verb: je -e, il -e, ils -ent. 4) Ingen artikel efter 'est' + yrke. 5) Minst tre sambandsord.", "why": "Två minuter med checklistan hittar hälften av felen. Gör den varje gång, också på passen.", "ex": "Fel: 'Il médecin.' Rätt: 'Il est médecin.' Fel: 'Je travaillez.' Rätt: 'Je travaille.'" },
-    { "id": "il-y-a", "lvl": "H", "t": "Meningar", "q": "Hur säger du 'det finns'?", "a": "il y a", "why": "Ändras aldrig i presens. Perfekt för att beskriva en arbetsplats.", "ex": "Dans l'hôpital, il y a beaucoup de médecins. Il y a un restaurant dans ma rue." }
+    {
+      "id": "etre",
+      "lvl": "G",
+      "t": "Verb",
+      "q": "Böj être (vara) i presens.",
+      "a": "je suis · tu es · il/elle est · nous sommes · vous êtes · ils/elles sont",
+      "why": "Être är det verb du använder mest: Je suis élève. Il est médecin. Lär dig det som en ramsa: suis, es, est, sommes, êtes, sont.",
+      "ex": "Je suis fatigué. Elle est professeur. Nous sommes à Paris."
+    },
+    {
+      "id": "avoir",
+      "lvl": "G",
+      "t": "Verb",
+      "q": "Böj avoir (ha) i presens.",
+      "a": "j'ai · tu as · il/elle a · nous avons · vous avez · ils/elles ont",
+      "why": "Avoir används för att äga saker men också för ålder: J'ai 15 ans (inte 'je suis 15 ans').",
+      "ex": "J'ai un frère. Il a une voiture. Ils ont un chien."
+    },
+    {
+      "id": "etre-vs-avoir",
+      "lvl": "G",
+      "t": "Verb",
+      "q": "När är det être och när är det avoir?",
+      "a": "Être = vara (vem/hur någon är). Avoir = ha (vad någon har, och ålder).",
+      "why": "På provet blandas de ofta ihop. Testa med svenska: 'är' → être, 'har' → avoir. Undantag: ålder är avoir.",
+      "ex": "Il est boulanger (han är bagare). Il a une boulangerie (han har ett bageri). Il a 40 ans."
+    },
+    {
+      "id": "er-monster",
+      "lvl": "G",
+      "t": "Verb",
+      "q": "Hur böjer du ett regelbundet ER-verb, t.ex. travailler (arbeta)?",
+      "a": "Ta bort -er, lägg till: -e, -es, -e, -ons, -ez, -ent. je travaille · tu travailles · il travaille · nous travaillons · vous travaillez · ils travaillent",
+      "why": "Alla ER-verb följer samma mönster. Kan du ett kan du hundra. Ändelserna -e, -es, -e, -ent uttalas likadant, det är bara stavningen som skiljer.",
+      "ex": "parler → je parle, nous parlons. aimer → j'aime, ils aiment. habiter → j'habite, vous habitez."
+    },
+    {
+      "id": "er-vanliga",
+      "lvl": "G",
+      "t": "Verb",
+      "q": "Vilka ER-verb behöver du för att skriva om yrken?",
+      "a": "travailler (arbeta), aimer (tycka om), parler (prata), habiter (bo), aider (hjälpa), gagner (tjäna), commencer (börja), préparer (förbereda/laga)",
+      "why": "Med dessa åtta plus être, avoir, faire, aller kan du skriva allt provet kräver.",
+      "ex": "Je travaille à l'hôpital. J'aime mon travail. Elle parle anglais. Il aide les malades."
+    },
+    {
+      "id": "faire",
+      "lvl": "G",
+      "t": "Verb",
+      "q": "Böj faire (göra) i presens.",
+      "a": "je fais · tu fais · il/elle fait · nous faisons · vous faites · ils/elles font",
+      "why": "Faire är oregelbundet: fais, fais, fait, faisons, faites, font. Observera 'vous faites' (inte 'faisez') och 'ils font'.",
+      "ex": "Qu'est-ce que tu fais? Je fais du sport. Il fait du pain."
+    },
+    {
+      "id": "aller",
+      "lvl": "G",
+      "t": "Verb",
+      "q": "Böj aller (gå/åka) i presens.",
+      "a": "je vais · tu vas · il/elle va · nous allons · vous allez · ils/elles vont",
+      "why": "Aller ser ut som ett ER-verb men är helt oregelbundet. Vais, vas, va, allons, allez, vont.",
+      "ex": "Je vais à l'école. Il va au travail. Ils vont à Paris."
+    },
+    {
+      "id": "aller-a",
+      "lvl": "G",
+      "t": "Grammatik",
+      "q": "Hur säger du 'till' efter aller: à + le, à + la, à + les?",
+      "a": "à + le = au · à + la = à la · à + l' = à l' · à + les = aux",
+      "why": "'à le' finns inte, det blir alltid 'au'. Det är ett av de vanligaste felen i uppsatser.",
+      "ex": "Je vais au travail. Elle va à la boulangerie. Nous allons à l'hôpital. Ils vont aux magasins."
+    },
+    {
+      "id": "yrken1",
+      "lvl": "G",
+      "t": "Ord",
+      "q": "Yrken, del 1: läkare, sjuksköterska, lärare, bagare, polis.",
+      "a": "médecin · infirmier / infirmière · professeur · boulanger / boulangère · policier / policière",
+      "why": "Många yrken har en kvinnlig form med -ère eller -euse. Médecin och professeur är samma för båda.",
+      "ex": "Ma mère est médecin. Mon père est boulanger. Ma sœur est infirmière."
+    },
+    {
+      "id": "yrken2",
+      "lvl": "G",
+      "t": "Ord",
+      "q": "Yrken, del 2: ingenjör, säljare, kock, mekaniker, journalist.",
+      "a": "ingénieur · vendeur / vendeuse · cuisinier / cuisinière · mécanicien / mécanicienne · journaliste",
+      "why": "Välj två eller tre yrken du kan stava säkert och skriv om dem. Hellre rätt stavat 'cuisinier' än fel stavat 'kirurg'.",
+      "ex": "Il est cuisinier dans un restaurant. Elle est journaliste à la télé."
+    },
+    {
+      "id": "ingen-artikel",
+      "lvl": "G",
+      "t": "Grammatik",
+      "q": "Hur säger du 'Han är läkare' på franska?",
+      "a": "Il est médecin. Ingen artikel (inte 'un médecin') efter être när man säger vad någon jobbar som.",
+      "why": "På svenska säger vi också 'han är läkare', inte 'han är en läkare'. Franskan gör likadant. Med ett adjektiv byter man till c'est: 'C'est un bon médecin.'",
+      "ex": "Je suis élève. Elle est professeur. Ils sont policiers."
+    },
+    {
+      "id": "mall-jag",
+      "lvl": "G",
+      "t": "Meningar",
+      "q": "Fem meningsmallar för att skriva om dig själv.",
+      "a": "Je m'appelle … · J'ai 15 ans · Je suis élève · J'habite à … · J'aime …",
+      "why": "Börja alltid uppsatsen med två eller tre av dessa. Det är säkra poäng och du kommer igång.",
+      "ex": "Je m'appelle Sixten. J'ai 15 ans. Je suis élève. J'habite à Stockholm. J'aime le hockey."
+    },
+    {
+      "id": "mall-yrke",
+      "lvl": "G",
+      "t": "Meningar",
+      "q": "Fem meningsmallar för att skriva om ett yrke.",
+      "a": "Il/Elle est … (yrke) · Il travaille à / dans … · Il fait … · Il aide … · Il aime son travail",
+      "why": "Varje mall är en komplett mening med subjekt och böjt verb. Det är det provet bedömer: korta, hela meningar.",
+      "ex": "Ma mère est médecin. Elle travaille à l'hôpital. Elle aide les malades. Elle aime son travail."
+    },
+    {
+      "id": "plats",
+      "lvl": "G",
+      "t": "Ord",
+      "q": "Var jobbar man? Sjukhus, skola, restaurang, affär, kontor, bageri.",
+      "a": "à l'hôpital · à l'école · dans un restaurant · dans un magasin · dans un bureau · dans une boulangerie",
+      "why": "'à' för platser med bestämd artikel (l'hôpital, l'école), 'dans un/une' för 'i en/ett'.",
+      "ex": "Il travaille dans un bureau. Elle travaille à l'école."
+    },
+    {
+      "id": "samband",
+      "lvl": "G",
+      "t": "Sambandsord",
+      "q": "Fyra sambandsord: och, eller, men, med.",
+      "a": "et (och) · ou (eller) · mais (men) · avec (med)",
+      "why": "Ett sambandsord gör två korta meningar till en bättre. Läraren nämner just dessa fyra.",
+      "ex": "Il est médecin et il travaille à l'hôpital. Elle aime son travail mais elle est fatiguée. Je travaille avec mon père."
+    },
+    {
+      "id": "samband2",
+      "lvl": "H",
+      "t": "Sambandsord",
+      "q": "Två sambandsord till: därför att, också.",
+      "a": "parce que (därför att) · aussi (också)",
+      "why": "'parce que' ger en förklaring och höjer texten direkt. 'aussi' sätts efter verbet.",
+      "ex": "Il aime son travail parce qu'il aide les gens. Elle parle anglais et elle parle aussi espagnol."
+    },
+    {
+      "id": "negation",
+      "lvl": "H",
+      "t": "Grammatik",
+      "q": "Hur gör du en mening nekande?",
+      "a": "ne … pas runt verbet: Je ne travaille pas. Il n'est pas médecin.",
+      "why": "'ne' blir n' framför vokal. Ett 'ne … pas' i uppsatsen visar att du kan mer än det minsta.",
+      "ex": "Je n'aime pas les maths. Elle ne parle pas français."
+    },
+    {
+      "id": "fraga",
+      "lvl": "H",
+      "t": "Meningar",
+      "q": "Hur frågar du vad någon gör / jobbar med?",
+      "a": "Qu'est-ce que tu fais? · Qu'est-ce qu'il fait dans la vie?",
+      "why": "Bra om texten är en dialog eller presentation. 'dans la vie' = i livet = till vardags.",
+      "ex": "Qu'est-ce que ta mère fait dans la vie? Elle est ingénieur."
+    },
+    {
+      "id": "possessiv",
+      "lvl": "G",
+      "t": "Grammatik",
+      "q": "Min/mitt, din/ditt, hans/hennes framför ett substantiv.",
+      "a": "mon / ma / mes · ton / ta / tes · son / sa / ses",
+      "why": "Mon framför maskulina ord (mon père), ma framför feminina (ma mère), mes i plural (mes parents). Son/sa betyder både hans och hennes.",
+      "ex": "Mon père est mécanicien. Ma mère travaille dans un bureau. Mes parents aiment leur travail."
+    },
+    {
+      "id": "stava",
+      "lvl": "G",
+      "t": "Metod",
+      "q": "Vad gör du när du inte vet hur ett ord stavas på provet?",
+      "a": "Byt till ett ord du kan. Skriv om meningen. Fem korta rätta meningar slår en lång fel.",
+      "why": "Provet bedömer om du kan skriva fullständiga meningar i presens, inte hur avancerade orden är.",
+      "ex": "Vet du inte 'kirurg'? Skriv 'médecin'. Vet du inte 'tjänar mycket'? Skriv 'aime son travail'."
+    },
+    {
+      "id": "checklista",
+      "lvl": "G",
+      "t": "Metod",
+      "q": "Checklista innan du lämnar in texten.",
+      "a": "1) Varje mening har subjekt + böjt verb. 2) Rätt form av être/avoir/faire/aller. 3) ER-verb: je -e, il -e, ils -ent. 4) Ingen artikel efter 'est' + yrke. 5) Minst tre sambandsord.",
+      "why": "Två minuter med checklistan hittar hälften av felen. Gör den varje gång, också på passen.",
+      "ex": "Fel: 'Il médecin.' Rätt: 'Il est médecin.' Fel: 'Je travaillez.' Rätt: 'Je travaille.'"
+    },
+    {
+      "id": "il-y-a",
+      "lvl": "H",
+      "t": "Meningar",
+      "q": "Hur säger du 'det finns'?",
+      "a": "il y a",
+      "why": "Ändras aldrig i presens. Perfekt för att beskriva en arbetsplats.",
+      "ex": "À l'hôpital, il y a beaucoup de médecins. Il y a un restaurant dans ma rue."
+    }
   ],
   "quiz": [
-    { "id": "q1", "c": "etre", "lvl": "G", "type": "txt", "q": "être: 'je ___'", "acc": ["suis"], "exp": "je suis." },
-    { "id": "q2", "c": "etre", "lvl": "G", "type": "txt", "q": "être: 'nous ___'", "acc": ["sommes"], "exp": "nous sommes." },
-    { "id": "q3", "c": "etre", "lvl": "G", "type": "mc", "q": "'De är lärare.'", "opts": ["Ils sont professeurs.", "Ils ont professeurs.", "Ils est professeurs.", "Ils êtes professeurs."], "ans": 0, "exp": "ils sont." },
-    { "id": "q4", "c": "etre", "lvl": "G", "type": "txt", "q": "être: 'vous ___'", "acc": ["êtes", "etes"], "exp": "vous êtes." },
-    { "id": "q5", "c": "avoir", "lvl": "G", "type": "txt", "q": "avoir: 'il ___'", "acc": ["a"], "exp": "il a." },
-    { "id": "q6", "c": "avoir", "lvl": "G", "type": "txt", "q": "avoir: 'ils ___'", "acc": ["ont"], "exp": "ils ont." },
-    { "id": "q7", "c": "avoir", "lvl": "G", "type": "mc", "q": "'Jag är 15 år.'", "opts": ["Je suis 15 ans.", "J'ai 15 ans.", "Je fais 15 ans.", "J'ai 15 années."], "ans": 1, "exp": "Ålder med avoir: j'ai 15 ans." },
-    { "id": "q8", "c": "avoir", "lvl": "G", "type": "txt", "q": "avoir: 'nous ___'", "acc": ["avons"], "exp": "nous avons." },
-    { "id": "q9", "c": "etre-vs-avoir", "lvl": "G", "type": "mc", "q": "'Hon har en bil.'", "opts": ["Elle est une voiture.", "Elle a une voiture.", "Elle fait une voiture.", "Elle va une voiture."], "ans": 1, "exp": "Ha = avoir → elle a." },
-    { "id": "q10", "c": "etre-vs-avoir", "lvl": "G", "type": "mc", "q": "'Han är bagare och han har ett bageri.'", "opts": ["Il a boulanger et il est une boulangerie.", "Il est boulanger et il a une boulangerie.", "Il est boulanger et il est une boulangerie.", "Il a boulanger et il a une boulangerie."], "ans": 1, "exp": "Är = est, har = a." },
-    { "id": "q11", "c": "er-monster", "lvl": "G", "type": "txt", "q": "travailler: 'je ___'", "acc": ["travaille"], "exp": "je travaille (-e)." },
-    { "id": "q12", "c": "er-monster", "lvl": "G", "type": "txt", "q": "travailler: 'ils ___'", "acc": ["travaillent"], "exp": "ils travaillent (-ent)." },
-    { "id": "q13", "c": "er-monster", "lvl": "G", "type": "txt", "q": "parler: 'nous ___'", "acc": ["parlons"], "exp": "nous parlons (-ons)." },
-    { "id": "q14", "c": "er-monster", "lvl": "G", "type": "mc", "q": "Vilken form är fel?", "opts": ["tu aimes", "il aime", "vous aimez", "je aimez"], "ans": 3, "exp": "je → -e, och framför vokal blir det j'aime." },
-    { "id": "q15", "c": "er-monster", "lvl": "G", "type": "txt", "q": "habiter: 'elle ___'", "acc": ["habite"], "exp": "elle habite." },
-    { "id": "q16", "c": "er-vanliga", "lvl": "G", "type": "mc", "q": "Vad betyder 'aider'?", "opts": ["älska", "hjälpa", "bo", "tjäna"], "ans": 1, "exp": "aider = hjälpa. Il aide les malades." },
-    { "id": "q17", "c": "er-vanliga", "lvl": "G", "type": "mc", "q": "'Hon bor i Paris.'", "opts": ["Elle habite à Paris.", "Elle travaille à Paris.", "Elle est à Paris habite.", "Elle habites à Paris."], "ans": 0, "exp": "habiter = bo, elle habite." },
-    { "id": "q18", "c": "er-vanliga", "lvl": "G", "type": "txt", "q": "Franska för 'arbeta' (grundform)", "acc": ["travailler"], "exp": "travailler." },
-    { "id": "q19", "c": "faire", "lvl": "G", "type": "txt", "q": "faire: 'il ___'", "acc": ["fait"], "exp": "il fait." },
-    { "id": "q20", "c": "faire", "lvl": "G", "type": "txt", "q": "faire: 'ils ___'", "acc": ["font"], "exp": "ils font." },
-    { "id": "q21", "c": "faire", "lvl": "G", "type": "mc", "q": "faire: 'vous ___'", "opts": ["faisez", "faites", "faisons", "font"], "ans": 1, "exp": "vous faites, oregelbundet." },
-    { "id": "q22", "c": "faire", "lvl": "G", "type": "txt", "q": "faire: 'je ___'", "acc": ["fais"], "exp": "je fais." },
-    { "id": "q23", "c": "aller", "lvl": "G", "type": "txt", "q": "aller: 'je ___'", "acc": ["vais"], "exp": "je vais." },
-    { "id": "q24", "c": "aller", "lvl": "G", "type": "txt", "q": "aller: 'ils ___'", "acc": ["vont"], "exp": "ils vont." },
-    { "id": "q25", "c": "aller", "lvl": "G", "type": "txt", "q": "aller: 'nous ___'", "acc": ["allons"], "exp": "nous allons." },
-    { "id": "q26", "c": "aller", "lvl": "G", "type": "mc", "q": "'Han åker till jobbet.'", "opts": ["Il va au travail.", "Il vas au travail.", "Il aller au travail.", "Il fait au travail."], "ans": 0, "exp": "il va." },
-    { "id": "q27", "c": "aller-a", "lvl": "G", "type": "mc", "q": "à + le travail = ?", "opts": ["à le travail", "au travail", "aux travail", "à la travail"], "ans": 1, "exp": "à + le = au." },
-    { "id": "q28", "c": "aller-a", "lvl": "G", "type": "mc", "q": "'Vi går till sjukhuset.'", "opts": ["Nous allons au hôpital.", "Nous allons à l'hôpital.", "Nous allons à la hôpital.", "Nous allons aux hôpital."], "ans": 1, "exp": "hôpital börjar på vokalljud → à l'hôpital." },
-    { "id": "q29", "c": "aller-a", "lvl": "H", "type": "txt", "q": "à + les magasins = '___ magasins'", "acc": ["aux"], "exp": "à + les = aux." },
-    { "id": "q30", "c": "yrken1", "lvl": "G", "type": "txt", "q": "Läkare på franska", "acc": ["médecin", "medecin"], "exp": "médecin." },
-    { "id": "q31", "c": "yrken1", "lvl": "G", "type": "mc", "q": "Sjuksköterska (kvinna)", "opts": ["infirmier", "infirmière", "infirmeuse", "infirme"], "ans": 1, "exp": "infirmière, med -ère." },
-    { "id": "q32", "c": "yrken1", "lvl": "G", "type": "txt", "q": "Bagare (man) på franska", "acc": ["boulanger"], "exp": "boulanger." },
-    { "id": "q33", "c": "yrken1", "lvl": "G", "type": "mc", "q": "Vad betyder 'professeur'?", "opts": ["professor på universitet, bara", "lärare", "rektor", "elev"], "ans": 1, "exp": "professeur = lärare (vardagligt 'prof')." },
-    { "id": "q34", "c": "yrken2", "lvl": "G", "type": "txt", "q": "Kock (man) på franska", "acc": ["cuisinier"], "exp": "cuisinier." },
-    { "id": "q35", "c": "yrken2", "lvl": "G", "type": "mc", "q": "Säljare (kvinna)", "opts": ["vendeur", "vendeuse", "vendrice", "vendeure"], "ans": 1, "exp": "vendeur → vendeuse." },
-    { "id": "q36", "c": "yrken2", "lvl": "G", "type": "txt", "q": "Ingenjör på franska", "acc": ["ingénieur", "ingenieur"], "exp": "ingénieur." },
-    { "id": "q37", "c": "ingen-artikel", "lvl": "G", "type": "mc", "q": "'Han är läkare.'", "opts": ["Il est un médecin.", "Il est médecin.", "Il a médecin.", "Il est le médecin."], "ans": 1, "exp": "Ingen artikel efter est + yrke." },
-    { "id": "q38", "c": "ingen-artikel", "lvl": "G", "type": "mc", "q": "'Min mamma är lärare.'", "opts": ["Ma mère est une professeur.", "Ma mère est professeur.", "Ma mère a professeur.", "Ma mère professeur."], "ans": 1, "exp": "Ma mère est professeur." },
-    { "id": "q39", "c": "ingen-artikel", "lvl": "H", "type": "mc", "q": "När får man ha artikel efter être + yrke?", "opts": ["Aldrig", "När det finns ett adjektiv: Il est un bon médecin.", "Alltid i plural", "När yrket är feminint"], "ans": 1, "exp": "Med adjektiv kommer artikeln tillbaka." },
-    { "id": "q40", "c": "mall-jag", "lvl": "G", "type": "mc", "q": "'Jag heter Sixten.'", "opts": ["Je suis appelle Sixten.", "Je m'appelle Sixten.", "J'appelle Sixten.", "Je me appelle Sixten."], "ans": 1, "exp": "Je m'appelle." },
-    { "id": "q41", "c": "mall-jag", "lvl": "G", "type": "mc", "q": "'Jag bor i Stockholm.'", "opts": ["Je habite à Stockholm.", "J'habite à Stockholm.", "Je suis à Stockholm habite.", "J'habites à Stockholm."], "ans": 1, "exp": "j'habite, h är stumt så je → j'." },
-    { "id": "q42", "c": "mall-jag", "lvl": "G", "type": "mc", "q": "'Jag tycker om hockey.'", "opts": ["J'aime le hockey.", "Je aime hockey.", "J'ai le hockey.", "Je suis le hockey."], "ans": 0, "exp": "J'aime le hockey." },
-    { "id": "q43", "c": "mall-yrke", "lvl": "G", "type": "mc", "q": "'Hon jobbar på sjukhuset.'", "opts": ["Elle travaille à l'hôpital.", "Elle travail à l'hôpital.", "Elle travailles à l'hôpital.", "Elle est travaille à l'hôpital."], "ans": 0, "exp": "elle travaille (-e)." },
-    { "id": "q44", "c": "mall-yrke", "lvl": "G", "type": "mc", "q": "'Han hjälper de sjuka.'", "opts": ["Il aide les malades.", "Il aides les malades.", "Il aider les malades.", "Il est aide les malades."], "ans": 0, "exp": "il aide." },
-    { "id": "q45", "c": "mall-yrke", "lvl": "G", "type": "mc", "q": "'Hon tycker om sitt jobb.'", "opts": ["Elle aime son travail.", "Elle aime sa travail.", "Elle a son travail.", "Elle aime ses travail."], "ans": 0, "exp": "travail är maskulint → son travail." },
-    { "id": "q46", "c": "plats", "lvl": "G", "type": "mc", "q": "'Han jobbar i en restaurang.'", "opts": ["Il travaille dans un restaurant.", "Il travaille à restaurant.", "Il travaille dans le restaurant à.", "Il travaille au une restaurant."], "ans": 0, "exp": "dans un restaurant." },
-    { "id": "q47", "c": "plats", "lvl": "G", "type": "mc", "q": "'Hon jobbar i skolan.'", "opts": ["Elle travaille à l'école.", "Elle travaille dans école.", "Elle travaille au école.", "Elle travaille à la école."], "ans": 0, "exp": "école börjar på vokal → à l'école." },
-    { "id": "q48", "c": "samband", "lvl": "G", "type": "txt", "q": "'men' på franska", "acc": ["mais"], "exp": "mais." },
-    { "id": "q49", "c": "samband", "lvl": "G", "type": "txt", "q": "'med' på franska", "acc": ["avec"], "exp": "avec." },
-    { "id": "q50", "c": "samband", "lvl": "G", "type": "mc", "q": "Välj rätt ord: 'Il est médecin ___ il travaille à l'hôpital.'", "opts": ["ou", "et", "avec", "mais"], "ans": 1, "exp": "et = och." },
-    { "id": "q51", "c": "samband", "lvl": "G", "type": "mc", "q": "Välj rätt ord: 'Elle aime son travail ___ elle est fatiguée.'", "opts": ["et", "ou", "mais", "avec"], "ans": 2, "exp": "mais = men." },
-    { "id": "q52", "c": "samband2", "lvl": "H", "type": "mc", "q": "'Han tycker om sitt jobb därför att han hjälper människor.'", "opts": ["Il aime son travail parce qu'il aide les gens.", "Il aime son travail mais il aide les gens.", "Il aime son travail pour il aide les gens.", "Il aime son travail parce que il aide les gens."], "ans": 0, "exp": "parce que + il → parce qu'il." },
-    { "id": "q53", "c": "samband2", "lvl": "H", "type": "mc", "q": "Var sätter du 'aussi' i 'Elle parle espagnol' (hon pratar också spanska)?", "opts": ["Aussi elle parle espagnol.", "Elle parle aussi espagnol.", "Elle parle espagnol aussi elle.", "Elle aussi parle espagnol."], "ans": 1, "exp": "Efter verbet: Elle parle aussi espagnol." },
-    { "id": "q54", "c": "negation", "lvl": "H", "type": "mc", "q": "'Jag jobbar inte.'", "opts": ["Je ne travaille pas.", "Je travaille ne pas.", "Je pas travaille.", "Ne je travaille pas."], "ans": 0, "exp": "ne + verb + pas." },
-    { "id": "q55", "c": "negation", "lvl": "H", "type": "mc", "q": "'Han är inte läkare.'", "opts": ["Il ne est pas médecin.", "Il n'est pas médecin.", "Il est ne pas médecin.", "Il n'a pas médecin."], "ans": 1, "exp": "ne → n' framför vokal." },
-    { "id": "q56", "c": "fraga", "lvl": "H", "type": "mc", "q": "'Vad gör du?'", "opts": ["Qu'est-ce que tu fais?", "Quoi tu fais?", "Qu'est-ce que tu es?", "Que fais tu est?"], "ans": 0, "exp": "Qu'est-ce que tu fais?" },
-    { "id": "q57", "c": "fraga", "lvl": "H", "type": "mc", "q": "Vad betyder 'dans la vie' i 'Qu'est-ce qu'il fait dans la vie?'", "opts": ["i staden", "till vardags / som yrke", "i livet efter detta", "på kvällen"], "ans": 1, "exp": "Vad jobbar han med?" },
-    { "id": "q58", "c": "possessiv", "lvl": "G", "type": "mc", "q": "'Min mamma'", "opts": ["mon mère", "ma mère", "mes mère", "me mère"], "ans": 1, "exp": "mère är feminint → ma." },
-    { "id": "q59", "c": "possessiv", "lvl": "G", "type": "mc", "q": "'Mina föräldrar'", "opts": ["mon parents", "ma parents", "mes parents", "mes parent"], "ans": 2, "exp": "plural → mes." },
-    { "id": "q60", "c": "possessiv", "lvl": "G", "type": "mc", "q": "'Hennes pappa' (son/sa?)", "opts": ["sa père", "son père", "ses père", "elle père"], "ans": 1, "exp": "père är maskulint → son, oavsett om det är hans eller hennes." },
-    { "id": "q61", "c": "stava", "lvl": "G", "type": "mc", "q": "Du vill skriva 'kirurg' men kan inte ordet. Vad gör du?", "opts": ["Gissar på stavningen", "Skriver det på svenska", "Skriver 'médecin' i stället", "Hoppar över meningen"], "ans": 2, "exp": "Byt till ett ord du kan. Meningen blir rätt och poängen räknas." },
-    { "id": "q62", "c": "stava", "lvl": "G", "type": "mc", "q": "Vad ger mest poäng på skrivprovet?", "opts": ["Många avancerade ord", "Korta, fullständiga meningar i presens med rätt böjda verb", "Dåtidsformer", "En lång text oavsett fel"], "ans": 1, "exp": "Det är det läraren skriver att provet bedömer." },
-    { "id": "q63", "c": "checklista", "lvl": "G", "type": "mc", "q": "Vad är fel i 'Il médecin et travaille à l'hôpital'?", "opts": ["Inget", "Verbet saknas i första delen: Il est médecin", "Det ska vara 'un médecin'", "Det ska vara 'au hôpital'"], "ans": 1, "exp": "Varje mening behöver subjekt + böjt verb." },
-    { "id": "q64", "c": "checklista", "lvl": "G", "type": "mc", "q": "Vad är fel i 'Je travaillez dans un bureau'?", "opts": ["Inget", "je → travaille, inte travaillez", "dans → à", "un → une"], "ans": 1, "exp": "-ez hör till vous." },
-    { "id": "q65", "c": "il-y-a", "lvl": "H", "type": "mc", "q": "'Det finns många läkare på sjukhuset.'", "opts": ["Il y a beaucoup de médecins à l'hôpital.", "Il est beaucoup de médecins à l'hôpital.", "Ils ont beaucoup médecins à l'hôpital.", "Il y a beaucoup des médecins à l'hôpital."], "ans": 0, "exp": "il y a + beaucoup de." }
+    {
+      "id": "q1",
+      "c": "etre",
+      "lvl": "G",
+      "type": "txt",
+      "q": "être: 'je ___'",
+      "acc": [
+        "suis"
+      ],
+      "exp": "je suis."
+    },
+    {
+      "id": "q2",
+      "c": "etre",
+      "lvl": "G",
+      "type": "txt",
+      "q": "être: 'nous ___'",
+      "acc": [
+        "sommes"
+      ],
+      "exp": "nous sommes."
+    },
+    {
+      "id": "q3",
+      "c": "etre",
+      "lvl": "G",
+      "type": "mc",
+      "q": "'De är lärare.'",
+      "opts": [
+        "Ils sont professeurs.",
+        "Ils ont professeurs.",
+        "Ils est professeurs.",
+        "Ils êtes professeurs."
+      ],
+      "ans": 0,
+      "exp": "ils sont."
+    },
+    {
+      "id": "q4",
+      "c": "etre",
+      "lvl": "G",
+      "type": "txt",
+      "q": "être: 'vous ___'",
+      "acc": [
+        "êtes",
+        "etes"
+      ],
+      "exp": "vous êtes."
+    },
+    {
+      "id": "q5",
+      "c": "avoir",
+      "lvl": "G",
+      "type": "txt",
+      "q": "avoir: 'il ___'",
+      "acc": [
+        "a"
+      ],
+      "exp": "il a."
+    },
+    {
+      "id": "q6",
+      "c": "avoir",
+      "lvl": "G",
+      "type": "txt",
+      "q": "avoir: 'ils ___'",
+      "acc": [
+        "ont"
+      ],
+      "exp": "ils ont."
+    },
+    {
+      "id": "q7",
+      "c": "avoir",
+      "lvl": "G",
+      "type": "mc",
+      "q": "'Jag är 15 år.'",
+      "opts": [
+        "Je suis 15 ans.",
+        "J'ai 15 ans.",
+        "Je fais 15 ans.",
+        "J'ai 15 années."
+      ],
+      "ans": 1,
+      "exp": "Ålder med avoir: j'ai 15 ans."
+    },
+    {
+      "id": "q8",
+      "c": "avoir",
+      "lvl": "G",
+      "type": "txt",
+      "q": "avoir: 'nous ___'",
+      "acc": [
+        "avons"
+      ],
+      "exp": "nous avons."
+    },
+    {
+      "id": "q9",
+      "c": "etre-vs-avoir",
+      "lvl": "G",
+      "type": "mc",
+      "q": "'Hon har en bil.'",
+      "opts": [
+        "Elle est une voiture.",
+        "Elle a une voiture.",
+        "Elle fait une voiture.",
+        "Elle va une voiture."
+      ],
+      "ans": 1,
+      "exp": "Ha = avoir → elle a."
+    },
+    {
+      "id": "q10",
+      "c": "etre-vs-avoir",
+      "lvl": "G",
+      "type": "mc",
+      "q": "'Han är bagare och han har ett bageri.'",
+      "opts": [
+        "Il a boulanger et il est une boulangerie.",
+        "Il est boulanger et il a une boulangerie.",
+        "Il est boulanger et il est une boulangerie.",
+        "Il a boulanger et il a une boulangerie."
+      ],
+      "ans": 1,
+      "exp": "Är = est, har = a."
+    },
+    {
+      "id": "q11",
+      "c": "er-monster",
+      "lvl": "G",
+      "type": "txt",
+      "q": "travailler: 'je ___'",
+      "acc": [
+        "travaille"
+      ],
+      "exp": "je travaille (-e)."
+    },
+    {
+      "id": "q12",
+      "c": "er-monster",
+      "lvl": "G",
+      "type": "txt",
+      "q": "travailler: 'ils ___'",
+      "acc": [
+        "travaillent"
+      ],
+      "exp": "ils travaillent (-ent)."
+    },
+    {
+      "id": "q13",
+      "c": "er-monster",
+      "lvl": "G",
+      "type": "txt",
+      "q": "parler: 'nous ___'",
+      "acc": [
+        "parlons"
+      ],
+      "exp": "nous parlons (-ons)."
+    },
+    {
+      "id": "q14",
+      "c": "er-monster",
+      "lvl": "G",
+      "type": "mc",
+      "q": "Vilken form är fel?",
+      "opts": [
+        "tu aimes",
+        "il aime",
+        "vous aimez",
+        "je aimez"
+      ],
+      "ans": 3,
+      "exp": "je → -e, och framför vokal blir det j'aime."
+    },
+    {
+      "id": "q15",
+      "c": "er-monster",
+      "lvl": "G",
+      "type": "txt",
+      "q": "habiter: 'elle ___'",
+      "acc": [
+        "habite"
+      ],
+      "exp": "elle habite."
+    },
+    {
+      "id": "q16",
+      "c": "er-vanliga",
+      "lvl": "G",
+      "type": "mc",
+      "q": "Vad betyder 'aider'?",
+      "opts": [
+        "älska",
+        "hjälpa",
+        "bo",
+        "tjäna"
+      ],
+      "ans": 1,
+      "exp": "aider = hjälpa. Il aide les malades."
+    },
+    {
+      "id": "q17",
+      "c": "er-vanliga",
+      "lvl": "G",
+      "type": "mc",
+      "q": "'Hon bor i Paris.'",
+      "opts": [
+        "Elle habite à Paris.",
+        "Elle travaille à Paris.",
+        "Elle est à Paris habite.",
+        "Elle habites à Paris."
+      ],
+      "ans": 0,
+      "exp": "habiter = bo, elle habite."
+    },
+    {
+      "id": "q18",
+      "c": "er-vanliga",
+      "lvl": "G",
+      "type": "txt",
+      "q": "Franska för 'arbeta' (grundform)",
+      "acc": [
+        "travailler"
+      ],
+      "exp": "travailler."
+    },
+    {
+      "id": "q19",
+      "c": "faire",
+      "lvl": "G",
+      "type": "txt",
+      "q": "faire: 'il ___'",
+      "acc": [
+        "fait"
+      ],
+      "exp": "il fait."
+    },
+    {
+      "id": "q20",
+      "c": "faire",
+      "lvl": "G",
+      "type": "txt",
+      "q": "faire: 'ils ___'",
+      "acc": [
+        "font"
+      ],
+      "exp": "ils font."
+    },
+    {
+      "id": "q21",
+      "c": "faire",
+      "lvl": "G",
+      "type": "mc",
+      "q": "faire: 'vous ___'",
+      "opts": [
+        "faisez",
+        "faites",
+        "faisons",
+        "font"
+      ],
+      "ans": 1,
+      "exp": "vous faites, oregelbundet."
+    },
+    {
+      "id": "q22",
+      "c": "faire",
+      "lvl": "G",
+      "type": "txt",
+      "q": "faire: 'je ___'",
+      "acc": [
+        "fais"
+      ],
+      "exp": "je fais."
+    },
+    {
+      "id": "q23",
+      "c": "aller",
+      "lvl": "G",
+      "type": "txt",
+      "q": "aller: 'je ___'",
+      "acc": [
+        "vais"
+      ],
+      "exp": "je vais."
+    },
+    {
+      "id": "q24",
+      "c": "aller",
+      "lvl": "G",
+      "type": "txt",
+      "q": "aller: 'ils ___'",
+      "acc": [
+        "vont"
+      ],
+      "exp": "ils vont."
+    },
+    {
+      "id": "q25",
+      "c": "aller",
+      "lvl": "G",
+      "type": "txt",
+      "q": "aller: 'nous ___'",
+      "acc": [
+        "allons"
+      ],
+      "exp": "nous allons."
+    },
+    {
+      "id": "q26",
+      "c": "aller",
+      "lvl": "G",
+      "type": "mc",
+      "q": "'Han åker till jobbet.'",
+      "opts": [
+        "Il va au travail.",
+        "Il vas au travail.",
+        "Il aller au travail.",
+        "Il fait au travail."
+      ],
+      "ans": 0,
+      "exp": "il va."
+    },
+    {
+      "id": "q27",
+      "c": "aller-a",
+      "lvl": "G",
+      "type": "mc",
+      "q": "à + le travail = ?",
+      "opts": [
+        "à le travail",
+        "au travail",
+        "aux travail",
+        "à la travail"
+      ],
+      "ans": 1,
+      "exp": "à + le = au."
+    },
+    {
+      "id": "q28",
+      "c": "aller-a",
+      "lvl": "G",
+      "type": "mc",
+      "q": "'Vi går till sjukhuset.'",
+      "opts": [
+        "Nous allons au hôpital.",
+        "Nous allons à l'hôpital.",
+        "Nous allons à la hôpital.",
+        "Nous allons aux hôpital."
+      ],
+      "ans": 1,
+      "exp": "hôpital börjar på vokalljud → à l'hôpital."
+    },
+    {
+      "id": "q29",
+      "c": "aller-a",
+      "lvl": "H",
+      "type": "txt",
+      "q": "à + les magasins = '___ magasins'",
+      "acc": [
+        "aux"
+      ],
+      "exp": "à + les = aux."
+    },
+    {
+      "id": "q30",
+      "c": "yrken1",
+      "lvl": "G",
+      "type": "txt",
+      "q": "Läkare på franska",
+      "acc": [
+        "médecin",
+        "medecin"
+      ],
+      "exp": "médecin."
+    },
+    {
+      "id": "q31",
+      "c": "yrken1",
+      "lvl": "G",
+      "type": "mc",
+      "q": "Sjuksköterska (kvinna)",
+      "opts": [
+        "infirmier",
+        "infirmière",
+        "infirmeuse",
+        "infirme"
+      ],
+      "ans": 1,
+      "exp": "infirmière, med -ère."
+    },
+    {
+      "id": "q32",
+      "c": "yrken1",
+      "lvl": "G",
+      "type": "txt",
+      "q": "Bagare (man) på franska",
+      "acc": [
+        "boulanger"
+      ],
+      "exp": "boulanger."
+    },
+    {
+      "id": "q33",
+      "c": "yrken1",
+      "lvl": "G",
+      "type": "mc",
+      "q": "Vad betyder 'professeur'?",
+      "opts": [
+        "professor på universitet, bara",
+        "lärare",
+        "rektor",
+        "elev"
+      ],
+      "ans": 1,
+      "exp": "professeur = lärare (vardagligt 'prof')."
+    },
+    {
+      "id": "q34",
+      "c": "yrken2",
+      "lvl": "G",
+      "type": "txt",
+      "q": "Kock (man) på franska",
+      "acc": [
+        "cuisinier"
+      ],
+      "exp": "cuisinier."
+    },
+    {
+      "id": "q35",
+      "c": "yrken2",
+      "lvl": "G",
+      "type": "mc",
+      "q": "Säljare (kvinna)",
+      "opts": [
+        "vendeur",
+        "vendeuse",
+        "vendrice",
+        "vendeure"
+      ],
+      "ans": 1,
+      "exp": "vendeur → vendeuse."
+    },
+    {
+      "id": "q36",
+      "c": "yrken2",
+      "lvl": "G",
+      "type": "txt",
+      "q": "Ingenjör på franska",
+      "acc": [
+        "ingénieur",
+        "ingenieur"
+      ],
+      "exp": "ingénieur."
+    },
+    {
+      "id": "q37",
+      "c": "ingen-artikel",
+      "lvl": "G",
+      "type": "mc",
+      "q": "'Han är läkare.'",
+      "opts": [
+        "Il est un médecin.",
+        "Il est médecin.",
+        "Il a médecin.",
+        "Il est le médecin."
+      ],
+      "ans": 1,
+      "exp": "Ingen artikel efter est + yrke."
+    },
+    {
+      "id": "q38",
+      "c": "ingen-artikel",
+      "lvl": "G",
+      "type": "mc",
+      "q": "'Min mamma är lärare.'",
+      "opts": [
+        "Ma mère est une professeur.",
+        "Ma mère est professeur.",
+        "Ma mère a professeur.",
+        "Ma mère professeur."
+      ],
+      "ans": 1,
+      "exp": "Ma mère est professeur."
+    },
+    {
+      "id": "q39",
+      "c": "ingen-artikel",
+      "lvl": "H",
+      "type": "mc",
+      "q": "Hur säger du 'Han är en bra läkare'?",
+      "opts": [
+        "Il est bon médecin.",
+        "C'est un bon médecin.",
+        "Il est un bon médecin.",
+        "Il a un bon médecin."
+      ],
+      "ans": 1,
+      "exp": "Med adjektiv: c'est un/une + adjektiv + yrke."
+    },
+    {
+      "id": "q40",
+      "c": "mall-jag",
+      "lvl": "G",
+      "type": "mc",
+      "q": "'Jag heter Sixten.'",
+      "opts": [
+        "Je suis appelle Sixten.",
+        "Je m'appelle Sixten.",
+        "J'appelle Sixten.",
+        "Je me appelle Sixten."
+      ],
+      "ans": 1,
+      "exp": "Je m'appelle."
+    },
+    {
+      "id": "q41",
+      "c": "mall-jag",
+      "lvl": "G",
+      "type": "mc",
+      "q": "'Jag bor i Stockholm.'",
+      "opts": [
+        "Je habite à Stockholm.",
+        "J'habite à Stockholm.",
+        "Je suis à Stockholm habite.",
+        "J'habites à Stockholm."
+      ],
+      "ans": 1,
+      "exp": "j'habite, h är stumt så je → j'."
+    },
+    {
+      "id": "q42",
+      "c": "mall-jag",
+      "lvl": "G",
+      "type": "mc",
+      "q": "'Jag tycker om hockey.'",
+      "opts": [
+        "J'aime le hockey.",
+        "Je aime hockey.",
+        "J'ai le hockey.",
+        "Je suis le hockey."
+      ],
+      "ans": 0,
+      "exp": "J'aime le hockey."
+    },
+    {
+      "id": "q43",
+      "c": "mall-yrke",
+      "lvl": "G",
+      "type": "mc",
+      "q": "'Hon jobbar på sjukhuset.'",
+      "opts": [
+        "Elle travaille à l'hôpital.",
+        "Elle travail à l'hôpital.",
+        "Elle travailles à l'hôpital.",
+        "Elle est travaille à l'hôpital."
+      ],
+      "ans": 0,
+      "exp": "elle travaille (-e)."
+    },
+    {
+      "id": "q44",
+      "c": "mall-yrke",
+      "lvl": "G",
+      "type": "mc",
+      "q": "'Han hjälper de sjuka.'",
+      "opts": [
+        "Il aide les malades.",
+        "Il aides les malades.",
+        "Il aider les malades.",
+        "Il est aide les malades."
+      ],
+      "ans": 0,
+      "exp": "il aide."
+    },
+    {
+      "id": "q45",
+      "c": "mall-yrke",
+      "lvl": "G",
+      "type": "mc",
+      "q": "'Hon tycker om sitt jobb.'",
+      "opts": [
+        "Elle aime son travail.",
+        "Elle aime sa travail.",
+        "Elle a son travail.",
+        "Elle aime ses travail."
+      ],
+      "ans": 0,
+      "exp": "travail är maskulint → son travail."
+    },
+    {
+      "id": "q46",
+      "c": "plats",
+      "lvl": "G",
+      "type": "mc",
+      "q": "'Han jobbar i en restaurang.'",
+      "opts": [
+        "Il travaille dans un restaurant.",
+        "Il travaille à restaurant.",
+        "Il travaille dans le restaurant à.",
+        "Il travaille au une restaurant."
+      ],
+      "ans": 0,
+      "exp": "dans un restaurant."
+    },
+    {
+      "id": "q47",
+      "c": "plats",
+      "lvl": "G",
+      "type": "mc",
+      "q": "'Hon jobbar i skolan.'",
+      "opts": [
+        "Elle travaille à l'école.",
+        "Elle travaille dans école.",
+        "Elle travaille au école.",
+        "Elle travaille à la école."
+      ],
+      "ans": 0,
+      "exp": "école börjar på vokal → à l'école."
+    },
+    {
+      "id": "q48",
+      "c": "samband",
+      "lvl": "G",
+      "type": "txt",
+      "q": "'men' på franska",
+      "acc": [
+        "mais"
+      ],
+      "exp": "mais."
+    },
+    {
+      "id": "q49",
+      "c": "samband",
+      "lvl": "G",
+      "type": "txt",
+      "q": "'med' på franska",
+      "acc": [
+        "avec"
+      ],
+      "exp": "avec."
+    },
+    {
+      "id": "q50",
+      "c": "samband",
+      "lvl": "G",
+      "type": "mc",
+      "q": "Välj rätt ord: 'Il est médecin ___ il travaille à l'hôpital.'",
+      "opts": [
+        "ou",
+        "et",
+        "avec",
+        "mais"
+      ],
+      "ans": 1,
+      "exp": "et = och."
+    },
+    {
+      "id": "q51",
+      "c": "samband",
+      "lvl": "G",
+      "type": "mc",
+      "q": "Välj rätt ord: 'Elle aime son travail ___ elle est fatiguée.'",
+      "opts": [
+        "et",
+        "ou",
+        "mais",
+        "avec"
+      ],
+      "ans": 2,
+      "exp": "mais = men."
+    },
+    {
+      "id": "q52",
+      "c": "samband2",
+      "lvl": "H",
+      "type": "mc",
+      "q": "'Han tycker om sitt jobb därför att han hjälper människor.'",
+      "opts": [
+        "Il aime son travail parce qu'il aide les gens.",
+        "Il aime son travail mais il aide les gens.",
+        "Il aime son travail pour il aide les gens.",
+        "Il aime son travail parce que il aide les gens."
+      ],
+      "ans": 0,
+      "exp": "parce que + il → parce qu'il."
+    },
+    {
+      "id": "q53",
+      "c": "samband2",
+      "lvl": "H",
+      "type": "mc",
+      "q": "Var sätter du 'aussi' i 'Elle parle espagnol' (hon pratar också spanska)?",
+      "opts": [
+        "Aussi elle parle espagnol.",
+        "Elle parle aussi espagnol.",
+        "Elle parle espagnol aussi elle.",
+        "Elle aussi parle espagnol."
+      ],
+      "ans": 1,
+      "exp": "Efter verbet: Elle parle aussi espagnol."
+    },
+    {
+      "id": "q54",
+      "c": "negation",
+      "lvl": "H",
+      "type": "mc",
+      "q": "'Jag jobbar inte.'",
+      "opts": [
+        "Je ne travaille pas.",
+        "Je travaille ne pas.",
+        "Je pas travaille.",
+        "Ne je travaille pas."
+      ],
+      "ans": 0,
+      "exp": "ne + verb + pas."
+    },
+    {
+      "id": "q55",
+      "c": "negation",
+      "lvl": "H",
+      "type": "mc",
+      "q": "'Han är inte läkare.'",
+      "opts": [
+        "Il ne est pas médecin.",
+        "Il n'est pas médecin.",
+        "Il est ne pas médecin.",
+        "Il n'a pas médecin."
+      ],
+      "ans": 1,
+      "exp": "ne → n' framför vokal."
+    },
+    {
+      "id": "q56",
+      "c": "fraga",
+      "lvl": "H",
+      "type": "mc",
+      "q": "'Vad gör du?'",
+      "opts": [
+        "Qu'est-ce que tu fais?",
+        "Quoi tu fais?",
+        "Qu'est-ce que tu es?",
+        "Que fais tu est?"
+      ],
+      "ans": 0,
+      "exp": "Qu'est-ce que tu fais?"
+    },
+    {
+      "id": "q57",
+      "c": "fraga",
+      "lvl": "H",
+      "type": "mc",
+      "q": "Vad betyder 'dans la vie' i 'Qu'est-ce qu'il fait dans la vie?'",
+      "opts": [
+        "i staden",
+        "till vardags / som yrke",
+        "i livet efter detta",
+        "på kvällen"
+      ],
+      "ans": 1,
+      "exp": "Vad jobbar han med?"
+    },
+    {
+      "id": "q58",
+      "c": "possessiv",
+      "lvl": "G",
+      "type": "mc",
+      "q": "'Min mamma'",
+      "opts": [
+        "mon mère",
+        "ma mère",
+        "mes mère",
+        "me mère"
+      ],
+      "ans": 1,
+      "exp": "mère är feminint → ma."
+    },
+    {
+      "id": "q59",
+      "c": "possessiv",
+      "lvl": "G",
+      "type": "mc",
+      "q": "'Mina föräldrar'",
+      "opts": [
+        "mon parents",
+        "ma parents",
+        "mes parents",
+        "mes parent"
+      ],
+      "ans": 2,
+      "exp": "plural → mes."
+    },
+    {
+      "id": "q60",
+      "c": "possessiv",
+      "lvl": "G",
+      "type": "mc",
+      "q": "'Hennes pappa' (son/sa?)",
+      "opts": [
+        "sa père",
+        "son père",
+        "ses père",
+        "elle père"
+      ],
+      "ans": 1,
+      "exp": "père är maskulint → son, oavsett om det är hans eller hennes."
+    },
+    {
+      "id": "q61",
+      "c": "stava",
+      "lvl": "G",
+      "type": "mc",
+      "q": "Du vill skriva 'kirurg' men kan inte ordet. Vad gör du?",
+      "opts": [
+        "Gissar på stavningen",
+        "Skriver det på svenska",
+        "Skriver 'médecin' i stället",
+        "Hoppar över meningen"
+      ],
+      "ans": 2,
+      "exp": "Byt till ett ord du kan. Meningen blir rätt och poängen räknas."
+    },
+    {
+      "id": "q62",
+      "c": "stava",
+      "lvl": "G",
+      "type": "mc",
+      "q": "Vad ger mest poäng på skrivprovet?",
+      "opts": [
+        "Många avancerade ord",
+        "Korta, fullständiga meningar i presens med rätt böjda verb",
+        "Dåtidsformer",
+        "En lång text oavsett fel"
+      ],
+      "ans": 1,
+      "exp": "Det är det läraren skriver att provet bedömer."
+    },
+    {
+      "id": "q63",
+      "c": "checklista",
+      "lvl": "G",
+      "type": "mc",
+      "q": "Vad är fel i 'Il médecin et travaille à l'hôpital'?",
+      "opts": [
+        "Inget",
+        "Verbet saknas i första delen: Il est médecin",
+        "Det ska vara 'un médecin'",
+        "Det ska vara 'au hôpital'"
+      ],
+      "ans": 1,
+      "exp": "Varje mening behöver subjekt + böjt verb."
+    },
+    {
+      "id": "q64",
+      "c": "checklista",
+      "lvl": "G",
+      "type": "mc",
+      "q": "Vad är fel i 'Je travaillez dans un bureau'?",
+      "opts": [
+        "Inget",
+        "je → travaille, inte travaillez",
+        "dans → à",
+        "un → une"
+      ],
+      "ans": 1,
+      "exp": "-ez hör till vous."
+    },
+    {
+      "id": "q65",
+      "c": "il-y-a",
+      "lvl": "H",
+      "type": "mc",
+      "q": "'Det finns många läkare på sjukhuset.'",
+      "opts": [
+        "Il y a beaucoup de médecins à l'hôpital.",
+        "Il est beaucoup de médecins à l'hôpital.",
+        "Ils ont beaucoup médecins à l'hôpital.",
+        "Il y a beaucoup des médecins à l'hôpital."
+      ],
+      "ans": 0,
+      "exp": "il y a + beaucoup de."
+    }
   ],
   "boss": [
-    { "id": "b1", "lvl": "G", "c": "etre", "q": "Skriv alla sex former av être och avoir ur minnet, med pronomen. Sedan tre meningar: en med être, en med avoir, en med ålder.", "facit": "je suis, tu es, il est, nous sommes, vous êtes, ils sont · j'ai, tu as, il a, nous avons, vous avez, ils ont · t.ex. Je suis élève. J'ai un frère. J'ai 15 ans.", "check": ["Alla 12 former rätt", "Être för 'är', avoir för 'har'", "Ålder med avoir"] },
-    { "id": "b2", "lvl": "G", "c": "er-monster", "q": "Böj travailler och aimer i alla sex former. Skriv sedan tre meningar om vad personer i din familj jobbar med, med ER-verb.", "facit": "travaille, travailles, travaille, travaillons, travaillez, travaillent · aime, aimes, aime, aimons, aimez, aiment · t.ex. Ma mère travaille dans un bureau. Mon père aime son travail. Mes parents habitent à Stockholm.", "check": ["Ändelserna -e, -es, -e, -ons, -ez, -ent", "Rätt form till rätt subjekt i meningarna", "Tre fullständiga meningar"] },
-    { "id": "b3", "lvl": "G", "c": "faire", "q": "Böj faire och aller. Skriv tre meningar: vad du gör på fritiden (faire), vart du går på morgonen (aller + au/à la/à l'), vart dina föräldrar åker (aller).", "facit": "fais, fais, fait, faisons, faites, font · vais, vas, va, allons, allez, vont · t.ex. Je fais du hockey. Je vais à l'école. Mes parents vont au travail.", "check": ["Faire och aller rätt böjda", "au / à la / à l' rätt använt", "Tre fullständiga meningar"] },
-    { "id": "b4", "lvl": "G", "c": "mall-yrke", "q": "Skriv 6 meningar om ett yrke du väljer. Använd: est + yrke utan artikel, travaille à/dans, aide eller fait, aime, och minst två sambandsord (et, ou, mais, avec).", "facit": "T.ex. Ma tante est infirmière. Elle travaille à l'hôpital. Elle aide les malades et elle parle avec les médecins. Elle aime son travail mais elle est fatiguée le soir. Elle habite à Göteborg.", "check": ["Ingen artikel efter est + yrke", "Alla verb rätt böjda i presens", "Minst två sambandsord, sex hela meningar"] },
-    { "id": "b5", "lvl": "H", "c": "samband", "q": "Skriv 8 meningar om din familj och deras jobb. Krav: minst tre sambandsord, en nekande mening (ne … pas), ett 'parce que'.", "facit": "T.ex. Mon père est mécanicien et il travaille dans un garage. Il aime son travail parce qu'il aime les voitures. Ma mère ne travaille pas à l'hôpital, elle est professeur. …", "check": ["Tre sambandsord", "Ne … pas korrekt placerat", "Parce que / parce qu' med en förklaring"] },
-    { "id": "b6", "lvl": "G", "c": "checklista", "q": "Rätta texten: 'Je m'appelle Lisa. Je suis 14 ans. Ma mère est une médecin. Elle travaillez à le hôpital. Mon père boulanger. Il fait du pain et il aimer son travail.'", "facit": "Je m'appelle Lisa. J'ai 14 ans. Ma mère est médecin. Elle travaille à l'hôpital. Mon père est boulanger. Il fait du pain et il aime son travail.", "check": ["J'ai 14 ans (ålder = avoir)", "est médecin utan artikel, travaille, à l'hôpital", "Mon père est boulanger, il aime"] }
+    {
+      "id": "b1",
+      "lvl": "G",
+      "c": "etre",
+      "q": "Skriv alla sex former av être och avoir ur minnet, med pronomen. Sedan tre meningar: en med être, en med avoir, en med ålder.",
+      "facit": "je suis, tu es, il est, nous sommes, vous êtes, ils sont · j'ai, tu as, il a, nous avons, vous avez, ils ont · t.ex. Je suis élève. J'ai un frère. J'ai 15 ans.",
+      "check": [
+        "Alla 12 former rätt",
+        "Être för 'är', avoir för 'har'",
+        "Ålder med avoir"
+      ]
+    },
+    {
+      "id": "b2",
+      "lvl": "G",
+      "c": "er-monster",
+      "q": "Böj travailler och aimer i alla sex former. Skriv sedan tre meningar om vad personer i din familj jobbar med, med ER-verb.",
+      "facit": "travaille, travailles, travaille, travaillons, travaillez, travaillent · aime, aimes, aime, aimons, aimez, aiment · t.ex. Ma mère travaille dans un bureau. Mon père aime son travail. Mes parents habitent à Stockholm.",
+      "check": [
+        "Ändelserna -e, -es, -e, -ons, -ez, -ent",
+        "Rätt form till rätt subjekt i meningarna",
+        "Tre fullständiga meningar"
+      ]
+    },
+    {
+      "id": "b3",
+      "lvl": "G",
+      "c": "faire",
+      "q": "Böj faire och aller. Skriv tre meningar: vad du gör på fritiden (faire), vart du går på morgonen (aller + au/à la/à l'), vart dina föräldrar åker (aller).",
+      "facit": "fais, fais, fait, faisons, faites, font · vais, vas, va, allons, allez, vont · t.ex. Je fais du hockey. Je vais à l'école. Mes parents vont au travail.",
+      "check": [
+        "Faire och aller rätt böjda",
+        "au / à la / à l' rätt använt",
+        "Tre fullständiga meningar"
+      ]
+    },
+    {
+      "id": "b4",
+      "lvl": "G",
+      "c": "mall-yrke",
+      "q": "Skriv 6 meningar om ett yrke du väljer. Använd: est + yrke utan artikel, travaille à/dans, aide eller fait, aime, och minst två sambandsord (et, ou, mais, avec).",
+      "facit": "T.ex. Ma tante est infirmière. Elle travaille à l'hôpital. Elle aide les malades et elle parle avec les médecins. Elle aime son travail mais elle est fatiguée le soir. Elle habite à Göteborg.",
+      "check": [
+        "Ingen artikel efter est + yrke",
+        "Alla verb rätt böjda i presens",
+        "Minst två sambandsord, sex hela meningar"
+      ]
+    },
+    {
+      "id": "b5",
+      "lvl": "H",
+      "c": "samband",
+      "q": "Skriv 8 meningar om din familj och deras jobb. Krav: minst tre sambandsord, en nekande mening (ne … pas), ett 'parce que'.",
+      "facit": "T.ex. Mon père est mécanicien et il travaille dans un garage. Il aime son travail parce qu'il aime les voitures. Ma mère ne travaille pas à l'hôpital, elle est professeur. …",
+      "check": [
+        "Tre sambandsord",
+        "Ne … pas korrekt placerat",
+        "Parce que / parce qu' med en förklaring"
+      ]
+    },
+    {
+      "id": "b6",
+      "lvl": "G",
+      "c": "checklista",
+      "q": "Rätta texten: 'Je m'appelle Lisa. Je suis 14 ans. Ma mère est une médecin. Elle travaillez à le hôpital. Mon père boulanger. Il fait du pain et il aimer son travail.'",
+      "facit": "Je m'appelle Lisa. J'ai 14 ans. Ma mère est médecin. Elle travaille à l'hôpital. Mon père est boulanger. Il fait du pain et il aime son travail.",
+      "check": [
+        "J'ai 14 ans (ålder = avoir)",
+        "est médecin utan artikel, travaille, à l'hôpital",
+        "Mon père est boulanger, il aime"
+      ]
+    }
   ],
   "test": {
-    "part1": ["q1", "q2", "q5", "q7", "q11", "q12", "q19", "q20", "q23", "q24", "q27", "q30", "q37", "q41", "q43", "q48", "q50", "q58", "q63", "q64"],
-    "part2": ["q4", "q14", "q21", "q29", "q39", "q52", "q54", "q55", "q56", "q65"],
+    "part1": [
+      "q1",
+      "q2",
+      "q5",
+      "q7",
+      "q11",
+      "q12",
+      "q19",
+      "q20",
+      "q23",
+      "q24",
+      "q27",
+      "q30",
+      "q37",
+      "q41",
+      "q43",
+      "q48",
+      "q50",
+      "q58",
+      "q63",
+      "q64"
+    ],
+    "part2": [
+      "q4",
+      "q14",
+      "q21",
+      "q29",
+      "q39",
+      "q52",
+      "q54",
+      "q55",
+      "q56",
+      "q65"
+    ],
     "open": [
-      { "id": "o1", "lvl": "G", "q": "Presentera dig själv på franska i 5 meningar: namn, ålder, var du bor, vad du tycker om, vad du gör på fritiden.", "rub": ["Fem fullständiga meningar", "J'ai … ans (avoir för ålder)", "Verb rätt böjda i presens"] },
-      { "id": "o2", "lvl": "G", "q": "Skriv om en person i din familj och hens yrke, 6–8 meningar. Använd est + yrke, var personen jobbar, vad personen gör, och minst tre sambandsord.", "rub": ["Ingen artikel efter est + yrke", "travaille à / dans rätt", "Minst tre sambandsord, alla meningar hela"] },
-      { "id": "o3", "lvl": "H", "q": "Skriv en text på 60–80 ord om ett drömyrke: vad man är, var man jobbar, vad man gör, varför man tycker om det (parce que), och en sak man inte gör (ne … pas).", "rub": ["60–80 ord, bara presens", "parce que och ne … pas korrekt", "Être/avoir/faire/aller och ER-verb rätt böjda"] }
+      {
+        "id": "o1",
+        "lvl": "G",
+        "q": "Presentera dig själv på franska i 5 meningar: namn, ålder, var du bor, vad du tycker om, vad du gör på fritiden.",
+        "rub": [
+          "Fem fullständiga meningar",
+          "J'ai … ans (avoir för ålder)",
+          "Verb rätt böjda i presens"
+        ]
+      },
+      {
+        "id": "o2",
+        "lvl": "G",
+        "q": "Skriv om en person i din familj och hens yrke, 6–8 meningar. Använd est + yrke, var personen jobbar, vad personen gör, och minst tre sambandsord.",
+        "rub": [
+          "Ingen artikel efter est + yrke",
+          "travaille à / dans rätt",
+          "Minst tre sambandsord, alla meningar hela"
+        ]
+      },
+      {
+        "id": "o3",
+        "lvl": "H",
+        "q": "Skriv en text på 60–80 ord om ett drömyrke: vad man är, var man jobbar, vad man gör, varför man tycker om det (parce que), och en sak man inte gör (ne … pas).",
+        "rub": [
+          "60–80 ord, bara presens",
+          "parce que och ne … pas korrekt",
+          "Être/avoir/faire/aller och ER-verb rätt böjda"
+        ]
+      }
     ]
   }
 }
