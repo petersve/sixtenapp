@@ -1,10 +1,11 @@
 // Importerar en moduls innehåll från repots content/-mapp (publikt på GitHub) till tabellen modules.
-// POST {"slug": "...", "file": "....json", "create": {title,subject,kind,exam_date,goal_subject,note}?}
+// POST {"slug": "...", "file": "....json", "ref": "<commit sha>"?, "create": {title,subject,kind,exam_date,goal_subject,note}?}
+// ref: läs en viss commit i stället för main (raw.githubusercontent cachar main i ~5 min).
 // Anropas via pg_net: select net.http_post(url := '.../functions/v1/import-module', headers := '{"Content-Type":"application/json"}', body := '{"slug":"..."}');
 import "jsr:@supabase/functions-js/edge-runtime.d.ts";
 import { createClient } from "jsr:@supabase/supabase-js@2";
 
-const RAW = "https://raw.githubusercontent.com/petersve/sixtenapp/main/content/";
+const RAW = (ref: string) => `https://raw.githubusercontent.com/petersve/sixtenapp/${ref}/content/`;
 const admin = createClient(Deno.env.get("SUPABASE_URL")!, Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!);
 
 Deno.serve(async (req) => {
@@ -12,7 +13,8 @@ Deno.serve(async (req) => {
   const body = await req.json().catch(() => ({}));
   const slug = String(body.slug || ""); const file = String(body.file || slug + ".json");
   if (!/^[a-z0-9-]+$/.test(slug) || !/^[a-z0-9-]+\.json$/.test(file)) return new Response(JSON.stringify({ error: "bad slug/file" }), { status: 400 });
-  const r = await fetch(RAW + file, { headers: { "Cache-Control": "no-cache" } });
+  const ref = /^[0-9a-f]{7,40}$/.test(String(body.ref || "")) ? String(body.ref) : "main";
+  const r = await fetch(RAW(ref) + file, { headers: { "Cache-Control": "no-cache" } });
   if (!r.ok) return new Response(JSON.stringify({ error: "fetch failed", status: r.status }), { status: 502 });
   const m = await r.json();
   const content = { plan: m.plan ?? [], cards: m.cards ?? [], quiz: m.quiz ?? [], boss: m.boss ?? [], test: m.test ?? null, paper: m.paper ?? null, intro: m.intro ?? null };
