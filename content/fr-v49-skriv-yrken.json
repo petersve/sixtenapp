@@ -63,7 +63,8 @@
       "date": "2026-11-25",
       "label": "Ons 25/11",
       "items": [
-        "Pass 9: alla verb ur minnet"
+        "Pass 9: alla verb ur minnet",
+        "Rätta en E-text (boss)"
       ]
     },
     {
@@ -298,6 +299,33 @@
       "a": "Mon père est … · Ma mère est … · Mon frère / Ma sœur est … · Mon grand-père / Ma grand-mère est …",
       "why": "Ett yrke per person, två eller tre meningar var. Det ger variation utan att du behöver specialord.",
       "ex": "Mon père est ingénieur. Il travaille dans un bureau. Ma mère est infirmière et elle aide les malades. Ma sœur est élève comme moi."
+    },
+    {
+      "id": "aimer-inf",
+      "lvl": "G",
+      "t": "Grammatik",
+      "q": "Hur säger du 'jag tycker om att äta / spela / jobba'?",
+      "a": "aimer + grundform: J'aime manger. J'aime jouer au foot. Il aime travailler avec les enfants.",
+      "why": "Andra verbet böjs inte. 'J'aime mange' är ett av de vanligaste felen i E-texter.",
+      "ex": "J'aime jouer avec les enfants. Ma mère aime travailler à l'hôpital."
+    },
+    {
+      "id": "plural-ent",
+      "lvl": "G",
+      "t": "Grammatik",
+      "q": "Vilken form får verbet när subjektet är flera personer, t.ex. 'mina föräldrar' eller 'min mamma och min pappa'?",
+      "a": "ils-formen: -ent på ER-verb, sont, ont, font, vont. Mes parents habitent … Ma mère et mon père travaillent …",
+      "why": "Två personer = ils. I E-texterna står ofta 'ma mère et mon père habite', det vill säga fel form.",
+      "ex": "Mes parents s'appellent Anna et Peter. Ils travaillent à Stockholm. Mes sœurs sont élèves."
+    },
+    {
+      "id": "e-niva",
+      "lvl": "G",
+      "t": "Metod",
+      "q": "Vad räcker för E på skrivprovet?",
+      "a": "Att man förstår vad du menar. Enkla, mest hela meningar om uppgiftens delar. Fel får finnas så länge de inte gör texten svår att förstå.",
+      "why": "Riktiga E-texter har fel som 'je suis 14 ans' och 'mon frère est 21'. Du tränar bort just de felen, så du har marginal. Ungefär 50–80 ord räcker.",
+      "ex": "C-nivå: mer variation, fler sambandsord, nästan rätt på être/avoir/faire/aller. Det är där checklistan tar dig."
     },
     {
       "id": "stava",
@@ -1374,6 +1402,107 @@
       ],
       "ans": 0,
       "exp": "mon père, est + yrke utan artikel, il travaille."
+    },
+    {
+      "id": "q78",
+      "c": "aimer-inf",
+      "lvl": "G",
+      "type": "mc",
+      "q": "'Jag tycker om att äta pizza.'",
+      "opts": [
+        "J'aime mange la pizza.",
+        "J'aime manger la pizza.",
+        "Je aime manger pizza.",
+        "J'aime mangé la pizza."
+      ],
+      "ans": 1,
+      "exp": "aimer + grundform: manger."
+    },
+    {
+      "id": "q79",
+      "c": "aimer-inf",
+      "lvl": "G",
+      "type": "txt",
+      "q": "'Hon tycker om att jobba': Elle aime ___",
+      "acc": [
+        "travailler"
+      ],
+      "exp": "Grundform efter aimer."
+    },
+    {
+      "id": "q80",
+      "c": "plural-ent",
+      "lvl": "G",
+      "type": "mc",
+      "q": "'Min mamma och min pappa bor i Stockholm.'",
+      "opts": [
+        "Ma mère et mon père habite à Stockholm.",
+        "Ma mère et mon père habitent à Stockholm.",
+        "Ma mère et mon père habites à Stockholm.",
+        "Ma mère et mon père habitez à Stockholm."
+      ],
+      "ans": 1,
+      "exp": "Två personer = ils → habitent."
+    },
+    {
+      "id": "q81",
+      "c": "plural-ent",
+      "lvl": "G",
+      "type": "mc",
+      "q": "'Mina föräldrar heter Anna och Peter.'",
+      "opts": [
+        "Mes parents s'appelle Anna et Peter.",
+        "Mes parents s'appellent Anna et Peter.",
+        "Mon parents s'appellent Anna et Peter.",
+        "Mes parents est Anna et Peter."
+      ],
+      "ans": 1,
+      "exp": "mes + s'appellent (plural)."
+    },
+    {
+      "id": "q82",
+      "c": "e-niva",
+      "lvl": "G",
+      "type": "mc",
+      "q": "Vad är viktigast för E på skrivprovet?",
+      "opts": [
+        "Inga fel alls",
+        "Att texten är lång",
+        "Att man förstår vad du menar, med enkla mest hela meningar",
+        "Att du använder dåtid"
+      ],
+      "ans": 2,
+      "exp": "Fel får finnas om budskapet går fram."
+    },
+    {
+      "id": "q83",
+      "c": "avoir",
+      "lvl": "G",
+      "type": "mc",
+      "q": "'Min bror är 21 år.'",
+      "opts": [
+        "Mon frère est 21.",
+        "Mon frère a 21 ans.",
+        "Mon frère est 21 ans.",
+        "Ma frère a 21 ans."
+      ],
+      "ans": 1,
+      "exp": "Ålder med avoir + ans."
+    },
+    {
+      "id": "q84",
+      "c": "possessiv",
+      "lvl": "G",
+      "type": "mc",
+      "q": "'Min syster'",
+      "opts": [
+        "mon sœur",
+        "ma sœur",
+        "mes sœur",
+        "me sœur"
+      ],
+      "ans": 1,
+      "exp": "sœur är feminint → ma."
     }
   ],
   "boss": [
@@ -1460,6 +1589,18 @@
         "J'aime les … / Je suis bon en …",
         "Je veux être + yrke, alla meningar hela"
       ]
+    },
+    {
+      "id": "b8",
+      "lvl": "G",
+      "c": "plural-ent",
+      "q": "Rätta texten (felen är typiska för E-texter): 'Je m'appelle Noah et je suis 15 ans. Mon frère est 19 et mon soeur est 12. Ma mère et mon père travaille à Stockholm. Mon père est un ingénieur. J'aime mange et je jouer au foot.'",
+      "facit": "Je m'appelle Noah et j'ai 15 ans. Mon frère a 19 ans et ma sœur a 12 ans. Ma mère et mon père travaillent à Stockholm. Mon père est ingénieur. J'aime manger et je joue au foot.",
+      "check": [
+        "Ålder: j'ai / a + ans (3 ställen)",
+        "ma sœur, travaillent, est ingénieur utan artikel",
+        "J'aime manger, je joue"
+      ]
     }
   ],
   "test": {
@@ -1487,7 +1628,10 @@
       "q66",
       "q68",
       "q73",
-      "q77"
+      "q77",
+      "q78",
+      "q80",
+      "q83"
     ],
     "part2": [
       "q4",
@@ -1526,11 +1670,11 @@
       {
         "id": "o3",
         "lvl": "H",
-        "q": "Skriv en text om din familj och din framtid: vad två personer i familjen jobbar med, var du gör prao och vad du gör där, vilka ämnen du gillar, och vad du vill bli. Bara presens. Hellre färre meningar som är rätt än många med fel.",
+        "q": "Skriv en text på ungefär 50–80 ord om din familj och din framtid: vad två personer i familjen jobbar med, var du gör prao och vad du gör där, vilka ämnen du gillar, och vad du vill bli. Bara presens.",
         "rub": [
-          "Fullständiga meningar i presens, rätt böjda verb",
-          "Familjens yrken + prao + vill bli",
-          "Minst tre sambandsord"
+          "E: man förstår allt du menar, mest hela meningar, uppgiftens delar finns med",
+          "C: rätt former av être/avoir/faire/aller och ER-verb nästan överallt",
+          "C: minst tre sambandsord och lite variation (ne … pas, parce que, par exemple)"
         ]
       }
     ]
