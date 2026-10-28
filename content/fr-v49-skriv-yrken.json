@@ -26,14 +26,14 @@
       "date": "2026-11-08",
       "label": "Sön 8/11",
       "items": [
-        "Pass 4: yrken och 'il est médecin'"
+        "Pass 4: yrken i familjen, 'il est médecin'"
       ]
     },
     {
       "date": "2026-11-11",
       "label": "Ons 11/11",
       "items": [
-        "Pass 5: sambandsord et, ou, mais, avec"
+        "Pass 5: sambandsord et, ou, mais, avec, par exemple"
       ]
     },
     {
@@ -41,22 +41,22 @@
       "label": "Sön 15/11",
       "items": [
         "Pass 6: meningsmallarna",
-        "Skriv 6 meningar om ett yrke (papper)"
+        "Skriv 6 meningar om två i familjen och deras jobb (papper)"
       ]
     },
     {
       "date": "2026-11-18",
       "label": "Ons 18/11",
       "items": [
-        "Pass 7: röda kort"
+        "Pass 7: praktik/prao och skolämnen"
       ]
     },
     {
       "date": "2026-11-22",
       "label": "Sön 22/11",
       "items": [
-        "Pass 8: blandat",
-        "Skriv 8 meningar om din familj och deras jobb (papper)"
+        "Pass 8: blandat, röda kort",
+        "Skriv 6–8 meningar om din prao och vad du vill bli (papper)"
       ]
     },
     {
@@ -71,7 +71,7 @@
       "label": "Sön 29/11",
       "items": [
         "Övningsprov",
-        "Skriv en text på 60–80 ord om ett yrke, 30 min (papper)"
+        "Skriv en text om familjens jobb, din prao och vad du vill bli, 30 min (papper)"
       ]
     },
     {
@@ -213,10 +213,10 @@
       "id": "samband",
       "lvl": "G",
       "t": "Sambandsord",
-      "q": "Fyra sambandsord: och, eller, men, med.",
-      "a": "et (och) · ou (eller) · mais (men) · avec (med)",
-      "why": "Ett sambandsord gör två korta meningar till en bättre. Läraren nämner just dessa fyra.",
-      "ex": "Il est médecin et il travaille à l'hôpital. Elle aime son travail mais elle est fatiguée. Je travaille avec mon père."
+      "q": "Fem sambandsord: och, eller, men, med, till exempel.",
+      "a": "et (och) · ou (eller) · mais (men) · avec (med) · par exemple (till exempel)",
+      "why": "Ett sambandsord gör två korta meningar till en bättre. Läraren nämner just dessa. 'par exemple' är bra när du räknar upp saker.",
+      "ex": "Il est médecin et il travaille à l'hôpital. Elle aime son travail mais elle est fatiguée. J'aime les matières pratiques, par exemple le sport et la musique."
     },
     {
       "id": "samband2",
@@ -255,13 +255,58 @@
       "ex": "Mon père est mécanicien. Ma mère travaille dans un bureau. Mes parents aiment leur travail."
     },
     {
+      "id": "praktik",
+      "lvl": "G",
+      "t": "Meningar",
+      "q": "Hur berättar du om din praktik/prao?",
+      "a": "Je fais un stage dans … · Les enfants / Les gens sont … · Je travaille avec … · Je prépare … tous les jours",
+      "why": "Samma verb som du redan kan: faire, être, travailler, préparer. 'faire un stage' = göra praktik/prao.",
+      "ex": "Je fais un stage dans une école maternelle. Les enfants sont gentils. Je joue avec eux et je prépare le repas tous les jours."
+    },
+    {
+      "id": "prao-ord",
+      "lvl": "G",
+      "t": "Ord",
+      "q": "Ord för praktik: förskola, praktik, barnen, leka, maten, varje dag, snäll.",
+      "a": "une école maternelle · un stage · les enfants · jouer · le repas · tous les jours · gentil / gentille / gentils",
+      "why": "jouer är ett vanligt ER-verb: je joue, il joue, ils jouent.",
+      "ex": "Je joue avec les enfants. Le repas est à midi. Les profs sont gentils."
+    },
+    {
+      "id": "amnen",
+      "lvl": "G",
+      "t": "Ord",
+      "q": "Skolämnen: matte, engelska, franska, svenska, idrott, musik, historia, NO.",
+      "a": "les maths · l'anglais · le français · le suédois · le sport · la musique · l'histoire · les sciences",
+      "why": "Efter aimer har franskan alltid artikel: J'aime les maths (inte 'j'aime maths').",
+      "ex": "J'aime le sport et la musique. Je n'aime pas l'histoire."
+    },
+    {
+      "id": "bon-en",
+      "lvl": "G",
+      "t": "Meningar",
+      "q": "Hur säger du att du är bra på ett ämne och vad du vill bli?",
+      "a": "Je suis bon en … (bra på) · Je veux être … / Je veux devenir … (vill bli)",
+      "why": "'bon en' utan artikel: bon en maths. 'je veux' är presens av vouloir och följs av grundform.",
+      "ex": "Je suis bon en sport. J'aime les maths et je veux être ingénieur. Mon frère veut devenir médecin."
+    },
+    {
+      "id": "familj-yrken",
+      "lvl": "G",
+      "t": "Meningar",
+      "q": "Hur berättar du om olika yrken i familjen?",
+      "a": "Mon père est … · Ma mère est … · Mon frère / Ma sœur est … · Mon grand-père / Ma grand-mère est …",
+      "why": "Ett yrke per person, två eller tre meningar var. Det ger variation utan att du behöver specialord.",
+      "ex": "Mon père est ingénieur. Il travaille dans un bureau. Ma mère est infirmière et elle aide les malades. Ma sœur est élève comme moi."
+    },
+    {
       "id": "stava",
       "lvl": "G",
       "t": "Metod",
-      "q": "Vad gör du när du inte vet hur ett ord stavas på provet?",
-      "a": "Byt till ett ord du kan. Skriv om meningen. Fem korta rätta meningar slår en lång fel.",
-      "why": "Provet bedömer om du kan skriva fullständiga meningar i presens, inte hur avancerade orden är.",
-      "ex": "Vet du inte 'kirurg'? Skriv 'médecin'. Vet du inte 'tjänar mycket'? Skriv 'aime son travail'."
+      "q": "Vad gör du när du inte vet hur ett ord stavas på provet, och hur lång ska texten vara?",
+      "a": "Byt till ett ord du kan. Det finns flera sätt att nå E: mycket text med en del fel, eller kortare text som är noggrann. Din väg är den korta och noggranna.",
+      "why": "Läraren skriver själv att båda vägarna räcker för E. Korta rätta meningar är lättare att kontrollera med checklistan.",
+      "ex": "Vet du inte 'kirurg'? Skriv 'médecin'. Hellre åtta rätta meningar än femton med fel verb."
     },
     {
       "id": "checklista",
@@ -1164,6 +1209,171 @@
       ],
       "ans": 0,
       "exp": "il y a + beaucoup de."
+    },
+    {
+      "id": "q66",
+      "c": "samband",
+      "lvl": "G",
+      "type": "txt",
+      "q": "'till exempel' på franska",
+      "acc": [
+        "par exemple"
+      ],
+      "exp": "par exemple."
+    },
+    {
+      "id": "q67",
+      "c": "samband",
+      "lvl": "G",
+      "type": "mc",
+      "q": "'Jag gillar praktiska ämnen, till exempel idrott.'",
+      "opts": [
+        "J'aime les matières pratiques, par exemple le sport.",
+        "J'aime les matières pratiques, pour exemple le sport.",
+        "J'aime les matières pratiques, exemple sport.",
+        "J'aime les matières pratiques, avec le sport."
+      ],
+      "ans": 0,
+      "exp": "par exemple."
+    },
+    {
+      "id": "q68",
+      "c": "praktik",
+      "lvl": "G",
+      "type": "mc",
+      "q": "'Jag gör praktik på en förskola.'",
+      "opts": [
+        "Je fais un stage dans une école maternelle.",
+        "Je suis un stage dans une école maternelle.",
+        "J'ai un stage à une école maternelle.",
+        "Je fais stage école maternelle."
+      ],
+      "ans": 0,
+      "exp": "faire un stage = göra praktik."
+    },
+    {
+      "id": "q69",
+      "c": "praktik",
+      "lvl": "G",
+      "type": "mc",
+      "q": "'Barnen är snälla.'",
+      "opts": [
+        "Les enfants ont gentils.",
+        "Les enfants sont gentils.",
+        "Les enfants est gentils.",
+        "Les enfants sont gentil."
+      ],
+      "ans": 1,
+      "exp": "ils sont + gentils (plural)."
+    },
+    {
+      "id": "q70",
+      "c": "praktik",
+      "lvl": "G",
+      "type": "mc",
+      "q": "'Jag lagar maten varje dag.'",
+      "opts": [
+        "Je prépare le repas tous les jours.",
+        "Je prépares le repas tous les jours.",
+        "Je fais préparer le repas chaque jours.",
+        "Je prépare repas tous jours."
+      ],
+      "ans": 0,
+      "exp": "je prépare (-e), tous les jours."
+    },
+    {
+      "id": "q71",
+      "c": "prao-ord",
+      "lvl": "G",
+      "type": "txt",
+      "q": "jouer: 'je ___'",
+      "acc": [
+        "joue"
+      ],
+      "exp": "je joue, vanligt ER-verb."
+    },
+    {
+      "id": "q72",
+      "c": "prao-ord",
+      "lvl": "G",
+      "type": "txt",
+      "q": "'varje dag' på franska",
+      "acc": [
+        "tous les jours"
+      ],
+      "exp": "tous les jours."
+    },
+    {
+      "id": "q73",
+      "c": "amnen",
+      "lvl": "G",
+      "type": "mc",
+      "q": "'Jag gillar matte.'",
+      "opts": [
+        "J'aime maths.",
+        "J'aime les maths.",
+        "Je aime les maths.",
+        "J'aime la maths."
+      ],
+      "ans": 1,
+      "exp": "Efter aimer: artikel. les maths."
+    },
+    {
+      "id": "q74",
+      "c": "amnen",
+      "lvl": "G",
+      "type": "txt",
+      "q": "'engelska' (skolämnet), med artikel",
+      "acc": [
+        "l'anglais",
+        "l anglais"
+      ],
+      "exp": "l'anglais."
+    },
+    {
+      "id": "q75",
+      "c": "bon-en",
+      "lvl": "G",
+      "type": "mc",
+      "q": "'Jag gillar matte och vill bli ingenjör.'",
+      "opts": [
+        "J'aime les maths et je veux être ingénieur.",
+        "J'aime les maths et je veux un ingénieur.",
+        "J'aime les maths et je suis vouloir ingénieur.",
+        "J'aime maths et je veux être un ingénieur."
+      ],
+      "ans": 0,
+      "exp": "je veux être + yrke utan artikel."
+    },
+    {
+      "id": "q76",
+      "c": "bon-en",
+      "lvl": "G",
+      "type": "mc",
+      "q": "'Jag är bra på idrott.'",
+      "opts": [
+        "Je suis bon en sport.",
+        "Je suis bon au sport.",
+        "J'ai bon en sport.",
+        "Je suis bien le sport."
+      ],
+      "ans": 0,
+      "exp": "bon en + ämne utan artikel."
+    },
+    {
+      "id": "q77",
+      "c": "familj-yrken",
+      "lvl": "G",
+      "type": "mc",
+      "q": "'Min pappa är ingenjör. Han jobbar på ett kontor.'",
+      "opts": [
+        "Mon père est ingénieur. Il travaille dans un bureau.",
+        "Ma père est ingénieur. Il travaille dans un bureau.",
+        "Mon père est un ingénieur. Il travailles dans un bureau.",
+        "Mon père ingénieur. Il travaille bureau."
+      ],
+      "ans": 0,
+      "exp": "mon père, est + yrke utan artikel, il travaille."
     }
   ],
   "boss": [
@@ -1207,12 +1417,12 @@
       "id": "b4",
       "lvl": "G",
       "c": "mall-yrke",
-      "q": "Skriv 6 meningar om ett yrke du väljer. Använd: est + yrke utan artikel, travaille à/dans, aide eller fait, aime, och minst två sambandsord (et, ou, mais, avec).",
-      "facit": "T.ex. Ma tante est infirmière. Elle travaille à l'hôpital. Elle aide les malades et elle parle avec les médecins. Elle aime son travail mais elle est fatiguée le soir. Elle habite à Göteborg.",
+      "q": "Skriv 6 meningar om två personer i din familj och deras jobb. Använd: est + yrke utan artikel, travaille à/dans, aide eller fait, och minst två sambandsord (et, ou, mais, avec, par exemple).",
+      "facit": "T.ex. Mon père est ingénieur. Il travaille dans un bureau. Il aime son travail. Ma mère est infirmière et elle travaille à l'hôpital. Elle aide les malades. Elle travaille avec les médecins.",
       "check": [
         "Ingen artikel efter est + yrke",
         "Alla verb rätt böjda i presens",
-        "Minst två sambandsord, sex hela meningar"
+        "Två personer, minst två sambandsord"
       ]
     },
     {
@@ -1238,6 +1448,18 @@
         "est médecin utan artikel, travaille, à l'hôpital",
         "Mon père est boulanger, il aime"
       ]
+    },
+    {
+      "id": "b7",
+      "lvl": "G",
+      "c": "praktik",
+      "q": "Skriv 6–8 meningar om din prao/praktik och vad du vill bli. Var gör du praktik, hur är människorna, vad gör du varje dag, vilka ämnen gillar du eller är bra på, och vad vill du bli?",
+      "facit": "T.ex. Je fais un stage dans une école maternelle. Les enfants sont gentils. Je joue avec eux et je prépare le repas tous les jours. J'aime le sport et je suis bon en maths. Je veux être ingénieur.",
+      "check": [
+        "faire un stage, sont, joue/prépare rätt böjda",
+        "J'aime les … / Je suis bon en …",
+        "Je veux être + yrke, alla meningar hela"
+      ]
     }
   ],
   "test": {
@@ -1261,7 +1483,11 @@
       "q50",
       "q58",
       "q63",
-      "q64"
+      "q64",
+      "q66",
+      "q68",
+      "q73",
+      "q77"
     ],
     "part2": [
       "q4",
@@ -1273,7 +1499,8 @@
       "q54",
       "q55",
       "q56",
-      "q65"
+      "q65",
+      "q75"
     ],
     "open": [
       {
@@ -1299,11 +1526,11 @@
       {
         "id": "o3",
         "lvl": "H",
-        "q": "Skriv en text på 60–80 ord om ett drömyrke: vad man är, var man jobbar, vad man gör, varför man tycker om det (parce que), och en sak man inte gör (ne … pas).",
+        "q": "Skriv en text om din familj och din framtid: vad två personer i familjen jobbar med, var du gör prao och vad du gör där, vilka ämnen du gillar, och vad du vill bli. Bara presens. Hellre färre meningar som är rätt än många med fel.",
         "rub": [
-          "60–80 ord, bara presens",
-          "parce que och ne … pas korrekt",
-          "Être/avoir/faire/aller och ER-verb rätt böjda"
+          "Fullständiga meningar i presens, rätt böjda verb",
+          "Familjens yrken + prao + vill bli",
+          "Minst tre sambandsord"
         ]
       }
     ]
