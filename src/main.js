@@ -1,5 +1,5 @@
 import * as db from './db.js';
-import { buildItems, evaluate, weekReport, counts, monthBonus, lectureWeekAmount, BONUS, LECTURE_MIN_SEC, LECTURE_REVIEW_DAYS, PASS_MIN, PREP_MIN, JOKERS_PER_MONTH, RESCUE_DAYS, isoWeek, weekStart } from './plan.js';
+import { RULES_V2_FROM, PASS_MIN_SECS, buildItems, evaluate, weekReport, counts, monthBonus, lectureWeekAmount, BONUS, LECTURE_MIN_SEC, LECTURE_REVIEW_DAYS, PASS_MIN, PREP_MIN, JOKERS_PER_MONTH, RESCUE_DAYS, isoWeek, weekStart } from './plan.js';
 const { sb, today } = db;
 
 // ============ STATE ============
@@ -53,9 +53,26 @@ function priority(id) { const c = S.cards[id] || { d: [], weak: false, last: 0 }
 function pickQuestion(cardId, exclude = []) { const pool = QUIZ.filter(q => q.c === cardId && !exclude.includes(q.id)); return pool.length ? pool[Math.floor(Math.random() * pool.length)] : QUIZ.find(q => q.c === cardId); }
 function greens() { return CARDS.filter(c => mastery(c.id) === 3).length; }
 function streak() { const days = new Set(S.sessions.map(s => s.d)); let n = 0; const d = new Date(); for (let i = 0; i < 10; i++) { const k = d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); if (days.has(k)) n++; else if (i > 0) break; d.setDate(d.getDate() - 1); } return n; }
+// Regler från 30/10: första passet per ämne och dag är det som räknas (även om det avbryts),
+// minst 6 minuter och minst 60 % rätt på frågorna appen rättar. Bossen rättar man själv och räknas inte i procenten.
+function passVerdict(type, secs, auto) {
+  if (today() < RULES_V2_FROM) return { counted: type === 'pass' && (!auto.total || auto.score / auto.total >= PASS_MIN), why: type === 'pass' && auto.total && auto.score / auto.total < PASS_MIN ? 'low' : '' };
+  const earlier = S.sessions.some(x => x.d === today() && x.type && x.type.startsWith('pass')); // logSession räknar innan passet läggs till
+  if (earlier) return { counted: false, why: 'first' };
+  if (type !== 'pass') return { counted: false, why: 'aborted' };
+  if (secs < PASS_MIN_SECS) return { counted: false, why: 'fast' };
+  if (auto.total && auto.score / auto.total < PASS_MIN) return { counted: false, why: 'low' };
+  return { counted: true, why: '' };
+}
+function passDoneToday() { return today() >= RULES_V2_FROM && S.sessions.some(x => x.d === today() && x.type && x.type.startsWith('pass')); }
 async function logSession(type, extra = {}) {
   const s = { d: today(), ts: Date.now(), type, score: sess ? sess.score : extra.score, max: sess ? sess.total : extra.max, mins: sess ? Math.round((Date.now() - sess.start) / 60000) : extra.mins, detail: extra.detail };
-  if (sess && type.startsWith('pass')) { s.detail = { ...(s.detail || {}), auto: { ...sess.auto } }; s.detail.counted = counts({ ...s, type: 'pass' }); }
+  if (sess && type.startsWith('pass')) {
+    const secs = Math.round((Date.now() - sess.start) / 1000);
+    const v = passVerdict(type, secs, sess.auto);
+    s.detail = { ...(s.detail || {}), auto: { ...sess.auto }, secs, counted: v.counted, why: v.why };
+    sess.verdict = v;
+  }
   S.sessions.push(s); ALLSESS.push({ module_id: MOD.id, type: s.type, d: s.d, score: s.score, max: s.max, mins: s.mins, detail: s.detail });
   if (isStudent()) s.id = await db.insertSession(me.id, MOD.id, s).catch(() => null);
   return s;
@@ -219,18 +236,19 @@ function startSession() {
   const mixQ = []; const used = new Set();
   for (let i = 0; mixQ.length < 10 && i < 40 && ids.length; i++) { const id = ids[i % ids.length]; const q = pickQuestion(id, [...used]); if (q && !used.has(q.id)) { used.add(q.id); mixQ.push(q); } }
   const bossPool = BOSS.filter(b => pool.has(b.c)); const boss = bossPool.length ? bossPool.sort((a, b) => ((S.cards[a.c] || {}).bossAt || 0) - ((S.cards[b.c] || {}).bossAt || 0))[0] : BOSS[0];
-  sess = { start: Date.now(), step: warm.length >= 2 ? 0 : 1, warm, wi: 0, fresh, fi: 0, fphase: 'learn', mixQ: shuffle(mixQ), mi: 0, boss, score: 0, total: 0, auto: { score: 0, total: 0 }, learnMode, logged: false };
+  sess = { extra: passDoneToday(), start: Date.now(), step: warm.length >= 2 ? 0 : 1, warm, wi: 0, fresh, fi: 0, fphase: 'learn', mixQ: shuffle(mixQ), mi: 0, boss, score: 0, total: 0, auto: { score: 0, total: 0 }, learnMode, logged: false };
   go('session');
 }
 function sessHeader() {
   const names = ['Värm upp', 'Lär 3 nya', 'Blanda', 'Boss']; if (!sess.learnMode) names[1] = 'Repetera 3';
   const mins = Math.floor((Date.now() - sess.start) / 60000);
   return `<div class="topbar"><button class="back" id="quit">Avbryt</button><div class="timer num">${mins} min</div><div class="muted num" style="font-weight:600">${sess.score}/${sess.total} rätt</div></div>
-  <div class="steps">${names.map((n, i) => `<div class="${i < sess.step ? 'done' : i === sess.step ? 'on' : ''}">${n}</div>`).join('')}</div>`;
+  <div class="steps">${names.map((n, i) => `<div class="${i < sess.step ? 'done' : i === sess.step ? 'on' : ''}">${n}</div>`).join('')}</div>
+  ${today() >= RULES_V2_FROM && sess.step < 4 ? `<div class="muted" style="font-size:.85rem">${sess.extra ? 'Extra träning: dagens räknade pass i ämnet är redan gjort.' : 'Dagens räknade pass. Ta det lugnt: det räknas från 6 min och gäller även om du avbryter.'}</div>` : ''}`;
 }
 function session() {
   if (!sess) return home();
-  window._after = () => { const q = document.getElementById('quit'); if (q) q.onclick = () => { if (sess.total > 0 && !sess.logged) logSession('pass-avbrutet'); sess = null; go('home'); }; };
+  window._after = () => { const q = document.getElementById('quit'); if (q) q.onclick = () => { if ((sess.total > 0 || today() >= RULES_V2_FROM) && !sess.logged) logSession('pass-avbrutet'); sess = null; go('home'); }; };
   let body = '';
   if (sess.step === 0) body = stepWarm(); else if (sess.step === 1) body = stepLearn(); else if (sess.step === 2) body = stepMix(); else if (sess.step === 3) body = stepBoss(); else body = stepDone();
   return `<div class="stack">${sessHeader()}${body}</div>`;
@@ -266,19 +284,21 @@ function stepMix() {
 }
 function stepBoss() {
   const b = sess.boss; if (!b) { sess.step = 4; logSession('pass'); sess.logged = true; return stepDone(); }
-  return bossView(b, pts => { cs(b.c).bossAt = Date.now(); rec(b.c, pts >= 2); sess.total++; sess.auto.total++; if (pts >= 2) { sess.score++; sess.auto.score++; } sess.step = 4; sess.logged = true; logSession('pass'); render(); });
+  return bossView(b, pts => { cs(b.c).bossAt = Date.now(); rec(b.c, pts >= 2); sess.total++; if (pts >= 2) sess.score++; sess.step = 4; sess.logged = true; logSession('pass'); render(); });
 }
 function stepDone() {
   const g = greens(); const pct = sess.total ? Math.round(sess.score / sess.total * 100) : 0;
   const newGreen = CARDS.filter(c => mastery(c.id) === 3 && S.cards[c.id].d[2] === today()).length;
-  const apct = sess.auto.total ? Math.round(sess.auto.score / sess.auto.total * 100) : 100; const counted = sess.auto.total === 0 || sess.auto.score / sess.auto.total >= PASS_MIN;
+  const apct = sess.auto.total ? Math.round(sess.auto.score / sess.auto.total * 100) : 100;
+  const v = sess.verdict || { counted: true }; const counted = v.counted;
+  const msg = { first: 'Dagens räknade pass i det här ämnet är redan gjort (eller avbrutet). Det här var fri träning: korten blir ändå starkare, men passet ger inget i planen.', fast: `Passet tog ${Math.max(1, Math.round((Date.now() - sess.start) / 60000))} min. Ett pass räknas från ${PASS_MIN_SECS / 60} minuter, för det är ungefär så lång tid det tar att läsa korten och tänka på frågorna.`, low: `Under ${Math.round(PASS_MIN * 100)} % rätt. Passet räknas inte mot veckan, men korten du missade kommer tillbaka i morgon.` }[v.why] || '';
   return `<div class="card stack" style="text-align:center;gap:10px">
-    <div class="eyebrow">${counted ? 'Pass klart · räknas' : 'Pass klart · räknas inte än'}</div><div class="big num" style="${counted ? '' : 'color:var(--bad)'}">${apct}%</div>
-    ${counted ? '' : `<div class="fb no" style="text-align:left"><b>Under ${Math.round(PASS_MIN * 100)} % rätt</b>Passet sparas men räknas inte mot veckan. Korten du såg sitter bättre nu, så kör ett till direkt så räknas det.</div>`}
+    <div class="eyebrow">${counted ? 'Pass klart · räknas' : v.why === 'first' ? 'Extra träning' : 'Pass klart · räknas inte'}</div><div class="big num" style="${counted || v.why === 'first' ? '' : 'color:var(--bad)'}">${apct}%</div>
+    ${msg ? `<div class="fb ${v.why === 'first' ? 'ok' : 'no'}" style="text-align:left">${msg}</div>` : ''}
     <div>${sess.score} av ${sess.total} rätt på ${Math.max(1, Math.round((Date.now() - sess.start) / 60000))} min</div><hr>
     <div><b>${g}/${CARDS.length}</b> kort gröna${newGreen ? ` · <span style="color:var(--good)">+${newGreen} idag</span>` : ''}</div>
     <div class="muted">${pct >= 80 ? 'Stabilt. Kom tillbaka imorgon, då räknas det igen.' : pct >= 60 ? 'Bra jobbat. De röda korten kommer tillbaka i nästa pass.' : 'Tufft pass, men varje fel du fick se facit på sitter bättre nu. Kör igen imorgon.'}</div>
-  </div>${counted ? '' : '<button class="btn primary" id="again">Kör ett till nu</button>'}<button class="btn ${counted ? 'primary' : ''}" id="done">Klar</button>` + after(() => { document.getElementById('done').onclick = () => { sess = null; go('today'); }; const ag = document.getElementById('again'); if (ag) ag.onclick = () => startSession(); });
+  </div><button class="btn primary" id="done">Klar</button>` + after(() => { document.getElementById('done').onclick = () => { sess = null; go('today'); }; const ag = document.getElementById('again'); if (ag) ag.onclick = () => startSession(); });
 }
 
 // ---------- KOMPONENTER ----------
@@ -298,7 +318,7 @@ function checkTxt(q, val) { const v = norm(val); if (!v) return false; return q.
 function quizView(q, onDone, nextLabel) {
   const uid = 'z' + Math.random().toString(36).slice(2, 7);
   let html = `<div class="card stack" style="gap:14px"><div><span class="pill ${q.lvl}">${q.lvl === 'G' ? 'Grund' : 'Högre'}</span></div><div class="q">${esc(q.q)}</div>`;
-  if (q.type === 'mc') html += `<div class="opts" id="${uid}o">${q.opts.map((o, i) => `<button class="opt" data-i="${i}">${esc(o)}</button>`).join('')}</div>`;
+  if (q.type === 'mc') html += `<div class="opts" id="${uid}o">${shuffle(q.opts.map((o, i) => ({ o, i }))).map(({ o, i }) => `<button class="opt" data-i="${i}">${esc(o)}</button>`).join('')}</div>`;
   else html += `<form id="${uid}f" class="stack" style="gap:10px"><input type="text" id="${uid}i" autocomplete="off" autocapitalize="off" placeholder="Skriv ditt svar"><button class="btn primary" type="submit" style="font-size:1.2rem;padding:14px">Svara</button></form>`;
   html += `<div id="${uid}fb"></div></div>`;
   return html + after(() => {

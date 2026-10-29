@@ -6,6 +6,8 @@
 export const RESCUE_DAYS = 2;      // en missad dag får räddas inom så många dagar
 export const JOKERS_PER_MONTH = 1; // antal räddningar per kalendermånad utan att veckan faller
 export const PASS_MIN = 0.6;       // andel rätt på automatiskt rättade frågor för att ett pass ska räknas
+export const RULES_V2_FROM = '2026-10-30'; // ett räknat pass per ämne och dag, första passet gäller, minst 6 min
+export const PASS_MIN_SECS = 360;
 export const TEST_MIN = 0.5;       // andel rätt för att ett övningsprov ska räknas
 export const PREP_MIN = 0.8;       // andel gröna kort dagen före provet = "preppen var grön"
 
@@ -53,6 +55,7 @@ export function monthBonus(weeks, exams, todayStr, lectureWeeks = []) {
 
 // Räknas passet/provet mot planen? Gamla sessioner utan detaljer räknas (de loggades innan regeln fanns).
 export function counts(s) {
+  if (s.type === 'pass' && s.d >= RULES_V2_FROM) return !!(s.detail && s.detail.counted);
   if (s.type === 'pass') {
     const a = s.detail && s.detail.auto;
     if (a) return a.total === 0 ? false : a.score / a.total >= PASS_MIN;
