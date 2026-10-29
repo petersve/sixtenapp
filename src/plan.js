@@ -55,8 +55,8 @@ export function monthBonus(weeks, exams, todayStr, lectureWeeks = []) {
 export function counts(s) {
   if (s.type === 'pass') {
     const a = s.detail && s.detail.auto;
-    if (a && a.total > 0) return a.score / a.total >= PASS_MIN;
-    return !s.max || s.score / s.max >= PASS_MIN;
+    if (a) return a.total === 0 ? false : a.score / a.total >= PASS_MIN;
+    return true; // pass loggade innan 60 %-regeln (25/10) räknas som förut
   }
   if (s.type === 'test') {
     if (s.detail && s.detail.paper) return true;
@@ -65,9 +65,10 @@ export function counts(s) {
   return false;
 }
 
-const addDays = (d, n) => { const x = new Date(d + 'T00:00:00'); x.setDate(x.getDate() + n); return x.toISOString().slice(0, 10); };
-export const isoWeek = d => { const x = new Date(d + 'T00:00:00'); const day = (x.getDay() + 6) % 7; x.setDate(x.getDate() - day + 3); const first = new Date(x.getFullYear(), 0, 4); const w = 1 + Math.round(((x - first) / 86400e3 - 3 + ((first.getDay() + 6) % 7)) / 7); return `${x.getFullYear()}-W${String(w).padStart(2, '0')}`; };
-export const weekStart = d => { const x = new Date(d + 'T00:00:00'); const day = (x.getDay() + 6) % 7; x.setDate(x.getDate() - day); return x.toISOString().slice(0, 10); };
+// Datum räknas i UTC så att 'YYYY-MM-DD' aldrig glider en dag i svensk tidszon.
+const addDays = (d, n) => { const x = new Date(d + 'T00:00:00Z'); x.setUTCDate(x.getUTCDate() + n); return x.toISOString().slice(0, 10); };
+export const isoWeek = d => { const x = new Date(d + 'T00:00:00Z'); const day = (x.getUTCDay() + 6) % 7; x.setUTCDate(x.getUTCDate() - day + 3); const y = x.getUTCFullYear(); const jan4 = new Date(Date.UTC(y, 0, 4)); const w = 1 + Math.round(((x - jan4) / 86400e3 - 3 + ((jan4.getUTCDay() + 6) % 7)) / 7); return `${y}-W${String(w).padStart(2, '0')}`; };
+export const weekStart = d => { const x = new Date(d + 'T00:00:00Z'); const day = (x.getUTCDay() + 6) % 7; x.setUTCDate(x.getUTCDate() - day); return x.toISOString().slice(0, 10); };
 
 // Bygg planposter från modulerna (modules_list med plan) och passerade prov utan betyg.
 export function buildItems(mods, results, todayStr, snoozes = []) {
@@ -126,7 +127,7 @@ export function weekReport(evaluated, todayStr) {
     w.open = w.items.filter(i => i.status === 'open' || i.status === 'late' || i.status === 'future').length;
     // jokrar per månad (veckans startmånad)
     const month = w.start.slice(0, 7); const used = jokersByMonth.get(month) || 0;
-    w.jokersUsed = w.rescued.length; w.jokersOver = Math.max(0, used + w.rescued.length - JOKERS_PER_MONTH); jokersByMonth.set(month, used + w.rescued.length);
+    w.jokersUsed = w.rescued.length; w.jokersOver = Math.min(w.rescued.length, Math.max(0, used + w.rescued.length - JOKERS_PER_MONTH)); // bara veckans egna räddningar kan gå över jokersByMonth.set(month, used + w.rescued.length);
     const weekEnd = addDays(w.start, 6);
     if (w.total === 0) w.light = 'grey';
     else if (w.missed > 0 || w.jokersOver > 0) w.light = 'red';

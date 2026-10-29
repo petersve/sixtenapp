@@ -424,7 +424,7 @@ function itemRow(it, cls = '') {
   const done = it.status === 'done' || it.status === 'rescued';
   return `<button class="check ${done ? 'on' : ''} ${cls}" ${done || it.status === 'missed' ? 'disabled' : itemAction(it)} style="padding:12px 14px"><span class="box" style="${it.status === 'missed' ? 'color:var(--bad);border-color:var(--bad)' : ''}">${icon}</span><span style="min-width:0"><b>${esc(it.label)}</b><br><span class="muted" style="font-size:.9rem">${esc(it.title)} · ${sub}</span></span></button>`;
 }
-const addD = (d, n) => { const x = new Date(d + 'T00:00:00'); x.setDate(x.getDate() + n); return x.toISOString().slice(0, 10); };
+const addD = (d, n) => { const x = new Date(d + 'T00:00:00Z'); x.setUTCDate(x.getUTCDate() + n); return x.toISOString().slice(0, 10); };
 function todayView() {
   const { t, ev, weeks } = planState();
   const late = ev.filter(i => i.status === 'late');
@@ -457,8 +457,8 @@ function todayView() {
     });
   });
 }
-function isoW(d) { const x = new Date(d + 'T00:00:00'); const day = (x.getDay() + 6) % 7; x.setDate(x.getDate() - day + 3); const first = new Date(x.getFullYear(), 0, 4); const w = 1 + Math.round(((x - first) / 86400e3 - 3 + ((first.getDay() + 6) % 7)) / 7); return `${x.getFullYear()}-W${String(w).padStart(2, '0')}`; }
-function streakAll() { const days = new Set(ALLSESS.map(s => s.d)); let n = 0; const d = new Date(); for (let i = 0; i < 60; i++) { const k = d.toISOString().slice(0, 10); if (days.has(k)) n++; else if (i > 0) break; d.setDate(d.getDate() - 1); } return n; }
+const isoW = isoWeek;
+function streakAll() { const days = new Set(ALLSESS.map(s => s.d)); let n = 0; const d = new Date(); for (let i = 0; i < 60; i++) { const k = d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); if (days.has(k)) n++; else if (i > 0) break; d.setDate(d.getDate() - 1); } return n; }
 
 // ---------- PROV (lista) ----------
 function exams() {
