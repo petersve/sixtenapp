@@ -1,0 +1,687 @@
+{
+  "slug": "sv-v48-np-muntligt",
+  "plan": [
+    {
+      "date": "2026-11-14",
+      "label": "Lör 14/11",
+      "items": [
+        "Pass 1: provet och presentationens fyra delar"
+      ]
+    },
+    {
+      "date": "2026-11-16",
+      "label": "Mån 16/11",
+      "items": [
+        "Pass 2: sammanfatta och resonera"
+      ]
+    },
+    {
+      "date": "2026-11-17",
+      "label": "Tis 17/11",
+      "items": [
+        "Pass 3: leda diskussionen",
+        "Led en middagsdiskussion (5 min)"
+      ]
+    },
+    {
+      "date": "2026-11-19",
+      "label": "Tor 19/11",
+      "items": [
+        "Pass 4: delta, bemöta, följdfrågor"
+      ]
+    },
+    {
+      "date": "2026-11-21",
+      "label": "Lör 21/11",
+      "items": [
+        "Pass 5: nyansera, röda kort",
+        "Generalrepetition: förbered 30 min och presentera för en förälder"
+      ]
+    },
+    {
+      "date": "2026-11-22",
+      "label": "Sön 22/11",
+      "items": [
+        "Snabbvärmning: presentationens delar och bra fraser"
+      ]
+    }
+  ],
+  "cards": [
+    {
+      "id": "format",
+      "lvl": "G",
+      "t": "Provet",
+      "q": "Hur går det muntliga nationella provet i svenska till?",
+      "a": "Grupp på 4–5 elever. 30 min förberedelse med en text, sedan presenterar du (2–3 min), leder en kort diskussion (3–7 min) och deltar i gruppens diskussion (20–40 min).",
+      "why": "Förberedelsen bedöms inte. Det som bedöms är presentationen och hur du leder och deltar i diskussionen.",
+      "ex": "Ni får ett häfte med textutdrag, ofta skönlitteratur och sakprosa, och en diskussionsfråga till varje text."
+    },
+    {
+      "id": "tema",
+      "lvl": "G",
+      "t": "Provet",
+      "q": "Vad brukar texterna och diskussionsfrågorna handla om?",
+      "a": "Livsfrågor: mod, att våga, utanförskap, vänskap och kärlek, identitet, val och ansvar. Ett frisläppt exempelprov hade temat att våga göra något man vill trots risken att misslyckas.",
+      "why": "Temat är hemligt till provet, men det är nästan alltid något alla 15-åringar kan ha en åsikt om. Du behöver inga fakta, bara egna tankar och exempel.",
+      "ex": "Exempeltexten var ur ungdomsboken Skjut apelsinen av Mikael Niemi: en kille gör en misslyckad romantisk gest och tror att livet är slut."
+    },
+    {
+      "id": "pres-delar",
+      "lvl": "G",
+      "t": "Presentera",
+      "q": "Vilka fyra delar ska presentationen ha?",
+      "a": "1) Kort sammanfattning av texten. 2) Dina egna tankar om den. 3) Ett resonemang med exempel. 4) Diskussionsfrågan till gruppen, och din egen åsikt om den.",
+      "why": "Gör du alla fyra delarna har du en komplett presentation. Det är den lättaste poängen på hela provet.",
+      "ex": "\"Texten handlar om … Jag tänkte på … eftersom … Det påminner mig om när … Min fråga till er är: … Själv tycker jag …\""
+    },
+    {
+      "id": "sammanfatta",
+      "lvl": "G",
+      "t": "Presentera",
+      "q": "Hur gör du en bra sammanfattning?",
+      "a": "Vem, vad, vilket problem, hur det slutar, på 4–5 meningar i presens. Inga detaljer, inga citat.",
+      "why": "En sammanfattning ska få någon som inte läst texten att förstå vad den handlar om. Det är inte en återberättelse.",
+      "ex": "\"Texten handlar om Sixten, 16 år, som är kär i en tjej i klassen. Han bestämmer sig för att visa det på ett stort sätt, men det går fel inför alla. Efteråt känner han att livet är slut.\""
+    },
+    {
+      "id": "resonera",
+      "lvl": "G",
+      "t": "Presentera",
+      "q": "Hur bygger du ett resonemang?",
+      "a": "Påstående + därför + exempel + å andra sidan. \"Jag tror att … eftersom … Till exempel … Men å andra sidan …\"",
+      "why": "Ett resonemang är det som lyfter dig från E till C och A. Utan \"eftersom\" och ett exempel är det bara en åsikt.",
+      "ex": "\"Jag tror att det är värt att våga, eftersom man ångrar mer det man inte gjorde. Till exempel sökte jag till ett lag fast jag trodde att jag inte skulle komma med. Å andra sidan kan ett nej göra väldigt ont.\""
+    },
+    {
+      "id": "stodord",
+      "lvl": "G",
+      "t": "Presentera",
+      "q": "Ska du läsa innantill från ett manus?",
+      "a": "Nej. Skriv 5–8 stödord på en lapp, och skriv bara ut din första mening helt.",
+      "why": "Man bedöms på kontakten med lyssnarna. Den som läser innantill tittar ner och låter monoton.",
+      "ex": "Lapp: \"Skjut apelsinen – kär – stor gest – går fel – skäms / våga? – ångra – lagtryouten / Fråga: Är det värt att riskera att skämma ut sig?\""
+    },
+    {
+      "id": "leda-oppna",
+      "lvl": "G",
+      "t": "Leda",
+      "q": "Hur öppnar du diskussionen när det är din tur att leda?",
+      "a": "Läs frågan igen och ge ordet till någon. Du kan också börja själv med en kort åsikt.",
+      "why": "Ett tydligt första drag gör att det inte blir tyst. Tystnad är det som oftast sänker en grupp.",
+      "ex": "\"Min fråga är: Är det värt att riskera att skämma ut sig för att få det man vill ha? Vad tycker du, Alva?\""
+    },
+    {
+      "id": "leda-fordela",
+      "lvl": "G",
+      "t": "Leda",
+      "q": "Hur ser du till att alla kommer till tals?",
+      "a": "Ge ordet med namn till den som inte sagt något, och stoppa vänligt den som pratar länge.",
+      "why": "Diskussionsledning bedöms tillsammans med hur du deltar. Att fördela ordet visar att du leder.",
+      "ex": "\"Hugo, du har inte sagt något än, vad tänker du?\" · \"Bra poäng, ska vi höra vad Leo tycker också?\""
+    },
+    {
+      "id": "leda-avsluta",
+      "lvl": "G",
+      "t": "Leda",
+      "q": "Hur avslutar du din diskussion?",
+      "a": "Sammanfatta i en eller två meningar vad gruppen kom fram till och var ni var oense.",
+      "why": "En sammanfattning visar att du har lyssnat på alla. Det är ett tydligt A-drag.",
+      "ex": "\"Så de flesta tycker att det är värt att våga, men Alva menar att det beror på hur stor risken är. Bra diskussion!\""
+    },
+    {
+      "id": "bygga-vidare",
+      "lvl": "G",
+      "t": "Delta",
+      "q": "Hur bygger du vidare på någon annans inlägg?",
+      "a": "Nämn personen, håll med eller inte, och lägg till något nytt.",
+      "why": "Att bara säga \"jag håller med\" ger nästan inget. Det som bedöms är att du för samtalet framåt.",
+      "ex": "\"Jag håller med Leo om att man ångrar det man inte gör, och jag vill lägga till att …\""
+    },
+    {
+      "id": "bemota",
+      "lvl": "G",
+      "t": "Delta",
+      "q": "Hur säger du emot på ett bra sätt?",
+      "a": "Visa att du förstått, säg vad du tycker annorlunda, och förklara varför.",
+      "why": "Att bemöta argument är ett av kraven. Gör det sakligt, så blir det inte bråk.",
+      "ex": "\"Jag förstår hur du tänker, men jag tycker ändå att … eftersom …\""
+    },
+    {
+      "id": "foljdfraga",
+      "lvl": "G",
+      "t": "Delta",
+      "q": "Vad är en följdfråga, och varför ska du ställa den?",
+      "a": "En fråga som bygger på det någon just sa: \"Hur menar du?\", \"Har du något exempel?\", \"Gäller det alltid?\"",
+      "why": "Följdfrågor visar att du lyssnar, och de räknas som deltagande även om du inte har en egen åsikt just då.",
+      "ex": "\"Du sa att det beror på risken. Hur stor risk tycker du är okej?\""
+    },
+    {
+      "id": "exempel",
+      "lvl": "G",
+      "t": "Delta",
+      "q": "Varför ska du ge konkreta exempel och egna erfarenheter?",
+      "a": "För att ett exempel gör en åsikt begriplig och trovärdig. Det kan vara något du upplevt, sett eller läst.",
+      "why": "\"Ge konkreta exempel och jämför med egna upplevelser\" står uttryckligen i provets arbetsgång.",
+      "ex": "\"När jag började spela hockey i ett nytt lag kände jag precis som killen i texten …\""
+    },
+    {
+      "id": "jamfora-texter",
+      "lvl": "H",
+      "t": "Delta",
+      "q": "Hur når du högre nivå i diskussionen?",
+      "a": "Jämför texten med andra texter i häftet, med film eller böcker du känner till, eller med samhället.",
+      "why": "Att koppla ihop texter och se flera perspektiv visar en nyanserad förståelse. Det är A-nivå.",
+      "ex": "\"Det här påminner om den andra texten i häftet, där huvudpersonen också …, men skillnaden är att …\""
+    },
+    {
+      "id": "nyansera",
+      "lvl": "H",
+      "t": "Delta",
+      "q": "Vad betyder det att resonera nyanserat?",
+      "a": "Att visa att du ser flera sidor och väger dem mot varandra: \"Det beror på …\", \"Både … och …\", \"I vissa fall … men i andra …\".",
+      "why": "Den som bara har en åsikt hamnar ofta på E–C. Den som visar att frågan är komplicerad och ändå tar ställning når A.",
+      "ex": "\"Det beror på vad man riskerar. Att skämma ut sig går över, men att skada någon annan gör inte det. Så jag tycker man ska våga, men inte på andras bekostnad.\""
+    },
+    {
+      "id": "fallgropar",
+      "lvl": "G",
+      "t": "Delta",
+      "q": "Vilka fyra misstag ska du undvika i diskussionen?",
+      "a": "Att vara tyst länge, att prata i flera minuter i sträck, att avbryta, och att bara hålla med.",
+      "why": "Bedömningen gäller hur du deltar i ett samtal. Den som tar hela talutrymmet kommunicerar lika dåligt som den som är tyst.",
+      "ex": "Tumregel: säg något var tredje eller fjärde minut, och inte mer än 30–60 sekunder åt gången."
+    },
+    {
+      "id": "sprak",
+      "lvl": "G",
+      "t": "Språk",
+      "q": "Hur ska du prata för att det ska fungera?",
+      "a": "Tydligt, i lagom tempo, med ord som passar ett samtal i skolan. Titta på dem du pratar med.",
+      "why": "Bedömningen nämner \"ord som fungerar, anpassning och kontakt med åhörarna\". Slang och svordomar drar ner.",
+      "ex": "Säg \"jag tycker\" i stället för \"typ asså\", och \"det känns orättvist\" i stället för \"det är sjukt dumt\"."
+    },
+    {
+      "id": "nerver",
+      "lvl": "G",
+      "t": "Provet",
+      "q": "Vad gör du om du blir nervös eller tappar tråden?",
+      "a": "Andas, titta på stödorden, och säg något som köper tid: \"Vänta, jag tänker om\" eller \"Kan du upprepa frågan?\"",
+      "why": "Alla i gruppen är nervösa. Det gör inget att du tappar tråden, så länge du tar dig tillbaka.",
+      "ex": "\"Jag kom av mig, men det jag menar är …\""
+    }
+  ],
+  "quiz": [
+    {
+      "id": "q1",
+      "c": "format",
+      "lvl": "G",
+      "type": "mc",
+      "q": "Hur många elever brukar det vara i en grupp?",
+      "opts": [
+        "2",
+        "4–5",
+        "Hela klassen",
+        "8–10"
+      ],
+      "ans": 1,
+      "exp": "4–5 elever."
+    },
+    {
+      "id": "q2",
+      "c": "format",
+      "lvl": "G",
+      "type": "mc",
+      "q": "Hur lång är presentationen?",
+      "opts": [
+        "30 sekunder",
+        "2–3 minuter",
+        "10 minuter",
+        "20 minuter"
+      ],
+      "ans": 1,
+      "exp": "2–3 minuter."
+    },
+    {
+      "id": "q3",
+      "c": "format",
+      "lvl": "G",
+      "type": "mc",
+      "q": "Vilken del bedöms inte?",
+      "opts": [
+        "Förberedelsen",
+        "Presentationen",
+        "Att leda diskussionen",
+        "Att delta i diskussionen"
+      ],
+      "ans": 0,
+      "exp": "Förberedelsen bedöms inte."
+    },
+    {
+      "id": "q4",
+      "c": "tema",
+      "lvl": "G",
+      "type": "mc",
+      "q": "Vad brukar texterna handla om?",
+      "opts": [
+        "Faktakunskap om historia",
+        "Livsfrågor som mod, val, utanförskap och relationer",
+        "Grammatik",
+        "Nyheter från veckan före"
+      ],
+      "ans": 1,
+      "exp": "Livsfrågor som alla kan ha åsikter om."
+    },
+    {
+      "id": "q5",
+      "c": "tema",
+      "lvl": "G",
+      "type": "mc",
+      "q": "Behöver du plugga fakta inför provet?",
+      "opts": [
+        "Ja, mycket",
+        "Nej, du behöver egna tankar, exempel och ett sätt att resonera",
+        "Bara om svensk historia",
+        "Bara om författare"
+      ],
+      "ans": 1,
+      "exp": "Det som bedöms är hur du presenterar och diskuterar."
+    },
+    {
+      "id": "q6",
+      "c": "pres-delar",
+      "lvl": "G",
+      "type": "mc",
+      "q": "Vad ska presentationen avslutas med?",
+      "opts": [
+        "En sammanfattning",
+        "Diskussionsfrågan och din egen åsikt om den",
+        "Ett citat",
+        "Frågan om alla har förstått"
+      ],
+      "ans": 1,
+      "exp": "Frågan till gruppen och din egen åsikt."
+    },
+    {
+      "id": "q7",
+      "c": "pres-delar",
+      "lvl": "G",
+      "type": "mc",
+      "q": "Vilken del saknas: sammanfattning, egna tankar, diskussionsfråga …?",
+      "opts": [
+        "Ett resonemang med exempel",
+        "Författarens biografi",
+        "Ett citat",
+        "En ordlista"
+      ],
+      "ans": 0,
+      "exp": "Resonemanget med exempel."
+    },
+    {
+      "id": "q8",
+      "c": "sammanfatta",
+      "lvl": "G",
+      "type": "mc",
+      "q": "Vad ska INTE vara med i en sammanfattning?",
+      "opts": [
+        "Vem texten handlar om",
+        "Vilket problem som finns",
+        "Långa citat och detaljer",
+        "Hur det slutar"
+      ],
+      "ans": 2,
+      "exp": "Inga detaljer eller citat."
+    },
+    {
+      "id": "q9",
+      "c": "sammanfatta",
+      "lvl": "G",
+      "type": "mc",
+      "q": "Hur lång ska sammanfattningen vara?",
+      "opts": [
+        "En mening",
+        "4–5 meningar",
+        "En hel sida",
+        "Så lång som texten"
+      ],
+      "ans": 1,
+      "exp": "4–5 meningar."
+    },
+    {
+      "id": "q10",
+      "c": "resonera",
+      "lvl": "G",
+      "type": "mc",
+      "q": "Vilket är ett resonemang, och inte bara en åsikt?",
+      "opts": [
+        "Jag tycker att man ska våga.",
+        "Jag tycker att man ska våga eftersom man ångrar det man inte gör, till exempel när jag …",
+        "Våga!",
+        "Jag vet inte."
+      ],
+      "ans": 1,
+      "exp": "Påstående + eftersom + exempel."
+    },
+    {
+      "id": "q11",
+      "c": "resonera",
+      "lvl": "G",
+      "type": "mc",
+      "q": "Vilket ord gör en åsikt till ett resonemang?",
+      "opts": [
+        "och",
+        "eftersom",
+        "typ",
+        "alltså"
+      ],
+      "ans": 1,
+      "exp": "Eftersom ger en orsak."
+    },
+    {
+      "id": "q12",
+      "c": "stodord",
+      "lvl": "G",
+      "type": "mc",
+      "q": "Vad har du på lappen när du presenterar?",
+      "opts": [
+        "Hela texten",
+        "5–8 stödord och din första mening",
+        "Ingenting",
+        "Lärarens frågor"
+      ],
+      "ans": 1,
+      "exp": "Stödord, inte manus."
+    },
+    {
+      "id": "q13",
+      "c": "leda-oppna",
+      "lvl": "G",
+      "type": "mc",
+      "q": "Det är din tur att leda. Vad säger du först?",
+      "opts": [
+        "Ingenting, vänta på att någon börjar",
+        "Läs frågan igen och ge ordet till någon med namn",
+        "Säg att du inte har något att säga",
+        "Läs upp hela texten"
+      ],
+      "ans": 1,
+      "exp": "Ett tydligt första drag."
+    },
+    {
+      "id": "q14",
+      "c": "leda-fordela",
+      "lvl": "G",
+      "type": "mc",
+      "q": "En i gruppen har inte sagt något. Vad gör du som ledare?",
+      "opts": [
+        "Inget, hen vill nog inte",
+        "Frågar hen med namn vad hen tänker",
+        "Pratar själv mer",
+        "Byter fråga"
+      ],
+      "ans": 1,
+      "exp": "Fördela ordet med namn."
+    },
+    {
+      "id": "q15",
+      "c": "leda-avsluta",
+      "lvl": "G",
+      "type": "mc",
+      "q": "Hur avslutar du bäst din diskussion?",
+      "opts": [
+        "\"Okej, klart.\"",
+        "Sammanfattar vad gruppen kom fram till och var ni var oense",
+        "Säger vad du själv tycker en gång till",
+        "Frågar läraren om det var bra"
+      ],
+      "ans": 1,
+      "exp": "Sammanfattning visar att du lyssnat."
+    },
+    {
+      "id": "q16",
+      "c": "bygga-vidare",
+      "lvl": "G",
+      "type": "mc",
+      "q": "Vilket inlägg bygger vidare bäst?",
+      "opts": [
+        "Jag håller med.",
+        "Jag håller med Leo om att man ångrar det man inte gör, och jag vill lägga till att …",
+        "Ja.",
+        "Samma som Alva."
+      ],
+      "ans": 1,
+      "exp": "Namn + håll med + något nytt."
+    },
+    {
+      "id": "q17",
+      "c": "bemota",
+      "lvl": "G",
+      "type": "mc",
+      "q": "Vilket är ett bra sätt att säga emot?",
+      "opts": [
+        "Det där är fel.",
+        "Jag förstår hur du tänker, men jag tycker ändå … eftersom …",
+        "Nej.",
+        "Du har inte läst texten."
+      ],
+      "ans": 1,
+      "exp": "Visa förståelse, säg din åsikt, förklara varför."
+    },
+    {
+      "id": "q18",
+      "c": "foljdfraga",
+      "lvl": "G",
+      "type": "mc",
+      "q": "Vilken är en följdfråga?",
+      "opts": [
+        "Vad heter du?",
+        "Du sa att det beror på risken, hur stor risk tycker du är okej?",
+        "Är vi klara snart?",
+        "Vem skrev texten?"
+      ],
+      "ans": 1,
+      "exp": "En följdfråga bygger på det som just sades."
+    },
+    {
+      "id": "q19",
+      "c": "exempel",
+      "lvl": "G",
+      "type": "mc",
+      "q": "Varför ska du berätta om något du själv varit med om?",
+      "opts": [
+        "Det får man inte",
+        "Ett exempel gör åsikten begriplig och trovärdig",
+        "För att fylla ut tiden",
+        "För att byta ämne"
+      ],
+      "ans": 1,
+      "exp": "Konkreta exempel efterfrågas i uppgiften."
+    },
+    {
+      "id": "q20",
+      "c": "jamfora-texter",
+      "lvl": "H",
+      "type": "mc",
+      "q": "Vad är ett tydligt A-drag i diskussionen?",
+      "opts": [
+        "Prata längst",
+        "Jämföra texten med en annan text eller med samhället",
+        "Hålla med alla",
+        "Läsa högt ur texten"
+      ],
+      "ans": 1,
+      "exp": "Att koppla ihop och se flera perspektiv."
+    },
+    {
+      "id": "q21",
+      "c": "nyansera",
+      "lvl": "H",
+      "type": "mc",
+      "q": "Vilket svar är mest nyanserat?",
+      "opts": [
+        "Man ska alltid våga.",
+        "Det beror på vad man riskerar: att skämma ut sig går över, men att skada någon gör det inte, så jag tycker …",
+        "Man ska aldrig våga.",
+        "Vet inte."
+      ],
+      "ans": 1,
+      "exp": "Flera sidor, men ändå ett ställningstagande."
+    },
+    {
+      "id": "q22",
+      "c": "fallgropar",
+      "lvl": "G",
+      "type": "mc",
+      "q": "Vilket är ett misstag i diskussionen?",
+      "opts": [
+        "Att ställa följdfrågor",
+        "Att prata i flera minuter i sträck",
+        "Att ge exempel",
+        "Att nämna andra vid namn"
+      ],
+      "ans": 1,
+      "exp": "Då tar du hela talutrymmet."
+    },
+    {
+      "id": "q23",
+      "c": "fallgropar",
+      "lvl": "G",
+      "type": "mc",
+      "q": "Hur ofta ungefär ska du säga något i en diskussion på 30 minuter?",
+      "opts": [
+        "En gång",
+        "Var tredje eller fjärde minut",
+        "Hela tiden",
+        "Bara när läraren frågar"
+      ],
+      "ans": 1,
+      "exp": "Jämnt fördelat, korta inlägg."
+    },
+    {
+      "id": "q24",
+      "c": "sprak",
+      "lvl": "G",
+      "type": "mc",
+      "q": "Vilket uttryck passar bäst på provet?",
+      "opts": [
+        "typ asså sjukt dumt",
+        "Det känns orättvist",
+        "fan vad dåligt",
+        "whatever"
+      ],
+      "ans": 1,
+      "exp": "Ord som fungerar i ett samtal i skolan."
+    },
+    {
+      "id": "q25",
+      "c": "nerver",
+      "lvl": "G",
+      "type": "mc",
+      "q": "Du tappar tråden mitt i en mening. Vad gör du?",
+      "opts": [
+        "Slutar prata",
+        "Säger \"jag kom av mig, men det jag menar är …\"",
+        "Skrattar och byter ämne",
+        "Ber om att få gå ut"
+      ],
+      "ans": 1,
+      "exp": "Ta dig tillbaka, det gör inget."
+    }
+  ],
+  "boss": [
+    {
+      "id": "b1",
+      "lvl": "G",
+      "c": "sammanfatta",
+      "q": "Välj en novell eller kort tidningstext (1–2 sidor). Skriv en sammanfattning på 4–5 meningar i presens och läs den högt för en förälder.",
+      "facit": "Vem, vad, vilket problem, hur det slutar. Inga citat eller detaljer.",
+      "check": [
+        "4–5 meningar, presens",
+        "Vem + problem + slut finns med",
+        "Lyssnaren förstod utan att ha läst texten"
+      ]
+    },
+    {
+      "id": "b2",
+      "lvl": "G",
+      "c": "pres-delar",
+      "q": "Generalrepetition av presentationen: 30 min förberedelse med samma text, sedan 2–3 min presentation för en förälder, med bara en lapp med stödord.",
+      "facit": "Sammanfattning, egna tankar, resonemang med exempel och en diskussionsfråga med egen åsikt, på 2–3 minuter.",
+      "check": [
+        "Alla fyra delarna",
+        "Minst ett eftersom och ett eget exempel",
+        "Tittade upp och läste inte innantill"
+      ]
+    },
+    {
+      "id": "b3",
+      "lvl": "G",
+      "c": "leda-fordela",
+      "q": "Middagsdiskussion: led en diskussion på 5 minuter med familjen om frågan \"Är det värt att riskera att skämma ut sig för att få det man vill ha?\".",
+      "facit": "Öppna med frågan och ge ordet, fördela så att alla pratar, sammanfatta i slutet.",
+      "check": [
+        "Öppnade och gav ordet med namn",
+        "Alla kom till tals",
+        "Sammanfattade i slutet"
+      ]
+    },
+    {
+      "id": "b4",
+      "lvl": "H",
+      "c": "nyansera",
+      "q": "Skriv tre korta inlägg om frågan \"Ska man alltid säga vad man tycker, även om det sårar någon?\": ett som bygger vidare, ett som bemöter och ett som nyanserar.",
+      "facit": "Bygga vidare: \"Jag håller med X och vill lägga till …\" Bemöta: \"Jag förstår, men …, eftersom …\" Nyansera: \"Det beror på …\"",
+      "check": [
+        "Ett inlägg som bygger vidare",
+        "Ett som bemöter, med förklaring",
+        "Ett som nyanserar och ändå tar ställning"
+      ]
+    }
+  ],
+  "test": {
+    "part1": [
+      "q1",
+      "q3",
+      "q6",
+      "q8",
+      "q10",
+      "q12",
+      "q13",
+      "q14",
+      "q16",
+      "q17",
+      "q18",
+      "q22"
+    ],
+    "part2": [
+      "q2",
+      "q11",
+      "q15",
+      "q19",
+      "q20",
+      "q21",
+      "q24"
+    ],
+    "open": [
+      {
+        "id": "o1",
+        "lvl": "G",
+        "q": "Skriv stödorden (5–8) och din första mening för en presentation om en text du läst nyligen.",
+        "rub": [
+          "Stödord, inte manus",
+          "Första meningen presenterar texten",
+          "Det finns en diskussionsfråga"
+        ]
+      },
+      {
+        "id": "o2",
+        "lvl": "H",
+        "q": "Skriv hur du skulle öppna, fördela ordet i och avsluta en diskussion om: \"Ska man alltid följa sin dröm?\"",
+        "rub": [
+          "Öppnar med frågan och ger ordet med namn",
+          "Fördelar till någon som är tyst",
+          "Sammanfattar med var gruppen var överens och oense"
+        ]
+      }
+    ]
+  }
+}

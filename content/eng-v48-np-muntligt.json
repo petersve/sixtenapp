@@ -1,0 +1,616 @@
+{
+  "slug": "eng-v48-np-muntligt",
+  "plan": [
+    {
+      "date": "2026-11-15",
+      "label": "Sön 15/11",
+      "items": [
+        "Pass 1: provet, uppvärmningen och prata längre"
+      ]
+    },
+    {
+      "date": "2026-11-18",
+      "label": "Ons 18/11",
+      "items": [
+        "Pass 2: fraser för åsikter och att hålla med",
+        "Spela in 30 sek om dig själv"
+      ]
+    },
+    {
+      "date": "2026-11-20",
+      "label": "Fre 20/11",
+      "items": [
+        "Pass 3: påståendekort och båda sidor"
+      ]
+    },
+    {
+      "date": "2026-11-22",
+      "label": "Sön 22/11",
+      "items": [
+        "Pass 4: röda kort",
+        "Kortsamtal med en förälder (5 min)"
+      ]
+    },
+    {
+      "date": "2026-11-24",
+      "label": "Tis 24/11",
+      "items": [
+        "Snabbvärmning: fraser och kort"
+      ]
+    }
+  ],
+  "cards": [
+    {
+      "id": "format",
+      "lvl": "G",
+      "t": "Provet",
+      "q": "Hur går det muntliga nationella provet i engelska till?",
+      "a": "Ni är två elever åt gången. Först en uppvärmning där du pratar om dig själv, sedan del 1 där ni väljer ett ämne och diskuterar, sedan del 2 där ni turas om att ta ställning till påståenden på kort.",
+      "why": "Ämnena är vardagliga: fritid, skola, vänner, teknik, framtid. Förra året nådde 97 % minst E på den här delen. Det är provets lättaste del om du pratar mycket.",
+      "ex": "Läraren lyssnar och spelar ibland in. Ni pratar med varandra, inte med läraren."
+    },
+    {
+      "id": "warmup",
+      "lvl": "G",
+      "t": "Uppvärmning",
+      "q": "Vad ska du ha förberett till uppvärmningen?",
+      "a": "30 sekunder om dig själv: what you like doing, school, one thing you are looking forward to.",
+      "why": "Uppvärmningen är individuell. En förberedd start gör att nerverna lägger sig direkt.",
+      "ex": "\"I play hockey four times a week, so that takes most of my free time. In school I like English and PE. Next summer I'm going to …\""
+    },
+    {
+      "id": "utveckla",
+      "lvl": "G",
+      "t": "Prata mer",
+      "q": "Vad gör du i stället för att svara med ett ord?",
+      "a": "Svar + anledning + exempel: answer, because, for example.",
+      "why": "Korta svar är det vanligaste skälet till låg nivå. Längden visar vad du kan.",
+      "ex": "Inte: \"Yes.\" Utan: \"Yes, I think so, because … For example, last week I …\""
+    },
+    {
+      "id": "asikt",
+      "lvl": "G",
+      "t": "Fraser",
+      "q": "Fem sätt att säga vad du tycker.",
+      "a": "In my opinion … · I'd say that … · I really think … · I'm not sure, but … · It depends on …",
+      "why": "Variation låter mer avancerat än att säga \"I think\" tio gånger.",
+      "ex": "\"It depends on how you use it. I'd say social media is fine if …\""
+    },
+    {
+      "id": "haller-med",
+      "lvl": "G",
+      "t": "Fraser",
+      "q": "Hur håller du med, eller inte, på ett trevligt sätt?",
+      "a": "That's true, and also … · I see your point, but … · I partly agree … · I'm not so sure about that, because …",
+      "why": "I del 2 ska ni ta ställning och reagera på varandra. Att säga emot vänligt är en styrka.",
+      "ex": "\"I see your point, but I think kids still need to learn to write by hand, because …\""
+    },
+    {
+      "id": "fraga-partner",
+      "lvl": "G",
+      "t": "Samspel",
+      "q": "Hur får du din partner att prata?",
+      "a": "What do you think? · Have you ever …? · Why do you say that? · What would you do if …?",
+      "why": "Provet bedömer interaktion: att ni pratar med varandra, inte i två monologer.",
+      "ex": "\"I've never been abroad on my own. Have you?\""
+    },
+    {
+      "id": "tid",
+      "lvl": "G",
+      "t": "Fraser",
+      "q": "Vad säger du när du behöver tänka?",
+      "a": "That's a good question … · Let me think … · Hmm, how can I put it … · Well, actually …",
+      "why": "Tystnad låter som att du inte kan. En fras ger dig tre sekunder och låter naturlig.",
+      "ex": "\"That's a good question. Let me think … I'd say no, because …\""
+    },
+    {
+      "id": "omskriva",
+      "lvl": "G",
+      "t": "Fraser",
+      "q": "Du kommer inte på ett ord. Vad gör du?",
+      "a": "Beskriv det: It's a kind of … · It's the thing you use to … · It's like … but …",
+      "why": "Att ta sig runt ett ord man saknar är en färdighet som bedöms positivt. Att byta till svenska är det enda som verkligen kostar.",
+      "ex": "Saknar du \"skridskor\": \"the shoes with blades you use on the ice\"."
+    },
+    {
+      "id": "kort",
+      "lvl": "G",
+      "t": "Del 2",
+      "q": "Hur svarar du på ett påståendekort?",
+      "a": "Ta ställning, ge en anledning och ett exempel, och fråga sedan din partner.",
+      "why": "Del 2 testar förmågan att resonera om något du kanske aldrig tänkt på. Det var den svåraste delen förra året.",
+      "ex": "Kort: \"School should start later.\" → \"I agree, because teenagers sleep later. For example, I'm always tired in the first lesson. What about you?\""
+    },
+    {
+      "id": "tva-sidor",
+      "lvl": "H",
+      "t": "Resonera",
+      "q": "Hur resonerar du om båda sidor?",
+      "a": "On the one hand … on the other hand … · If … then … · The good thing is … but the problem is …",
+      "why": "Förra årets lärarrapport säger att elever hade svårt med frågor som kräver resonemang. Det är där högre betyg avgörs.",
+      "ex": "\"On the one hand, phones help you stay in touch. On the other hand, if you're on your phone all the time, you don't talk to the people around you.\""
+    },
+    {
+      "id": "tempus",
+      "lvl": "G",
+      "t": "Grammatik",
+      "q": "Vilka tre tider ska du kunna använda i samtalet?",
+      "a": "Past: Last summer I went … · Present perfect: I've never tried … · Future: I'm going to … / I'd like to …",
+      "why": "Tidsformer visar spännvidd. Det mesta du säger är i presens, så välj några tillfällen att använda de andra.",
+      "ex": "\"I've played hockey since I was five. Last year we won a tournament. Next year I'm going to try a new team.\""
+    },
+    {
+      "id": "amnen",
+      "lvl": "G",
+      "t": "Provet",
+      "q": "Vilka ämnen kan komma?",
+      "a": "Vardagliga: fritid och sport, vänner, skola, teknik och sociala medier, miljö, resor, mat, framtid och jobb, ibland etiska frågor.",
+      "why": "Ämnet är okänt, men det är saker du har åsikter om. Ha ett eget exempel redo för varje.",
+      "ex": "Förbered en egen historia per ämne: en resa, en match, något med mobilen, ett drömjobb."
+    },
+    {
+      "id": "a-niva",
+      "lvl": "H",
+      "t": "Bedömning",
+      "q": "Vad skiljer A från C?",
+      "a": "Flyt, varierade ord och fraser, att du tar initiativ och driver samtalet, och att du resonerar och ger exempel.",
+      "why": "Du har A som mål. Det kräver att du leder samtalet ibland, inte bara svarar.",
+      "ex": "Ett initiativ: \"Can I add something? I think we forgot one thing, which is …\""
+    },
+    {
+      "id": "nerver",
+      "lvl": "G",
+      "t": "Provet",
+      "q": "Vad gör du om du blir nervös?",
+      "a": "Kom ihåg att det är ett samtal och inte ett förhör. Din partner hjälper dig, och det är okej att be om upprepning: Sorry, could you say that again?",
+      "why": "Lärarrapporten nämner stress som det största hindret, även för elever som pratar bra engelska.",
+      "ex": "\"Sorry, I lost my train of thought. What I mean is …\""
+    }
+  ],
+  "quiz": [
+    {
+      "id": "q1",
+      "c": "format",
+      "lvl": "G",
+      "type": "mc",
+      "q": "Hur många elever gör provet samtidigt?",
+      "opts": [
+        "En",
+        "Två, i par",
+        "Fyra–fem",
+        "Hela klassen"
+      ],
+      "ans": 1,
+      "exp": "Ni är två och pratar med varandra."
+    },
+    {
+      "id": "q2",
+      "c": "format",
+      "lvl": "G",
+      "type": "mc",
+      "q": "Vad händer i del 2?",
+      "opts": [
+        "Du läser högt",
+        "Ni turas om att ta ställning till påståenden på kort",
+        "Du skriver en text",
+        "Läraren förhör dig"
+      ],
+      "ans": 1,
+      "exp": "Påståendekort."
+    },
+    {
+      "id": "q3",
+      "c": "format",
+      "lvl": "G",
+      "type": "mc",
+      "q": "Hur många nådde minst E på delprovet förra året?",
+      "opts": [
+        "Ungefär hälften",
+        "Ungefär 97 %",
+        "Ungefär 20 %",
+        "Ingen vet"
+      ],
+      "ans": 1,
+      "exp": "97 %, delprovet med flest godkända."
+    },
+    {
+      "id": "q4",
+      "c": "warmup",
+      "lvl": "G",
+      "type": "mc",
+      "q": "Bästa starten i uppvärmningen?",
+      "opts": [
+        "\"I'm Sixten.\"",
+        "\"I play hockey four times a week, so that takes most of my free time …\"",
+        "\"I don't know what to say.\"",
+        "Väntar på att partnern börjar"
+      ],
+      "ans": 1,
+      "exp": "Förberedda 30 sekunder om dig själv."
+    },
+    {
+      "id": "q5",
+      "c": "utveckla",
+      "lvl": "G",
+      "type": "mc",
+      "q": "\"Do you like school?\" Vilket svar är bäst?",
+      "opts": [
+        "Yes.",
+        "Kind of.",
+        "Yes, mostly, because I like my friends there. For example, …",
+        "No."
+      ],
+      "ans": 2,
+      "exp": "Svar + because + exempel."
+    },
+    {
+      "id": "q6",
+      "c": "utveckla",
+      "lvl": "G",
+      "type": "mc",
+      "q": "Vilken formel gör ett kort svar långt?",
+      "opts": [
+        "answer + because + for example",
+        "yes + no",
+        "answer + sorry",
+        "question + question"
+      ],
+      "ans": 0,
+      "exp": "Answer, because, for example."
+    },
+    {
+      "id": "q7",
+      "c": "asikt",
+      "lvl": "G",
+      "type": "mc",
+      "q": "Vilken fras betyder \"det beror på\"?",
+      "opts": [
+        "It depends on",
+        "It belongs to",
+        "It's about to",
+        "It doesn't matter"
+      ],
+      "ans": 0,
+      "exp": "It depends on …"
+    },
+    {
+      "id": "q8",
+      "c": "asikt",
+      "lvl": "G",
+      "type": "mc",
+      "q": "Vilket låter mest varierat?",
+      "opts": [
+        "I think … I think … I think …",
+        "In my opinion … I'd say … I'm not sure, but …",
+        "Yes … yes … yes …",
+        "Maybe … maybe …"
+      ],
+      "ans": 1,
+      "exp": "Variera fraserna."
+    },
+    {
+      "id": "q9",
+      "c": "haller-med",
+      "lvl": "G",
+      "type": "mc",
+      "q": "Hur säger du emot vänligt?",
+      "opts": [
+        "You're wrong.",
+        "I see your point, but …",
+        "No.",
+        "That's stupid."
+      ],
+      "ans": 1,
+      "exp": "I see your point, but …"
+    },
+    {
+      "id": "q10",
+      "c": "haller-med",
+      "lvl": "G",
+      "type": "mc",
+      "q": "\"I partly agree\" betyder …",
+      "opts": [
+        "Jag håller helt med",
+        "Jag håller delvis med",
+        "Jag håller inte med",
+        "Jag vet inte"
+      ],
+      "ans": 1,
+      "exp": "Delvis."
+    },
+    {
+      "id": "q11",
+      "c": "fraga-partner",
+      "lvl": "G",
+      "type": "mc",
+      "q": "Vilken fråga får din partner att prata mest?",
+      "opts": [
+        "Yes or no?",
+        "What would you do if you could change one thing about school?",
+        "Are you done?",
+        "OK?"
+      ],
+      "ans": 1,
+      "exp": "En öppen fråga."
+    },
+    {
+      "id": "q12",
+      "c": "fraga-partner",
+      "lvl": "G",
+      "type": "mc",
+      "q": "Varför ska du ställa frågor till din partner?",
+      "opts": [
+        "Det får man inte",
+        "Provet bedömer interaktion, alltså att ni pratar med varandra",
+        "För att slippa prata själv",
+        "För att läraren säger det"
+      ],
+      "ans": 1,
+      "exp": "Interaktion."
+    },
+    {
+      "id": "q13",
+      "c": "tid",
+      "lvl": "G",
+      "type": "mc",
+      "q": "Du behöver tänka. Vad säger du?",
+      "opts": [
+        "Ingenting",
+        "That's a good question, let me think …",
+        "Vänta (på svenska)",
+        "I don't know."
+      ],
+      "ans": 1,
+      "exp": "En fras ger dig tid."
+    },
+    {
+      "id": "q14",
+      "c": "omskriva",
+      "lvl": "G",
+      "type": "mc",
+      "q": "Du kommer inte på ordet \"skridskor\". Bästa lösningen?",
+      "opts": [
+        "Säga \"skridskor\"",
+        "Säga \"the shoes with blades you use on the ice\"",
+        "Hoppa över det",
+        "Byta ämne"
+      ],
+      "ans": 1,
+      "exp": "Beskriv ordet."
+    },
+    {
+      "id": "q15",
+      "c": "omskriva",
+      "lvl": "G",
+      "type": "mc",
+      "q": "Vilken fras använder du för att beskriva ett ord du saknar?",
+      "opts": [
+        "It's a kind of …",
+        "It was …",
+        "I am …",
+        "Never mind"
+      ],
+      "ans": 0,
+      "exp": "It's a kind of …"
+    },
+    {
+      "id": "q16",
+      "c": "kort",
+      "lvl": "G",
+      "type": "mc",
+      "q": "Kortet säger \"School should start later.\" Bästa svaret?",
+      "opts": [
+        "Yes.",
+        "I agree, because teenagers sleep later. For example, I'm always tired in first lesson. What about you?",
+        "I don't know.",
+        "No, school is school."
+      ],
+      "ans": 1,
+      "exp": "Ställning + anledning + exempel + fråga till partnern."
+    },
+    {
+      "id": "q17",
+      "c": "kort",
+      "lvl": "G",
+      "type": "mc",
+      "q": "Vad ska du göra sist när du svarat på ett kort?",
+      "opts": [
+        "Vända kortet",
+        "Fråga din partner vad hen tycker",
+        "Vara tyst",
+        "Läsa kortet igen"
+      ],
+      "ans": 1,
+      "exp": "Bjud in partnern."
+    },
+    {
+      "id": "q18",
+      "c": "tva-sidor",
+      "lvl": "H",
+      "type": "mc",
+      "q": "Vilken fras visar att du ser båda sidor?",
+      "opts": [
+        "On the one hand … on the other hand …",
+        "First … then …",
+        "Yes … no …",
+        "And … and …"
+      ],
+      "ans": 0,
+      "exp": "On the one hand …"
+    },
+    {
+      "id": "q19",
+      "c": "tva-sidor",
+      "lvl": "H",
+      "type": "mc",
+      "q": "Vad var svårast för eleverna enligt förra årets rapport?",
+      "opts": [
+        "Uppvärmningen",
+        "Frågor som kräver resonemang om nya ämnen",
+        "Att hälsa",
+        "Att förstå partnern"
+      ],
+      "ans": 1,
+      "exp": "Analytiska frågor. Träna på \"on the one hand\"."
+    },
+    {
+      "id": "q20",
+      "c": "tempus",
+      "lvl": "G",
+      "type": "mc",
+      "q": "Vilken mening är i present perfect?",
+      "opts": [
+        "I went to London.",
+        "I've never tried surfing.",
+        "I'm going to travel.",
+        "I play hockey."
+      ],
+      "ans": 1,
+      "exp": "have + participle."
+    },
+    {
+      "id": "q21",
+      "c": "tempus",
+      "lvl": "G",
+      "type": "mc",
+      "q": "\"Nästa år ska jag …\" på engelska?",
+      "opts": [
+        "Next year I went …",
+        "Next year I'm going to …",
+        "Next year I have …",
+        "Last year I'm going to …"
+      ],
+      "ans": 1,
+      "exp": "I'm going to …"
+    },
+    {
+      "id": "q22",
+      "c": "amnen",
+      "lvl": "G",
+      "type": "mc",
+      "q": "Vilka ämnen brukar komma?",
+      "opts": [
+        "Vardagliga: fritid, skola, teknik, framtid",
+        "Bara litteratur",
+        "Bara grammatik",
+        "Bara Storbritanniens historia"
+      ],
+      "ans": 0,
+      "exp": "Vardagsnära ämnen."
+    },
+    {
+      "id": "q23",
+      "c": "a-niva",
+      "lvl": "H",
+      "type": "mc",
+      "q": "Vad är typiskt för A-nivå?",
+      "opts": [
+        "Kortast möjliga svar",
+        "Tar initiativ, driver samtalet, varierade fraser och resonemang",
+        "Inga fel alls",
+        "Bara läsa från kort"
+      ],
+      "ans": 1,
+      "exp": "Initiativ och resonemang."
+    },
+    {
+      "id": "q24",
+      "c": "nerver",
+      "lvl": "G",
+      "type": "mc",
+      "q": "Du förstod inte vad din partner sa. Vad säger du?",
+      "opts": [
+        "Ingenting, nickar",
+        "Sorry, could you say that again?",
+        "Vad?",
+        "OK."
+      ],
+      "ans": 1,
+      "exp": "Det är helt okej att be om upprepning."
+    }
+  ],
+  "boss": [
+    {
+      "id": "b1",
+      "lvl": "G",
+      "c": "warmup",
+      "q": "Spela in dig själv på mobilen: 30–45 sekunder om dig själv (fritid, skola, något du ser fram emot). Lyssna och räkna hur många gånger du säger \"because\" och \"for example\".",
+      "facit": "Minst en anledning och ett exempel, och minst en tidsform utöver presens.",
+      "check": [
+        "30 sekunder eller mer utan långa pauser",
+        "because och for example",
+        "Minst en mening i past eller future"
+      ]
+    },
+    {
+      "id": "b2",
+      "lvl": "G",
+      "c": "kort",
+      "q": "Påståendekort med en förälder, 5 minuter. Turas om att dra: \"Phones should be banned in school.\" · \"Everyone should do a sport.\" · \"It's better to live in a city than in the countryside.\" · \"Homework is a waste of time.\"",
+      "facit": "Ta ställning, ge en anledning och ett exempel, fråga sedan den andra.",
+      "check": [
+        "Tog ställning med anledning och exempel varje gång",
+        "Frågade förälderns åsikt",
+        "Höll med eller sa emot med en fras (I see your point, but …)"
+      ]
+    },
+    {
+      "id": "b3",
+      "lvl": "H",
+      "c": "tva-sidor",
+      "q": "Säg högt (eller spela in) ett svar på 1 minut på: \"Is social media good or bad for teenagers?\" Använd on the one hand / on the other hand och avsluta med vad du själv tycker.",
+      "facit": "Båda sidorna, med ett exempel vardera, och ett tydligt ställningstagande på slutet.",
+      "check": [
+        "Två sidor med exempel",
+        "On the one hand / on the other hand",
+        "Avslutade med egen ståndpunkt"
+      ]
+    }
+  ],
+  "test": {
+    "part1": [
+      "q1",
+      "q2",
+      "q5",
+      "q7",
+      "q9",
+      "q11",
+      "q13",
+      "q14",
+      "q16",
+      "q20",
+      "q24"
+    ],
+    "part2": [
+      "q6",
+      "q12",
+      "q17",
+      "q18",
+      "q19",
+      "q21",
+      "q23"
+    ],
+    "open": [
+      {
+        "id": "o1",
+        "lvl": "G",
+        "q": "Write what you would say to the card: \"Everyone should learn to cook at school.\"",
+        "rub": [
+          "Takes a position",
+          "because + for example",
+          "Ends with a question to the partner"
+        ]
+      },
+      {
+        "id": "o2",
+        "lvl": "H",
+        "q": "Write 4–5 sentences on both sides of: \"Teenagers should have a part-time job.\"",
+        "rub": [
+          "On the one hand / on the other hand",
+          "One example per side",
+          "A clear opinion at the end"
+        ]
+      }
+    ]
+  }
+}
