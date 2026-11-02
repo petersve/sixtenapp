@@ -12,7 +12,8 @@
       "date": "2026-11-16",
       "label": "Mån 16/11",
       "items": [
-        "Pass 2: sammanfatta och resonera"
+        "Pass 2: sammanfatta och resonera",
+        "Spela in en presentation på 2–3 min på Pocket om en text du läst (\"Övning svenska NP\")"
       ]
     },
     {
@@ -20,7 +21,7 @@
       "label": "Tis 17/11",
       "items": [
         "Pass 3: leda diskussionen",
-        "Led en middagsdiskussion (5 min)"
+        "Led en middagsdiskussion i 5 min och spela in den på Pocket (\"Övning svenska NP\")"
       ]
     },
     {
@@ -35,7 +36,7 @@
       "label": "Lör 21/11",
       "items": [
         "Pass 5: nyansera, röda kort",
-        "Generalrepetition: förbered 30 min och presentera för en förälder"
+        "Generalrepetition: förbered i 30 min och spela in presentationen på Pocket (\"Övning svenska NP\")"
       ]
     },
     {
@@ -604,7 +605,7 @@
       "id": "b2",
       "lvl": "G",
       "c": "pres-delar",
-      "q": "Generalrepetition av presentationen: 30 min förberedelse med samma text, sedan 2–3 min presentation för en förälder, med bara en lapp med stödord.",
+      "q": "Generalrepetition: förbered dig i 30 min med en text, och håll sedan presentationen (2–3 min) för en förälder med bara en lapp med stödord. Spela in på Pocket och säg först \"Övning svenska NP\", så får du skriftlig feedback.",
       "facit": "Sammanfattning, egna tankar, resonemang med exempel och en diskussionsfråga med egen åsikt, på 2–3 minuter.",
       "check": [
         "Alla fyra delarna",
@@ -616,7 +617,7 @@
       "id": "b3",
       "lvl": "G",
       "c": "leda-fordela",
-      "q": "Middagsdiskussion: led en diskussion på 5 minuter med familjen om frågan \"Är det värt att riskera att skämma ut sig för att få det man vill ha?\".",
+      "q": "Middagsdiskussion: led en diskussion i 5 minuter med familjen om \"Är det värt att riskera att skämma ut sig för att få det man vill ha?\". Spela in på Pocket och säg först \"Övning svenska NP\".",
       "facit": "Öppna med frågan och ge ordet, fördela så att alla pratar, sammanfatta i slutet.",
       "check": [
         "Öppnade och gav ordet med namn",

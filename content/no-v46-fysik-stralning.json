@@ -1,0 +1,844 @@
+{
+  "slug": "no-v46-fysik-stralning",
+  "plan": [
+    {
+      "date": "2026-11-04",
+      "label": "Ons 4/11",
+      "items": [
+        "Pass 1: vad strålning är, alfa, beta, gamma, halveringstid"
+      ]
+    },
+    {
+      "date": "2026-11-06",
+      "label": "Fre 6/11",
+      "items": [
+        "Pass 2: kärnkraft, användning, Sverige"
+      ]
+    },
+    {
+      "date": "2026-11-08",
+      "label": "Sön 8/11",
+      "items": [
+        "Pass 3: för och emot, olyckor, slutförvar",
+        "Skriv tre för och tre emot med belägg (papper)"
+      ]
+    },
+    {
+      "date": "2026-11-09",
+      "label": "Mån 9/11",
+      "items": [
+        "Pass 4: argumentera, inledningsanförande",
+        "Spela in ditt inledningsanförande på Pocket (\"Övning NO debatt\")"
+      ]
+    },
+    {
+      "date": "2026-11-10",
+      "label": "Tis 10/11",
+      "items": [
+        "Pass 5: bemöta, källor, avslutning"
+      ]
+    },
+    {
+      "date": "2026-11-11",
+      "label": "Ons 11/11",
+      "items": [
+        "Debattövning med en förälder, 5 min, inspelad på Pocket"
+      ]
+    },
+    {
+      "date": "2026-11-12",
+      "label": "Tor 12/11",
+      "items": [
+        "Snabbvärmning: dina argument och svar på motsidan"
+      ]
+    }
+  ],
+  "cards": [
+    {
+      "id": "stralning",
+      "lvl": "G",
+      "t": "Fakta",
+      "q": "Vad är radioaktiv strålning?",
+      "a": "Strålning som kommer från instabila atomkärnor när de sönderfaller. Den är joniserande, det vill säga den kan slå sönder molekyler i kroppen, till exempel DNA.",
+      "why": "Det är därför strålning både kan orsaka cancer och användas för att döda cancerceller.",
+      "ex": "Uran, radon och kol-14 är radioaktiva ämnen."
+    },
+    {
+      "id": "abg",
+      "lvl": "G",
+      "t": "Fakta",
+      "q": "Vad skiljer alfa-, beta- och gammastrålning?",
+      "a": "Alfa stoppas av ett papper eller huden, men är farlig om man andas in den. Beta stoppas av några millimeter aluminium eller plast. Gamma går igenom kroppen och kräver bly eller tjock betong.",
+      "why": "I en debatt visar det att du vet varför avfall och reaktorer skärmas av med betong och vatten.",
+      "ex": "Radon i bostäder ger alfastrålning, som är farlig just för att man andas in den."
+    },
+    {
+      "id": "halv",
+      "lvl": "G",
+      "t": "Fakta",
+      "q": "Vad är halveringstid?",
+      "a": "Den tid det tar tills hälften av ett radioaktivt ämne har sönderfallit. Den varierar från sekunder till miljoner år.",
+      "why": "Halveringstiden förklarar varför kärnavfall måste förvaras i ungefär 100 000 år.",
+      "ex": "Jod-131 har 8 dagar, kol-14 ungefär 5 700 år och plutonium-239 ungefär 24 000 år."
+    },
+    {
+      "id": "dos",
+      "lvl": "G",
+      "t": "Fakta",
+      "q": "Hur mäts stråldos, och hur mycket får vi varje år?",
+      "a": "I sievert (Sv), oftast millisievert (mSv). En svensk får några mSv per år från naturlig bakgrundsstrålning, mest från radon i bostäder.",
+      "why": "Siffran hjälper i debatten: strålning finns överallt, och frågan är hur mycket och från vad.",
+      "ex": "En röntgen av tänderna ger en liten bråkdel av en mSv. En flygresa till Thailand ger också en liten extra dos."
+    },
+    {
+      "id": "skydd",
+      "lvl": "G",
+      "t": "Fakta",
+      "q": "Hur skyddar man sig mot strålning?",
+      "a": "Tid, avstånd och avskärmning: var där kort tid, håll avståndet och ha något emellan.",
+      "why": "Det är grundprincipen i allt strålskydd, från röntgen till kärnkraftverk.",
+      "ex": "Röntgenpersonal går ut ur rummet. Bränslestavar förvaras under vatten."
+    },
+    {
+      "id": "anvandning",
+      "lvl": "G",
+      "t": "Fakta",
+      "q": "Vad används radioaktivitet till förutom kärnkraft?",
+      "a": "Strålbehandling av cancer, sterilisering av sjukvårdsmaterial, åldersbestämning med kol-14 och spårämnen i medicinsk diagnostik.",
+      "why": "I debatten visar det att strålning inte bara betyder kärnkraft och olyckor.",
+      "ex": "Ungefär hälften av alla cancerpatienter får strålbehandling någon gång."
+    },
+    {
+      "id": "karnkraft-hur",
+      "lvl": "G",
+      "t": "Fakta",
+      "q": "Hur fungerar ett kärnkraftverk?",
+      "a": "Urankärnor klyvs (fission) och ger värme. Värmen kokar vatten till ånga, som driver en turbin som gör el.",
+      "why": "Ingen förbränning betyder ingen koldioxid när verket är i drift.",
+      "ex": "Samma princip som ett kolkraftverk, men värmen kommer från fission i stället för eld."
+    },
+    {
+      "id": "sverige",
+      "lvl": "G",
+      "t": "Fakta",
+      "q": "Hur ser kärnkraften ut i Sverige?",
+      "a": "Sex reaktorer i drift, i Forsmark, Ringhals och Oskarshamn. De ger ungefär 30 % av elen. Regeringen vill bygga ny kärnkraft, och Vattenfall planerar nya reaktorer vid Ringhals.",
+      "why": "Konkreta svenska siffror gör argumenten trovärdiga. Ange källa om du kan, till exempel Energimyndigheten.",
+      "ex": "Resten av elen kommer mest från vattenkraft och vindkraft."
+    },
+    {
+      "id": "for",
+      "lvl": "G",
+      "t": "För och emot",
+      "q": "Vilka är de starkaste argumenten FÖR kärnkraft?",
+      "a": "1) Nästan inga koldioxidutsläpp vid drift. 2) Stabil el dygnet runt, oavsett väder (baskraft). 3) Tar liten markyta jämfört med vind och sol. 4) Sverige har kunskap och en plan för slutförvar.",
+      "why": "Klimat och leveranssäkerhet är de argument som brukar väga tyngst i debatten idag.",
+      "ex": "\"När det är vindstilla och kallt i januari behöver vi el som inte beror på vädret.\""
+    },
+    {
+      "id": "emot",
+      "lvl": "G",
+      "t": "För och emot",
+      "q": "Vilka är de starkaste argumenten MOT kärnkraft?",
+      "a": "1) Avfallet är farligt i ungefär 100 000 år. 2) Olyckor kan få enorma följder (Tjernobyl 1986, Fukushima 2011). 3) Det är dyrt och tar 10–15 år att bygga. 4) Uranbrytning skadar miljön.",
+      "why": "Avfall och olycksrisk är det som brukar väga tyngst på emot-sidan.",
+      "ex": "\"Vi skickar ett problem 100 000 år in i framtiden, längre än det funnits människor i Sverige.\""
+    },
+    {
+      "id": "olyckor",
+      "lvl": "G",
+      "t": "För och emot",
+      "q": "Vad hände i Tjernobyl och Fukushima?",
+      "a": "Tjernobyl 1986 (Ukraina, dåvarande Sovjet): en reaktor exploderade under ett test, och nedfallet nådde bland annat Gävle. Fukushima 2011 (Japan): en tsunami slog ut kylningen, och tre reaktorer fick härdsmälta.",
+      "why": "Båda används av emot-sidan. För-sidan svarar att moderna reaktorer har andra säkerhetssystem.",
+      "ex": "Efter Tjernobyl fick man i delar av Sverige inte äta vissa svampar och viss vilt på flera år."
+    },
+    {
+      "id": "slutforvar",
+      "lvl": "G",
+      "t": "För och emot",
+      "q": "Hur ska Sverige förvara det använda kärnbränslet?",
+      "a": "I kopparkapslar omgivna av bentonitlera, cirka 500 meter ner i berget i Forsmark (KBS-3-metoden). Förvaret ska hålla i ungefär 100 000 år.",
+      "why": "För-sidan säger att Sverige har en av världens mest genomtänkta lösningar. Emot-sidan säger att ingen kan garantera vad som händer på 100 000 år.",
+      "ex": "Bygget av slutförvaret har påbörjats."
+    },
+    {
+      "id": "stralbehandling",
+      "lvl": "H",
+      "t": "För och emot",
+      "q": "Vilka är för- och nackdelarna med strålbehandling av cancer?",
+      "a": "För: botar eller bromsar många cancerformer utan operation. Emot: frisk vävnad skadas också, vilket ger biverkningar som trötthet och hudskador.",
+      "why": "Om debatten gäller strålning i stort och inte bara kärnkraft är det här det tydligaste exemplet på nytta.",
+      "ex": "Strålningen riktas från flera håll mot tumören, så att den får mest dos och omgivningen minst."
+    },
+    {
+      "id": "argument",
+      "lvl": "G",
+      "t": "Argumentera",
+      "q": "Hur bygger du ett starkt argument?",
+      "a": "Påstående + belägg (fakta, siffra eller exempel) + förklaring av varför det spelar roll.",
+      "why": "Ett påstående utan belägg är bara en åsikt. Belägget är det som bedöms i en debatt i NO.",
+      "ex": "\"Kärnkraft är bra för klimatet (påstående). Den släpper ut ungefär lika lite koldioxid som vindkraft räknat över hela livscykeln (belägg). Det betyder att vi kan få mycket el utan att värma upp jorden (förklaring).\""
+    },
+    {
+      "id": "inledning",
+      "lvl": "G",
+      "t": "Argumentera",
+      "q": "Hur ser ett inledningsanförande ut?",
+      "a": "Ungefär 1 minut: din ståndpunkt i en mening, två eller tre argument med belägg, och en avslutande mening.",
+      "why": "Det är den del du kan förbereda helt i förväg. En stark start ger självförtroende resten av debatten.",
+      "ex": "\"Vi anser att Sverige ska bygga ny kärnkraft. Vi har tre skäl: klimatet, stabil el och … Därför är kärnkraft det bästa valet.\""
+    },
+    {
+      "id": "bemota",
+      "lvl": "G",
+      "t": "Argumentera",
+      "q": "Hur bemöter du motsidan?",
+      "a": "Återge kort vad de sa, och svara med ett belägg: \"Motsidan säger att …, men …\"",
+      "why": "Att bemöta visar att du lyssnar. Det värderas ofta högre än att upprepa sina egna argument.",
+      "ex": "\"Motsidan säger att avfallet är farligt i 100 000 år. Det stämmer, men det är just därför Sverige bygger ett förvar 500 meter ner i berget.\""
+    },
+    {
+      "id": "forutse",
+      "lvl": "G",
+      "t": "Argumentera",
+      "q": "Hur förbereder du dig på motsidans argument?",
+      "a": "Skriv ner deras tre starkaste argument och ett svar på varje i förväg.",
+      "why": "Då blir du inte överraskad, och du låter säker när du svarar.",
+      "ex": "Om du är FÖR: förbered svar på avfall, olyckor och kostnad. Om du är EMOT: förbered svar på klimat, stabil el och markyta."
+    },
+    {
+      "id": "kallor",
+      "lvl": "G",
+      "t": "Argumentera",
+      "q": "Varför ska du nämna källor i debatten?",
+      "a": "För att det gör belägget trovärdigt och visar att du har tagit reda på fakta.",
+      "why": "Källkritik är en del av betyget i NO. \"Jag läste någonstans\" räcker inte.",
+      "ex": "\"Enligt Strålsäkerhetsmyndigheten …\" · \"Energimyndigheten skriver att …\""
+    },
+    {
+      "id": "ton",
+      "lvl": "G",
+      "t": "Argumentera",
+      "q": "Vad ska du undvika i en debatt?",
+      "a": "Personangrepp, att avbryta, att höja rösten, och att påstå saker du inte kan belägga.",
+      "why": "Det som bedöms är saklighet. Den som blir personlig förlorar trovärdighet direkt.",
+      "ex": "Inte: \"Du fattar ju ingenting.\" Utan: \"Jag tror att du har missat en sak, nämligen …\""
+    },
+    {
+      "id": "avslutning",
+      "lvl": "G",
+      "t": "Argumentera",
+      "q": "Hur avslutar du debatten?",
+      "a": "Sammanfatta ditt starkaste argument och svara på motsidans viktigaste, på 30–60 sekunder.",
+      "why": "Avslutningen är det sista lyssnarna minns. Ta inte upp några nya argument här.",
+      "ex": "\"Motsidan har pratat mycket om risker, men ingen har svarat på hur vi ska få stabil el utan kärnkraft. Därför …\""
+    },
+    {
+      "id": "vardera",
+      "lvl": "H",
+      "t": "Argumentera",
+      "q": "Hur når du högre betyg i debatten?",
+      "a": "Värdera argumenten: visa vilket som väger tyngst och varför, och erkänn när motsidan har en poäng.",
+      "why": "Att väga för och nackdelar mot varandra är det som skiljer ett A från ett C i NO-debatter.",
+      "ex": "\"Olycksrisken är verklig, men den är mycket liten med moderna reaktorer, medan klimatförändringen redan händer. Därför väger klimatet tyngre.\""
+    }
+  ],
+  "quiz": [
+    {
+      "id": "q1",
+      "c": "stralning",
+      "lvl": "G",
+      "type": "mc",
+      "q": "Var kommer radioaktiv strålning ifrån?",
+      "opts": [
+        "Från elektroner som snurrar",
+        "Från instabila atomkärnor som sönderfaller",
+        "Från solens ljus",
+        "Från elledningar"
+      ],
+      "ans": 1,
+      "exp": "Instabila atomkärnor."
+    },
+    {
+      "id": "q2",
+      "c": "stralning",
+      "lvl": "G",
+      "type": "mc",
+      "q": "Varför är joniserande strålning farlig?",
+      "opts": [
+        "Den värmer upp kroppen",
+        "Den kan slå sönder molekyler som DNA",
+        "Den gör en radioaktiv för alltid",
+        "Den är inte farlig"
+      ],
+      "ans": 1,
+      "exp": "Skadat DNA kan ge cancer."
+    },
+    {
+      "id": "q3",
+      "c": "abg",
+      "lvl": "G",
+      "type": "mc",
+      "q": "Vilken strålning stoppas av ett papper?",
+      "opts": [
+        "Alfa",
+        "Beta",
+        "Gamma",
+        "Ingen"
+      ],
+      "ans": 0,
+      "exp": "Alfa."
+    },
+    {
+      "id": "q4",
+      "c": "abg",
+      "lvl": "G",
+      "type": "mc",
+      "q": "Vilken strålning kräver bly eller tjock betong?",
+      "opts": [
+        "Alfa",
+        "Beta",
+        "Gamma",
+        "Alla"
+      ],
+      "ans": 2,
+      "exp": "Gamma."
+    },
+    {
+      "id": "q5",
+      "c": "abg",
+      "lvl": "G",
+      "type": "mc",
+      "q": "Varför är radon farligt fast det ger alfastrålning?",
+      "opts": [
+        "Alfa går igenom väggar",
+        "Man andas in det, så strålningen hamnar inne i lungorna",
+        "Radon är gammastrålning",
+        "Radon är inte farligt"
+      ],
+      "ans": 1,
+      "exp": "Inandat alfa är farligt."
+    },
+    {
+      "id": "q6",
+      "c": "halv",
+      "lvl": "G",
+      "type": "mc",
+      "q": "Vad är halveringstid?",
+      "opts": [
+        "Tiden tills ämnet är helt borta",
+        "Tiden tills hälften har sönderfallit",
+        "Halva tiden ett kraftverk kan köras",
+        "Tiden det tar att kyla avfall"
+      ],
+      "ans": 1,
+      "exp": "Hälften har sönderfallit."
+    },
+    {
+      "id": "q7",
+      "c": "halv",
+      "lvl": "G",
+      "type": "mc",
+      "q": "Varför måste kärnavfall förvaras i ungefär 100 000 år?",
+      "opts": [
+        "För att lagen säger så",
+        "För att vissa ämnen har mycket långa halveringstider",
+        "För att koppar rostar",
+        "För att uranet ska återanvändas"
+      ],
+      "ans": 1,
+      "exp": "Till exempel plutonium-239 med ungefär 24 000 år."
+    },
+    {
+      "id": "q8",
+      "c": "dos",
+      "lvl": "G",
+      "type": "txt",
+      "q": "Vilken enhet mäts stråldos i? (bara enheten)",
+      "acc": [
+        "sievert",
+        "sv",
+        "millisievert",
+        "msv"
+      ],
+      "exp": "Sievert (Sv), ofta millisievert."
+    },
+    {
+      "id": "q9",
+      "c": "dos",
+      "lvl": "G",
+      "type": "mc",
+      "q": "Vad ger svenskarna mest stråldos varje år?",
+      "opts": [
+        "Kärnkraftverk",
+        "Radon i bostäder",
+        "Mobiltelefoner",
+        "Flyg"
+      ],
+      "ans": 1,
+      "exp": "Radon."
+    },
+    {
+      "id": "q10",
+      "c": "skydd",
+      "lvl": "G",
+      "type": "mc",
+      "q": "Vilka tre saker skyddar mot strålning?",
+      "opts": [
+        "Tid, avstånd, avskärmning",
+        "Värme, kyla, vatten",
+        "Mat, sömn, motion",
+        "Solkräm, hatt, glasögon"
+      ],
+      "ans": 0,
+      "exp": "Tid, avstånd, avskärmning."
+    },
+    {
+      "id": "q11",
+      "c": "anvandning",
+      "lvl": "G",
+      "type": "mc",
+      "q": "Vad används radioaktivitet till inom sjukvården?",
+      "opts": [
+        "Strålbehandling av cancer",
+        "Att laga benbrott",
+        "Vaccin",
+        "Antibiotika"
+      ],
+      "ans": 0,
+      "exp": "Strålbehandling."
+    },
+    {
+      "id": "q12",
+      "c": "anvandning",
+      "lvl": "G",
+      "type": "mc",
+      "q": "Hur kan man åldersbestämma gamla fynd?",
+      "opts": [
+        "Med kol-14",
+        "Med uran-235",
+        "Med radon",
+        "Med gammastrålning"
+      ],
+      "ans": 0,
+      "exp": "Kol-14-metoden."
+    },
+    {
+      "id": "q13",
+      "c": "karnkraft-hur",
+      "lvl": "G",
+      "type": "mc",
+      "q": "Vad händer i en reaktor?",
+      "opts": [
+        "Uran förbränns",
+        "Urankärnor klyvs och ger värme",
+        "Vatten blir till uran",
+        "Solenergi lagras"
+      ],
+      "ans": 1,
+      "exp": "Fission ger värme."
+    },
+    {
+      "id": "q14",
+      "c": "karnkraft-hur",
+      "lvl": "G",
+      "type": "mc",
+      "q": "Varför släpper kärnkraft ut så lite koldioxid vid drift?",
+      "opts": [
+        "Den har filter",
+        "Det sker ingen förbränning",
+        "Den använder vind",
+        "Koldioxiden lagras i vattnet"
+      ],
+      "ans": 1,
+      "exp": "Ingen förbränning."
+    },
+    {
+      "id": "q15",
+      "c": "sverige",
+      "lvl": "G",
+      "type": "mc",
+      "q": "Ungefär hur stor del av Sveriges el kommer från kärnkraft?",
+      "opts": [
+        "5 %",
+        "30 %",
+        "70 %",
+        "100 %"
+      ],
+      "ans": 1,
+      "exp": "Ungefär 30 %."
+    },
+    {
+      "id": "q16",
+      "c": "sverige",
+      "lvl": "G",
+      "type": "mc",
+      "q": "Var finns Sveriges kärnkraftverk i drift?",
+      "opts": [
+        "Forsmark, Ringhals, Oskarshamn",
+        "Barsebäck, Kiruna, Luleå",
+        "Stockholm, Göteborg, Malmö",
+        "Bara i Forsmark"
+      ],
+      "ans": 0,
+      "exp": "Forsmark, Ringhals och Oskarshamn."
+    },
+    {
+      "id": "q17",
+      "c": "for",
+      "lvl": "G",
+      "type": "mc",
+      "q": "Vilket är ett argument FÖR kärnkraft?",
+      "opts": [
+        "Avfallet är farligt länge",
+        "Ger stabil el oavsett väder",
+        "Det tar lång tid att bygga",
+        "Uranbrytning skadar miljön"
+      ],
+      "ans": 1,
+      "exp": "Baskraft."
+    },
+    {
+      "id": "q18",
+      "c": "for",
+      "lvl": "G",
+      "type": "mc",
+      "q": "Vad betyder \"baskraft\"?",
+      "opts": [
+        "Kraft från vågor",
+        "El som produceras jämnt dygnet runt oavsett väder",
+        "El för basindustri",
+        "Kraft från batterier"
+      ],
+      "ans": 1,
+      "exp": "Stabil grundproduktion."
+    },
+    {
+      "id": "q19",
+      "c": "emot",
+      "lvl": "G",
+      "type": "mc",
+      "q": "Vilket är ett argument MOT kärnkraft?",
+      "opts": [
+        "Låga koldioxidutsläpp",
+        "Liten markyta",
+        "Avfallet är farligt i ungefär 100 000 år",
+        "Stabil el"
+      ],
+      "ans": 2,
+      "exp": "Avfallet."
+    },
+    {
+      "id": "q20",
+      "c": "emot",
+      "lvl": "G",
+      "type": "mc",
+      "q": "Ungefär hur lång tid tar det att bygga en ny reaktor?",
+      "opts": [
+        "1 år",
+        "10–15 år",
+        "50 år",
+        "3 månader"
+      ],
+      "ans": 1,
+      "exp": "10–15 år."
+    },
+    {
+      "id": "q21",
+      "c": "olyckor",
+      "lvl": "G",
+      "type": "mc",
+      "q": "Vad orsakade olyckan i Fukushima 2011?",
+      "opts": [
+        "Ett test som gick fel",
+        "En tsunami som slog ut kylningen",
+        "Ett terrordåd",
+        "En flygkrasch"
+      ],
+      "ans": 1,
+      "exp": "Tsunamin."
+    },
+    {
+      "id": "q22",
+      "c": "olyckor",
+      "lvl": "G",
+      "type": "mc",
+      "q": "Vilket år var Tjernobylolyckan?",
+      "opts": [
+        "1979",
+        "1986",
+        "2001",
+        "2011"
+      ],
+      "ans": 1,
+      "exp": "1986."
+    },
+    {
+      "id": "q23",
+      "c": "slutforvar",
+      "lvl": "G",
+      "type": "mc",
+      "q": "Hur ska svenskt kärnbränsle slutförvaras?",
+      "opts": [
+        "I kopparkapslar i berget, cirka 500 m djupt",
+        "I havet",
+        "Det skickas till rymden",
+        "I plåttunnor på marken"
+      ],
+      "ans": 0,
+      "exp": "KBS-3-metoden i Forsmark."
+    },
+    {
+      "id": "q24",
+      "c": "stralbehandling",
+      "lvl": "H",
+      "type": "mc",
+      "q": "Vad är en nackdel med strålbehandling?",
+      "opts": [
+        "Den fungerar aldrig",
+        "Den skadar även frisk vävnad",
+        "Den är förbjuden",
+        "Den gör patienten radioaktiv för alltid"
+      ],
+      "ans": 1,
+      "exp": "Biverkningar på frisk vävnad."
+    },
+    {
+      "id": "q25",
+      "c": "argument",
+      "lvl": "G",
+      "type": "mc",
+      "q": "Vilka tre delar har ett starkt argument?",
+      "opts": [
+        "Påstående, belägg, förklaring",
+        "Fråga, svar, fråga",
+        "Inledning, skämt, slut",
+        "Åsikt, åsikt, åsikt"
+      ],
+      "ans": 0,
+      "exp": "Påstående + belägg + förklaring."
+    },
+    {
+      "id": "q26",
+      "c": "argument",
+      "lvl": "G",
+      "type": "mc",
+      "q": "Vilket är ett belägg?",
+      "opts": [
+        "Jag tycker att kärnkraft är bra",
+        "Kärnkraft ger ungefär 30 % av Sveriges el enligt Energimyndigheten",
+        "Kärnkraft är coolt",
+        "Alla vet att det är bra"
+      ],
+      "ans": 1,
+      "exp": "Fakta med källa."
+    },
+    {
+      "id": "q27",
+      "c": "inledning",
+      "lvl": "G",
+      "type": "mc",
+      "q": "Hur långt ska ett inledningsanförande vara?",
+      "opts": [
+        "10 sekunder",
+        "Ungefär 1 minut",
+        "10 minuter",
+        "Så länge man vill"
+      ],
+      "ans": 1,
+      "exp": "Ungefär 1 minut."
+    },
+    {
+      "id": "q28",
+      "c": "bemota",
+      "lvl": "G",
+      "type": "mc",
+      "q": "Vilket är ett bra bemötande?",
+      "opts": [
+        "Ni har fel.",
+        "Motsidan säger att avfallet är farligt. Det stämmer, men det är därför Sverige bygger ett förvar 500 m ner i berget.",
+        "Det där bryr jag mig inte om.",
+        "Ni har inte läst på."
+      ],
+      "ans": 1,
+      "exp": "Återge, svara med belägg."
+    },
+    {
+      "id": "q29",
+      "c": "forutse",
+      "lvl": "G",
+      "type": "mc",
+      "q": "Hur förbereder du dig bäst på motsidan?",
+      "opts": [
+        "Hoppas att de inte säger något bra",
+        "Skriver ner deras tre starkaste argument och ett svar på varje",
+        "Pratar så mycket att de inte hinner",
+        "Läser deras manus"
+      ],
+      "ans": 1,
+      "exp": "Förbered svar i förväg."
+    },
+    {
+      "id": "q30",
+      "c": "kallor",
+      "lvl": "G",
+      "type": "mc",
+      "q": "Vilken källhänvisning är bäst?",
+      "opts": [
+        "Jag läste det på TikTok",
+        "Enligt Strålsäkerhetsmyndigheten …",
+        "Min kompis sa",
+        "Alla vet det"
+      ],
+      "ans": 1,
+      "exp": "En myndighet är en trovärdig källa."
+    },
+    {
+      "id": "q31",
+      "c": "ton",
+      "lvl": "G",
+      "type": "mc",
+      "q": "Vad ska du undvika i en debatt?",
+      "opts": [
+        "Att använda fakta",
+        "Personangrepp",
+        "Att bemöta",
+        "Att sammanfatta"
+      ],
+      "ans": 1,
+      "exp": "Personangrepp sänker trovärdigheten."
+    },
+    {
+      "id": "q32",
+      "c": "avslutning",
+      "lvl": "G",
+      "type": "mc",
+      "q": "Vad ska INTE vara med i en avslutning?",
+      "opts": [
+        "Ditt starkaste argument",
+        "Svar på motsidans viktigaste argument",
+        "Helt nya argument",
+        "En tydlig slutsats"
+      ],
+      "ans": 2,
+      "exp": "Inga nya argument i slutet."
+    },
+    {
+      "id": "q33",
+      "c": "vardera",
+      "lvl": "H",
+      "type": "mc",
+      "q": "Vad är typiskt för högsta nivå i en debatt?",
+      "opts": [
+        "Att prata mest",
+        "Att värdera vilka argument som väger tyngst och erkänna när motsidan har en poäng",
+        "Att aldrig hålla med",
+        "Att läsa från papper"
+      ],
+      "ans": 1,
+      "exp": "Värdera och väga."
+    }
+  ],
+  "boss": [
+    {
+      "id": "b1",
+      "lvl": "G",
+      "c": "for",
+      "q": "Skriv på papper: tre argument FÖR och tre argument EMOT kärnkraft, med ett belägg (fakta eller siffra) till varje.",
+      "facit": "För: lite CO2, stabil baskraft, liten markyta, slutförvarsplan. Emot: avfall i ungefär 100 000 år, olycksrisk (Tjernobyl, Fukushima), dyrt och 10–15 års byggtid, uranbrytning.",
+      "check": [
+        "Tre för och tre emot",
+        "Ett belägg till varje",
+        "Inga påståenden utan fakta"
+      ]
+    },
+    {
+      "id": "b2",
+      "lvl": "G",
+      "c": "inledning",
+      "q": "Skriv ett inledningsanförande på ungefär 1 minut för din sida. Läs upp det högt med tidtagning. Spela sedan in det på Pocket och säg först \"Övning NO debatt\".",
+      "facit": "Ståndpunkt i en mening, två eller tre argument med belägg, avslutande mening, ungefär 1 minut.",
+      "check": [
+        "Ståndpunkten i första meningen",
+        "Minst två argument med belägg",
+        "60–90 sekunder"
+      ]
+    },
+    {
+      "id": "b3",
+      "lvl": "G",
+      "c": "bemota",
+      "q": "Debattövning med en förälder i 5 minuter. Föräldern tar motsidan. Spela in på Pocket och säg först \"Övning NO debatt\". Bemöt minst två av förälderns argument.",
+      "facit": "\"Motsidan säger att … men …\" med belägg, saklig ton, ett avslutande sammanfattande inlägg.",
+      "check": [
+        "Bemötte minst två argument med belägg",
+        "Ingen personattack, avbröt inte",
+        "Avslutade med en sammanfattning"
+      ]
+    },
+    {
+      "id": "b4",
+      "lvl": "H",
+      "c": "vardera",
+      "q": "Skriv fyra meningar där du väger ditt starkaste argument mot motsidans starkaste och förklarar varför ditt väger tyngre.",
+      "facit": "Erkänn motsidans poäng, jämför, motivera varför ditt väger tyngre.",
+      "check": [
+        "Erkänner motsidans poäng",
+        "Jämför de två argumenten",
+        "Motiverar slutsatsen"
+      ]
+    }
+  ],
+  "test": {
+    "part1": [
+      "q3",
+      "q4",
+      "q6",
+      "q8",
+      "q10",
+      "q13",
+      "q15",
+      "q17",
+      "q19",
+      "q21",
+      "q23",
+      "q25",
+      "q27"
+    ],
+    "part2": [
+      "q5",
+      "q7",
+      "q14",
+      "q18",
+      "q20",
+      "q24",
+      "q26",
+      "q28",
+      "q31",
+      "q33"
+    ],
+    "open": [
+      {
+        "id": "o1",
+        "lvl": "G",
+        "q": "Skriv ett inledningsanförande (cirka 100 ord) för den sida du ska driva.",
+        "rub": [
+          "Tydlig ståndpunkt",
+          "Två eller tre argument med belägg",
+          "Avslutande mening"
+        ]
+      },
+      {
+        "id": "o2",
+        "lvl": "H",
+        "q": "Motsidans starkaste argument: skriv ett bemötande med belägg, och värdera vilket argument som väger tyngst.",
+        "rub": [
+          "Återger motsidan korrekt",
+          "Belägg i svaret",
+          "Värdering med motivering"
+        ]
+      }
+    ]
+  }
+}

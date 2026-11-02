@@ -71,7 +71,7 @@ export async function snoozeResult(userId, moduleId, until) { const { data: { us
 export async function loadAllSessions(userId) { const { data } = await sb.from('sessions').select('module_id,kind,day,score,max,minutes,detail,created_at').eq('user_id', userId).order('created_at'); return (data || []).map(s => ({ module_id: s.module_id, type: s.kind, d: s.day, score: s.score, max: s.max, mins: s.minutes, detail: s.detail })); }
 
 // Lektioner från Pocket
-export async function loadLectures(userId) { const { data } = await sb.from('lectures').select('id,title,recorded_at,duration,subject,summary,questions,module_id').eq('user_id', userId).gte('duration', 120).order('recorded_at', { ascending: false }); return data || []; }
+export async function loadLectures(userId) { const { data } = await sb.from('lectures').select('id,title,recorded_at,duration,subject,summary,questions,module_id,feedback,practice_for').eq('user_id', userId).or('duration.gte.120,feedback.not.is.null').order('recorded_at', { ascending: false }); return data || []; }
 export async function setLectureSubject(id, subject) { const { error } = await sb.from('lectures').update({ subject }).eq('id', id); if (error) throw error; }
 export async function loadLectureReviews(userId) { const { data } = await sb.from('lecture_reviews').select('lecture_id,day,score,max').eq('user_id', userId); return data || []; }
 export async function saveLectureReview(userId, lectureId, score, max) { await sb.from('lecture_reviews').upsert({ user_id: userId, lecture_id: lectureId, day: today(), score, max }); }

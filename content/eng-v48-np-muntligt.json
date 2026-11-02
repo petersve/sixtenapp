@@ -5,15 +5,15 @@
       "date": "2026-11-15",
       "label": "Sön 15/11",
       "items": [
-        "Pass 1: provet, uppvärmningen och prata längre"
+        "Pass 1: provet, uppvärmningen och prata längre",
+        "Spela in 1 min om dig själv på Pocket (\"Övning engelska NP\")"
       ]
     },
     {
       "date": "2026-11-18",
       "label": "Ons 18/11",
       "items": [
-        "Pass 2: fraser för åsikter och att hålla med",
-        "Spela in 30 sek om dig själv"
+        "Pass 2: fraser för åsikter och att hålla med"
       ]
     },
     {
@@ -28,7 +28,7 @@
       "label": "Sön 22/11",
       "items": [
         "Pass 4: röda kort",
-        "Kortsamtal med en förälder (5 min)"
+        "Kortsamtal i 5 min med en förälder, inspelat på Pocket (\"Övning engelska NP\")"
       ]
     },
     {
@@ -534,7 +534,7 @@
       "id": "b1",
       "lvl": "G",
       "c": "warmup",
-      "q": "Spela in dig själv på mobilen: 30–45 sekunder om dig själv (fritid, skola, något du ser fram emot). Lyssna och räkna hur många gånger du säger \"because\" och \"for example\".",
+      "q": "Spela in dig själv på Pocket i 1 minut om dig själv (fritid, skola, något du ser fram emot). Säg först \"Övning engelska NP\", så får du skriftlig feedback.",
       "facit": "Minst en anledning och ett exempel, och minst en tidsform utöver presens.",
       "check": [
         "30 sekunder eller mer utan långa pauser",
@@ -546,7 +546,7 @@
       "id": "b2",
       "lvl": "G",
       "c": "kort",
-      "q": "Påståendekort med en förälder, 5 minuter. Turas om att dra: \"Phones should be banned in school.\" · \"Everyone should do a sport.\" · \"It's better to live in a city than in the countryside.\" · \"Homework is a waste of time.\"",
+      "q": "Påståendekort med en förälder, 5 minuter, inspelat på Pocket (säg först \"Övning engelska NP\"). Turas om att dra: \"Phones should be banned in school.\" · \"Everyone should do a sport.\" · \"It's better to live in a city than in the countryside.\" · \"Homework is a waste of time.\"",
       "facit": "Ta ställning, ge en anledning och ett exempel, fråga sedan den andra.",
       "check": [
         "Tog ställning med anledning och exempel varje gång",
