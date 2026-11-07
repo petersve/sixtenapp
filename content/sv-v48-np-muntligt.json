@@ -12,7 +12,7 @@
       "date": "2026-11-16",
       "label": "Mån 16/11",
       "items": [
-        "Pass 2: sammanfatta och resonera",
+        "Pass 2: läsa upp, egna tankar och resonemang",
         "Spela in en presentation på 2–3 min på Pocket om en text du läst (\"Övning svenska NP\")"
       ]
     },
@@ -53,9 +53,9 @@
       "lvl": "G",
       "t": "Provet",
       "q": "Hur går det muntliga nationella provet i svenska till?",
-      "a": "Grupp på 4–5 elever. 30 min förberedelse med en text, sedan presenterar du (2–3 min), leder en kort diskussion (3–7 min) och deltar i gruppens diskussion (20–40 min).",
+      "a": "Grupp på fyra. 30 min förberedelse med en text i ett häfte, där sammanfattningen och diskussionsfrågan redan står. Sedan presenterar du din text (2–3 min), leder diskussionen om den (3–7 min) och deltar när de andra leder sina. Totalt 40–50 minuter.",
       "why": "Förberedelsen bedöms inte. Det som bedöms är presentationen och hur du leder och deltar i diskussionen.",
-      "ex": "Ni får ett häfte med textutdrag, ofta skönlitteratur och sakprosa, och en diskussionsfråga till varje text."
+      "ex": "Läraren gick igenom det i svenskan 5/11 och har sagt att ni övar mer på lektionen 9/11."
     },
     {
       "id": "tema",
@@ -70,19 +70,19 @@
       "id": "pres-delar",
       "lvl": "G",
       "t": "Presentera",
-      "q": "Vilka fyra delar ska presentationen ha?",
-      "a": "1) Kort sammanfattning av texten. 2) Dina egna tankar om den. 3) Ett resonemang med exempel. 4) Diskussionsfrågan till gruppen, och din egen åsikt om den.",
-      "why": "Gör du alla fyra delarna har du en komplett presentation. Det är den lättaste poängen på hela provet.",
-      "ex": "\"Texten handlar om … Jag tänkte på … eftersom … Det påminner mig om när … Min fråga till er är: … Själv tycker jag …\""
+      "q": "Vilka tre delar ska presentationen ha?",
+      "a": "1) Läs upp sammanfattningen som står i häftet. 2) Dina egna tankar och resonemang, utifrån frågorna att fundera över, till exempel \"Vad tycker du om texten? Varför?\". 3) Presentera diskussionsfrågan tydligt och säg vad du själv tycker.",
+      "why": "Sammanfattningen och diskussionsfrågan får du färdiga. Det du själv skapar är dina tankar och din åsikt, och det är där bedömningen ligger.",
+      "ex": "\"Jag läser först upp sammanfattningen … Det jag tänkte när jag läste var … eftersom … Diskussionsfrågan är: … Själv tycker jag …\""
     },
     {
       "id": "sammanfatta",
       "lvl": "G",
       "t": "Presentera",
-      "q": "Hur gör du en bra sammanfattning?",
-      "a": "Vem, vad, vilket problem, hur det slutar, på 4–5 meningar i presens. Inga detaljer, inga citat.",
-      "why": "En sammanfattning ska få någon som inte läst texten att förstå vad den handlar om. Det är inte en återberättelse.",
-      "ex": "\"Texten handlar om Sixten, 16 år, som är kär i en tjej i klassen. Han bestämmer sig för att visa det på ett stort sätt, men det går fel inför alla. Efteråt känner han att livet är slut.\""
+      "q": "Hur läser du upp sammanfattningen bra?",
+      "a": "Läs den högt för dig själv två gånger under förberedelsen. Läs i lugnt tempo, med pauser vid punkt, och titta upp på gruppen i slutet av varje mening.",
+      "why": "Sammanfattningen är redan skriven, men hur du läser den påverkar hur gruppen förstår din text. Läraren sa att man gärna ska mumla den för sig själv under förberedelsen.",
+      "ex": "Stryk under två eller tre nyckelord i sammanfattningen och betona dem när du läser."
     },
     {
       "id": "resonera",
@@ -98,7 +98,7 @@
       "lvl": "G",
       "t": "Presentera",
       "q": "Ska du läsa innantill från ett manus?",
-      "a": "Nej. Skriv 5–8 stödord på en lapp, och skriv bara ut din första mening helt.",
+      "a": "Nej. Ha ett papper med 5–8 stödord för dina tankar och din åsikt. Bara papper är tillåtet, ingen dator.",
       "why": "Man bedöms på kontakten med lyssnarna. Den som läser innantill tittar ner och låter monoton.",
       "ex": "Lapp: \"Skjut apelsinen – kär – stor gest – går fel – skäms / våga? – ångra – lagtryouten / Fråga: Är det värt att riskera att skämma ut sig?\""
     },
@@ -115,10 +115,10 @@
       "id": "leda-fordela",
       "lvl": "G",
       "t": "Leda",
-      "q": "Hur ser du till att alla kommer till tals?",
-      "a": "Ge ordet med namn till den som inte sagt något, och stoppa vänligt den som pratar länge.",
+      "q": "Hur leder du diskussionen så att den fungerar?",
+      "a": "Ge ordet med namn till den som inte sagt något, stoppa vänligt den som pratar länge, och dra tillbaka samtalet om det glider iväg från texten.",
       "why": "Diskussionsledning bedöms tillsammans med hur du deltar. Att fördela ordet visar att du leder.",
-      "ex": "\"Hugo, du har inte sagt något än, vad tänker du?\" · \"Bra poäng, ska vi höra vad Leo tycker också?\""
+      "ex": "\"Hugo, vad tänker du?\" · \"Bra poäng, men tillbaka till frågan: …\""
     },
     {
       "id": "leda-avsluta",
@@ -162,7 +162,7 @@
       "t": "Delta",
       "q": "Varför ska du ge konkreta exempel och egna erfarenheter?",
       "a": "För att ett exempel gör en åsikt begriplig och trovärdig. Det kan vara något du upplevt, sett eller läst.",
-      "why": "\"Ge konkreta exempel och jämför med egna upplevelser\" står uttryckligen i provets arbetsgång.",
+      "why": "\"Ge konkreta exempel och jämför med egna upplevelser\" står i uppgiften. Läraren vill att exemplet är ditt eget, inte samma som alla andras.",
       "ex": "\"När jag började spela hockey i ett nytt lag kände jag precis som killen i texten …\""
     },
     {
@@ -301,51 +301,6 @@
       ],
       "ans": 1,
       "exp": "Frågan till gruppen och din egen åsikt."
-    },
-    {
-      "id": "q7",
-      "c": "pres-delar",
-      "lvl": "G",
-      "type": "mc",
-      "q": "Vilken del saknas: sammanfattning, egna tankar, diskussionsfråga …?",
-      "opts": [
-        "Ett resonemang med exempel",
-        "Författarens biografi",
-        "Ett citat",
-        "En ordlista"
-      ],
-      "ans": 0,
-      "exp": "Resonemanget med exempel."
-    },
-    {
-      "id": "q8",
-      "c": "sammanfatta",
-      "lvl": "G",
-      "type": "mc",
-      "q": "Vad ska INTE vara med i en sammanfattning?",
-      "opts": [
-        "Vem texten handlar om",
-        "Vilket problem som finns",
-        "Långa citat och detaljer",
-        "Hur det slutar"
-      ],
-      "ans": 2,
-      "exp": "Inga detaljer eller citat."
-    },
-    {
-      "id": "q9",
-      "c": "sammanfatta",
-      "lvl": "G",
-      "type": "mc",
-      "q": "Hur lång ska sammanfattningen vara?",
-      "opts": [
-        "En mening",
-        "4–5 meningar",
-        "En hel sida",
-        "Så lång som texten"
-      ],
-      "ans": 1,
-      "exp": "4–5 meningar."
     },
     {
       "id": "q10",
@@ -586,6 +541,66 @@
       ],
       "ans": 1,
       "exp": "Ta dig tillbaka, det gör inget."
+    },
+    {
+      "id": "q26",
+      "c": "sammanfatta",
+      "lvl": "G",
+      "type": "mc",
+      "q": "Vem har skrivit sammanfattningen du läser upp?",
+      "opts": [
+        "Du skriver den själv under förberedelsen",
+        "Den står färdig i häftet",
+        "Läraren läser upp den",
+        "Gruppen skriver den tillsammans"
+      ],
+      "ans": 1,
+      "exp": "Den står i häftet. Du övar på att läsa upp den bra."
+    },
+    {
+      "id": "q27",
+      "c": "pres-delar",
+      "lvl": "G",
+      "type": "mc",
+      "q": "Vilka tre delar har presentationen?",
+      "opts": [
+        "Läsa upp sammanfattningen, egna tankar och resonemang, presentera diskussionsfrågan med egen åsikt",
+        "Läsa hela texten, svara på frågor, sammanfatta",
+        "Skriva en sammanfattning, läsa den, gå",
+        "Presentera författaren, citera, fråga"
+      ],
+      "ans": 0,
+      "exp": "Sammanfattning, egna tankar, diskussionsfrågan."
+    },
+    {
+      "id": "q28",
+      "c": "stodord",
+      "lvl": "G",
+      "type": "mc",
+      "q": "Vad får du ha framför dig under provet?",
+      "opts": [
+        "Datorn",
+        "Ett papper med stödord och anteckningar",
+        "Mobilen",
+        "Ingenting"
+      ],
+      "ans": 1,
+      "exp": "Bara papper, ingen dator."
+    },
+    {
+      "id": "q29",
+      "c": "leda-fordela",
+      "lvl": "G",
+      "type": "mc",
+      "q": "Gruppen börjar prata om något helt annat än texten. Vad gör du som ledare?",
+      "opts": [
+        "Följer med i det nya ämnet",
+        "Säger \"Bra poäng, men tillbaka till frågan: …\"",
+        "Väntar tills tiden är slut",
+        "Ber läraren ingripa"
+      ],
+      "ans": 1,
+      "exp": "Ledaren håller gruppen till ämnet."
     }
   ],
   "boss": [
@@ -593,12 +608,12 @@
       "id": "b1",
       "lvl": "G",
       "c": "sammanfatta",
-      "q": "Välj en novell eller kort tidningstext (1–2 sidor). Skriv en sammanfattning på 4–5 meningar i presens och läs den högt för en förälder.",
-      "facit": "Vem, vad, vilket problem, hur det slutar. Inga citat eller detaljer.",
+      "q": "Ta en novell eller en kort tidningstext. Skriv en kort sammanfattning, som om den stod i häftet. Läs den sedan högt för en förälder i lugnt tempo, med blicken uppe i slutet av meningarna. Lägg till dina egna tankar: vad tycker du om texten, och varför?",
+      "facit": "Tydlig uppläsning, sedan egna tankar med eftersom och ett eget exempel.",
       "check": [
-        "4–5 meningar, presens",
-        "Vem + problem + slut finns med",
-        "Lyssnaren förstod utan att ha läst texten"
+        "Läste lugnt och tittade upp",
+        "Egna tankar med eftersom",
+        "Ett eget exempel"
       ]
     },
     {
@@ -606,11 +621,11 @@
       "lvl": "G",
       "c": "pres-delar",
       "q": "Generalrepetition: förbered dig i 30 min med en text, och håll sedan presentationen (2–3 min) för en förälder med bara en lapp med stödord. Spela in på Pocket och säg först \"Övning svenska NP\", så får du skriftlig feedback.",
-      "facit": "Sammanfattning, egna tankar, resonemang med exempel och en diskussionsfråga med egen åsikt, på 2–3 minuter.",
+      "facit": "Läser upp sammanfattningen, egna tankar och resonemang med exempel, diskussionsfrågan och egen åsikt, på 2–3 minuter, med bara ett papper med stödord.",
       "check": [
-        "Alla fyra delarna",
+        "Alla tre delarna",
         "Minst ett eftersom och ett eget exempel",
-        "Tittade upp och läste inte innantill"
+        "Tittade upp och läste inte innantill (utom sammanfattningen)"
       ]
     },
     {
@@ -643,7 +658,6 @@
       "q1",
       "q3",
       "q6",
-      "q8",
       "q10",
       "q12",
       "q13",
@@ -651,7 +665,9 @@
       "q16",
       "q17",
       "q18",
-      "q22"
+      "q22",
+      "q26",
+      "q28"
     ],
     "part2": [
       "q2",
@@ -660,7 +676,9 @@
       "q19",
       "q20",
       "q21",
-      "q24"
+      "q24",
+      "q27",
+      "q29"
     ],
     "open": [
       {
