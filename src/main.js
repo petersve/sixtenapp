@@ -1,5 +1,5 @@
 import * as db from './db.js';
-import { RULES_V2_FROM, PASS_MIN_SECS, buildItems, evaluate, weekReport, counts, monthBonus, lectureWeekAmount, BONUS, LECTURE_MIN_SEC, LECTURE_REVIEW_DAYS, PASS_MIN, PREP_MIN, JOKERS_PER_MONTH, RESCUE_DAYS, isoWeek, weekStart } from './plan.js';
+import { RULES_V2_FROM, PASS_MIN_SECS, RULES_V3_FROM, PASS_MIN_V3, MAX_GUESSES, minAnswerMs, buildItems, evaluate, weekReport, counts, monthBonus, lectureWeekAmount, BONUS, LECTURE_MIN_SEC, LECTURE_REVIEW_DAYS, PASS_MIN, PREP_MIN, JOKERS_PER_MONTH, RESCUE_DAYS, isoWeek, weekStart } from './plan.js';
 const { sb, today } = db;
 
 // ============ STATE ============
@@ -60,6 +60,11 @@ function passVerdict(type, secs, auto) {
   const earlier = S.sessions.some(x => x.d === today() && x.type && x.type.startsWith('pass')); // logSession räknar innan passet läggs till
   if (earlier) return { counted: false, why: 'first' };
   if (type !== 'pass') return { counted: false, why: 'aborted' };
+  if (today() >= RULES_V3_FROM) {
+    if ((sess && sess.guesses || 0) > MAX_GUESSES) return { counted: false, why: 'guess' };
+    if (auto.total && auto.score / auto.total < PASS_MIN_V3) return { counted: false, why: 'low' };
+    return { counted: true, why: '' };
+  }
   if (secs < PASS_MIN_SECS) return { counted: false, why: 'fast' };
   if (auto.total && auto.score / auto.total < PASS_MIN) return { counted: false, why: 'low' };
   return { counted: true, why: '' };
@@ -236,7 +241,7 @@ function startSession() {
   const mixQ = []; const used = new Set();
   for (let i = 0; mixQ.length < 10 && i < 40 && ids.length; i++) { const id = ids[i % ids.length]; const q = pickQuestion(id, [...used]); if (q && !used.has(q.id)) { used.add(q.id); mixQ.push(q); } }
   const bossPool = BOSS.filter(b => pool.has(b.c)); const boss = bossPool.length ? bossPool.sort((a, b) => ((S.cards[a.c] || {}).bossAt || 0) - ((S.cards[b.c] || {}).bossAt || 0))[0] : BOSS[0];
-  sess = { extra: passDoneToday(), start: Date.now(), step: warm.length >= 2 ? 0 : 1, warm, wi: 0, fresh, fi: 0, fphase: 'learn', mixQ: shuffle(mixQ), mi: 0, boss, score: 0, total: 0, auto: { score: 0, total: 0 }, learnMode, logged: false };
+  sess = { extra: passDoneToday(), guesses: 0, start: Date.now(), step: warm.length >= 2 ? 0 : 1, warm, wi: 0, fresh, fi: 0, fphase: 'learn', mixQ: shuffle(mixQ), mi: 0, boss, score: 0, total: 0, auto: { score: 0, total: 0 }, learnMode, logged: false };
   go('session');
 }
 function sessHeader() {
@@ -244,7 +249,7 @@ function sessHeader() {
   const mins = Math.floor((Date.now() - sess.start) / 60000);
   return `<div class="topbar"><button class="back" id="quit">Avbryt</button><div class="timer num">${mins} min</div><div class="muted num" style="font-weight:600">${sess.score}/${sess.total} rätt</div></div>
   <div class="steps">${names.map((n, i) => `<div class="${i < sess.step ? 'done' : i === sess.step ? 'on' : ''}">${n}</div>`).join('')}</div>
-  ${today() >= RULES_V2_FROM && sess.step < 4 ? `<div class="muted" style="font-size:.85rem">${sess.extra ? 'Extra träning: dagens räknade pass i ämnet är redan gjort.' : 'Dagens räknade pass. Ta det lugnt: det räknas från 6 min och gäller även om du avbryter.'}</div>` : ''}`;
+  ${today() >= RULES_V2_FROM && sess.step < 4 ? `<div class="muted" style="font-size:.85rem">${sess.extra ? 'Extra träning: dagens räknade pass i ämnet är redan gjort.' : (today() >= RULES_V3_FROM ? 'Dagens räknade pass. Läs varje fråga: svar som kommer för snabbt räknas som gissningar. Gäller även om du avbryter.' : 'Dagens räknade pass. Ta det lugnt: det räknas från 6 min och gäller även om du avbryter.')}</div>` : ''}`;
 }
 function session() {
   if (!sess) return home();
@@ -268,7 +273,7 @@ function stepLearn() {
       ${c.why ? `<div><div class="lbl">Varför</div><div>${esc(c.why)}</div></div>` : ''}
       ${c.ex ? `<div><div class="lbl">Exempel</div><div>${esc(c.ex)}</div></div>` : ''}
     </div>
-    <button class="btn primary" id="gotit">Jag har läst · testa mig</button>` + after(() => { document.getElementById('gotit').onclick = () => { sess.fphase = 'check'; sess.cq = pickQuestion(c.id); sess.tries = 0; render(); }; });
+    <button class="btn primary" id="gotit" ${today() >= RULES_V3_FROM && sess.learnMode ? 'disabled' : ''}>Jag har läst · testa mig</button>` + after(() => { const gb = document.getElementById('gotit'); if (gb.disabled) { let n = 6; gb.textContent = `Läs kortet · ${n}`; const t = setInterval(() => { n--; if (!document.body.contains(gb)) return clearInterval(t); if (n <= 0) { clearInterval(t); gb.disabled = false; gb.textContent = 'Jag har läst · testa mig'; } else gb.textContent = `Läs kortet · ${n}`; }, 1000); } gb.onclick = () => { sess.fphase = 'check'; sess.cq = pickQuestion(c.id); sess.tries = 0; render(); }; });
   }
   const q = sess.cq;
   if (!q) { rec(c.id, true); sess.fi++; sess.fphase = 'learn'; return stepLearn(); }
@@ -291,7 +296,7 @@ function stepDone() {
   const newGreen = CARDS.filter(c => mastery(c.id) === 3 && S.cards[c.id].d[2] === today()).length;
   const apct = sess.auto.total ? Math.round(sess.auto.score / sess.auto.total * 100) : 100;
   const v = sess.verdict || { counted: true }; const counted = v.counted;
-  const msg = { first: 'Dagens räknade pass i det här ämnet är redan gjort (eller avbrutet). Det här var fri träning: korten blir ändå starkare, men passet ger inget i planen.', fast: `Passet tog ${Math.max(1, Math.round((Date.now() - sess.start) / 60000))} min. Ett pass räknas från ${PASS_MIN_SECS / 60} minuter, för det är ungefär så lång tid det tar att läsa korten och tänka på frågorna.`, low: `Under ${Math.round(PASS_MIN * 100)} % rätt. Passet räknas inte mot veckan, men korten du missade kommer tillbaka i morgon.` }[v.why] || '';
+  const msg = { first: 'Dagens räknade pass i det här ämnet är redan gjort (eller avbrutet). Det här var fri träning: korten blir ändå starkare, men passet ger inget i planen.', fast: `Passet tog ${Math.max(1, Math.round((Date.now() - sess.start) / 60000))} min. Ett pass räknas från ${PASS_MIN_SECS / 60} minuter, för det är ungefär så lång tid det tar att läsa korten och tänka på frågorna.`, low: `Under ${Math.round((today() >= RULES_V3_FROM ? PASS_MIN_V3 : PASS_MIN) * 100)} % rätt. Passet räknas inte mot veckan, men korten du missade kommer tillbaka i morgon.`, guess: `${sess.guesses} svar kom innan det gick att läsa frågan. Max ${MAX_GUESSES} gissningar per pass, annars räknas det inte. Ta det i din egen takt i morgon.` }[v.why] || '';
   return `<div class="card stack" style="text-align:center;gap:10px">
     <div class="eyebrow">${counted ? 'Pass klart · räknas' : v.why === 'first' ? 'Extra träning' : 'Pass klart · räknas inte'}</div><div class="big num" style="${counted || v.why === 'first' ? '' : 'color:var(--bad)'}">${apct}%</div>
     ${msg ? `<div class="fb ${v.why === 'first' ? 'ok' : 'no'}" style="text-align:left">${msg}</div>` : ''}
@@ -323,9 +328,10 @@ function quizView(q, onDone, nextLabel) {
   html += `<div id="${uid}fb"></div></div>`;
   return html + after(() => {
     const fb = document.getElementById(uid + 'fb');
-    const finish = ok => { fb.innerHTML = `<div class="fb ${ok ? 'ok' : 'no'}"><b>${ok ? 'Rätt!' : 'Inte riktigt.'}</b>${esc(q.exp)}</div><button class="btn ${ok ? 'good' : ''}" id="${uid}n" style="margin-top:10px">${nextLabel ? nextLabel(ok) : 'Nästa'}</button>`; const b = document.getElementById(uid + 'n'); b.onclick = () => onDone(ok); b.focus(); };
+    const shown = Date.now();
+    const finish = (ok, fast) => { fb.innerHTML = `<div class="fb ${ok ? 'ok' : 'no'}"><b>${fast ? 'För snabbt, läs frågan.' : ok ? 'Rätt!' : 'Inte riktigt.'}</b>${fast ? 'Du svarade innan det gick att läsa frågan, så det räknas som en gissning. ' : ''}${esc(q.exp)}</div><button class="btn ${ok ? 'good' : ''}" id="${uid}n" style="margin-top:10px">${nextLabel ? nextLabel(ok) : 'Nästa'}</button>`; const b = document.getElementById(uid + 'n'); b.onclick = () => onDone(ok); b.focus(); };
     if (q.type === 'mc') {
-      document.querySelectorAll(`#${uid}o .opt`).forEach(b => b.onclick = () => { const i = +b.dataset.i, ok = i === q.ans; document.querySelectorAll(`#${uid}o .opt`).forEach(x => { x.disabled = true; if (+x.dataset.i === q.ans) x.classList.add('right'); }); if (!ok) b.classList.add('wrong'); finish(ok); });
+      document.querySelectorAll(`#${uid}o .opt`).forEach(b => b.onclick = () => { const i = +b.dataset.i, fast = today() >= RULES_V3_FROM && Date.now() - shown < minAnswerMs(q.q), ok = i === q.ans && !fast; if (fast && sess) sess.guesses = (sess.guesses || 0) + 1; document.querySelectorAll(`#${uid}o .opt`).forEach(x => { x.disabled = true; if (+x.dataset.i === q.ans) x.classList.add('right'); }); if (!ok) b.classList.add('wrong'); finish(ok, fast); });
     } else {
       const f = document.getElementById(uid + 'f'), inp = document.getElementById(uid + 'i'); inp.focus();
       f.onsubmit = e => { e.preventDefault(); const ok = checkTxt(q, inp.value); inp.disabled = true; f.querySelector('button').disabled = true; finish(ok); };
@@ -459,9 +465,9 @@ function todayView() {
     ${me.role === 'parent' ? `<div class="muted" style="font-size:.9rem">Du ser ${esc(studentName())}s Idag-sida.</div>` : ''}
     ${isStudent() && pushState === 'off' ? `<button class="check" id="pushon" style="padding:12px 14px"><span class="box">🔔</span><span><b>Slå på notiser</b><br><span class="muted" style="font-size:.9rem">En knuff kl 17 om du glömt passet. Tar bort allt tjat från föräldrarna.</span></span></button>` : ''}
     <div class="row" style="justify-content:space-between"><div class="row" style="gap:8px"><span class="light ${light}"></span><span class="muted">Vecka ${isoW(t).slice(-2)}: ${wk ? `${wk.done + wk.rescued.length}/${wk.total} gjort${wk.jokersUsed ? ' · ' + wk.jokersUsed + ' joker' : ''}` : 'inga uppgifter'}</span></div><div class="streak" title="${st} dagar i rad">${[0, 1, 2, 3, 4].map(i => `<i class="${i < st ? 'on' : ''}"></i>`).join('')}</div></div>
-    ${(() => { let seen = false; try { seen = localStorage.getItem('rules-v2-seen') === '1'; } catch (e) {} return seen ? '' : `<div class="card stack" id="rulesv2" style="gap:8px;border-color:var(--accent)"><div class="eyebrow">Nya regler från 30/10</div><h3 style="color:var(--fg);text-transform:none;letter-spacing:0">En lugn kvart slår tio snabba</h3>
-      <p>Du har gjort massor av pass i veckan, och SO-korten är gröna på riktigt. Men reglerna belönade snabbhet, och det är vårt fel, inte ditt. Ett mattepass med elva frågor på 33 sekunder blir gissning. Fyra avbrutna franskpass i rad tränar på att slå om tärningen, inte på être och avoir.</p>
-      <div class="stack" style="gap:4px;font-size:.95rem"><div>• Första passet per ämne och dag räknas, även om du avbryter. Fler pass = fri träning.</div><div>• Ett pass räknas från 6 minuter. Läs korten, räkna på papper.</div><div>• Svarsalternativen blandas varje gång.</div><div>• Bossen gör du på papper och den ingår inte i procenten.</div></div>
+    ${(() => { let seen = false; try { seen = localStorage.getItem('rules-v3-seen') === '1'; } catch (e) {} return seen ? '' : `<div class="card stack" id="rulesv2" style="gap:8px;border-color:var(--accent)"><div class="eyebrow">Ändrat från 9/11</div><h3 style="color:var(--fg);text-transform:none;letter-spacing:0">Ingen sextimer längre</h3>
+      <p>Du hade rätt: att vänta på klockan när du redan kan korten är meningslöst. Nu finns ingen minimitid. I stället räknas svar som kommer innan det går att läsa frågan som gissningar.</p>
+      <div class="stack" style="gap:4px;font-size:.95rem"><div>• Ingen minimitid. Kan du korten går passet fort.</div><div>• Svar på några få sekunder räknas som fel. Fler än ${MAX_GUESSES} gissningar = passet räknas inte.</div><div>• Nya kort: läs i minst 6 sekunder innan du testas.</div><div>• 70 % rätt för att passet ska räknas.</div><div>• Första passet per ämne och dag är fortfarande det som räknas.</div></div>
       <button class="btn small primary" id="rulesok" style="align-self:flex-start">Okej</button></div>`; })()}
     ${late.length ? `<div class="card stack" style="gap:8px;border-color:var(--bad)"><h3 style="color:var(--bad)">Missat · rädda med joker</h3>${late.map(i => itemRow(i)).join('')}<p class="muted" style="font-size:.85rem">Du har ${JOKERS_PER_MONTH} joker per månad. Gör den inom ${RESCUE_DAYS} dagar så räknas veckan fortfarande.</p></div>` : ''}
     ${(() => { const fb = LECTURES.filter(l => l.feedback && Date.parse(l.recorded_at) > Date.now() - 3 * 86400e3); return fb.length ? `<div class="card stack" style="gap:8px"><h3>Feedback på dina övningar</h3>${fb.map(l => `<button class="check" data-go="lectures" style="padding:12px 14px"><span class="box">💬</span><span style="min-width:0"><b>${esc(l.title)}</b><br><span class="muted" style="font-size:.9rem">${esc(l.subject || '')} · läs vad som var bra och vad du ska träna på</span></span></button>`).join('')}</div>` : ''; })()}
@@ -471,7 +477,7 @@ function todayView() {
     ${!todays.length && !upcoming.length && !late.length ? `<div class="card"><p class="muted">Inga planer inlagda. Kolla fliken Prov.</p></div>` : ''}
   </div>` + after(() => {
     const po = document.getElementById('pushon'); if (po) po.onclick = enablePush;
-    const ro = document.getElementById('rulesok'); if (ro) ro.onclick = () => { try { localStorage.setItem('rules-v2-seen', '1'); } catch (e) {} const c = document.getElementById('rulesv2'); if (c) c.remove(); };
+    const ro = document.getElementById('rulesok'); if (ro) ro.onclick = () => { try { localStorage.setItem('rules-v3-seen', '1'); } catch (e) {} const c = document.getElementById('rulesv2'); if (c) c.remove(); };
     document.querySelectorAll('[data-lq]').forEach(b => b.onclick = () => { lq = null; go('lecquiz', { lec: b.dataset.lq }); });
     document.querySelectorAll('[data-act]').forEach(b => b.onclick = async () => {
       const m = MODS.find(x => x.id === b.dataset.m); if (!m) return;
@@ -560,7 +566,7 @@ function bonus() {
       <div class="row" style="gap:10px"><span class="light green"></span><span>Allt i planen gjort senast söndag. <b>${kr(cur.mb.weekAmount)} den veckan.</b></span></div>
       <div class="row" style="gap:10px"><span class="light yellow"></span><span>En dag missad men räddad inom ${RESCUE_DAYS} dagar med din joker (${JOKERS_PER_MONTH} per månad). <b>${kr(cur.mb.weekAmount - BONUS.YELLOW_PENALTY)}.</b></span></div>
       <div class="row" style="gap:10px"><span class="light red"></span><span>Något missat utan joker. <b>0 kr den veckan, aldrig minus.</b></span></div>
-      <div class="row" style="gap:10px;align-items:flex-start"><span class="light" style="background:var(--accent);margin-top:4px"></span><span>Ett pass räknas om det är <b>dagens första i ämnet</b> (även om du avbryter), tar <b>minst 6 minuter</b> och har <b>minst ${Math.round(PASS_MIN * 100)} % rätt</b> på frågorna appen rättar. Fler pass samma dag är fri träning. Övningsprov räknas från 50 %.</span></div>
+      <div class="row" style="gap:10px;align-items:flex-start"><span class="light" style="background:var(--accent);margin-top:4px"></span><span>Ett pass räknas om det är <b>dagens första i ämnet</b> (även om du avbryter), har <b>minst ${Math.round(PASS_MIN_V3 * 100)} % rätt</b> på frågorna appen rättar och <b>högst ${MAX_GUESSES} gissningar</b> (svar som kommer innan man hunnit läsa frågan). Ingen minimitid. Fler pass samma dag är fri träning. Övningsprov räknas från 50 %.</span></div>
       <p class="muted" style="font-size:.9rem;margin-top:4px"><b>Prov:</b> ${kr(BONUS.RESULT)} delas på månadens prov. Nått målet = hela andelen. Under målet men minst ${Math.round(PREP_MIN * 100)} % gröna kort dagen före = halva. Månad utan prov: provdelen följer veckorna.<br><b>Lektioner:</b> spela in och svara på de fem frågorna senast dagen efter. ${BONUS.LECTURE_GOAL} lektioner i veckan = ${kr(lectureWeekAmount(4))}, 3 = ${kr(lectureWeekAmount(3))}, 2 = ${kr(lectureWeekAmount(2))}. Inspelningar under 20 min räknas inte.<br>Golvet ${kr(BONUS.FLOOR)} får du alltid.</p></div>
     ${months.map(ym => { const { ws, mb } = calc(ym); if (!ws.length && !mb.rows.length) return ''; return `<div class="card stack" style="gap:8px"><div class="row" style="justify-content:space-between"><h3>${monthName(ym)}</h3><b class="num" style="color:var(--accent)">${kr(mb.total)}${mb.pending ? ' <span class="muted" style="font-weight:400">pågår</span>' : ''}</b></div>
       ${ws.map(w => `<div class="row" style="justify-content:space-between;padding:8px 0;border-top:1px solid var(--line)"><div class="row" style="gap:10px"><span class="light ${w.light}"></span><span>Vecka ${w.week.slice(-2)} <span class="muted">${fmtDate(w.start)}–${fmtDate(w.end)}</span></span></div><div class="row" style="gap:10px"><span class="num muted">${w.done + w.rescued.length}/${w.total}</span><b class="num" style="min-width:60px;text-align:right">${w.light === 'open' ? '…' : kr(w.light === 'green' ? mb.weekAmount : w.light === 'yellow' ? mb.weekAmount - BONUS.YELLOW_PENALTY : 0)}</b></div></div>`).join('')}
