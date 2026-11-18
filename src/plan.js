@@ -87,7 +87,9 @@ export function buildItems(mods, results, todayStr, snoozes = []) {
       let passN = 0;
       for (const it of p.items) {
         const isTest = /övningsprov|diagnos/i.test(it) || m.kind === 'diagnos';
-        const kind = m.kind === 'diagnos' ? 'paper' : isTest ? 'test' : 'pass';
+        // Övningar utanför appen (papper, Pocket, med förälder) kan appen inte registrera: visas men räknas inte i veckan
+        const offline = !isTest && /papper|pocket|förälder|middagsdiskussion/i.test(it);
+        const kind = m.kind === 'diagnos' ? 'paper' : isTest ? 'test' : offline ? 'offline' : 'pass';
         const key = `${m.id}:${p.date}:${kind}:${kind === 'pass' ? passN++ : 0}`;
         items.push({ key, date: p.date, moduleId: m.id, title: `${m.subject}: ${m.title}`, kind, label: it });
       }
@@ -111,6 +113,7 @@ export function evaluate(items, sessions, results, todayStr) {
   const out = items.map(it => ({ ...it }));
   // först: poster i datumordning, varje tar den tidigaste passande oanvända sessionen inom [date-7, date+RESCUE]
   for (const it of out) {
+    if (it.kind === 'offline') { it.status = it.date > todayStr ? 'future' : it.date === todayStr ? 'open' : 'past'; continue; }
     if (it.kind === 'grade') { const r = results.find(x => x.module_id === it.moduleId); it.status = r ? 'done' : it.date > todayStr ? 'future' : it.date < addDays(todayStr, -RESCUE_DAYS) ? 'missed' : 'open'; continue; }
     const want = it.kind === 'pass' ? 'pass' : 'test';
     const cand = pool.find(s => !s.used && s.module_id === it.moduleId && s.type === want && s.d >= addDays(it.date, -7) && s.d <= addDays(it.date, RESCUE_DAYS));
@@ -123,7 +126,7 @@ export function evaluate(items, sessions, results, todayStr) {
 // Veckorapport: per ISO-vecka → {week, start, items, done, total, jokersUsed, missed, light:'green'|'yellow'|'red'|'grey'|'open'}
 export function weekReport(evaluated, todayStr) {
   const byWeek = new Map();
-  for (const it of evaluated) { const w = isoWeek(it.date); if (!byWeek.has(w)) byWeek.set(w, { week: w, start: weekStart(it.date), items: [] }); byWeek.get(w).items.push(it); }
+  for (const it of evaluated) { if (it.kind === 'offline') continue; const w = isoWeek(it.date); if (!byWeek.has(w)) byWeek.set(w, { week: w, start: weekStart(it.date), items: [] }); byWeek.get(w).items.push(it); }
   const jokersByMonth = new Map();
   const weeks = [...byWeek.values()].sort((a, b) => a.start.localeCompare(b.start));
   for (const w of weeks) {

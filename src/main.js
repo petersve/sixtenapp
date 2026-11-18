@@ -57,7 +57,7 @@ function streak() { const days = new Set(S.sessions.map(s => s.d)); let n = 0; c
 // minst 6 minuter och minst 60 % rätt på frågorna appen rättar. Bossen rättar man själv och räknas inte i procenten.
 function passVerdict(type, secs, auto) {
   if (today() < RULES_V2_FROM) return { counted: type === 'pass' && (!auto.total || auto.score / auto.total >= PASS_MIN), why: type === 'pass' && auto.total && auto.score / auto.total < PASS_MIN ? 'low' : '' };
-  const earlier = S.sessions.some(x => x.d === today() && x.type && x.type.startsWith('pass')); // logSession räknar innan passet läggs till
+  const earlier = S.sessions.some(x => x.d === today() && (x.type === 'pass' || (x.type === 'pass-avbrutet' && !(x.detail && x.detail.auto && x.detail.auto.total === 0)))); /* avbrutet utan svar räknas inte */
   if (earlier) return { counted: false, why: 'first' };
   if (type !== 'pass') return { counted: false, why: 'aborted' };
   if (today() >= RULES_V3_FROM) {
@@ -69,7 +69,7 @@ function passVerdict(type, secs, auto) {
   if (auto.total && auto.score / auto.total < PASS_MIN) return { counted: false, why: 'low' };
   return { counted: true, why: '' };
 }
-function passDoneToday() { return today() >= RULES_V2_FROM && S.sessions.some(x => x.d === today() && x.type && x.type.startsWith('pass')); }
+function passDoneToday() { return today() >= RULES_V2_FROM && S.sessions.some(x => x.d === today() && (x.type === 'pass' || (x.type === 'pass-avbrutet' && !(x.detail && x.detail.auto && x.detail.auto.total === 0)))); }
 async function logSession(type, extra = {}) {
   const s = { d: today(), ts: Date.now(), type, score: sess ? sess.score : extra.score, max: sess ? sess.total : extra.max, mins: sess ? Math.round((Date.now() - sess.start) / 60000) : extra.mins, detail: extra.detail };
   if (sess && type.startsWith('pass')) {
@@ -253,7 +253,7 @@ function sessHeader() {
 }
 function session() {
   if (!sess) return home();
-  window._after = () => { const q = document.getElementById('quit'); if (q) q.onclick = () => { if ((sess.total > 0 || today() >= RULES_V2_FROM) && !sess.logged) logSession('pass-avbrutet'); sess = null; go('home'); }; };
+  window._after = () => { const q = document.getElementById('quit'); if (q) q.onclick = () => { if (sess.total > 0 && !sess.logged) logSession('pass-avbrutet'); /* avbrutet innan första svaret räknas inte som dagens försök */ sess = null; go('home'); }; };
   let body = '';
   if (sess.step === 0) body = stepWarm(); else if (sess.step === 1) body = stepLearn(); else if (sess.step === 2) body = stepMix(); else if (sess.step === 3) body = stepBoss(); else body = stepDone();
   return `<div class="stack">${sessHeader()}${body}</div>`;
@@ -486,6 +486,7 @@ function todayView() {
       if (b.dataset.act === 'pass') return startSession();
       if (b.dataset.act === 'test') { tst = null; return go('test'); }
       if (b.dataset.act === 'paper') { pp = null; return go('paper'); }
+      if (b.dataset.act === 'offline') return go('home');
     });
   });
 }
