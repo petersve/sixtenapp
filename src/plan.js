@@ -26,13 +26,14 @@ export const GRADE_ORD = { F: 0, E: 1, D: 2, C: 3, B: 4, A: 5 };
 // Månadsutfall. weeks: veckor vars start ligger i månaden (från weekReport). exams: [{title, grade|null, goal|null, prep: {green,total}|null}].
 // lectureWeeks: [{week, start, end, n}] – genomförda lektioner per vecka i månaden.
 // Returnerar {floor, process, result, lectures, total, max, pending, weekAmount, rows}
-export function monthBonus(weeks, exams, todayStr, lectureWeeks = []) {
+// opts.comeback: allt som gick att ta igen är gjort och månadens sista två veckor är gröna/gula → röda veckor betalas som gula.
+export function monthBonus(weeks, exams, todayStr, lectureWeeks = [], opts = {}) {
   const n = weeks.length || 1; const weekAmount = Math.round(BONUS.PROCESS / n);
   let process = 0; const rows = [];
   for (const w of weeks) {
-    const amt = w.light === 'green' ? weekAmount : w.light === 'yellow' ? weekAmount - BONUS.YELLOW_PENALTY : 0;
+    const amt = w.light === 'green' ? weekAmount : w.light === 'yellow' || (opts.comeback && w.light === 'red') ? weekAmount - BONUS.YELLOW_PENALTY : 0;
     const finished = w.end < todayStr || w.light === 'green' || w.light === 'yellow' || w.light === 'red';
-    process += amt; rows.push({ kind: 'week', week: w.week, light: w.light, amount: amt, pending: !finished });
+    process += amt; rows.push({ kind: 'week', week: w.week, light: w.light, amount: amt, pending: !finished, comeback: !!(opts.comeback && w.light === 'red') });
   }
   const finishedWeeks = weeks.filter(w => w.light !== 'open' && w.light !== 'grey');
   const greenWeeks = finishedWeeks.filter(w => w.light === 'green' || w.light === 'yellow').length;
@@ -94,7 +95,7 @@ export function buildItems(mods, results, todayStr, snoozes = []) {
         const offline = paperTest || (!isTest && /papper|pocket|förälder|middagsdiskussion/i.test(it));
         const kind = m.kind === 'diagnos' ? 'paper' : offline ? 'offline' : isTest ? 'test' : 'pass';
         const key = `${m.id}:${p.date}:${kind}:${kind === 'pass' ? passN++ : 0}`;
-        items.push({ key, date: p.date, moduleId: m.id, title: `${m.subject}: ${m.title}`, kind, label: it, isTest: paperTest });
+        items.push({ key, date: p.date, moduleId: m.id, title: `${m.subject}: ${m.title}`, kind, label: it, isTest: paperTest, examDate: m.exam_date });
       }
     }
     if (m.kind === 'diagnos' && !plan.length && m.exam_date) items.push({ key: `${m.id}:${m.exam_date}:paper:0`, date: m.exam_date, moduleId: m.id, title: `${m.subject}: ${m.title}`, kind: 'paper', label: 'Gör diagnosen (40 min)' });
@@ -111,6 +112,7 @@ export function buildItems(mods, results, todayStr, snoozes = []) {
 }
 
 // Matcha planposter mot sessions. Returnerar items med status: done | rescued | missed | open | future, och doneDay.
+export const CATCHUP_FROM = '2026-11-01'; // att ta igen gäller missade punkter från november
 export const OFFLINE_FROM = '2026-11-18'; // godkännandeflödet finns från detta datum; äldre pappers-/Pocket-punkter räknas inte
 export function evaluate(items, sessions, results, todayStr, checks = []) {
   const pool = sessions.filter(s => (s.type === 'pass' || s.type === 'test') && counts(s)).map(s => ({ ...s, used: false })).sort((a, b) => a.d.localeCompare(b.d));
@@ -127,12 +129,26 @@ export function evaluate(items, sessions, results, todayStr, checks = []) {
       it.status = it.date > todayStr ? 'future' : it.date === todayStr ? 'open' : (addDays(it.date, RESCUE_DAYS) >= todayStr ? 'late' : 'missed'); continue;
     }
     if (it.kind === 'grade') { const r = results.find(x => x.module_id === it.moduleId); it.status = r ? 'done' : it.date > todayStr ? 'future' : it.date < addDays(todayStr, -RESCUE_DAYS) ? 'missed' : 'open'; continue; }
-    const want = it.kind === 'pass' ? 'pass' : 'test';
-    const cand = pool.find(s => !s.used && s.module_id === it.moduleId && s.type === want && s.d >= addDays(it.date, -7) && s.d <= addDays(it.date, RESCUE_DAYS));
-    if (cand) { cand.used = true; it.doneDay = cand.d; it.status = cand.d <= it.date ? 'done' : 'rescued'; }
-    else it.status = it.date > todayStr ? 'future' : it.date === todayStr ? 'open' : (addDays(it.date, RESCUE_DAYS) >= todayStr ? 'late' : 'missed');
+    it.want = it.kind === 'pass' ? 'pass' : 'test'; it.status = null;
   }
+  const open = out.filter(it => it.want && it.status === null);
+  const take = (it, lo, hi) => { const c = pool.find(s => !s.used && s.module_id === it.moduleId && s.type === it.want && s.d >= lo && s.d <= hi); if (c) { c.used = true; it.doneDay = c.d; } return !!c; };
+  // 1) i tid eller räddat: sessioner från punktens dag till dag+RESCUE
+  for (const it of open) if (take(it, it.date, addDays(it.date, RESCUE_DAYS))) it.status = it.doneDay <= it.date ? 'done' : 'rescued';
+  // 2) i förväg för punkter som redan passerat (sessionerna ligger i det förflutna och krockar inte med att ta igen)
+  for (const it of open) if (it.status === null && it.date <= todayStr && take(it, addDays(it.date, -7), addDays(it.date, -1))) it.status = 'done';
+  // 3) ta igen: missade pass (från november) i ämnen vars prov inte har varit, med sessioner efter räddningsfönstret fram till provdagen (gult, ingen joker)
+  for (const it of open) if (it.status === null && it.want === 'pass' && it.date >= CATCHUP_FROM && it.examDate && it.examDate >= it.date && addDays(it.date, RESCUE_DAYS) < todayStr && take(it, addDays(it.date, RESCUE_DAYS + 1), it.examDate)) it.status = 'caught';
+  // 4) i förväg för kommande punkter, med det som blir över
+  for (const it of open) if (it.status === null && take(it, addDays(it.date, -7), addDays(it.date, -1))) it.status = 'done';
+  for (const it of open) if (it.status === null) it.status = it.date > todayStr ? 'future' : it.date === todayStr ? 'open' : (addDays(it.date, RESCUE_DAYS) >= todayStr ? 'late' : 'missed');
+  for (const it of open) delete it.want;
   return out;
+}
+
+// Kvar att ta igen i ett ämne: missade eller sena pass vars prov inte har varit.
+export function backlog(evaluated, moduleId, todayStr) {
+  return evaluated.filter(i => i.moduleId === moduleId && i.kind === 'pass' && (i.status === 'late' || (i.status === 'missed' && i.date >= CATCHUP_FROM && i.examDate && i.examDate >= todayStr && i.examDate >= i.date))).length;
 }
 
 // Veckorapport: per ISO-vecka → {week, start, items, done, total, jokersUsed, missed, light:'green'|'yellow'|'red'|'grey'|'open'}
@@ -146,6 +162,7 @@ export function weekReport(evaluated, todayStr) {
     w.done = w.items.filter(i => i.status === 'done').length;
     w.rescued = w.items.filter(i => i.status === 'rescued');
     w.missed = w.items.filter(i => i.status === 'missed').length;
+    w.caught = w.items.filter(i => i.status === 'caught').length;
     w.pending = w.items.filter(i => i.status === 'pending').length;
     w.open = w.items.filter(i => i.status === 'open' || i.status === 'late' || i.status === 'future').length;
     // jokrar per månad (veckans startmånad)
@@ -156,9 +173,9 @@ export function weekReport(evaluated, todayStr) {
     else if (w.missed > 0 || w.jokersOver > 0) w.light = 'red';
     else if (w.open > 0) w.light = weekEnd < todayStr ? 'red' : 'open';
     else if (w.pending > 0) w.light = 'open'; // väntar på att förälder rättar
-    else if (w.rescued.length > 0) w.light = 'yellow';
+    else if (w.rescued.length > 0 || w.caught > 0) w.light = 'yellow';
     else w.light = 'green';
-    w.pct = w.total ? Math.round((w.done + w.rescued.length) / w.total * 100) : 0;
+    w.pct = w.total ? Math.round((w.done + w.rescued.length + w.caught) / w.total * 100) : 0;
     w.end = weekEnd;
   }
   return weeks;
