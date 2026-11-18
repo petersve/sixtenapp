@@ -15,7 +15,7 @@ let unsub = null;
 let MEMBERS = [];
 let ALLSESS = [];              // alla sessions för eleven, alla moduler
 let LECTURES = [], REVIEWS = [];
-const TAB_OF = { lecquiz: 'lectures', today: 'today', home: 'exams', exams: 'exams', flash: 'exams', quiz: 'exams', test: 'exams', map: 'exams', result: 'exams', goals: 'exams', lectures: 'lectures', bonus: 'bonus', coach: 'coach', settings: 'coach' };
+const TAB_OF = { lecquiz: 'lectures', today: 'today', home: 'exams', exams: 'exams', flash: 'exams', quiz: 'exams', test: 'exams', map: 'exams', result: 'exams', goals: 'exams', lectures: 'lectures', bonus: 'bonus', log: 'log', coach: 'coach', settings: 'coach' };
 const IMMERSIVE = ['auth', 'onboard', 'session', 'paper'];
 let GOALS = [];                // betygsmål för eleven som visas
 let RESULTS = [];              // utfall per prov
@@ -89,7 +89,7 @@ const app = document.getElementById('app');
 function go(name, extra = {}) { view = { name, ...extra }; window.scrollTo(0, 0); render(); }
 function after(f) { const prev = window._after; window._after = () => { if (prev) prev(); f(); }; return ''; }
 function render() {
-  const r = { auth, onboard, home, session, flash, quiz, test, map, coach, settings, goals, result, paper, today: todayView, exams, lectures, bonus, lecquiz }[view.name] || todayView;
+  const r = { auth, onboard, home, session, flash, quiz, test, map, coach, settings, goals, result, paper, today: todayView, exams, lectures, bonus, lecquiz, log: logView }[view.name] || todayView;
   app.innerHTML = r() + (IMMERSIVE.includes(view.name) || !me ? '' : tabbar());
   app.querySelectorAll('[data-go]').forEach(b => b.onclick = () => go(b.dataset.go));
   app.querySelectorAll('[data-mod]').forEach(b => b.onclick = () => switchModule(b.dataset.mod));
@@ -98,11 +98,49 @@ function render() {
 }
 function tabbar() {
   const cur = TAB_OF[view.name] || 'today';
-  const tabs = [['today', 'Idag', '◉'], ['exams', 'Prov', '▤'], ['lectures', 'Lektioner', '♪'], ['bonus', 'Bonus', '★']];
+  const tabs = [['today', 'Idag', '◉'], ['exams', 'Prov', '▤'], ['lectures', 'Lektioner', '♪'], ['log', 'Logg', '☰'], ['bonus', 'Bonus', '★']];
   if (me.role === 'parent') tabs.push(['coach', 'Coach', '◎']);
   return `<nav class="tabbar">${tabs.map(([k, l, i]) => `<button class="${cur === k ? 'on' : ''}" data-go="${k}"><span class="ico">${i}</span>${l}</button>`).join('')}</nav>`;
 }
 function topbar(title, right = '') { return `<div class="topbar"><button class="back" data-go="${TAB_OF[view.name] === 'exams' && view.name !== 'home' ? 'home' : 'today'}">Tillbaka</button><div class="eyebrow">${esc(title)}</div><div>${right}</div></div>`; }
+
+// ---------- LOGG ----------
+// Allt eleven gjort, dag för dag: pass (räknat / extra / avbrutet), övningsprov, lektionsfrågor och pappersövningar.
+function logView() {
+  const filt = view.subj || 'alla';
+  const modOf = id => MODS.find(m => m.id === id) || {};
+  const rows = [];
+  for (const s of ALLSESS) {
+    const m = modOf(s.module_id); const det = s.detail || {}; const a = det.auto;
+    let kind, tone;
+    if (s.type === 'pass') { const c = counts(s); kind = c ? 'Räknat pass' : det.why === 'first' ? 'Extra träning' : det.why === 'low' ? 'Pass under gränsen' : det.why === 'guess' ? 'För många gissningar' : det.why === 'fast' ? 'För snabbt (gamla regeln)' : 'Pass'; tone = c ? 'good' : det.why === 'first' ? 'mid' : 'bad'; }
+    else if (s.type === 'pass-avbrutet') { if (a && a.total === 0) continue; kind = 'Avbrutet pass'; tone = 'unseen'; }
+    else if (s.type === 'test') { kind = det.paper ? 'Diagnos på papper' : 'Övningsprov'; tone = !s.max || s.score / s.max >= 0.5 ? 'good' : 'bad'; }
+    else if (s.type === 'quiz') { kind = 'Snabbquiz'; tone = 'mid'; }
+    else continue;
+    const sc = a && a.total ? `${a.score}/${a.total}` : s.max ? `${s.score}/${s.max}` : '';
+    const pct = a && a.total ? Math.round(a.score / a.total * 100) : s.max ? Math.round(s.score / s.max * 100) : null;
+    rows.push({ d: s.d, at: s.at || s.d, subj: m.subject || '', title: m.title || '', kind, tone, sc, pct, secs: det.secs });
+  }
+  for (const r of REVIEWS) { const l = LECTURES.find(x => x.id === r.lecture_id); rows.push({ d: r.day, at: r.day + 'T23:59', subj: (l && l.subject) || 'Lektion', title: l ? l.title : 'Lektion', kind: 'Lektionsfrågor', tone: 'good', sc: `${r.score}/${r.max}`, pct: r.max ? Math.round(r.score / r.max * 100) : null }); }
+  for (const c of CHECKS) { const m = modOf(c.module_id); rows.push({ d: c.submitted_day, at: c.submitted_at || c.submitted_day, subj: m.subject || '', title: c.label, kind: c.status === 'approved' ? 'Godkänd övning' : c.status === 'rejected' ? 'Inte godkänd' : 'Väntar på rättning', tone: c.status === 'approved' ? 'good' : c.status === 'rejected' ? 'bad' : 'mid', sc: c.max ? `${c.score}/${c.max}` : '', pct: c.max ? Math.round(c.score / c.max * 100) : null }); }
+  const subjects = [...new Set(rows.map(r => r.subj).filter(Boolean))].sort();
+  const shown = rows.filter(r => filt === 'alla' || r.subj === filt).sort((a, b) => String(b.at).localeCompare(String(a.at)));
+  const byDay = new Map(); for (const r of shown) { if (!byDay.has(r.d)) byDay.set(r.d, []); byDay.get(r.d).push(r); }
+  const ws = weekStart(today()); const week = rows.filter(r => r.d >= ws);
+  const nCounted = week.filter(r => r.kind === 'Räknat pass').length, nExtra = week.filter(r => r.kind === 'Extra träning').length;
+  const dayLabel = d => d === today() ? 'Idag' : d === addD(today(), -1) ? 'Igår' : new Date(d + 'T00:00:00').toLocaleDateString('sv-SE', { weekday: 'long', day: 'numeric', month: 'short' });
+  const tm = at => (String(at).length > 10 ? new Date(at).toLocaleTimeString('sv-SE', { hour: '2-digit', minute: '2-digit' }) : '');
+  return `<div class="stack">
+    <div class="topbar" style="padding-bottom:4px"><div><div class="eyebrow">Allt du gjort</div><h1>Logg</h1></div></div>
+    <div class="card stack" style="gap:6px"><h3>Den här veckan</h3>
+      <div class="row" style="gap:18px"><div><div class="big num" style="font-size:2.2rem;color:var(--good)">${nCounted}</div><div class="muted" style="font-size:.85rem">räknade pass</div></div><div><div class="big num" style="font-size:2.2rem;color:var(--mid)">${nExtra}</div><div class="muted" style="font-size:.85rem">extra träning</div></div></div>
+      <p class="muted" style="font-size:.9rem"><span class="light green" style="width:10px;height:10px"></span> <b>Räknat pass</b> = dagens första i ämnet, bockas av i planen. <span class="light yellow" style="width:10px;height:10px"></span> <b>Extra träning</b> = sparas och gör korten starkare, men bockar inte av något.</p></div>
+    <div class="row" style="gap:6px;flex-wrap:wrap">${['alla', ...subjects].map(s => `<button class="btn small ${s === filt ? 'primary' : ''}" data-subj="${esc(s)}">${s === 'alla' ? 'Alla' : esc(s)}</button>`).join('')}</div>
+    ${byDay.size ? [...byDay].map(([d, rs]) => `<div class="card stack" style="gap:0"><h3 style="text-transform:none;letter-spacing:0;font-size:1.05rem;color:var(--fg);margin-bottom:6px">${esc(dayLabel(d))}</h3>
+      ${rs.map(r => `<div class="row" style="justify-content:space-between;align-items:center;padding:8px 0;border-top:1px solid var(--line);flex-wrap:nowrap;gap:10px"><div class="row" style="gap:10px;flex-wrap:nowrap;min-width:0"><span class="light ${r.tone === 'good' ? 'green' : r.tone === 'mid' ? 'yellow' : r.tone === 'bad' ? 'red' : ''}" style="width:12px;height:12px;flex:none"></span><span style="min-width:0"><b>${esc(r.kind)}</b> <span class="muted">· ${esc(r.subj)}</span><br><span class="muted" style="font-size:.85rem">${tm(r.at)}${r.secs ? ' · ' + (r.secs >= 60 ? Math.round(r.secs / 60) + ' min' : r.secs + ' s') : ''} · ${esc(r.title)}</span></span></div><div class="num" style="text-align:right;flex:none">${r.sc ? `<b>${r.sc}</b>` : ''}${r.pct !== null && r.pct !== undefined ? `<div class="muted" style="font-size:.8rem">${r.pct} %</div>` : ''}</div></div>`).join('')}</div>`).join('') : '<div class="card"><p class="muted">Inget gjort ännu.</p></div>'}
+  </div>` + after(() => { document.querySelectorAll('[data-subj]').forEach(b => b.onclick = () => go('log', { subj: b.dataset.subj })); });
+}
 
 // ---------- AUTH ----------
 function auth() {

@@ -68,7 +68,7 @@ export async function loadSnoozes(userId) { const { data } = await sb.from('resu
 export async function snoozeResult(userId, moduleId, until) { const { data: { user } } = await sb.auth.getUser(); const { error } = await sb.from('result_snooze').upsert({ user_id: userId, module_id: moduleId, until, set_by: user?.id, set_at: new Date().toISOString() }); if (error) throw error; }
 
 // Alla pass/prov för en elev (alla moduler) – för Idag och Bonus
-export async function loadAllSessions(userId) { const { data } = await sb.from('sessions').select('module_id,kind,day,score,max,minutes,detail,created_at').eq('user_id', userId).order('created_at'); return (data || []).map(s => ({ module_id: s.module_id, type: s.kind, d: s.day, score: s.score, max: s.max, mins: s.minutes, detail: s.detail })); }
+export async function loadAllSessions(userId) { const { data } = await sb.from('sessions').select('module_id,kind,day,score,max,minutes,detail,created_at').eq('user_id', userId).order('created_at'); return (data || []).map(s => ({ module_id: s.module_id, type: s.kind, d: s.day, score: s.score, max: s.max, mins: s.minutes, detail: s.detail, at: s.created_at })); }
 
 // Lektioner från Pocket
 export async function loadLectures(userId) { const { data } = await sb.from('lectures').select('id,title,recorded_at,duration,subject,summary,questions,module_id,feedback,practice_for').eq('user_id', userId).or('duration.gte.120,feedback.not.is.null').order('recorded_at', { ascending: false }); return data || []; }
