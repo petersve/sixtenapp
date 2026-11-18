@@ -88,10 +88,12 @@ export function buildItems(mods, results, todayStr, snoozes = []) {
       for (const it of p.items) {
         const isTest = /övningsprov|diagnos/i.test(it) || m.kind === 'diagnos';
         // Övningar utanför appen (papper, Pocket, med förälder) kan appen inte registrera: visas men räknas inte i veckan
-        const offline = !isTest && /papper|pocket|förälder|middagsdiskussion/i.test(it);
-        const kind = m.kind === 'diagnos' ? 'paper' : isTest ? 'test' : offline ? 'offline' : 'pass';
+        // Utanför appen: papper, Pocket, med förälder, och övningsprov i matte (görs på papper). Förälder rättar och godkänner.
+        const paperTest = isTest && m.subject === 'Matematik' && m.kind !== 'diagnos';
+        const offline = paperTest || (!isTest && /papper|pocket|förälder|middagsdiskussion/i.test(it));
+        const kind = m.kind === 'diagnos' ? 'paper' : offline ? 'offline' : isTest ? 'test' : 'pass';
         const key = `${m.id}:${p.date}:${kind}:${kind === 'pass' ? passN++ : 0}`;
-        items.push({ key, date: p.date, moduleId: m.id, title: `${m.subject}: ${m.title}`, kind, label: it });
+        items.push({ key, date: p.date, moduleId: m.id, title: `${m.subject}: ${m.title}`, kind, label: it, isTest: paperTest });
       }
     }
     if (m.kind === 'diagnos' && !plan.length && m.exam_date) items.push({ key: `${m.id}:${m.exam_date}:paper:0`, date: m.exam_date, moduleId: m.id, title: `${m.subject}: ${m.title}`, kind: 'paper', label: 'Gör diagnosen (40 min)' });
@@ -108,12 +110,21 @@ export function buildItems(mods, results, todayStr, snoozes = []) {
 }
 
 // Matcha planposter mot sessions. Returnerar items med status: done | rescued | missed | open | future, och doneDay.
-export function evaluate(items, sessions, results, todayStr) {
+export const OFFLINE_FROM = '2026-11-18'; // godkännandeflödet finns från detta datum; äldre pappers-/Pocket-punkter räknas inte
+export function evaluate(items, sessions, results, todayStr, checks = []) {
   const pool = sessions.filter(s => (s.type === 'pass' || s.type === 'test') && counts(s)).map(s => ({ ...s, used: false })).sort((a, b) => a.d.localeCompare(b.d));
   const out = items.map(it => ({ ...it }));
   // först: poster i datumordning, varje tar den tidigaste passande oanvända sessionen inom [date-7, date+RESCUE]
   for (const it of out) {
-    if (it.kind === 'offline') { it.status = it.date > todayStr ? 'future' : it.date === todayStr ? 'open' : 'past'; continue; }
+    if (it.kind === 'offline') {
+      if (it.date < OFFLINE_FROM) { it.status = 'past'; continue; }
+      const ch = checks.find(c => c.item_key === it.key); it.check = ch || null;
+      if (ch && ch.status === 'pending') { it.status = 'pending'; continue; }
+      if (ch && ch.status === 'approved' && (!it.isTest || !ch.max || ch.score / ch.max >= TEST_MIN)) {
+        it.doneDay = ch.submitted_day; it.status = ch.submitted_day <= it.date ? 'done' : ch.submitted_day <= addDays(it.date, RESCUE_DAYS) ? 'rescued' : 'missed'; continue;
+      }
+      it.status = it.date > todayStr ? 'future' : it.date === todayStr ? 'open' : (addDays(it.date, RESCUE_DAYS) >= todayStr ? 'late' : 'missed'); continue;
+    }
     if (it.kind === 'grade') { const r = results.find(x => x.module_id === it.moduleId); it.status = r ? 'done' : it.date > todayStr ? 'future' : it.date < addDays(todayStr, -RESCUE_DAYS) ? 'missed' : 'open'; continue; }
     const want = it.kind === 'pass' ? 'pass' : 'test';
     const cand = pool.find(s => !s.used && s.module_id === it.moduleId && s.type === want && s.d >= addDays(it.date, -7) && s.d <= addDays(it.date, RESCUE_DAYS));
@@ -126,7 +137,7 @@ export function evaluate(items, sessions, results, todayStr) {
 // Veckorapport: per ISO-vecka → {week, start, items, done, total, jokersUsed, missed, light:'green'|'yellow'|'red'|'grey'|'open'}
 export function weekReport(evaluated, todayStr) {
   const byWeek = new Map();
-  for (const it of evaluated) { if (it.kind === 'offline') continue; const w = isoWeek(it.date); if (!byWeek.has(w)) byWeek.set(w, { week: w, start: weekStart(it.date), items: [] }); byWeek.get(w).items.push(it); }
+  for (const it of evaluated) { if (it.status === 'past') continue; const w = isoWeek(it.date); if (!byWeek.has(w)) byWeek.set(w, { week: w, start: weekStart(it.date), items: [] }); byWeek.get(w).items.push(it); }
   const jokersByMonth = new Map();
   const weeks = [...byWeek.values()].sort((a, b) => a.start.localeCompare(b.start));
   for (const w of weeks) {
@@ -134,6 +145,7 @@ export function weekReport(evaluated, todayStr) {
     w.done = w.items.filter(i => i.status === 'done').length;
     w.rescued = w.items.filter(i => i.status === 'rescued');
     w.missed = w.items.filter(i => i.status === 'missed').length;
+    w.pending = w.items.filter(i => i.status === 'pending').length;
     w.open = w.items.filter(i => i.status === 'open' || i.status === 'late' || i.status === 'future').length;
     // jokrar per månad (veckans startmånad)
     const month = w.start.slice(0, 7); const used = jokersByMonth.get(month) || 0;
@@ -142,6 +154,7 @@ export function weekReport(evaluated, todayStr) {
     if (w.total === 0) w.light = 'grey';
     else if (w.missed > 0 || w.jokersOver > 0) w.light = 'red';
     else if (w.open > 0) w.light = weekEnd < todayStr ? 'red' : 'open';
+    else if (w.pending > 0) w.light = 'open'; // väntar på att förälder rättar
     else if (w.rescued.length > 0) w.light = 'yellow';
     else w.light = 'green';
     w.pct = w.total ? Math.round((w.done + w.rescued.length) / w.total * 100) : 0;

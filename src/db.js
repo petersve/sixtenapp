@@ -76,6 +76,11 @@ export async function setLectureSubject(id, subject) { const { error } = await s
 export async function loadLectureReviews(userId) { const { data } = await sb.from('lecture_reviews').select('lecture_id,day,score,max').eq('user_id', userId); return data || []; }
 export async function saveLectureReview(userId, lectureId, score, max) { await sb.from('lecture_reviews').upsert({ user_id: userId, lecture_id: lectureId, day: today(), score, max }); }
 
+// Övningar utanför appen: eleven markerar som gjord, förälder rättar och godkänner
+export async function loadChecks(userId) { const { data } = await sb.from('offline_checks').select('*').eq('user_id', userId).order('submitted_at', { ascending: false }); return data || []; }
+export async function submitCheck(userId, it) { const { error } = await sb.from('offline_checks').upsert({ user_id: userId, module_id: it.moduleId, item_key: it.key, label: it.label, is_test: !!it.isTest, submitted_day: today(), submitted_at: new Date().toISOString(), status: 'pending', score: null, max: null, comment: null, reviewed_by: null, reviewed_at: null }, { onConflict: 'user_id,item_key' }); if (error) throw error; }
+export async function reviewCheck(id, status, score, max, comment) { const { data: { user } } = await sb.auth.getUser(); const { error } = await sb.from('offline_checks').update({ status, score: score ?? null, max: max ?? null, comment: comment || null, reviewed_by: user?.id, reviewed_at: new Date().toISOString() }).eq('id', id); if (error) throw error; }
+
 // Web push
 export const VAPID_PUBLIC = 'BCcy2rpFL64cU7VuZhZkhtDd13pCpG9z4vWf1bKgJOVLb63TPl21zVzWYy53NBPFmwtPwj1qbao_fhyXe2kAa1w';
 export async function savePushSubscription(userId, sub) { const j = sub.toJSON(); const { error } = await sb.from('push_subscriptions').upsert({ user_id: userId, endpoint: j.endpoint, keys: j.keys, ua: navigator.userAgent.slice(0, 200) }, { onConflict: 'endpoint' }); if (error) throw error; }
