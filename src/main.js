@@ -1,5 +1,5 @@
 import * as db from './db.js';
-import { RULES_V2_FROM, PASS_MIN_SECS, RULES_V3_FROM, PASS_MIN_V3, MAX_GUESSES, minAnswerMs, buildItems, evaluate, weekReport, counts, monthBonus, lectureWeekAmount, BONUS, LECTURE_MIN_SEC, LECTURE_REVIEW_DAYS, PASS_MIN, PREP_MIN, JOKERS_PER_MONTH, RESCUE_DAYS, isoWeek, weekStart } from './plan.js';
+import { MAX_ATTEMPTS, RULES_V2_FROM, PASS_MIN_SECS, RULES_V3_FROM, PASS_MIN_V3, MAX_GUESSES, minAnswerMs, buildItems, evaluate, weekReport, counts, monthBonus, lectureWeekAmount, BONUS, LECTURE_MIN_SEC, LECTURE_REVIEW_DAYS, PASS_MIN, PREP_MIN, JOKERS_PER_MONTH, RESCUE_DAYS, isoWeek, weekStart } from './plan.js';
 const { sb, today } = db;
 
 // ============ STATE ============
@@ -58,9 +58,10 @@ function streak() { const days = new Set(S.sessions.map(s => s.d)); let n = 0; c
 // minst 6 minuter och minst 60 % rätt på frågorna appen rättar. Bossen rättar man själv och räknas inte i procenten.
 function passVerdict(type, secs, auto) {
   if (today() < RULES_V2_FROM) return { counted: type === 'pass' && (!auto.total || auto.score / auto.total >= PASS_MIN), why: type === 'pass' && auto.total && auto.score / auto.total < PASS_MIN ? 'low' : '' };
-  const earlier = S.sessions.some(x => x.d === today() && (x.type === 'pass' || (x.type === 'pass-avbrutet' && !(x.detail && x.detail.auto && x.detail.auto.total === 0)))); /* avbrutet utan svar räknas inte */
-  if (earlier) return { counted: false, why: 'first' };
+  const todays = S.sessions.filter(x => x.d === today() && x.type === 'pass'); /* avbrutna pass räknas inte som försök */
+  if (todays.some(x => x.detail && x.detail.counted)) return { counted: false, why: 'first' };
   if (type !== 'pass') return { counted: false, why: 'aborted' };
+  if (todays.length >= MAX_ATTEMPTS) return { counted: false, why: 'attempts' };
   if (today() >= RULES_V3_FROM) {
     if ((sess && sess.guesses || 0) > MAX_GUESSES) return { counted: false, why: 'guess' };
     if (auto.total && auto.score / auto.total < PASS_MIN_V3) return { counted: false, why: 'low' };
@@ -70,7 +71,7 @@ function passVerdict(type, secs, auto) {
   if (auto.total && auto.score / auto.total < PASS_MIN) return { counted: false, why: 'low' };
   return { counted: true, why: '' };
 }
-function passDoneToday() { return today() >= RULES_V2_FROM && S.sessions.some(x => x.d === today() && (x.type === 'pass' || (x.type === 'pass-avbrutet' && !(x.detail && x.detail.auto && x.detail.auto.total === 0)))); }
+function passDoneToday() { if (today() < RULES_V2_FROM) return false; const t = S.sessions.filter(x => x.d === today() && x.type === 'pass'); return t.some(x => x.detail && x.detail.counted) || t.length >= MAX_ATTEMPTS; }
 async function logSession(type, extra = {}) {
   const s = { d: today(), ts: Date.now(), type, score: sess ? sess.score : extra.score, max: sess ? sess.total : extra.max, mins: sess ? Math.round((Date.now() - sess.start) / 60000) : extra.mins, detail: extra.detail };
   if (sess && type.startsWith('pass')) {
@@ -135,7 +136,7 @@ function logView() {
     <div class="topbar" style="padding-bottom:4px"><div><div class="eyebrow">Allt du gjort</div><h1>Logg</h1></div></div>
     <div class="card stack" style="gap:6px"><h3>Den här veckan</h3>
       <div class="row" style="gap:18px"><div><div class="big num" style="font-size:2.2rem;color:var(--good)">${nCounted}</div><div class="muted" style="font-size:.85rem">räknade pass</div></div><div><div class="big num" style="font-size:2.2rem;color:var(--mid)">${nExtra}</div><div class="muted" style="font-size:.85rem">extra träning</div></div></div>
-      <p class="muted" style="font-size:.9rem"><span class="light green" style="width:10px;height:10px"></span> <b>Räknat pass</b> = dagens första i ämnet, bockas av i planen. <span class="light yellow" style="width:10px;height:10px"></span> <b>Extra träning</b> = sparas och gör korten starkare, men bockar inte av något.</p></div>
+      <p class="muted" style="font-size:.9rem"><span class="light green" style="width:10px;height:10px"></span> <b>Räknat pass</b> = bockas av i planen (2 försök per ämne och dag). <span class="light yellow" style="width:10px;height:10px"></span> <b>Extra träning</b> = efter dagens räknade pass. Sparas och gör korten starkare, men bockar inte av något.</p></div>
     <div class="row" style="gap:6px;flex-wrap:wrap">${['alla', ...subjects].map(s => `<button class="btn small ${s === filt ? 'primary' : ''}" data-subj="${esc(s)}">${s === 'alla' ? 'Alla' : esc(s)}</button>`).join('')}</div>
     ${byDay.size ? [...byDay].map(([d, rs]) => `<div class="card stack" style="gap:0"><h3 style="text-transform:none;letter-spacing:0;font-size:1.05rem;color:var(--fg);margin-bottom:6px">${esc(dayLabel(d))}</h3>
       ${rs.map(r => `<div class="row" style="justify-content:space-between;align-items:center;padding:8px 0;border-top:1px solid var(--line);flex-wrap:nowrap;gap:10px"><div class="row" style="gap:10px;flex-wrap:nowrap;min-width:0"><span class="light ${r.tone === 'good' ? 'green' : r.tone === 'mid' ? 'yellow' : r.tone === 'bad' ? 'red' : ''}" style="width:12px;height:12px;flex:none"></span><span style="min-width:0"><b>${esc(r.kind)}</b> <span class="muted">· ${esc(r.subj)}</span><br><span class="muted" style="font-size:.85rem">${tm(r.at)}${r.secs ? ' · ' + (r.secs >= 60 ? Math.round(r.secs / 60) + ' min' : r.secs + ' s') : ''} · ${esc(r.title)}</span></span></div><div class="num" style="text-align:right;flex:none">${r.sc ? `<b>${r.sc}</b>` : ''}${r.pct !== null && r.pct !== undefined ? `<div class="muted" style="font-size:.8rem">${r.pct} %</div>` : ''}</div></div>`).join('')}</div>`).join('') : '<div class="card"><p class="muted">Inget gjort ännu.</p></div>'}
@@ -288,7 +289,7 @@ function sessHeader() {
   const mins = Math.floor((Date.now() - sess.start) / 60000);
   return `<div class="topbar"><button class="back" id="quit">Avbryt</button><div class="timer num">${mins} min</div><div class="muted num" style="font-weight:600">${sess.score}/${sess.total} rätt</div></div>
   <div class="steps">${names.map((n, i) => `<div class="${i < sess.step ? 'done' : i === sess.step ? 'on' : ''}">${n}</div>`).join('')}</div>
-  ${today() >= RULES_V2_FROM && sess.step < 4 ? `<div class="muted" style="font-size:.85rem">${sess.extra ? 'Extra träning: dagens räknade pass i ämnet är redan gjort.' : (today() >= RULES_V3_FROM ? 'Dagens räknade pass. Läs varje fråga: svar som kommer för snabbt räknas som gissningar. Gäller även om du avbryter.' : 'Dagens räknade pass. Ta det lugnt: det räknas från 6 min och gäller även om du avbryter.')}</div>` : ''}`;
+  ${today() >= RULES_V2_FROM && sess.step < 4 ? `<div class="muted" style="font-size:.85rem">${sess.extra ? 'Extra träning: dagens räknade pass i ämnet är redan gjort.' : (today() >= RULES_V3_FROM ? `Räknat försök ${S.sessions.filter(x => x.d === today() && x.type === 'pass').length + 1} av ${MAX_ATTEMPTS}. Läs varje fråga: svar som kommer för snabbt räknas som gissningar.` : 'Dagens räknade pass. Ta det lugnt: det räknas från 6 min och gäller även om du avbryter.')}</div>` : ''}`;
 }
 function session() {
   if (!sess) return home();
@@ -335,7 +336,7 @@ function stepDone() {
   const newGreen = CARDS.filter(c => mastery(c.id) === 3 && S.cards[c.id].d[2] === today()).length;
   const apct = sess.auto.total ? Math.round(sess.auto.score / sess.auto.total * 100) : 100;
   const v = sess.verdict || { counted: true }; const counted = v.counted;
-  const msg = { first: 'Dagens räknade pass i det här ämnet är redan gjort (eller avbrutet). Det här var fri träning: korten blir ändå starkare, men passet ger inget i planen.', fast: `Passet tog ${Math.max(1, Math.round((Date.now() - sess.start) / 60000))} min. Ett pass räknas från ${PASS_MIN_SECS / 60} minuter, för det är ungefär så lång tid det tar att läsa korten och tänka på frågorna.`, low: `Under ${Math.round((today() >= RULES_V3_FROM ? PASS_MIN_V3 : PASS_MIN) * 100)} % rätt. Passet räknas inte mot veckan, men korten du missade kommer tillbaka i morgon.`, guess: `${sess.guesses} svar kom innan det gick att läsa frågan. Max ${MAX_GUESSES} gissningar per pass, annars räknas det inte. Ta det i din egen takt i morgon.` }[v.why] || '';
+  const msg = { first: 'Dagens räknade pass i det här ämnet är redan gjort (eller avbrutet). Det här var fri träning: korten blir ändå starkare, men passet ger inget i planen.', fast: `Passet tog ${Math.max(1, Math.round((Date.now() - sess.start) / 60000))} min. Ett pass räknas från ${PASS_MIN_SECS / 60} minuter, för det är ungefär så lång tid det tar att läsa korten och tänka på frågorna.`, low: `Under ${Math.round((today() >= RULES_V3_FROM ? PASS_MIN_V3 : PASS_MIN) * 100)} % rätt. Passet räknas inte mot veckan, men korten du missade kommer tillbaka i morgon.`, attempts: `Du har redan använt dagens ${MAX_ATTEMPTS} försök i ämnet. Det här var fri träning, och korten du missade kommer tillbaka i morgon.`, guess: `${sess.guesses} svar kom innan det gick att läsa frågan. Max ${MAX_GUESSES} gissningar per pass, annars räknas det inte. Ta det i din egen takt i morgon.` }[v.why] || '';
   return `<div class="card stack" style="text-align:center;gap:10px">
     <div class="eyebrow">${counted ? 'Pass klart · räknas' : v.why === 'first' ? 'Extra träning' : 'Pass klart · räknas inte'}</div><div class="big num" style="${counted || v.why === 'first' ? '' : 'color:var(--bad)'}">${apct}%</div>
     ${msg ? `<div class="fb ${v.why === 'first' ? 'ok' : 'no'}" style="text-align:left">${msg}</div>` : ''}
@@ -613,7 +614,7 @@ function bonus() {
       <div class="row" style="gap:10px"><span class="light green"></span><span>Allt i planen gjort senast söndag. <b>${kr(cur.mb.weekAmount)} den veckan.</b></span></div>
       <div class="row" style="gap:10px"><span class="light yellow"></span><span>En dag missad men räddad inom ${RESCUE_DAYS} dagar med din joker (${JOKERS_PER_MONTH} per månad). <b>${kr(cur.mb.weekAmount - BONUS.YELLOW_PENALTY)}.</b></span></div>
       <div class="row" style="gap:10px"><span class="light red"></span><span>Något missat utan joker. <b>0 kr den veckan, aldrig minus.</b></span></div>
-      <div class="row" style="gap:10px;align-items:flex-start"><span class="light" style="background:var(--accent);margin-top:4px"></span><span>Ett pass räknas om det är <b>dagens första i ämnet</b> (även om du avbryter), har <b>minst ${Math.round(PASS_MIN_V3 * 100)} % rätt</b> på frågorna appen rättar och <b>högst ${MAX_GUESSES} gissningar</b> (svar som kommer innan man hunnit läsa frågan). Ingen minimitid. Fler pass samma dag är fri träning. Övningsprov räknas från 50 %.</span></div>
+      <div class="row" style="gap:10px;align-items:flex-start"><span class="light" style="background:var(--accent);margin-top:4px"></span><span>Du har <b>${MAX_ATTEMPTS} försök per ämne och dag</b> (avbrutna räknas inte). Det första passet som har <b>minst ${Math.round(PASS_MIN_V3 * 100)} % rätt</b> på frågorna appen rättar och <b>högst ${MAX_GUESSES} gissningar</b> (svar som kommer innan man hunnit läsa frågan) räknas. Ingen minimitid. Fler pass samma dag är fri träning. Övningsprov räknas från 50 %.</span></div>
       <p class="muted" style="font-size:.9rem;margin-top:4px"><b>Prov:</b> ${kr(BONUS.RESULT)} delas på månadens prov. Nått målet = hela andelen. Under målet men minst ${Math.round(PREP_MIN * 100)} % gröna kort dagen före = halva. Månad utan prov: provdelen följer veckorna.<br><b>Lektioner:</b> spela in och svara på de fem frågorna senast dagen efter. ${BONUS.LECTURE_GOAL} lektioner i veckan = ${kr(lectureWeekAmount(4))}, 3 = ${kr(lectureWeekAmount(3))}, 2 = ${kr(lectureWeekAmount(2))}. Inspelningar under 20 min räknas inte.<br>Golvet ${kr(BONUS.FLOOR)} får du alltid.</p></div>
     ${months.map(ym => { const { ws, mb } = calc(ym); if (!ws.length && !mb.rows.length) return ''; return `<div class="card stack" style="gap:8px"><div class="row" style="justify-content:space-between"><h3>${monthName(ym)}</h3><b class="num" style="color:var(--accent)">${kr(mb.total)}${mb.pending ? ' <span class="muted" style="font-weight:400">pågår</span>' : ''}</b></div>
       ${ws.map(w => `<div class="row" style="justify-content:space-between;padding:8px 0;border-top:1px solid var(--line)"><div class="row" style="gap:10px"><span class="light ${w.light}"></span><span>Vecka ${w.week.slice(-2)} <span class="muted">${fmtDate(w.start)}–${fmtDate(w.end)}</span></span></div><div class="row" style="gap:10px"><span class="num muted">${w.done + w.rescued.length}/${w.total}</span><b class="num" style="min-width:60px;text-align:right">${w.light === 'open' ? '…' : kr(w.light === 'green' ? mb.weekAmount : w.light === 'yellow' ? mb.weekAmount - BONUS.YELLOW_PENALTY : 0)}</b></div></div>`).join('')}

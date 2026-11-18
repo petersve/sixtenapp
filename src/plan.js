@@ -10,7 +10,8 @@ export const RULES_V2_FROM = '2026-10-30'; // ett räknat pass per ämne och dag
 export const PASS_MIN_SECS = 360;          // gällde 30/10–8/11, ersatt av gissningsspärr
 export const RULES_V3_FROM = '2026-11-08';  // ingen minimitid; gissningsspärr per fråga; 70 % rätt
 export const PASS_MIN_V3 = 0.7;
-export const MAX_GUESSES = 2;               // fler snabbgissningar än så i ett pass = räknas inte
+export const MAX_GUESSES = 2;
+export const MAX_ATTEMPTS = 2;              // fullföljda försök per ämne och dag; det första som klarar gränsen räknas. Avbrutna räknas inte.               // fler snabbgissningar än så i ett pass = räknas inte
 export const minAnswerMs = q => Math.min(3500, 1200 + 20 * String(q || '').length); // tid det tar att läsa frågan
 export const TEST_MIN = 0.5;       // andel rätt för att ett övningsprov ska räknas
 export const PREP_MIN = 0.8;       // andel gröna kort dagen före provet = "preppen var grön"
